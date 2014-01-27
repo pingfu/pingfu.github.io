@@ -31,9 +31,9 @@ breadcrumb: IIS Remove Server Headers
 
 	<p>Deploy the library to the Global Assembly Cache (GAC) using gacutil.exe. Once the library is installed to the GAC, other copies can be removed from the server.</p>
 
-	<ul>
-		<li>`gacutil.exe /i Pingfu.RemoveServerHeaderModule.dll`</li>
-	</ul>
+	```
+	gacutil.exe /i Pingfu.RemoveServerHeaderModule.dll
+	```
 
 	<h2>Configure IIS to use the module</h2>
 
@@ -42,7 +42,7 @@ breadcrumb: IIS Remove Server Headers
 		<li>Open the <strong>Modules</strong> administration feature at the server level.</li>
 		<li>Select <strong>Add Managed Module...</strong>
 			<ol>
-				<li>For&nbsp;Name&nbsp;enter a descriptive name, for example "Pingfu.RemoveServerHeaderModule"</li>
+				<li>For Name enter a descriptive name, for example "Pingfu.RemoveServerHeaderModule"</li>
 				<li>For Type select the module from the list.</li>
 			</ol>
 		</li>
