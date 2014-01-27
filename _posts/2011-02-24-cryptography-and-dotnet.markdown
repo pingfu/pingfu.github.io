@@ -40,62 +40,67 @@ The following example source code accepts ASCII plaintext, password and salt val
 If you are working with files, binary data or otherwise, Base64 encoding the cipher text is not necessary.
 
 {% highlight csharp %}
-using System.Security.Cryptography;
+using System;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 
 public class Rijndael
 {
-	public String Encrypt( String PlainText, String Password, String Salt )
-	{
-		Byte[] SaltBytes = Encoding.ASCII.GetBytes( Salt );
-		AesCryptoServiceProvider AesProvider = new AesCryptoServiceProvider();
-		Rfc2898DeriveBytes DerivedBytes = new Rfc2898DeriveBytes( Password, SaltBytes, 1000 );
-		Byte[] DerivedKey = DerivedBytes.GetBytes( 32 ); // 256 bits
-		Byte[] DerivedInitVector = DerivedBytes.GetBytes( 16 ); // 128 bits
-		Byte[] PlainTextBytes = Encoding.UTF8.GetBytes( PlainText );
+    public String Encrypt(String plainText, String password, String salt)
+    {
+        var saltBytes = Encoding.ASCII.GetBytes(salt);
+        var aesProvider = new AesCryptoServiceProvider();
+        var derivedBytes = new Rfc2898DeriveBytes(password, saltBytes, 1000);
+        var derivedKey = derivedBytes.GetBytes(32); // 256 bits
+        var derivedInitVector = derivedBytes.GetBytes(16); // 128 bits
+        var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
 
-		AesProvider.KeySize = 256;
-		AesProvider.Padding = PaddingMode.ISO10126;
-		AesProvider.Mode = CipherMode.CBC;
+        aesProvider.KeySize = 256;
+        aesProvider.Padding = PaddingMode.ISO10126;
+        aesProvider.Mode = CipherMode.CBC;
 
-		ICryptoTransform Encryptor = AesProvider.CreateEncryptor( DerivedKey, DerivedInitVector );
-		MemoryStream MemStream = new MemoryStream();
-		CryptoStream CryptoStream = new CryptoStream( MemStream, Encryptor, CryptoStreamMode.Write );
+        using (var encryptor = aesProvider.CreateEncryptor(derivedKey, derivedInitVector))
+        {
+            using (var memStream = new MemoryStream())
+            {
+                using (var cryptoStream = new CryptoStream(memStream, encryptor, CryptoStreamMode.Write))
+                {
+                    cryptoStream.Write(plainTextBytes, 0, plainTextBytes.Length);
+                    cryptoStream.FlushFinalBlock();
+                    return Convert.ToBase64String(memStream.ToArray());
+                }
+            }
+        }
+    }
 
-		CryptoStream.Write( PlainTextBytes, 0, PlainTextBytes.Length );
-		CryptoStream.FlushFinalBlock();
-		Byte[] CipherTextBytes = MemStream.ToArray();
+    public String Decrypt(String cipherText, String password, String salt)
+    {
+        var saltBytes = Encoding.ASCII.GetBytes(salt);
+        var aesProvider = new AesCryptoServiceProvider();
+        var derivedBytes = new Rfc2898DeriveBytes(password, saltBytes, 1000);
+        var derivedKey = derivedBytes.GetBytes(32); // 256 bits
+        var derivedInitVector = derivedBytes.GetBytes(16); // 128 bits
+        var cipherTextBytes = Convert.FromBase64String(cipherText);
 
-		MemStream.Close();
-		CryptoStream.Close();
+        aesProvider.KeySize = 256;
+        aesProvider.Padding = PaddingMode.ISO10126;
+        aesProvider.Mode = CipherMode.CBC;
 
-		return Convert.ToBase64String( CipherTextBytes );
-	}
+        using (var decryptor = aesProvider.CreateDecryptor(derivedKey, derivedInitVector))
+        {
+            using (var memStream = new MemoryStream(cipherTextBytes))
+            {
+                using (var cryptoStream = new CryptoStream(memStream, decryptor, CryptoStreamMode.Read))
+                {
+                    var plainTextBytes = new Byte[cipherTextBytes.Length];
+                    var byteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
 
-	public String Decrypt( String CipherText, String Password, String Salt )
-	{
-
-		Byte[] SaltBytes = Encoding.ASCII.GetBytes( Salt );
-		AesCryptoServiceProvider AesProvider = new AesCryptoServiceProvider();
-		Rfc2898DeriveBytes DerivedBytes = new Rfc2898DeriveBytes( Password, SaltBytes, 1000 );
-		Byte[] DerivedKey = DerivedBytes.GetBytes( 32 ); // 256 bits
-		Byte[] DerivedInitVector = DerivedBytes.GetBytes( 16 ); // 128 bits
-		Byte[] CipherTextBytes = Convert.FromBase64String( CipherText );
-
-		AesProvider.KeySize = 256;
-		AesProvider.Padding = PaddingMode.ISO10126;
-		AesProvider.Mode = CipherMode.CBC;
-
-		ICryptoTransform Decryptor = AesProvider.CreateDecryptor( DerivedKey, DerivedInitVector );
-		MemoryStream MemStream = new MemoryStream( CipherTextBytes );
-		CryptoStream CryptoStream = new CryptoStream( MemStream, Decryptor, CryptoStreamMode.Read );
-		Byte[] PlainTextBytes = new Byte[ CipherTextBytes.Length ];
-		Int32 ByteCount = CryptoStream.Read( PlainTextBytes, 0, PlainTextBytes.Length );
-
-		MemStream.Close();
-		CryptoStream.Close();
-		return Encoding.UTF8.GetString( PlainTextBytes, 0, ByteCount );
-	}
+                    return Encoding.UTF8.GetString(plainTextBytes, 0, byteCount);
+                }
+            }
+        }
+    }
 }
 {% endhighlight %}
 
