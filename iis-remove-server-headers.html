@@ -14,10 +14,10 @@ breadcrumb: IIS Remove Server Headers
 
 	</h2>
 
-	<p>A .net module for IIS which removes the following unwanted HTTP headers from the server response.</p>
+	<p>A .Net module for IIS which removes the following unwanted HTTP headers from the server response.</p>
 
 	<ul>
-		<li>Server,</li>
+		<li>Server</li>
 		<li>X-Powered-By</li>
 		<li>X-AspNet-Version</li>
 		<li>X-AspNetMvc-Version</li>
@@ -29,18 +29,18 @@ breadcrumb: IIS Remove Server Headers
 
 	<h2>Installation to the GAC</h2>
 
-	<p>Deploy the library to the .NET Global Assembly Cache (GAC) using gacutil.exe.&nbsp;Once the library is installed to the GAC, any other copies can be removed from the server.</p>
+	<p>Deploy the library to the Global Assembly Cache (GAC) using gacutil.exe. Once the library is installed to the GAC, other copies can be removed from the server.</p>
 
 	<ul>
-		<li>gacutil.exe /i Pingfu.RemoveServerHeaderModule.dll</li>
+		<li>`gacutil.exe /i Pingfu.RemoveServerHeaderModule.dll`</li>
 	</ul>
 
 	<h2>Configure IIS to use the module</h2>
 
 	<ol>
-		<li>Open the&nbsp;<strong>Internet Information Services (IIS) Manager</strong>&nbsp;snap-in.</li>
-		<li>Open the&nbsp;<strong>Modules</strong>&nbsp;administration feature at the server level.</li>
-		<li>Select&nbsp;<strong>Add Managed Module...</strong>
+		<li>Open the <strong>Internet Information Services (IIS) Manager</strong> snap-in.</li>
+		<li>Open the <strong>Modules</strong> administration feature at the server level.</li>
+		<li>Select <strong>Add Managed Module...</strong>
 			<ol>
 				<li>For&nbsp;Name&nbsp;enter a descriptive name, for example "Pingfu.RemoveServerHeaderModule"</li>
 				<li>For Type select the module from the list.</li>
