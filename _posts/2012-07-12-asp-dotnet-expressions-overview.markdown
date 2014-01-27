@@ -6,7 +6,7 @@ categories: Programming Troubleshooting
 tags: asp.net
 ---
 
-ASPX in-page expressions, which are nearly impossible to search for information on thanks to their tiny size and obscure-to-search-engines character selection if you don't know what to call this group of expressions. Some search friendly terms that can help bridge that divide are:
+ASPX in-page expressions, which, if you don't know what to call this group of expressions are nearly impossible to search for consider their search un-friendly construction. So to help help bridge that divide here are some friendly terms that might help lost users find their way:
 
 * less than percent hash
 * less than percent equals
@@ -17,7 +17,7 @@ ASPX in-page expressions, which are nearly impossible to search for information 
 * asp.net server tags
 * code render blocks
 
-For anybody lucky enough to uncover this page then, here's an explanation of the what and the why behind <%$, <%@, <%=, <%# and so on:
+And for anybody lucky enough to get here by organic search, here's an explanation of the what and why behind <%$, <%@, <%=, <%# and so on:
 
 * `<% %>` is for inline code (especially logic flow)
 * `<%$ %>` is for evaluating expressions (like resource variables)
