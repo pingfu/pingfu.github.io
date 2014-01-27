@@ -24,16 +24,16 @@ Notable flags:
 ```
 
 Basic decoded information:
-`root@localhost:~# tcpdump -nnvvS`
+```root@localhost:~# tcpdump -nnvvS```
 
 Full ethernet frame:
-`root@localhost:~# tcpdump -nnvvSXqs 1514 port 53`
+```root@localhost:~# tcpdump -nnvvSXqs 1514 port 53```
 
 Capture to a file:
-`root@localhost:~# tcpdump -s 1514 port 53 -w capture_file`
+```root@localhost:~# tcpdump -s 1514 port 53 -w capture_file```
 
 Grouping requires parenthesis:
-`root@localhost:~# tcpdump ’dst 8.8.8.8 and (dst port 80 or 53)’`
+```root@localhost:~# tcpdump ’dst 8.8.8.8 and (dst port 80 or 53)’```
 
 One of the most important lessons I've learnt using tcpdump is that the interface 'lo' is virtual. Packets sent to the localhost interface are not treated in the same way as packets sent to non-localhost interfaces such as eth0 by the kernel. That said, tcpdump will helpfully display such packets them as if they were normal.
 
