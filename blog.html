@@ -1,0 +1,37 @@
+---
+layout: default
+title: Snaplen, and other arguments — Pingfu
+---
+
+<section class="boxed">
+
+  <div class="breadcrumb"><a href="/">Pingfu</a> <span class="divider">›</span> Blog</div>
+
+  <h1>Snaplen, and other arguments</h1>
+
+  <p>A collection of thoughts mostly on programming, performance, technology and cyber.</p>
+
+  <h2>Posts</h2>
+
+  <ul class="posts">
+    {% for post in site.posts %}
+      <li>{{ post.date | date_to_string }} — <a href="#{{ post.title }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+
+</section>
+
+
+
+{% for post in site.posts %}
+<section class="boxed">
+
+	<h2><a id="{{ post.title }}" href="{{ post.url }}">{{ post.title }}</a></h2>
+	<p class="meta">{{ post.date | date_to_string }} — {% for category in post.categories %} <span class="category">{{ category }}</span> {% endfor %}</p>
+
+	<div class="post">
+		{{ post.content }}
+	</div>
+
+</section>
+{% endfor %}

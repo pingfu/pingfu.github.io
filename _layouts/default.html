@@ -1,0 +1,23 @@
+---
+layout: master
+---
+
+<div id="mobile-navigation">
+  <a href="#" id="pull">Pingfu</a>
+  {% include /menu.html %}
+</div>
+
+<div id="wrapper">
+
+  {% if page.url == "/index.html" %} 
+  <div id="logo"><img src="/img/pingfu.png" alt="Pingfu"></div>
+  {% endif %}
+
+  <header>
+    <span id="welcome"><a href="http://pingfu.net/">{{ site.name }}</a></span>
+    <nav>{% include /menu.html %}</nav>
+  </header>
+
+  {{ content }}
+
+</div>
