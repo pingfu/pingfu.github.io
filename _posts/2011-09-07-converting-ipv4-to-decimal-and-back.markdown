@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Converting ipv4 to decimal, and back"
-date: 2000-01-01 00:00:00
+title: "Converting IPv4 to decimal, and back"
+date: 2011-09-07
 categories: Programming
 tags: c#
 ---
