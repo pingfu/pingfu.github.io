@@ -6,7 +6,7 @@ categories: Performance
 tags: c#
 ---
 
-How should you get the current directory in C#? There are several properties which expose the directory from which the application is executing, but there are subtle differences to each:
+How should you get the current directory in C#? There are several properties which expose the directory from which an application is executing, but there are subtle differences to each:
 
 1. `Application.ExecutablePath` - Includes the assembly name.
 2. `Application.StartupPath` - This is inside the Windows.System.Forms namespace.
@@ -14,7 +14,7 @@ How should you get the current directory in C#? There are several properties whi
 4. `Environment.CurrentDirectory` - This is an alias to Directory.GetCurrentDirectory() in System.IO.
 5. `this.GetType().Assembly.Location` - Includes the assembly name, or the base directory if you are calling a separate class library.
 
-However, the most generic and appropriate method in most instances is to use the `AppDomain.CurrentDomain.BaseDirectory` property. It works for ASP.NET, Forms and Console applications, and will also return the base directory for class libraries.
+However, for me the most appropriate method in most cases is to simple use `AppDomain.CurrentDomain.BaseDirectory`. It works with ASP.Net, Forms and Console applications. It will also return the correct base directory for class libraries too.
 
 ```
 var path = AppDomain.CurrentDomain.BaseDirectory;
