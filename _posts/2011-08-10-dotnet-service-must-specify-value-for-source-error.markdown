@@ -14,7 +14,7 @@ I found myself encountering this problem whilst preparing material for the next 
 
 In my class that deals with service installation I had the following code:
 
-```
+```csharp
 class InstallerClass : Installer
 {
     public InstallerClass()
@@ -22,8 +22,8 @@ class InstallerClass : Installer
         var spi = new ServiceProcessInstaller();
         var si = new ServiceInstaller();
 
-        spi.Account    = ServiceAccount.LocalSystem;
-        si.StartType   = ServiceStartMode.Automatic;
+        spi.Account = ServiceAccount.LocalSystem;
+        si.StartType = ServiceStartMode.Automatic;
         si.ServiceName = SVC_APP_NAME;
 
         Installers.Add(spi);
@@ -34,7 +34,7 @@ class InstallerClass : Installer
 
 Some lines below in a different method I was calling my TransactedInstaller:
 
-```
+```csharp
 ti.Installers.Add( new ServiceInstaller() );
 ti.Install( new Hashtable() );
 ```
@@ -43,7 +43,7 @@ The exception complaining about, “must specify a value for source” actually 
 
 So, an easy fix:
 
-```
+```csharp
 ti.Installers.Add( new SampleInstallerClass() );
 ti.Install( new Hashtable() );
 ```
