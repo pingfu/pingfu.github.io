@@ -21,6 +21,7 @@ Note The two domain controllers are both in the same forest, or the two domain c
 Windows Server 2008/Windows Server 2008 R2
 In a mixed-mode domain that consists of Windows Server 2003 domain controllers, Windows 2000 Server-based domain controllers, or legacy clients, the default dynamic port range is 1025 through 5000. Windows Server 2008 and Windows Server 2008 R2, in compliance with Internet Assigned Numbers Authority (IANA) recommendations, has increased the dynamic client port range for outgoing connections. The new default start port is 49152, and the default end port is 65535. Therefore, you must increase the RPC port range in your firewalls.
 
+```
 | Client Port(s)           | Server Port           | Service     | 
 | ------------------------ | --------------------- | ----------- |
 | 49152 -65535/UDP         | 123/UDP               | W32Time     |
@@ -35,6 +36,7 @@ In a mixed-mode domain that consists of Windows Server 2003 domain controllers, 
 | 49152 -65535/TCP         | 135, 49152 -65535/TCP | RPC DNS     |
 | 49152 -65535/TCP/UDP     | 88/TCP/UDP            | Kerberos    |
 | 49152 -65535/TCP/UDP     | 445/NP-TCP/NP-UDP     | SAM/LSA     |
+```
 
 Active Directory
 
