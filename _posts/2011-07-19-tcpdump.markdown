@@ -8,7 +8,7 @@ tags: tcpdump
 
 Notable flags:
 
-{% highlight bash %}
+```
 -i eth1       : Specify the interface
 -c 10         : Limit capture to 10 packets
 -s            : Snap length, how many bytes of the frame to capture
@@ -21,7 +21,7 @@ Notable flags:
 -E            : Decrypt IPSEC traffic using the supplied key
 -X            : Display the packet payload in both hex and ASCII
 -XX           : Same as -X, but includes the ethernet header
-{% endhighlight %}
+```
 
 Basic decoded information:
 `root@localhost:~# tcpdump -nnvvS`

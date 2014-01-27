@@ -8,26 +8,32 @@ tags: exchange
 
 Problem: You regularly use BackupExec, or a comparable product to take backups of Exchange. Occasionally all of the Outlook clients throughout the organisation simultaneously start to crash, hang, or otherwise report failure in connecting to Exchange. In the Exchange server’s application event log you discover a series of errors (similar to those listed below, and probably in an equally similar order) and find your Mailbox Store and Public Folder Store marked offline:
 
+```
 Type: Error
 Source: MSExchangeIS
 Event ID: 1159
 Database error 0xfffffd9a occurred in function JTAB_BASE::EcUpdate while accessing the database "First Storage Group\Mailbox Store (localhost)".
+```
 
 followed by
 
+```
 Type: Error
 Source: ESE
 Event ID: 226
 Information Store (5496) First Storage Group: The backup has been stopped prematurely (possibly because the instance is terminating).
+```
 
 followed by
 
+```
 Type: Error
 Source: MSExchangeSA
 Event ID: 9175
 The MAPI call 'OpenMsgStore' failed with the following error: The attempt to log on to the Microsoft Exchange Server computer has failed. The MAPI provider failed. Microsoft Exchange Server Information Store ID no: 8004011d-0512-00000000
+```
 
-The initial 0xFFFFFD9A error code indicates that the maximum number of uncommitted log files have been reached.  This happens when a backup has been started that does not complete for an excessive amount of time, excessive in this case is un-defined but we take it to mean continuing longer than planned or expected.
+The initial `0xFFFFFD9A` error code indicates that the maximum number of uncommitted log files have been reached.  This happens when a backup has been started that does not complete for an excessive amount of time, excessive in this case is un-defined but we take it to mean continuing longer than planned or expected.
 
 When a backup operation against Exchange commences it puts the Exchange database into a state where it cannot commit log files. There is a limit on the volume of un-committed log files that can accumulate before Exchange will un-mount the store to prevent further loss of synchronisation.
 
