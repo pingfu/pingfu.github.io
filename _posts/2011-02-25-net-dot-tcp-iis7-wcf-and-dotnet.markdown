@@ -2,18 +2,17 @@
 layout: post
 title: "Net.TCP IIS7 WCF and .Net"
 date: 2011-02-25
-categories: News
+categories: News, Security, Troubleshooting
+tags: net.tcp
 ---
 
-Microsoft has recently re-invented the HTTP wheel with their most recent addition to Windows Communication Foundation (WCF), the Net.TCP protocol. The idea is a simple, drop HTTP and it’s associated inefficiencies.  They’ve even created a new handler for the TCP-based network protocol – net.tcp://resource/
+Microsoft has recently re-invented the wheel (http) with their most recent addition to Windows Communication Foundation (WCF), the net.tcp protocol. The motivation is simple enough, drop http due to it's inherent performance inefficiencies.  Microsoft have defined new URI handler for the http killer, net.tcp://resource/
 
-What is curious about Net.TCP is the design decision that separates it from HTTP.SYS. For those that don’t know, HTTP.SYS is the kernel-mode HTTP protocol listener introduced with IIS 6.0 that allows multiple processes to share the same port for communication. This kernel-mode driver allowed arbritrary user processes to share the ports allowing Microsoft to introduce the concept of an application pool.
+What I find curious about net.tcp is the design decision that separates it from http.sys. http.sys is the kernel-mode protocol listener for http, introduced with IIS 6.0. It allows multiple processes to share the same port for communication at the same time. This model of abstraction enabled arbitrary processes to share the same port, IIS application pools and worker processes for example.
 
-Net.TCP’s implementation is a detatchment from HTTP.SYS model as the listener exists in a service called the Net.TCP Port Sharing Service. Put simply, this means whilst HTTP, HTTPS and Net.TCP bindings are managed in IIS, Net.TCP and HTTP/HTTPS based applications cannot share the same port, something you might be quite used to doing if you run multi-tenant IIS hosting environments.
+In net.tcp, Microsoft have strayed from their previous abstraction model and implemented the service listener in a service named the "Net.TCP Port Sharing Service". A detachment from http.sys. Simply put, http, https and net.tcp bindings are configured centrally within IIS, but net.tcp bindings and http or https bindings cannot coexist on the same port, something you might not quite expect.
 
-So firewall administrators, prepare to be opening additional ports on your firewalls to support WCF Net.TCP communication channels. Microsoft have volunteered tcp/808 as the default port to adopt for the running of their new protocol.
-
-NB. This does not however mark a detachment from Microsoft’s bizarre new technology naming conventions. Net.TCP leaves search engine enthusiasts fumbling red-herrings as the two long established generic keywords delimited with a period turn up mountains of largely irrelevant information. Annoying!
+Expect to be punching firewall holes to support new port bindings for wcf and net.tcp bindings. Microsoft are backing tcp/808 as the standard net.tcp port.
 
 See [this MSDN article][ms734772] for more information.
 

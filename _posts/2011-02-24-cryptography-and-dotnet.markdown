@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Cryptography and .Net"
-date: 2011-02-24 00:00:00
+date: 2011-02-24
 categories: Security
 ---
 
