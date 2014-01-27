@@ -94,7 +94,6 @@ public class Rijndael
                     {
                         var plainTextBytes = new Byte[cipherText.Length];
                         var byteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
-
                         return Encoding.UTF8.GetString(plainTextBytes, 0, byteCount);
                     }
                 }
