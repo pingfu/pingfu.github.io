@@ -1,7 +1,8 @@
 <ul>
     <li><a {% if page.url == "/index.html" %}       class="active-link" {% endif %} href="/">Home</a></li>
-    <li><a {% if page.url == "/about.html" %}       class="active-link" {% endif %} href="/about.html">About</a></li>
-    <li><a {% if page.url == "/open-source.html" %} class="active-link" {% endif %} href="/open-source.html">Open Source</a></li>
-    <li><a {% if page.url == "/tools.html" %}       class="active-link" {% endif %} href="/tools.html">Tools</a></li>
-    <li><a {% if page.url == "/blog.html" %}        class="active-link" {% endif %} href="/blog.html">Blog</a></li>
+    <li><a {% if page.url == "/about.html" %}       class="active-link" {% endif %} href="/about">About</a></li>
+    <li><a {% if page.url == "/open-source.html" %} class="active-link" {% endif %} href="/open-source">Open Source</a></li>
+    <li><a {% if page.url == "/tools.html" %}       class="active-link" {% endif %} href="/tools">Tools</a></li>
+    <li><a {% if page.url == "/blog.html" %}        class="active-link" {% endif %} href="/blog">Blog</a></li>
 </ul>
+{{ page.url }}
