@@ -49,7 +49,7 @@ In a mixed-mode domain that consists of Windows Server 2003 domain controllers, 
 | 49152 -65535/TCP/UDP     | 445/NP-TCP/NP-UDP     | SAM/LSA     |
 ```
 
-Active Directory
+### Active Directory
 
 For Active Directory to function correctly through a firewall, the Internet Control Message Protocol (ICMP) protocol must be allowed through the firewall from the clients to the domain controllers so that the clients can receive Group Policy information.
 
