@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "MySQL: Drop all tables"
-date: 2000-01-01 00:00:00
-categories: xxxxxxxxxxx xxxxxxxxxxx
+date: 2011-07-20
+categories: Troubleshooting
 tags: MySQL
 ---
 

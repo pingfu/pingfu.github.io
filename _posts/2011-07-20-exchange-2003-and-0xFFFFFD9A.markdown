@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Exchange 2003 and 0xFFFFFD9A"
-date: 2011-07-19
+date: 2011-07-20
 categories: Troubleshooting
 tags: exchange
 ---
