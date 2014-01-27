@@ -152,6 +152,10 @@ section:last-child {
   margin: 48px 0 8px;
 }
 
+#wrapper h3 {
+  margin: 48px 0 8px;  
+}
+
 #wrapper h2:first-child { 
   margin: 0 0 8px;
 }
