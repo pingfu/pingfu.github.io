@@ -2,7 +2,7 @@
 layout: post
 title: "Configuring firewall ACLs for Windows domain controllers and trust relationships"
 date: 2011-12-16
-categories: Security, Troubleshooting
+categories: Security Troubleshooting
 tags: windows firewall
 ---
 
