@@ -103,13 +103,3 @@ public class Rijndael
     }
 }
 {% endhighlight %}
-
-NB. This post concerns version 3.0 of the .NET framework.
-
-
-
-
-
-
-
-
