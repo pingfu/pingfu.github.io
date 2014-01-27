@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Service “must specify value for source” error."
+title: "Service “Must specify value for source” error."
 date: 2011-08-10
 categories: Programming
 tags: c#
@@ -29,21 +29,20 @@ class InstallerClass : Installer
         Installers.Add(spi);
         Installers.Add(si);
     }
-    ..........
 ```
 
-Some lines below in a different method I was calling my TransactedInstaller:
+Some lines below in a different method I was calling TransactedInstaller:
 
 ```csharp
-ti.Installers.Add( new ServiceInstaller() );
-ti.Install( new Hashtable() );
+ti.Installers.Add(new ServiceInstaller());
+ti.Install(new Hashtable());
 ```
 
-The exception complaining about, “must specify a value for source” actually meant, I hadn’t set the ServiceName property. The reason for this is that my TransactedInstaller was creating a new instance of a class in .NET managed libraries, not a new instance of my class so the code that sets the ServiceName was never being called and violla: must specify value for source.
+The exception complaining about, “must specify a value for source” actually meant, I hadn’t set the ServiceName property. The reason for this is that my TransactedInstaller was creating a new instance of a class in .Net managed libraries, not a new instance of my class so the code that sets the ServiceName was never being called and violla: must specify value for source.
 
 So, an easy fix:
 
 ```csharp
-ti.Installers.Add( new SampleInstallerClass() );
-ti.Install( new Hashtable() );
+ti.Installers.Add(new SampleInstallerClass());
+ti.Install(new Hashtable());
 ```

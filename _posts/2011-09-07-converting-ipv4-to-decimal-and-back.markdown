@@ -25,45 +25,41 @@ public Double IpStringToLong( String ipString )
 Okay, and back the other way:
 
 ```csharp
-public string LongToString( Double m_IpLong )
-{    
-    var m_octet = 0;
-    var m_ip = String.Empty;
-    
-    for (var x = 1; x < 5; x++)
+public string LongToString(Double ipAsLong)
+{
+    var ip = String.Empty;
+
+    for (var n = 1; n < 5; n++)
     {
-        m_octet = Convert.ToInt32( Math.Truncate( IpAsLong / Math.Pow( (Double)256, (Double)( 4 - x ) ) ) );
-        m_IpLong = m_IpLong - ( m_octet * Math.Pow( (Double)256, (Double)( 4 - x ) ) );
+        var octet = Convert.ToInt32(Math.Truncate(ipAsLong / Math.Pow(256, 4 - n)));
+        ipAsLong = ipAsLong - (octet * Math.Pow(256, 4 - n));
 
-        if ( m_octet > 255 ) return "0.0.0.0";
+        if (octet > 255) return "0.0.0.0";
 
-        if ( x == 1 )
+        if (n == 1)
         {
-        	m_ip = m_octet.ToString();
-        }            
+            ip = octet.ToString(CultureInfo.InvariantCulture);
+        }
         else
         {
-        	m_ip += "." + m_octet;
+            ip += "." + octet;
         }
     }
-    return m_ip;
+    return ip;
 }
 ```
 
 And finally if the input is either a string, or a long and we don’t know which – but whatever it is we want the opposite:
 
 ```csharp
-var ip = "127.0.0.1";
-var ip = "4294967295";
+var value = "127.0.0.1";
+var value = 2130706433;
 
-if ( ip.IndexOf(".") != -1 )
+if (value.IndexOf(".") != -1)
 {
-	return ip + " in decimal is " + StringToLong( ip ).ToString();
-}    
-else
-{
-	return ip + " as a string is " + LongToString( Convert.ToDouble( ip ) );
+    return String.Format("{0} in decimal is {1}", value, StringToLong(value));
 }
+return String.Format("{0} in dotted decimal is {1}", value, LongToString(value));
 ```
 
 [hinky-hack-ipconvc]: http://mrhinkydink.blogspot.com/2011/08/hinky-hack-ipconvc.html
