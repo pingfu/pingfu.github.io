@@ -6,7 +6,7 @@ categories: Programming Troubleshooting Hardware
 tags: beagleboard
 ---
 
-I'll spare you the back story, but in brief installing the USB NIC driver for the beaglebone black is horribly annoying if you are using a UK keyboard layout!
+I'll spare you the back story, but in brief installing the USB NIC driver for the beaglebone black is horribly annoying if you're using a UK keyboard layout.
 
 `“The current language is not supported by the Device Driver Installation Wizard.”`
 
@@ -14,7 +14,7 @@ Really? The same message from both `\Drivers\Windows\BONE_D64.exe` and `\BONE_DR
 
 My current system locale is English – so that doesn’t sound right. British English, that is. Crack open either of those binaries (I used 7-zip) and you’ll find `dpinst.exe` and `dpinst.xml`.
 
-Investigating the XML file reveals a set of language tags;
+Investigating the XML file reveals several sets of language tags;
 
 ```html
 <language code="0x0409">.....</language>
@@ -23,9 +23,9 @@ Investigating the XML file reveals a set of language tags;
 ...
 ```
 
-There's quite a few... Obviously the code for British English is missing, and the binary quite unforgiving handles this sitation by refusing to install, rather than picking US English or any other language as a default. Total stupidity.
+The the code for British English is missing, and the binary quite unforgivingly handles this situation by refusing to install, rather than picking US English or any other language as a default.
 
-Anyway, it was easy enough to fix. Google helped me find a document published by Microsoft entitled, `“Language Identifier Constants and Strings”` which enumerates the language and locale specific identifier codes built into the Windows API, so `0×0809` – the code for United Kingdom (GB). Maybe you can find yours in the list too.
+It was easy enough to fix. A quick search and I've found a document published by Microsoft titled, `“Language Identifier Constants and Strings”` which enumerates the language and locale specific identifier codes built into the Windows API, so `0×0809` – the code for United Kingdom (GB). Maybe you can find yours in the list too.
 
 [http://msdn.microsoft.com/en-us/library/dd318693(VS.85).aspx][dd318693]
 
@@ -37,9 +37,9 @@ I added the missing locale identifier to the XML document and moved on to the ne
 
 Next problem: The drivers are unsigned and Windows 8 doesn't like that.
 
-Windows 8 now rejects unsigned drivers flat out. One work around is quite simple: reboot into the advanced OS boot options menu and temporarily enable the installation of unsigned drivers. Unsigned driver protection is automatically re-enabled on the next reboot.
+Windows 8 now entirely rejects unsigned drivers. One work around is quite simple: reboot into the advanced OS boot options menu and temporarily enable the installation of unsigned drivers. Unsigned driver protection is automatically re-enabled on the next reboot.
 
-We can reboot into the advanced boot options menu from an a command prompt:
+We can reboot into the advanced boot options menu from a command prompt:
 
 ```
 C:\> shutdown -o -r -t 0
@@ -51,6 +51,6 @@ The options I’m using are;
 * `-r` - Reboot.
 * `-t` - Time before shutdown in seconds.
 
-Much better, but still what an awkward and faffy process.
+Much better, but what an awkward and fiddly process!
 
 [dd318693]: http://msdn.microsoft.com/en-us/library/dd318693(VS.85).aspx

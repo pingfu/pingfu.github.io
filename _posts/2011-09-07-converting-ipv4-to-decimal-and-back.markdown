@@ -6,9 +6,9 @@ categories: Programming
 tags: c#
 ---
 
-After reading this [post][hinky-hack-ipconvc] by [mrhinkydink][mrhinkydink] I thought I’d share a c# way to accomplish the same thing, to convert an IP address between dotted decimal notation and its numeric format. There are pre-written libraries and name spaces available everywhere to accomplish this task, but I’m going to show you the raw maths of the conversion process.
+After reading this [post][hinky-hack-ipconvc] by [mrhinkydink][mrhinkydink] I thought I’d share a c# way to accomplish the same thing; converting an IP address between dotted decimal notation and its numeric format. There are pre-written libraries and name spaces available everywhere to accomplish this task, but I’m going to show you the raw maths of the conversion process.
 
-Firstly, lets construct a method to accept a string representation of an ipv4 address in dotted decimal notation (that’s 127.0.0.1) and convert it into numeric, or "long" format (2,130,706,433):
+First, let's construct a method to accept a string representation of an ipv4 address in dotted decimal notation (that’s 127.0.0.1) and convert it into numeric, or "long" format (2,130,706,433):
 
 ```csharp
 public Double IpStringToLong( String ipString )
@@ -49,7 +49,7 @@ public string LongToString(Double ipAsLong)
 }
 ```
 
-And finally if the input is either a string, or a long and we don’t know which – but whatever it is we want the opposite:
+Finally if the input is either a string- or a long and we don’t know which but we want the opposite:
 
 ```csharp
 var value = "127.0.0.1";

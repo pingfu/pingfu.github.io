@@ -6,27 +6,29 @@ categories: Programming
 tags: c#
 ---
 
-Services are not presented as a thing of beauty in .net, in fact typically creating a service is gut wrenchingly awful. There are multiple design time components to drop in, and for some reason position as icons, multiple classes for your Service, your ServiceInstaller, ServiceBase. Then you meet the InstallUtil.exe, so much example code relies on the use of [InstallUtil.exe][googlesearch]. Finally, packaging it all together into an installer. Really, it's all quite disgusting.
+Services are not presented as a thing of beauty in .net - in fact, typically creating a service is gut wrenchingly awful. There are multiple design time components to drop in (and for some reason position as icons), and multiple classes for your Service, your ServiceInstaller, and ServiceBase. Then you meet InstallUtil.exe, so much example code which demonstrates installing services relies on the use of [InstallUtil.exe][googlesearch]. Finally, packaging it all together into an installer. Really, it's all quite disgusting.
 
-There is a better way. We can create a self installing Windows service using c# and pure code. in a single .cs file should we choose: two classes, and managed code. I’m going to show you how. To demonstrate the simplicity of this we’re not going to use Visual Studio, we’ll use Notepad++ (or whichever your preferred editor of choice happens to be) and will compile by hand using the command line tool csc.exe.
+There is a better way. We can create a self installing Windows service using C# and pure code. In a single .cs file should we choose: two classes and managed code. Here's how to do it.
 
-Not thrid party code to bundle or execute, no bloat.
+To demonstrate the simplicity of this we’re not going to use Visual Studio, we’ll use Notepad++ (or whichever your preferred editor of choice happens to be) and will compile by hand using the command line tool csc.exe.
 
-NB. You can of course drop this unedited code into a Visual Studio project and compile as a Console application.
+No third party code to bundle or execute, no bloat.
 
-Step 1. Lets review how to compile at the command line. We use csc.exe which can of course be used in a number of ways, we’ll be using it like this:
+NB. You can, of course, drop this unedited code into a Visual Studio project and compile as a Console application.
+
+Step 1. Let's review how to compile at the command line. We use csc.exe which can be used in a number of ways. We’ll be using it like this:
 
 ```
 csc.exe /out:CompliedBinary.exe sourceCode.cs
 ```
 
-So, remember where csc.exe lives and we’re compiling like this:
+Remember where csc.exe lives and that compiling happens like this:
 
 ```
-C:\WINDOWS\Microsoft.NET\Framework\v3.5>csc.exe /out:G:\winservice\sample.exe  G:\winservice\sample.cs
+C:\WINDOWS\Microsoft.NET\Framework\v3.5>csc.exe /out:G:\winservice\sample.exe G:\winservice\sample.cs
 ```
 
-Step 2. (Optional) Project references for Visual Studio if you’re not compiling by hand, remember to add these two references to your project:
+Step 2. (Optional) Project references for Visual Studio - If you’re not compiling by hand, remember to add these two references to your project:
 
 ```
 System.Configuration.Install
@@ -194,7 +196,7 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 C:\WINDOWS\Microsoft.NET\Framework\v3.5>
 ```
 
-Step 5. Run! You’ll notice (using SysInternals Suite – [Process Explorer][sysinternals]) that a new service process has spawned, and if you scrutinize services.mmc you’ll also note your new service installed and running.
+Step 5. Run! You’ll notice (using SysInternals Suite – [Process Explorer][sysinternals]) that a new service process has spawned, and if you scrutinize services.mmc you’ll also note that your new service is installed and running.
 
 ```
 g:\winservice>sample.exe

@@ -10,9 +10,9 @@ tags: c#
 Must specify value for source. at System.Configuration.Install.TransactedInstaller.Install(IDictionary savedState)
 ```
 
-I found myself encountering this problem whilst preparing material for the next post on services and .NET. As I was calling the .Installers.Add() method from the instance of my TransactedInstaller object (called ti) I realised that whilst it expects you to pass a new instance of an object of type Installer,  I was actually passing, “new ServiceInstaller” which had, at one point been the name of my class- the problem however is that this of course translates not to the name of my class, but to Service.ServiceProcess.ServiceInstaller.
+I found myself encountering this problem while preparing material for the next post on services and .NET. As I was calling the `.Installers.Add()` method from the instance of my TransactedInstaller object (called ti) I realised that while it expects you to pass a new instance of an object of type Installer,  I was actually passing, “new ServiceInstaller”. This had at one point been the name of my class- but the problem turned out to be that this translates not to the name of my class, but to Service.ServiceProcess.ServiceInstaller.
 
-In my class that deals with service installation I had the following code:
+In my class the code which dealt with service installation was:
 
 ```csharp
 class InstallerClass : Installer
@@ -38,7 +38,7 @@ ti.Installers.Add(new ServiceInstaller());
 ti.Install(new Hashtable());
 ```
 
-The exception complaining about, “must specify a value for source” actually meant, I hadn’t set the ServiceName property. The reason for this is that my TransactedInstaller was creating a new instance of a class in .Net managed libraries, not a new instance of my class so the code that sets the ServiceName was never being called and violla: must specify value for source.
+The exception complaining about, “must specify a value for source” actually meant, I hadn’t set the ServiceName property. The reason for this is that my TransactedInstaller was creating a new instance of a framework class, rather than a new instance of my class, so the code that set ServiceName was never being called and violla: must specify value for source.
 
 So, an easy fix:
 

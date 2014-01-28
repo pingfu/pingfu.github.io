@@ -6,7 +6,7 @@ categories: Programming Troubleshooting
 tags: asp.net
 ---
 
-ASPX in-page expressions, which, if you don't know what to call this group of expressions are nearly impossible to search for consider their search un-friendly construction. So to help help bridge that divide here are some friendly terms that might help lost users find their way:
+ASPX in-page expressions are - if you don't know what to call this group of expressions. Nearly impossible to search for due to their search un-friendly construction. So to help bridge that divide here are some friendly terms that might help lost users find their way:
 
 * less than percent hash
 * less than percent equals
@@ -27,7 +27,7 @@ And for anybody lucky enough to get here by organic search, here's an explanatio
 * `<%: %>` is short-hand for Response.Write(Server.HTMLEncode()) ASP.net 4.0+
 * `<%-- --%>` is for server-side comments
 
-This information is replicated the following sources [StackOverflow][stackoverflow] post, [Dan Crevier’s][dancre] blog and in an [MSDN][d5bd1tad] article. No excuses then.
+This information is replicated from the following sources [StackOverflow][stackoverflow] post, [Dan Crevier’s][dancre] blog and in an [MSDN][d5bd1tad] article. No excuses then.
 
 [stackoverflow]: http://stackoverflow.com/questions/957284/whats-the-deal
 [dancre]: http://blogs.msdn.com/b/dancre/archive/2007/02/13/the-difference-between-lt-and-lt-in-asp-net.aspx

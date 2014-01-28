@@ -6,11 +6,11 @@ categories: Programming
 tags: c#
 ---
 
-I’m a great believer in making the most of what you’ve got in terms of CPU and compute performance, and in a strange way quite enjoy reading highly optimised code.
+I’m a great believer in making the most of what you’ve got in terms of CPU and compute performance, and in a strange way I quite enjoy reading highly optimised code.
 
-Shailesh from [http://www.somacon.com][somacon] has done an excellent job in optimising a method to convert bytes in to a human friendly file size string.
+Shailesh from [http://www.somacon.com][somacon] has done an excellent job in optimising a method to convert bytes in to a human-friendly file size string.
 
-I’ve made some modifications to reduce the character count, the guts are pretty much intact. So here is my (amended) method to format bytes into KB, MB, GB etc.
+I’ve made some modifications to reduce the character count; the guts are pretty much intact. So here is my (amended) method to format bytes into KB, MB, GB etc.
 
 ```csharp
 /// <summary>

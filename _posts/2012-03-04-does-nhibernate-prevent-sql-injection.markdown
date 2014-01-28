@@ -6,9 +6,9 @@ categories: Security
 tags: NHibernate
 ---
 
-No. NHibernate can be used to execute dynamic SQL statement built with user input designed to modify the statement’s original meaning, or to execute arbitrary commands, but it depends on how you use it.
+No. NHibernate can be used to execute dynamic SQL statements built with user input designed to modify the statement’s original meaning, or to execute arbitrary commands, but it depends on how you use it.
 
-Be careful using `.CreateSQLQuery()`, if it is not parametrised then as you should expect - it's vulnerable to injection.
+Be careful using `.CreateSQLQuery()`, if it is not parameterised then as you should expect - it's vulnerable to injection.
 
 ```csharp
 var userName = "' or ''='"; // injection
