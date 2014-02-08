@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Cross domain requests with Ajax and JsonP"
+title: "Cross domain communication with Ajax and JsonP"
 date: 2014-01-13
 categories: Programming Troubleshooting
 tags: beagleboard
@@ -20,7 +20,7 @@ CORS is a modern alternative to the JsonP pattern which enables cross-domain con
 - Cross-document messaging / Web Messaging
 Web Messaging is an API introduced as part of the HTML5 specification. `window.postMessage` enables the sending of data between two entities on domains which would usually be blocked by same-origin policy. It performs cross-domain AJAX without requiring server side shims. `postMessage` requires a reciever be wired up using `window.addEventListener('message', function(event) { ... }, false);`. Again, impractical for my purposes where I have no control over the far-side content producer of the RSS document.
 
-Preferably I would discharge the responsibility to the browser to aquire and consume this content directly. The same-origin policy however seems to get in the way, making me consider the alternative - creating a server-side entity to syndicate the RSS feed, download updates and cache them locally so that they could be built into the response body by server-side page contstruction. Certainly, more effort that I wanted invest just to pull data from a remote feed.
+I would prefer to discharge the responsibility of fetching and rendering the content directly to the browser, but the same-origin policy does seems to get in the way. Consider the alternative, create a server-side entity to syndicate the RSS feed, download updates and cache them locally so that server-side page construction could pull the content into response body for each request? Certainly, more effort that might want to invest just to pull data from a remote feed.
 
 Google have solved this problem quite nicely with an API shim that consumes RSS, and returns a JsonP document, perfect for traversing the same-origin policy. Even better the API allows anonymous consumption and we can delegate the responsiblity of syndicating the feed and loading the data directly to the browser, aleviating complexity and dependancy from the server-side implementation.
 
