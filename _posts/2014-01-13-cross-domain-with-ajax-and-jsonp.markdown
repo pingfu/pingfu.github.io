@@ -22,9 +22,13 @@ Web Messaging is an API introduced as part of the HTML5 specification. `window.p
 
 I would prefer to discharge the responsibility of fetching and rendering the content directly to the browser, but the same-origin policy does seems to get in the way. Consider the alternative, create a server-side entity to syndicate the RSS feed, download updates and cache them locally so that server-side page construction could pull the content into response body for each request? Certainly, more effort that might want to invest just to pull data from a remote feed.
 
-Google have solved this problem quite nicely with an API shim that consumes RSS, and returns a JsonP document, perfect for traversing the same-origin policy. Even better the API allows anonymous consumption and we can delegate the responsiblity of syndicating the feed and loading the data directly to the browser, aleviating complexity and dependancy from the server-side implementation.
+Depending on what sort of availability levels and use-cases there may be a compelling reason to expend this extra effort, but in my particular use case the principal of keeping it simple, stupid needed to prevail.
 
-Here is a code snippet which demonstrates the solution, relying on Google's API. I've left the jQuery reference in since it was part of the framework I was working on, but to be clear jQuery is a convenience, not a requirement. The code requests that Google's API consumes the word of the day feed at dictionary.com and pulls out the relevant information from the JsonP document response: <span id="wotd"></span>
+As it turns out, Google have solved the problem quite nicely. They have an API shim which can be instructed to consume an RSS document, and returns it as Json formatted data, padded into JsonP, perfect for traversing the same-origin policy. Even better the API allows anonymous consumption, so we can delegate the responsiblity of syndicating the feed and loading the data directly to the browser, aleviating complexity of a server-side implementation.
+
+Here is a code snippet which demonstrates the solution, relying on Google's API. I've left the jQuery reference in since it was part of the framework I was working on, but to be clear jQuery is a convenience, not a requirement. The code requests that Google's API consumes the word of the day feed at dictionary.com and pulls out the relevant information from the JsonP document response:
+
+<span id="wotd"></span>
 
 ```html
 <!DOCTYPE html>
