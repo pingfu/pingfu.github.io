@@ -11,21 +11,33 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 
   <style>
-
     /* to help render in an unconfusing way if CSS cannot be loaded */
     #mobile-navigation {
       display: none;
     }
-
   </style>
 
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:300|Open+Sans+Condensed:300">
   <link rel="stylesheet" type="text/css" href="/css/main.css">
   <link rel="stylesheet" type="text/css" href="/css/syntax.css">
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:300|Open+Sans+Condensed:300">
+  <link rel="stylesheet" type="text/css" href="/css/api.css">
+
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
   <!--[if lt IE 9]> <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
-  <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+</head>
+
+<body>
+
+
+
+
+  {{ content }}
+
+
+
 
   <script type="text/javascript">
 
@@ -64,12 +76,6 @@
     })();
 
   </script>
-
-</head>
-
-<body>
-
-    {{ content }}
 
 </body>
 </html>

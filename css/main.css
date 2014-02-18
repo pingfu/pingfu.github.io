@@ -117,8 +117,8 @@ section.boxed {
   border: 1px solid #e9e9e9;  
 }
 
-section:last-child {
-  margin-bottom: 240px;
+section.large {
+   min-height: 1000px;
 }
 
 #wrapper hr { 
@@ -271,12 +271,9 @@ a:hover {
 /*MEDIA QUERY*/
 @media only screen and (max-width : 1140px) {
 
-  #wrapper {
-    background: #fff;
-  }
-
   section {
     margin: 20px auto;
+    margin-top: 0;
     padding: 20px;
   }
 

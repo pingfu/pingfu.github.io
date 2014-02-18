@@ -1,0 +1,159 @@
+
+
+#wrapper .ui-tabs-nav {
+	list-style: none;
+	margin: 0;
+	padding: 0 0 0 16px;
+	border-bottom: 1px solid #ddd;
+	line-height: 2em;
+}
+
+#wrapper .ui-tabs-nav li {
+	display: inline;
+}
+
+.ui-state-default {
+	padding: 8px;
+	border: 1px solid #ddd;
+	background-color: #fafafa;
+}
+
+.ui-state-active {
+	background: #fff;
+	border-bottom: 1px solid #fff;
+}
+
+#tabs h1 {
+	margin-top: 24px; 
+}
+
+.formFields input, textarea, select {
+	display: inline-block;
+	padding: 4px;
+	margin-top: 9px;
+	font-size: 13px;
+	line-height: 18px;
+	color: #555555;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+}
+
+.formFields input, textarea {
+	min-width: 260px;
+}
+
+#wrapper .formFields p { 
+	margin: 0;
+}
+
+.apiErrorMessage {
+	margin-top: 16px;
+	background-color: #fafafa;
+	padding: 12px 8px;
+	border: 1px solid #ddd;
+	text-align: center;
+}
+
+/********/
+
+#randomPasswords ul {
+	list-style: none;
+	margin: 15px 0 0 0;
+	padding: 0;
+}
+
+#randomPasswords li {
+	line-height: 1.8em;
+}
+
+#randomPasswords .password {
+	font-family: monospace;
+	border: 1px solid #e0e0e0;
+	background-color: #fcfcfc;
+	margin: 0 20px 0 0;
+	padding: 2px 8px;
+	border-radius: 2px;
+}
+
+#randomPasswords .passwordLength {
+	font-family: Arial;
+	font-size: x-small;
+	color: #aaa;
+	margin: 0 10px 0 0;
+}
+
+/********/
+
+#dnsResults {
+	overflow-x: auto;
+	padding-bottom: 20px;
+}
+
+#dnsResults .header {
+	background-color: #fafafa;
+	border: 1px solid #eee;
+	padding: 8px;
+	border-radius: 2px;
+}
+
+#dnsResults .header p {
+	font-family: monospace;
+	font-size: smaller;
+	margin: 0;
+}
+
+#dnsResults .header p:nth-child(3) {
+	margin-top: 16px;
+}
+
+#dnsResults h2 {
+	margin: 28px 0 8px;
+}
+
+#dnsResults h2:first-child {
+	margin: 28px 0 8px;
+}
+
+#dnsResults table, td {	
+	font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	font-size: small;
+	color: #626566;
+	line-height: 1.6;
+	letter-spacing: .01em;
+}
+
+#dnsResults table {
+	margin: 0;
+	padding: 0;
+	border-spacing: 1px;
+	border-collapse: separate;
+	border: 1px solid #ddd;
+}
+
+#dnsResults td {
+	border: 1px solid #ddd;
+	padding: 2px 2px 2px 5px;	
+	min-width: 70px;		
+}
+
+#dnsResults .childTable {
+	border-spacing: 0;
+	border: none;
+}
+
+#dnsResults .childTable td {
+	padding-left: 10px;
+	padding-right: 10px;
+	border: none; /* important */
+	border-right: 2px solid #ddd;
+	min-width: 0;
+}
+
+#dnsResults .childTable td:first-child {
+	padding-left: 2px;
+}
+
+#dnsResults .childTable td:last-child {
+	padding-right: 10px;
+	border: none;
+}
