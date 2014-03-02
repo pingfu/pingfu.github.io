@@ -21,6 +21,11 @@ body {
   margin: 0;
 }
 
+#layout {
+  /* spacing for disqus */
+  margin-top: 110px;
+}
+
 #logo {
   background: #080808;
   padding: 80px 60px;
