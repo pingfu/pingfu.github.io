@@ -10,7 +10,7 @@ layout: default
 	<h2>{{ page.title }}</h2>
 	<p class="meta">{{ page.date | date_to_string }} — {% for category in page.categories %} <span class="category">{{ category }}</span> {% endfor %}</p>
 
-	<div class="post">
+	<div class="post disqus">
 		{{ content }}
 	</div>
 
@@ -28,7 +28,7 @@ layout: default
             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();
-        
+
     </script>
 
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>

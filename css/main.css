@@ -21,9 +21,9 @@ body {
   margin: 0;
 }
 
-#layout {
+.disqus {
   /* spacing for disqus */
-  margin-top: 110px;
+  margin-bottom: 110px;
 }
 
 #logo {
