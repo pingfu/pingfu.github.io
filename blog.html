@@ -26,7 +26,7 @@ title: Snaplen, and other arguments — Pingfu
 {% for post in site.posts %}
 <section class="boxed">
 
-	<h2><a id="{{ post.title }}" href="{{ post.url }}">{{ post.title }}</a></h2>
+	<h2><a id="{{ post.title }}" href="{{ post.url }}#disqus_thread">{{ post.title }}</a></h2>
 	<p class="meta">{{ post.date | date_to_string }} — {% for category in post.categories %} <span class="category">{{ category }}</span> {% endfor %}</p>
 
 	<div class="post">
@@ -35,3 +35,17 @@ title: Snaplen, and other arguments — Pingfu
 
 </section>
 {% endfor %}
+
+
+<script type="text/javascript">
+
+  var disqus_shortname = 'pingfu';
+
+  (function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
+  
+</script>
