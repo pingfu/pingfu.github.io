@@ -21,6 +21,14 @@ body {
   margin: 0;
 }
 
+#tabs { 
+  margin-top: 50px;
+}
+
+.tabbed-content {
+  padding: 10px 20px;
+}
+
 .disqus {
   /* spacing for disqus */
   margin-bottom: 110px;
