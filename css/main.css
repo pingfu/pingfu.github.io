@@ -273,6 +273,16 @@ a:hover {
   margin: 0 7px;
 }
 
+blockquote {
+    font-style: italic;
+    font-size: small;
+    margin: 0 auto;  
+    max-width: 1080px;  
+    text-align:  right;
+    top: -65px;
+    position:  relative;
+    left: 10px;
+}
 
 
 
@@ -283,6 +293,15 @@ a:hover {
 
 /*MEDIA QUERY*/
 @media only screen and (max-width : 1140px) {
+
+  blockquote {
+    position:  relative;
+    max-width: none;
+    margin: 0;
+    top: 0;
+    left: -16px;
+    padding-bottom: 16px;
+  }
 
   section {
     margin: 20px auto;
