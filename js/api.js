@@ -54,7 +54,24 @@ function loadPasswords()
 }
 
 
-function resolve()
+function resolveByForm()
+{
+	var rawQuestion = ($("#question").val() == '') ? 'example.net' : $("#question").val();
+	var question    = '&query='  + rawQuestion;
+	var nameserver  = '&server=' + $("#nameserver").val();
+	var queryClass  = '&class=' 	+ translateClass($("#queryClass").val());
+	var queryType   = '&type='  	+ translateType($("#queryType").val());
+	var dnsUrl      = 'http://api.pingfu.net/2014-01/?method=pingfu.dns.lookup&format=jsonp&callback=?' + question + queryClass + queryType + nameserver;
+
+	resolve(rawQuestion, question, nameserver, queryClass, queryType, dnsUrl);
+}
+
+function resolveByHref()
+{
+	
+}
+
+function resolve(rawQuestion, question, nameserver, queryClass, queryType, dnsUrl)
 {
 	$(".loadingImage").show();
 	$("#dnsResultsError").hide();
@@ -64,13 +81,6 @@ function resolve()
 	$("#dnsResults .answers").html('');
 	$("#dnsResults .authorities").html('');
 	$("#dnsResults .additionals").html('');
-
-	var rawQuestion = ($("#question").val() == '') ? 'example.net' : $("#question").val();
-	var question    = '&query='  + rawQuestion;
-	var nameserver  = '&server=' + $("#nameserver").val();
-	var queryClass  = '&class=' 	+ translateClass($("#queryClass").val());
-	var queryType   = '&type='  	+ translateType($("#queryType").val());
-	var dnsUrl      = 'http://api.pingfu.net/2014-01/?method=pingfu.dns.lookup&format=jsonp&callback=?' + question + queryClass + queryType + nameserver;
 
 	$.ajax({
 		type: 'GET',
@@ -278,7 +288,7 @@ $("#loadPasswords").click(function (e) {
 $("#resolve").click(function (e) {
 	e.preventDefault();
 	init();
-	resolve();
+	resolveByForm();
 });
 
 
