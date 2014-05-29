@@ -7,6 +7,32 @@ function init()
 	$(".loadingImage").hide();
 }
 
+function loadWhoami()
+{
+	var whoamiUrl = 'http://api.pingfu.net/2014-01/?method=pingfu.network.whoami&format=jsonp&callback=?';
+
+	$.ajax({
+		type: 'GET',
+		url: whoamiUrl,
+		jsonpCallback: 'jsonCallback',
+		contentType: "application/json",
+		dataType: 'jsonp',
+		success: function(json)
+		{
+			if (json.Code == 429)
+			{
+				$(".whoami").text(json.Message);
+				$("#whoamiJsonDump").text("--");
+			}
+			else
+			{
+				$(".whoami").text(json.Ip);
+				$("#whoamiJsonDump").text(JSON.stringify(json));
+			}
+		}
+	});
+}
+
 function loadPasswords()
 {
 	$("#randomPasswords").html('');
@@ -59,16 +85,23 @@ function resolveByForm()
 	var rawQuestion = ($("#question").val() == '') ? 'example.net' : $("#question").val();
 	var question    = '&query='  + rawQuestion;
 	var nameserver  = '&server=' + $("#nameserver").val();
-	var queryClass  = '&class=' 	+ translateClass($("#queryClass").val());
-	var queryType   = '&type='  	+ translateType($("#queryType").val());
+	var queryClass  = '&class='  + translateClass($("#queryClass").val());
+	var queryType   = '&type='   + translateType($("#queryType").val());
 	var dnsUrl      = 'http://api.pingfu.net/2014-01/?method=pingfu.dns.lookup&format=jsonp&callback=?' + question + queryClass + queryType + nameserver;
 
 	resolve(rawQuestion, question, nameserver, queryClass, queryType, dnsUrl);
 }
 
-function resolveByHref()
+function resolveByHref(question)
 {
-	
+	var rawQuestion = question;
+	var question    = '&query='  + question;
+	var nameserver  = '&server=' + $("#nameserver").val();
+	var queryClass  = '&class='  + "IN";
+	var queryType   = '&type='   + "ANY";
+	var dnsUrl      = 'http://api.pingfu.net/2014-01/?method=pingfu.dns.lookup&format=jsonp&callback=?' + question + queryClass + queryType + nameserver;
+
+	resolve(rawQuestion, question, nameserver, queryClass, queryType, dnsUrl);
 }
 
 function resolve(rawQuestion, question, nameserver, queryClass, queryType, dnsUrl)
@@ -144,6 +177,14 @@ function resolve(rawQuestion, question, nameserver, queryClass, queryType, dnsUr
 				});
 				if (json.Additionals.length == 0) { $(".additionalsHeader").hide(); }
 			}
+
+			$(".cname").click(function (e) {
+				e.preventDefault();
+				var hrefQuestion = $(this).text();
+
+				resolveByHref(hrefQuestion);
+			});
+
 		},
 		error: function(e)
 		{
@@ -158,19 +199,27 @@ function resolve(rawQuestion, question, nameserver, queryClass, queryType, dnsUr
 
 function tabuliseDns(entry)
 {
+	var recordType = translateType(entry.Type);
 
-	
 	var col = $('<tr>');
-	$.each(entry.Record, function(k, v) {
+	$.each(entry.Record, function(k, v)
+	{
 		if (v != null)
-			col.append($('<td>').text(v));
+			if (recordType == "CNAME" || recordType == "NS")
+			{
+				var clickableCname = $("<a />", { href : "#", class : "cname", text : v });
+				col.append($('<td>').append(clickableCname));				
+			} else
+			{
+				col.append($('<td>').text(v));
+			}
 	});
 
 	var row = $('<tr>')
 		.append($('<td>').text(entry.Name))
 		.append($('<td>').text(entry.TTL))
 		.append($('<td>').text(translateClass(entry.Class)))
-		.append($('<td>').text(translateType(entry.Type)))
+		.append($('<td>').text(recordType))
 		.append($('<td>').append($('<table>').addClass("childTable").append(col)));
 
 	return row;
@@ -290,7 +339,6 @@ $("#resolve").click(function (e) {
 	init();
 	resolveByForm();
 });
-
 
 //
 //

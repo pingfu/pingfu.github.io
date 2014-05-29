@@ -5,12 +5,15 @@ title: Home — Pingfu
 
 <section class="boxed large">
 
+	<div id="popout"><a href="/resolver.html" target="_blank"><img alt="popout" src="/img/pop-out-icon.png"></a></div>
+
 	<div id="tabs">
 
 		<ul>
 			<li><a href="#tabs-1">Welcome</a></li>
 			<li><a href="#tabs-2">Dns Resolver</a></li>
 			<li><a href="#tabs-3">Secure Passwords</a></li>
+			<li><a href="#tabs-9" class="whoami"></a></li>
 		</ul>
 
 
@@ -55,7 +58,7 @@ title: Home — Pingfu
 
 		<div id="tabs-2">
 
-			<h1>Dns Resolver &nbsp;<a href="/resolver.html" target="_blank"><img src="/img/pop-out-icon.png"></a></h1>
+			<h1>Dns Resolver</h1>
 			<p>You can use this free (rfc-compliant <a href="http://www.ietf.org/rfc/rfc1033.txt">rfc1033</a>, <a href="http://www.ietf.org/rfc/rfc1034.txt">rfc1034</a>, <a href="http://www.ietf.org/rfc/rfc1035.txt">rfc1035</a>) tool to perform dns queries using either our name servers, or those of your choosing. It supports common query types such as A, NS, CNAME, SOA, PTR, MX, TXT, RP, AXFR, AAAA, ANY, and more in addition to full support for IPv6.</p>
 
 			<div class="formFields">
@@ -148,6 +151,26 @@ title: Home — Pingfu
 
 		</div>
 
+
+
+
+
+
+
+
+
+		<div id="tabs-9">
+
+			<h1>HTTP Headers</h1>
+			<p>You are coming to us from: <span class="whoami"></span>. Here are the http headers your browser just sent out:</p>
+
+			<p id="whoamiJsonDump"></p>
+
+			<p>Try <a href="http://jsoneditoronline.org/" target="_blank" rel="nofollow">http://jsoneditoronline.org/</a> if you need to beautify this json.</p>
+
+		</div>
+
+
 	</div>
 
 </section>
@@ -161,6 +184,7 @@ title: Home — Pingfu
     /* initalise tabs */
     $(function () {
       $("#tabs").tabs();
+      loadWhoami();
     });
 
 </script>

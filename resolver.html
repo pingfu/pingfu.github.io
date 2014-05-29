@@ -10,6 +10,7 @@ title: Home — Pingfu
 		<ul>
 			<li><a href="#tabs-2">Dns Resolver</a></li>
 			<li><a href="#tabs-3">Secure Passwords</a></li>
+			<li><a href="#tabs-9" class="whoami"></a></li>
 		</ul>
 
 
@@ -109,6 +110,23 @@ title: Home — Pingfu
 
 		</div>
 
+
+
+
+
+
+
+		<div id="tabs-9">
+
+			<h1>HTTP Headers</h1>
+			<p>You are coming to us from: <span class="whoami"></span>. Here are the http headers your browser just sent out:</p>
+
+			<p id="whoamiJsonDump"></p>
+
+			<p>Try <a href="http://jsoneditoronline.org/" target="_blank" rel="nofollow">http://jsoneditoronline.org/</a> if you need to beautify this json.</p>
+
+		</div>
+
 	</div>
 
 </section>
@@ -122,6 +140,7 @@ title: Home — Pingfu
     /* initalise tabs */
     $(function () {
       $("#tabs").tabs();
+      loadWhoami();
     });
 
 </script>
