@@ -11,7 +11,7 @@ title: Home — Pingfu
 			<li><a class="show-hero" href="#tabs-1">Welcome</a></li>
 			<li><a class="hide-hero" href="#tabs-2">Dns Resolver</a></li>
 			<li><a class="hide-hero" href="#tabs-3">Secure Passwords</a></li>
-			<li><a class="hide-hero whoami" href="#tabs-9"></a></li>
+			<li><a class="hide-hero userip" href="#tabs-9"></a></li>
 		</ul>
 
 
@@ -175,14 +175,14 @@ title: Home — Pingfu
 
 		<div id="tabs-9">
 
-			<h1>HTTP Headers</h1>
-			<p>You are coming to us from: <strong><span class="whoami"></span></strong>. Here are the http headers your browser sent out:</p>
+			<h1>Browser HTTP Headers</h1>
+			<p>You are coming to us from <strong><span class="userip userip-styled"></span></strong> Here are the http headers your browser is sending ...</p>
 
-			<p id="whoamiJsonDump"></p>
-
-			<p>Try <a href="http://jsoneditoronline.org/" target="_blank" rel="nofollow">http://jsoneditoronline.org/</a> if you need to beautify this json.</p>
+			<div id="whoami"></div>
 
 		</div>
+
+
 
 
 	</div>
@@ -213,6 +213,7 @@ title: Home — Pingfu
 <!-- page specific scripts -->
 
 <script type="text/javascript" src="/js/api.js"></script>
+<script type="text/javascript" src="/js/mustache.js"></script>
 
 <script type="text/javascript">
 

@@ -157,3 +157,54 @@
 	padding-right: 10px;
 	border: none;
 }
+
+/********/
+
+#whoami {
+	overflow-x: auto;
+	padding-bottom: 20px;
+}
+
+#whoami h2 {
+	margin: 28px 0 8px;
+}
+
+#whoami h2:first-child {
+	margin: 28px 0 8px;
+}
+
+#whoami table, td {	
+	font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	font-size: small;
+	color: #626566;
+	line-height: 1.6;
+	letter-spacing: .01em;
+	white-space: nowrap;
+}
+
+#whoami table {
+	margin: 0;
+	padding: 0;
+	border-spacing: 1px;
+	border-collapse: separate;
+	border: 1px solid #ddd;
+}
+
+#whoami td {
+	border: 1px solid #ddd;
+	padding: 2px 2px 2px 5px;	
+	min-width: 70px;		
+}
+
+#whoami .header {
+	padding: 0px 4px;
+}
+
+.userip-styled {
+	font-family: monospace;
+	border: 1px solid #e0e0e0;
+	background-color: #fcfcfc;
+	margin: 0px 3px;
+	padding: 2px;
+	border-radius: 2px;
+}

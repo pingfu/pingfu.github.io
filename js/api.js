@@ -31,13 +31,16 @@ function loadWhoami()
 		{
 			if (json.Code == 429)
 			{
-				$(".whoami").text(json.Message);
-				$("#whoamiJsonDump").text("--");
+				$(".userip").text(json.Message);
+				$("#whoami").html("--");
 			}
 			else
 			{
-				$(".whoami").text(json.Ip);
-				$("#whoamiJsonDump").text(JSON.stringify(json));
+				$(".userip").text(json.Ip);
+
+				$.get("/templates/whoami.html", function (template) {
+					$("#whoami").html(Mustache.to_html(template, json));
+				});
 			}
 		}
 	});
