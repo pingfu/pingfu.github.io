@@ -5,15 +5,13 @@ title: Home — Pingfu
 
 <section class="boxed large">
 
-	<div id="popout"><a href="/resolver" target="_blank"><img alt="popout" src="/img/pop-out-icon.png"></a></div>
-
 	<div id="tabs">
 
 		<ul>
-			<li><a href="#tabs-1">Welcome</a></li>
-			<li><a href="#tabs-2">Dns Resolver</a></li>
-			<li><a href="#tabs-3">Secure Passwords</a></li>
-			<li><a href="#tabs-9" class="whoami"></a></li>
+			<li><a class="show-hero" href="#tabs-1">Welcome</a></li>
+			<li><a class="hide-hero" href="#tabs-2">Dns Resolver</a></li>
+			<li><a class="hide-hero" href="#tabs-3">Secure Passwords</a></li>
+			<li><a class="hide-hero whoami" href="#tabs-9"></a></li>
 		</ul>
 
 
@@ -21,14 +19,14 @@ title: Home — Pingfu
 
 		<div id="tabs-1" class="tabbed-content">
 
-			<h1 class="text-align-center">Hi, I'm Marc, a computer security and infrastructure specialist.<br />Based in <a href="http://maps.google.co.uk/maps?q=Cardiff">Cardiff</a>, I work on all sorts of interesting things.</h1>
+			<h1 class="text-align-center">Hello, I'm Marc. A computer security and infrastructure specialist.<br />I'm a freelancer based in <a href="http://maps.google.co.uk/maps?q=Wales">Wales, UK</a> and available for hire.</h1>
 
 			<hr />
 
 			<div class="column3">
 				<div class="column">
 					<h2>About</h2>
-					<p>As a freelancer, Pingfu is a mash-up between work and play. I write, publish code, and a few <a href="/tools">other things</a> here on occasion too.</p>
+					<p>Pingfu is a mash-up between my work and play. I write, publish code, and a few other things here on occasion too.</p>
 					<p><a href="/about">More ›</a></p>
 				</div>
 			</div>
@@ -36,20 +34,36 @@ title: Home — Pingfu
 			<div class="column3">
 				<div class="column">
 					<h2>Open Source</h2>
-					<p>My small collection of open source projects and tools are <a href="/open-source">described here</a>, and published on <a href="https://github.com/pingfu">github</a>.</p>
+					<p>My small collection of projects have a home here, with source code available on <a href="https://github.com/pingfu">github</a>.</p>
 					<p><a href="/open-source">More ›</a></p>
 				</div>
 			</div>
 
 			<div class="column3">
 				<div class="column">
-					<h2>Blog</h2>
-					<p>"Snaplen, and other arguments" - a technical blog.<br />A collection of thoughts on programming, performance, technology and cyber.</p>
+					<h2>Tools</h2>
+					<p>A collection of links to a few home grown tools, and some interesting work from the wider open-source world too.</p>
 					<p><a href="/blog">More ›</a></p>
 				</div>
 			</div>
 
 			<div class="clearfix"></div>
+
+
+			<hr />
+
+
+			<h2>Blog Posts</h2>
+			<p>A collection of thoughts on programming, performance, technology and cyber.</p>
+			<br />
+
+
+			<ul class="posts">
+			{% for post in site.posts %}
+				<li>{{ post.date | date_to_string }} — <a href="#{{ post.title }}">{{ post.title }}</a></li>
+			{% endfor %}
+			</ul>
+
 
 		</div>
 
@@ -174,6 +188,27 @@ title: Home — Pingfu
 	</div>
 
 </section>
+
+
+
+<!-- blog articles -->
+
+{% for post in site.posts %}
+<section class="boxed blog-posts">
+
+	<h2><a id="{{ post.title }}" href="{{ post.url }}#disqus_thread">{{ post.title }}</a></h2>
+	<p class="meta">{{ post.date | date_to_string }} — {% for category in post.categories %} <span class="category">{{ category }}</span> {% endfor %}</p>
+
+	<div class="post">
+		{{ post.content }}
+	</div>
+
+</section>
+{% endfor %}
+
+
+
+
 
 <!-- page specific scripts -->
 

@@ -5,6 +5,16 @@ function init()
 	$("#randomPasswords").hide();
 	$("#randomPasswordsError").hide();
 	$(".loadingImage").hide();
+
+	$(".hide-hero").click(function() {
+		$("#logo").slideUp();
+		$(".blog-posts").hide();
+	})
+
+	$(".show-hero").click(function() {
+		$("#logo").slideDown();
+		$(".blog-posts").show();
+	})
 }
 
 function loadWhoami()
