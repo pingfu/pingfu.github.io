@@ -19,7 +19,7 @@ function init()
 
 function loadWhoami()
 {
-	var whoamiUrl = 'http://api.pingfu.net/2014-01/?method=pingfu.network.whoami&format=jsonp&callback=?';
+	var whoamiUrl = 'http://pingfu-api.azurewebsites.net/2014-01/?method=pingfu.network.whoami&format=jsonp&callback=?';
 
 	$.ajax({
 		type: 'GET',
@@ -52,7 +52,7 @@ function loadPasswords()
 	$("#randomPasswordsError").html('');			
 	$(".loadingImage").show();
 
-	var passwordsUrl = 'http://api.pingfu.net/2014-01/?method=pingfu.cryptography.password.generate&format=jsonp&callback=?';
+	var passwordsUrl = 'http://pingfu-api.azurewebsites.net/2014-01/?method=pingfu.cryptography.password.generate&format=jsonp&callback=?';
 
 	$.ajax({
 		type: 'GET',
@@ -100,7 +100,7 @@ function resolveByForm()
 	var nameserver  = '&server=' + $("#nameserver").val();
 	var queryClass  = '&class='  + translateClass($("#queryClass").val());
 	var queryType   = '&type='   + translateType($("#queryType").val());
-	var dnsUrl      = 'http://api.pingfu.net/2014-01/?method=pingfu.dns.lookup&format=jsonp&callback=?' + question + queryClass + queryType + nameserver;
+	var dnsUrl      = 'http://pingfu-api.azurewebsites.net/2014-01/?method=pingfu.dns.lookup&format=jsonp&callback=?' + question + queryClass + queryType + nameserver;
 
 	resolve(rawQuestion, question, nameserver, queryClass, queryType, dnsUrl);
 }
@@ -112,7 +112,7 @@ function resolveByHref(question)
 	var nameserver  = '&server=' + $("#nameserver").val();
 	var queryClass  = '&class='  + "IN";
 	var queryType   = '&type='   + "ANY";
-	var dnsUrl      = 'http://api.pingfu.net/2014-01/?method=pingfu.dns.lookup&format=jsonp&callback=?' + question + queryClass + queryType + nameserver;
+	var dnsUrl      = 'http://pingfu-api.azurewebsites.net/2014-01/?method=pingfu.dns.lookup&format=jsonp&callback=?' + question + queryClass + queryType + nameserver;
 
 	resolve(rawQuestion, question, nameserver, queryClass, queryType, dnsUrl);
 }
