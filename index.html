@@ -191,7 +191,7 @@ title: Home — Pingfu
 
 
 
-<!-- blog articles -->
+<!-- posts -->
 
 {% for post in site.posts %}
 <section class="boxed blog-posts">
@@ -203,7 +203,7 @@ title: Home — Pingfu
 		{{ post.excerpt }}
 	</div>
 	
-	{% if post.content contains excerpt_separator %}
+	{% if post.content contains "<!--excerpt-->" %}
 		<p><a id="{{ post.title }}" href="{{ post.url }}">Read More ...</a></p>
 	{% endif %}
 
