@@ -5,7 +5,7 @@ date: 2011-02-24
 categories: Security
 ---
 
-There is a wealth of online content discussing cryptography, its use and implementation. Unfortunately a significant volume of this information demonstrates implementations that either deviate from best practise, provide bad illustrations of how to implement cryptography or just get it wrong.
+There is a wealth of online content discussing cryptography, its use and implementation. Unfortunately a significant volume of this information demonstrates implementations that either deviate from best practice, provide bad illustrations of how to implement cryptography or just get it wrong.
 
 This post will describes the correct way to implement the Rijndael cipher using .Net and the System.Security.Cryptography namespace. Let’s start with a clear definition of our inputs for the encryption process.
 
