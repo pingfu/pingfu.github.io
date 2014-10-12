@@ -200,11 +200,7 @@ title: Home — Pingfu
 	<p class="meta">{{ post.date | date_to_string }} — {% for category in post.categories %} <span class="category">{{ category }}</span> {% endfor %}</p>
 
 	<div class="post">
-		{% if post.content contains excerpt_separator %}
-			{{ post.excerpt }}
-		{% else %}
-			{{ post.content }}
-		{% endif %}
+		{{ post.excerpt }}
 	</div>
 	
 	{% if post.content contains excerpt_separator %}
