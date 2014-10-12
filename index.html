@@ -207,7 +207,9 @@ title: Home — Pingfu
 		{% endif %}
 	</div>
 	
-	<p><a id="{{ post.title }}" href="{{ post.url }}">Read More ...</a></p>
+	{% if post.content contains excerpt_separator %}
+		<p><a id="{{ post.title }}" href="{{ post.url }}">Read More ...</a></p>
+	{% endif %}
 
 </section>
 {% endfor %}
