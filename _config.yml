@@ -1,3 +1,4 @@
 name: pingfu
 pygments: true
 markdown: redcarpet
+excerpt_separator: <!--excerpt-->

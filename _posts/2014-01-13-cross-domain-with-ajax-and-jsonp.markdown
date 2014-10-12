@@ -22,6 +22,8 @@ Web Messaging is an API introduced as part of the HTML5 specification. `window.p
 
 I would prefer to discharge the responsibility of fetching and rendering the content directly to the browser, but the same-origin policy does seems to get in the way. Consider an alternative: create a server-side entity to syndicate the RSS feed, download updates and cache them locally so that server-side page construction could pull the content into response body for each request? A lot of effort that anybody might want to invest to pull scrape  some data.
 
+<!--excerpt-->
+
 Depending on what sort of availability levels and use-cases are motivating you, there may of course be a compelling reason to put in the extra effort, but in my this case, keep it simple, stupid won.
 
 As it turns out, Google have solved the problem quite nicely. They have an API shim which can be instructed to consume an RSS document, and return it as Json formatted data, padded into JsonP, perfect for traversing the same-origin policy. Even better the API allows anonymous consumption, so we can delegate the responsiblity of syndicating the feed and loading the data directly to the browser, aleviating complexity of a server-side implementation.
