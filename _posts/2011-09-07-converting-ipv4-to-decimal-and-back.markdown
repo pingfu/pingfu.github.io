@@ -24,6 +24,8 @@ public Double IpStringToLong( String ipString )
 
 Okay, and back the other way:
 
+<!--excerpt-->
+
 ```csharp
 public string LongToString(Double ipAsLong)
 {

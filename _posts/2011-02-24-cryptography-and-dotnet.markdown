@@ -7,17 +7,9 @@ categories: Security
 
 There is a wealth of online content discussing cryptography, its use and implementation. Unfortunately a significant volume of this information demonstrates implementations that either deviate from best practise, provide bad illustrations of how to implement cryptography or just get it wrong.
 
-We all know that encryption is used to obfuscate a message so that it can be transmitted via public channels to an intended recipient(s) with a significantly reduced risk of interception. In the first instance we have an assortment of symmetric algorithms, that is algorithms that work on the basis of a common secret, known to both the sender and the recipient of the message. Subsequent to this we have asymmetric algorithms, these are slower and rely on the mathematical problem of integer factorization for large numbers, a problem currently considered to be difficult. There is no known method to perform it quickly, and the complexity of factorisation is the basis of the assumed security of some asymmetric algorithms public key cryptography algorithms. This is used to help two or more parties agree upon a common secret whilst communicating over insecure channels.
+This post will describes the correct way to implement the Rijndael cipher using .Net and the System.Security.Cryptography namespace. Let’s start with a clear definition of our inputs for the encryption process.
 
-Simply put, if two parties need to agree on a common secret. Asymmetric algorithms (such as RSA or Diffie-Hellman) are used. When the communicating parties have established a common secret symmetric algorithms (such as DES, AES, Blowfish) are used to perform the encryption of the data to be exchanged.
-
-Anybody with any experience of cryptography should recognise AES, the algorithm chosen by NIST to succeed DES and Tripple DES. AES, the Advanced Encryption Standard (also known as Rijndael) is a symmetric algorithm and if you work in the IT industry this is the only symmetric algorithm you should even consider using.
-
-How do you correctly go about building an implement of AES (Rijndael) to secure data within your application?
-
-Implementations of the AES algorithm are available for every established programming language, but they still require an understanding of the inputs and outputs.
-
-This post will attempt to succinctly describe the correct way to implement the Rijndael cipher using .Net and System.Security.Cryptography. Let’s start with a clear definition of our inputs for the encryption process.
+<!--excerpt-->
 
 `Password:` The password is the pre-shared key, the secret value for encryption and usually comprises of screen printable ASCII characters (a subset of UTF-8) and of an arbitrary length, known to both the encrypting and decrypting parties.
 

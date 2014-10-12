@@ -23,6 +23,8 @@ Investigating the XML file reveals several sets of language tags;
 ...
 ```
 
+<!--excerpt-->
+
 The the code for British English is missing, and the binary quite unforgivingly handles this situation by refusing to install, rather than picking US English or any other language as a default. 
 
 It was easy enough to fix. A quick search and I've found a document published by Microsoft titled, `“Language Identifier Constants and Strings”` which enumerates the language and locale specific identifier codes built into the Windows API, so `0×0809` – the code for United Kingdom (GB). Maybe you can find yours in the list too.

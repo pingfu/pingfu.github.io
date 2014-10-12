@@ -20,9 +20,9 @@ CORS is a modern alternative to the JsonP pattern which enables cross-domain con
 - Cross-document messaging / Web Messaging - 
 Web Messaging is an API introduced as part of the HTML5 specification. `window.postMessage` enables the sending of data between two entities on domains which would usually be blocked by same-origin policy. It performs cross-domain AJAX without requiring server side shims. `postMessage` requires a receiver to be wired up using `window.addEventListener('message', function(event) { ... }, false);`. Again, impractical for my purposes where I have no control over the far-side content producer of the RSS document.
 
-I would prefer to discharge the responsibility of fetching and rendering the content directly to the browser, but the same-origin policy does seems to get in the way. Consider an alternative: create a server-side entity to syndicate the RSS feed, download updates and cache them locally so that server-side page construction could pull the content into response body for each request? A lot of effort that anybody might want to invest to pull scrape  some data.
-
 <!--excerpt-->
+
+I would prefer to discharge the responsibility of fetching and rendering the content directly to the browser, but the same-origin policy does seems to get in the way. Consider an alternative: create a server-side entity to syndicate the RSS feed, download updates and cache them locally so that server-side page construction could pull the content into response body for each request? A lot of effort that anybody might want to invest to pull scrape  some data.
 
 Depending on what sort of availability levels and use-cases are motivating you, there may of course be a compelling reason to put in the extra effort, but in my this case, keep it simple, stupid won.
 

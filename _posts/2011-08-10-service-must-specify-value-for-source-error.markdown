@@ -12,6 +12,8 @@ Must specify value for source. at System.Configuration.Install.TransactedInstall
 
 I found myself encountering this problem while preparing material for the next post on services and .NET. As I was calling the `.Installers.Add()` method from the instance of my TransactedInstaller object (called ti) I realised that while it expects you to pass a new instance of an object of type Installer,  I was actually passing, “new ServiceInstaller”. This had at one point been the name of my class- but the problem turned out to be that this translates not to the name of my class, but to Service.ServiceProcess.ServiceInstaller.
 
+<!--excerpt-->
+
 In my class the code which dealt with service installation was:
 
 ```csharp

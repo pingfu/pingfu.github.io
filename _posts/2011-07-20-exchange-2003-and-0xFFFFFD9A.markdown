@@ -33,6 +33,8 @@ Event ID: 9175
 The MAPI call 'OpenMsgStore' failed with the following error: The attempt to log on to the Microsoft Exchange Server computer has failed. The MAPI provider failed. Microsoft Exchange Server Information Store ID no: 8004011d-0512-00000000
 ```
 
+<!--excerpt-->
+
 The initial `0xFFFFFD9A` error code indicates that the maximum number of uncommitted log files have been reached.  This happens when a backup has been started that does not complete for an excessive amount of time. Excessive in this case is un-defined, but we take it to mean continuing longer than planned or expected.
 
 When a backup operation against Exchange commences it puts the Exchange database into a state where it cannot commit log files. There is a limit on the volume of un-committed log files that can accumulate before Exchange will un-mount the store to prevent further loss of synchronisation.

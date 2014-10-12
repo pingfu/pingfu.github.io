@@ -8,11 +8,11 @@ tags: c#
 
 Services are not presented as a thing of beauty in .net - in fact, typically creating a service is gut wrenchingly awful. There are multiple design time components to drop in (and for some reason position as icons), and multiple classes for your Service, your ServiceInstaller, and ServiceBase. Then you meet InstallUtil.exe, so much example code which demonstrates installing services relies on the use of [InstallUtil.exe][googlesearch]. Finally, packaging it all together into an installer. Really, it's all quite disgusting.
 
-There is a better way. We can create a self installing Windows service using C# and pure code. In a single .cs file should we choose: two classes and managed code. Here's how to do it.
-
-To demonstrate the simplicity of this we’re not going to use Visual Studio, we’ll use Notepad++ (or whichever your preferred editor of choice happens to be) and will compile by hand using the command line tool csc.exe.
+There is a better way. We can create a self installing Windows service using C# and pure code. In a single .cs file should we choose: two classes and managed code. Here's how to do it. To demonstrate the simplicity of this we’re not going to use Visual Studio, we’ll use Notepad++ (or whichever your preferred editor of choice happens to be) and will compile by hand using the command line tool csc.exe.
 
 No third party code to bundle or execute, no bloat.
+
+<!--excerpt-->
 
 NB. You can, of course, drop this unedited code into a Visual Studio project and compile as a Console application.
 
