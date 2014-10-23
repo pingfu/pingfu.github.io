@@ -63,7 +63,7 @@ $ make
 $ sudo make install 
 ```
 
-If the installation completed sucessfully running `mono --version` should produce something like this. Notice the most recent [commit][commit] I've built against - [e451fb2...].
+If the installation completed successfully running `mono --version` should produce something like this. Notice the most recent [commit][commit] I've built against - [e451fb2...].
 
 ```bash
 $ mono --version
