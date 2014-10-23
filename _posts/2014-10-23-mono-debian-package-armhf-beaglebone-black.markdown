@@ -6,25 +6,41 @@ categories: Programming Troubleshooting Hardware
 tags: beagleboard mono armhf
 ---
 
-I was frustrated to discover that Mono could not be installed using the standard packages sources on either Ubuntu or Debian using the Beaglebone Black, as it seems the only packages which exist are targeting ARMel architecture, rather than ARMhf (hard-float) of the BBB.
+Mono on BBB. I was frustrated to discover that Mono could not be installed using the standard packages sources on either Ubuntu or Debian using the Beaglebone Black, as it seems the only packages which exist are targeting ARMel architecture, rather than ARMhf (hard-float) of the BBB.
 
 ```bash
-$ sudo apt-get install mono-runtime
+$ sudo apt-get install mono-complete
 Reading package lists... Done
 Building dependency tree
 Reading state information... Done
-Some packages could not be installed. This may mean that you have requested an impossible situation or if you are using the unstable distribution that some required packages have not yet been created or been moved out of Incoming. 
+Some packages could not be installed. This may mean that you have requested an impossible situation or if you are using the unstable distribution that some required packages have not yet been created or been moved out of Incoming.
 The following information may help to resolve the situation:
 
 The following packages have unmet dependencies:
- mono-runtime:armel : Depends: mono-gac:armel (= 2.10.8.1-8) but it is not installable
-                      Recommends: binfmt-support:armel (>= 1.1.2)
+ mono-complete:armel : Depends: mono-runtime:armel (= 2.10.8.1-8) but it is not going to be installed
+                       Depends: mono-runtime-sgen:armel (= 2.10.8.1-8) but it is not going to be installed
+                       Depends: mono-utils:armel (= 2.10.8.1-8) but it is not going to be installed
+                       Depends: mono-devel:armel (= 2.10.8.1-8) but it is not installable
+                       Depends: mono-mcs:armel (= 2.10.8.1-8) but it is not installable
+                       Depends: mono-gmcs:armel (= 2.10.8.1-8) but it is not installable
+                       Depends: mono-dmcs:armel (= 2.10.8.1-8) but it is not installable
+                       Depends: mono-csharp-shell:armel (= 2.10.8.1-8) but it is not installable
+                       Depends: mono-2.0-gac:armel (= 2.10.8.1-8) but it is not installable
+                       Depends: mono-4.0-gac:armel (= 2.10.8.1-8) but it is not installable
+                       Depends: mono-2.0-service:armel (= 2.10.8.1-8) but it is not installable
+                       Depends: mono-4.0-service:armel (= 2.10.8.1-8) but it is not installable
+                       Depends: monodoc-base:armel (= 2.10.8.1-8) but it is not installable
+                       Depends: monodoc-manual:armel (= 2.10.8.1-8) but it is not installable
+                       Depends: libmono-cil-dev:armel (= 2.10.8.1-8) but it is not installable
 E: Unable to correct problems, you have held broken packages.
+
 ```
 
-Compiling from source seemed to be the only option. I started by downloading specific [releases][monorls] but the build failed each time I tried (versions 3.10.0, 3.8.0 and 3.6.0). It seems unless you have the `mono-devel` package already installed on your system, the tarballs are missing dependencies for a full build (see [compiling mono on linux][complnx]).
+Compiling from source seemed to the next sensible option. I started by downloading specific [releases][monorls] but the build failed each time (I tried versions 3.10.0, 3.8.0 and 3.6.0). It seems unless you have the `mono-devel` package already installed on your system, the tarballs are missing dependencies required for a full build (see [compiling mono on linux][complnx]).
 
-The next option was to clone the relevant git branch and try again. Currently the `3.10.0-branch` branch of Mono [isn't building](https://github.com/mono/mono/tree/mono-3.10.0-branch), so until that is fixed, I've used `3.8.0-branch`. Cloning the branch also isn't enough to pull all of the dependencies for a full compile, but using `git submodule` fixes this. The full source tree requires a little over 2GB of space in order to build, and compiling takes several hours on the BBB.
+<!--excerpt-->
+
+After no success with the tarballs I tried clone the relevant branch from git and tried again. Currently the `3.10.0-branch` of Mono [isn't][3100-branch] [building][jenkins], so until that is fixed, I've used `3.8.0-branch`. Cloning the branch also isn't enough to pull all of the dependencies for a full compile, but `git submodule` can fix this. 
 
 ```bash
 $ apt-get install git autoconf libtool automake build-essential gettext
@@ -37,6 +53,8 @@ $ git submodule update --recursive
 $ git submodule
 ```
 
+The full source tree occupies a little over 2GB of space in order to build, and compiling takes several hours on the BBB...
+
 ```bash
 $ ./autogen.sh --prefix=/usr/local --with-sgen=yes --with-large-heap=yes --with-xen_opt=no --enable-parallel-mark --with-libgdiplus=/usr/local/lib
 $ make get-monolite-latest
@@ -45,7 +63,7 @@ $ make
 $ sudo make install 
 ```
 
-If the installation completed sucessfully running `mono --version` should produce something like this. Notice the most recent [commit][commit] that I've built against.
+If the installation completed sucessfully running `mono --version` should produce something like this. Notice the most recent [commit][commit] I've built against - [e451fb2...].
 
 ```bash
 $ mono --version
@@ -61,16 +79,16 @@ Copyright (C) 2002-2014 Novell, Inc, Xamarin Inc and Contributors. www.mono-proj
         GC:            sgen
 ```
 
-I didn't fancy running through this process each time I needed Mono on a fresh BBB so used `checkinstall`, which hooks the `make install` process to produce a .deb package which can be installed onto ARMhf systems with `dkpg -i`
+I didn't fancy running through this process each time I needed Mono on a fresh BBB so used `checkinstall`, which hooks the `make install` process to produce a .deb package. This is then as simple as `dkpg -i` to install elsewhere.
 
-To do this yourself pull the dependencies for `checkinstall`, and run it between `make` and `make install`.
+To do this yourself pull the dependencies for `checkinstall`, and run it after running `make`. It will create a reusable package, and install it for you too.
 
 ```bash
 $ sudo apt-get install build-essential automake autoconf libtool pkg-config libcurl4-openssl-dev intltool libxml2-dev libgtk2.0-dev libnotify-dev libglib2.0-dev libevent-dev checkinstall
 $ sudo checkinstall
 ```
 
-Hopefully following these steps will help anybody else get up and running with Mono until the main package sources contain ARMhf packages, but YMMV so the .deb package I built is available here:
+Hopefully following these steps will others get up and running with Mono until the main package sources contain ARMhf packages, but YMMV so you can download the .deb package I've built here:
 
 * [mono-3.8.0-branch-armhf-e451fb2.deb][e451fb2] (90.9MB) [md5sum: 752e0b1494d250516e8143924c7a5a4c]
 
@@ -78,3 +96,5 @@ Hopefully following these steps will help anybody else get up and running with M
 [monorls]: https://github.com/mono/mono/releases
 [complnx]: http://www.mono-project.com/docs/compiling-mono/linux/
 [commit]: https://github.com/mono/mono/commit/e451fb2813e67d6f9d56424775444d0e5acca19f
+[3100-branch]: https://github.com/mono/mono/tree/mono-3.10.0-branch
+[jenkins]: http://jenkins.mono-project.com/job/test-mono-mainline/
