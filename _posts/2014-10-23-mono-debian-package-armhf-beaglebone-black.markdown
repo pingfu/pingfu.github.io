@@ -6,7 +6,7 @@ categories: Programming Troubleshooting Hardware
 tags: beagleboard mono armhf
 ---
 
-Mono on BBB. I was frustrated to discover that Mono could not be installed using the standard package sources on either Ubuntu or Debian using the Beaglebone Black, as it seems the only packages which exist are targeting ARMel architecture, rather than ARMhf (hard-float) of the BBB.
+It is frustrating to discover that at the time of writing Mono cannot be installed on Debian or Ubuntu using the standard package sources and the Beaglebone Black. It seems the only packages which exist are targeting ARMel architecture, rather than ARMhf (hard-float) of the BBB.
 
 ```bash
 $ sudo apt-get install mono-complete
@@ -36,11 +36,11 @@ E: Unable to correct problems, you have held broken packages.
 
 ```
 
-Compiling from source seemed to the next sensible option. I started by downloading specific [releases][monorls] but the build failed each time (I tried versions 3.10.0, 3.8.0 and 3.6.0). It seems unless you have the `mono-devel` package already installed on your system, the tarballs are missing dependencies required for a full build (see [compiling mono on linux][complnx]).
+Compiling from source seemed to be the next sensible option. I started by downloading specific [releases][monorls] but the build failed each time (I tried versions 3.10.0, 3.8.0 and 3.6.0). It seems that unless you have the `mono-devel` package already installed on your system, the tarballs are missing dependencies required for a full build (see [compiling mono on linux][complnx]).
 
 <!--excerpt-->
 
-After no success with the tarballs I tried clone the relevant branch from git and tried again. Currently the `3.10.0-branch` of Mono [isn't][3100-branch] [building][jenkins], so until that is fixed, I've used `3.8.0-branch`. Cloning the branch also isn't enough to pull all of the dependencies for a full compile, but `git submodule` can fix this. 
+After no success with the tarballs I tried to clone the relevant branch from git and tried again. Currently the `3.10.0-branch` of Mono [isn't][3100-branch] [building][jenkins], so until that is fixed, I've used `3.8.0-branch`. Cloning the branch also isn't enough to pull all of the dependencies for a full compile, but `git submodule` can fix this. 
 
 ```bash
 $ apt-get install git autoconf libtool automake build-essential gettext
@@ -88,7 +88,7 @@ $ sudo apt-get install build-essential automake autoconf libtool pkg-config libc
 $ sudo checkinstall
 ```
 
-Hopefully following these steps will others get up and running with Mono until the main sources contain ARMhf builds, but YMMV so you can download the .deb package I've built here:
+Hopefully following these steps others will get up and running with Mono until the main sources contain ARMhf builds, but YMMV so you can download the .deb package I've built here:
 
 * [mono-3.8.0-branch-armhf-e451fb2.deb][e451fb2] (90.9MB) [md5sum: 752e0b1494d250516e8143924c7a5a4c]
 
