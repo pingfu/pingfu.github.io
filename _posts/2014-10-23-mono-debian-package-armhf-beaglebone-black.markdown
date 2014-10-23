@@ -6,7 +6,7 @@ categories: Programming Troubleshooting Hardware
 tags: beagleboard mono armhf
 ---
 
-Mono on BBB. I was frustrated to discover that Mono could not be installed using the standard packages sources on either Ubuntu or Debian using the Beaglebone Black, as it seems the only packages which exist are targeting ARMel architecture, rather than ARMhf (hard-float) of the BBB.
+Mono on BBB. I was frustrated to discover that Mono could not be installed using the standard package sources on either Ubuntu or Debian using the Beaglebone Black, as it seems the only packages which exist are targeting ARMel architecture, rather than ARMhf (hard-float) of the BBB.
 
 ```bash
 $ sudo apt-get install mono-complete
