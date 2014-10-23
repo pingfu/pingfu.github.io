@@ -88,7 +88,7 @@ $ sudo apt-get install build-essential automake autoconf libtool pkg-config libc
 $ sudo checkinstall
 ```
 
-Hopefully following these steps will others get up and running with Mono until the main package sources contain ARMhf packages, but YMMV so you can download the .deb package I've built here:
+Hopefully following these steps will others get up and running with Mono until the main sources contain ARMhf builds, but YMMV so you can download the .deb package I've built here:
 
 * [mono-3.8.0-branch-armhf-e451fb2.deb][e451fb2] (90.9MB) [md5sum: 752e0b1494d250516e8143924c7a5a4c]
 
