@@ -27,7 +27,7 @@ Basic decoded information:
 ```root@localhost:~# tcpdump -nnvvS```
 
 Full Ethernet frame using a full snaplen -s 1514:
-```root@localhost:~# tcpdump -nnvvSXqs 1514 port 53```
+```root@localhost:~# tcpdump -ennvvSXqs 1514 port 53```
 
 Capture to a file with -w:
 ```root@localhost:~# tcpdump -s 1514 port 53 -w capture_file```
