@@ -22,6 +22,11 @@
   <link rel="stylesheet" type="text/css" href="/css/syntax.css">
   <link rel="stylesheet" type="text/css" href="/css/api.css">
 
+  <!-- Owl carousel jquery plugin assets -->
+  <link rel="stylesheet" href="/js/owl-carousel/owl.carousel.css">
+  <link rel="stylesheet" href="/js/owl-carousel/owl.theme.css">
+  <link rel="stylesheet" href="/js/owl-carousel/owl.transitions.css">
+
   <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
   <script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
@@ -42,8 +47,26 @@
 
   <blockquote>Knock knock<br />Race condition<br />Who's there?</blockquote>
 
+  <!-- owl-carousel jquery plugin -->
+  <script type="text/javascript" src="/js/owl-carousel/owl.carousel.min.js"></script>
+  
   <script type="text/javascript">
 
+    /* owl-carousel init */
+	$(document).ready(function()
+	{
+	  $(".owl-carousel").owlCarousel({
+		stopOnHover : true,
+		navigation:true,
+		paginationSpeed : 1000,
+		goToFirstSpeed : 2000,
+		lazyLoad : true,
+		singleItem : true,
+		autoHeight : true,
+		transitionStyle:"fade"
+	  });
+	});
+	
     /* pull menu for mobile */
     $(function() {
       var pull = $('#pull');
