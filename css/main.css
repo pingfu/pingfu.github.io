@@ -289,6 +289,19 @@ blockquote {
     left: 10px;
 }
 
+.owl-carousel .owl-item div{
+
+}
+
+.owl-carousel .owl-item img{
+	margin: 0 auto;
+	display: block;
+	height: auto;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
 
 
 
@@ -329,7 +342,6 @@ blockquote {
 
 /*MEDIA QUERY*/
 @media only screen and (max-width : 640px) {
-
 
   header {
     display: none;
@@ -429,3 +441,14 @@ blockquote {
     color: #fff;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
