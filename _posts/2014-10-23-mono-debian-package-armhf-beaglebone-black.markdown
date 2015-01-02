@@ -79,7 +79,7 @@ Copyright (C) 2002-2014 Novell, Inc, Xamarin Inc and Contributors. www.mono-proj
         GC:            sgen
 ```
 
-I didn't fancy running through this process each time I needed Mono on a fresh BBB so used `checkinstall`, which hooks the `make install` process to produce a .deb package. This is then as simple as `dkpg -i` to install elsewhere.
+I didn't fancy running through this process each time I needed Mono on a fresh BBB so used `checkinstall`, which hooks the `make install` process to produce a .deb package. This is then as simple as `dpkg -i` to install elsewhere.
 
 To do this yourself pull the dependencies for `checkinstall`, and run it after running `make`. It will create a reusable package, and install it for you too.
 
