@@ -8,10 +8,10 @@ title: Home — Pingfu
 	<div id="tabs">
 
 		<ul>
-			<li><a class="show-hero" href="#tabs-1">Welcome</a></li>
-			<li><a class="hide-hero" href="#tabs-2">Dns Resolver</a></li>
-			<li><a class="hide-hero" href="#tabs-3">Secure Passwords</a></li>
-			<li><a class="hide-hero userip" href="#tabs-9"></a></li>
+			<li><a class="show-hero" id="menu-tab-1" href="#tabs-1">Welcome</a></li>
+			<li><a class="hide-hero" id="menu-tab-2" href="#tabs-2">Dns Resolver</a></li>
+			<li><a class="hide-hero" id="menu-tab-3" href="#tabs-3">Secure Passwords</a></li>
+			<li><a class="hide-hero userip" id="menu-tab-9" href="#tabs-9"></a></li>
 		</ul>
 
 
@@ -19,7 +19,10 @@ title: Home — Pingfu
 
 		<div id="tabs-1" class="tabbed-content">
 
-			<h1 class="text-align-center">Hello, I'm Marc. A computer security and infrastructure specialist.<br />I'm a freelancer based in <a href="http://maps.google.co.uk/maps?q=Wales">Wales, UK</a> and available for hire.</h1>
+			<h1 class="text-align-center">
+				Hello, I'm Marc, a freelance infrastructure specialist, C# developer and computer security enthusiast 
+				based in <a href="http://maps.google.co.uk/maps?q=Wales">Wales, UK</a>. <strike>I'm available for hire</strike>.
+			</h1>
 
 			<hr />
 
@@ -54,13 +57,13 @@ title: Home — Pingfu
 
 
 			<h2>Blog Posts</h2>
-			<p>A collection of thoughts on programming, performance, technology and cyber.</p>
+			<p>Mostly a collection of thoughts on programming, performance, technology and cyber.</p>
 			<br />
 
 
 			<ul class="posts">
 			{% for post in site.posts %}
-				<li>{{ post.date | date_to_string }} — <a href="{{ post.url }}">{{ post.title }}</a></li>
+				<li><span class="postDate">{{ post.date | date_to_string }}</span> — <a href="{{ post.url }}">{{ post.title }}</a></li>
 			{% endfor %}
 			</ul>
 
@@ -222,9 +225,18 @@ title: Home — Pingfu
 <script type="text/javascript">
 
     /* initalise tabs */
-    $(function () {
-      $("#tabs").tabs();
-      loadWhoami();
-    });
+	$(document).ready(function() {
+		if ($(this).width()<640) {
+			$("#menu-tab-2").remove();
+			$("#menu-tab-3").remove();
+			$("#menu-tab-9").remove();
+		}
+		else
+		{
+			loadWhoami();
+		}
+		
+		$("#tabs").tabs();
+	});
 
 </script>
