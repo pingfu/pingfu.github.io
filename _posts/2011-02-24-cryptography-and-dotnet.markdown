@@ -31,6 +31,8 @@ The following example source code accepts ASCII plaintext, password and salt val
 
 If you are working with files, binary data or otherwise, Base64 encoding the cipher text is not necessary.
 
+__Warning: This code example is OLD and NOT SAFE TO USE. It does NOT encrypt-then-MAC, and suffers numerous other defects__
+
 ```csharp
 using System;
 using System.IO;
@@ -39,6 +41,7 @@ using System.Text;
 
 public class Rijndael
 {
+	// Warning: This code example is OLD and NOT SAFE TO USE. It does NOT encrypt-then-MAC, and suffers numerous other defects
     public String Encrypt(byte[] plainText, string password, byte[] salt)
     {
         var derivedBytes = new Rfc2898DeriveBytes(password, salt, 1000);
@@ -66,6 +69,7 @@ public class Rijndael
         }
     }
 
+	// Warning: This code example is OLD and NOT SAFE TO USE. It does NOT encrypt-then-MAC, and suffers numerous other defects
     public String Decrypt(byte[] cipherText, string password, byte[] salt)
     {
         var derivedBytes = new Rfc2898DeriveBytes(password, salt, 1000);
@@ -94,3 +98,5 @@ public class Rijndael
     }
 }
 ```
+
+__Warning: This code example is OLD and NOT SAFE TO USE. It does NOT encrypt-then-MAC, and suffers numerous other defects__
