@@ -213,7 +213,7 @@ section.large {
 }
 
 #wrapper li a {
-  white-space: nowrap;
+  /* white-space: nowrap; */
 }
 
 #wrapper code { 
@@ -292,6 +292,7 @@ blockquote {
 .postDate { 
 	width: 80px;
 	display: inline-block;
+	white-space: wrap;
 }
 
 .owl-carousel {
@@ -447,6 +448,10 @@ blockquote {
 
   #mobile-navigation a:hover {
     color: #fff;
+  }
+  
+  .postDate { 
+	width: auto;
   }
 }
 
