@@ -135,6 +135,37 @@ section.large {
    min-height: 1000px;
 }
 
+section table {
+	margin: 0;
+	padding: 0;
+	border-spacing: 1px;
+	border-collapse: separate;
+	border: 1px solid #ddd;
+	margin: 5px 0 16px 0;
+}
+
+section table, section td {	
+	font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	font-size: small;
+	color: #626566;
+	line-height: 1.6;
+	letter-spacing: .01em;
+}
+
+
+section td, section th {
+	border: 1px solid #ddd;
+	padding: 2px 6px 2px 5px;	
+	min-width: 70px;
+	text-align: left;
+}
+
+section th {
+	background-color: #fafafa;
+	padding: 3px 10px 2px 5px;
+	white-space: nowrap;
+}
+
 #wrapper hr { 
   border: none;
   border-bottom: 1px solid #CCC;
@@ -144,7 +175,7 @@ section.large {
   margin-bottom: 40px;
 }
 
-#wrapper h1, h2, h3, h4 {
+#wrapper h1, h2, h3, h4, h5 {
   color: #121212;
   font-family: "Open Sans";
   text-transform: none;
@@ -160,14 +191,20 @@ section.large {
 }
 
 #wrapper h2 { 
-  font-family: "Open Sans";
-  font-size: 21px;
+  font-size: 24px;
   line-height: 1.35em;
   margin: 48px 0 8px;
 }
 
 #wrapper h3 {
   margin: 48px 0 8px;  
+}
+
+#wrapper h5 {
+  font-size: 16px;
+  line-height: 1.35em;
+  margin: 48px 0 8px;
+  font-weight: bold;
 }
 
 #wrapper h2:first-child { 
@@ -254,6 +291,9 @@ a:hover {
   color: #444;
 }
 
+sup {
+	vertical-align: super;
+}
 .clearfix { clear: both;}
 
 .text-align-center { 
