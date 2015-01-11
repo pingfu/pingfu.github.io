@@ -40,7 +40,7 @@ So, with the background covered, lets take a first look at the shell of the new 
 	<li>Photo <code>1</code>: Three cabinets have made it over to the new office, but they've been dropped off in what will become a part of the open-plan area and not the server room. The sound-dampening wall partitions were still being built.</li>
 	<li>Photo <code>2</code>: It’s exciting to see the shell of the comms room space start to take shape, but it looks empty and unimpressive at the moment.</li>
 	<li>Photo <code>4</code>: At least the anti-static floor tile coverings are down, but those radiators will need to be disconnected.</li>
-	<li>Photo <code>5</code>: The board room is pictured on the right-hand side of the picture, keep an eye on that as it develops.</li>
+	<li>Photo <code>5</code>: The boardroom is pictured on the right-hand side of the picture, keep an eye on that as it develops.</li>
 </ul>
 
 The building is brand new, and we have the entire second floor. As you can see in photo `1`, the raised floor and lighting are already in, and we've brought three emptied racks across from the soon-to-be previous office. Photo `2` is a view of the new server room (single point of entry) doorway. Anti-static floor tiles are already down, and the window is open. Unfortunately the office space didn't present us with a window free area, so we're stuck with at least some degree of solar gain in the room. Also, the plumbers got into the building before us, hence the radiators. The building is eco-friendly and designed for natural temperature control most of the year owing to the climate and the building's location, shape and window arrangements. Needless to say the radiators were locked off immediately.
@@ -49,5 +49,5 @@ In photo `4` you can really see how it much of a problem plumbers can cause if t
 
 By this point however, I've already amended our initial plans for the orientation of the equipment in the server room, and in the interests of cost-saving, decided against making any changes to the space. You may have already noticed the coiled white cable at the back of photo `4`, this is the fibre for our internet connection already blown in. Waste no time!
 
-Finally, for variety, photo `5` is a first look at what will become the board room. I'm including it because, quite frankly, it's going to look fantastic when finished!
+Finally, for variety, photo `5` is a first look at what will become the boardroom. I'm including it because, quite frankly, it's going to look fantastic when finished!
 
