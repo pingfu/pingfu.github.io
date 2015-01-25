@@ -20,6 +20,8 @@ But it does raise questions around the efficacy of closed-source crypto products
 
 Any software or tool which generates an RSA private key is _capable_ of exploiting this qwirk to produce a situation where the RSA private key stays completely isolated and secure, but the public key has embedded within the modulus a back door containing the information an attacker needs to obtain the private key.
 
+<!--excerpt-->
+
 In summary
 
 * Step back from RSA, and where possible use elliptic curve cryptography with a [safe curve][safecurves] instead.
