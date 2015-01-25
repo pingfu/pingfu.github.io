@@ -10,13 +10,9 @@ tags: rsa backdoor
 
 There seems to be a problem with RSA. In short, a specially crafted RSA key pair can expose your private key, through information embedded in the public key. This means that even if you lock, bury or incinerate your private key, it can still be recoverable from the public key component of the pair.
 
----
-
 The problem centers around the modulus component (the product of the two prime numbers, `p*q`) of an RSA public key. The modulus can be manipulated to hold a pre-defined value without compromising its function in the algorithm. To that end, it is possible to embed pre-defined value covertly into an RSA public key without the key pair owner's knowledge.
 
-Building on this trait, by using a `Cruve25519` public key (more commonly used for key exchange between two parties) as a PRNG seed when generating a new RSA key pair, a small (relative to the size of the modulus) artefact can be knitted into the modulus of the resulting RSA public key. This embedded value allows an attacker to, at a later date, derive the RSA private key from the value embeded into the public key.
-
-That is without the RSA private key ever becoming directly compromised or exposed to an attacker.
+Building on this trait, by using a `Cruve25519` public key (more commonly used for key exchange between two parties) as a PRNG seed when generating a new RSA key pair, a small (relative to the size of the modulus) artefact can be knitted into the modulus of the resulting RSA public key. This embedded value allows an attacker to, at a later date, derive the RSA private key from the value embeded into the public key. That is without the RSA private key ever becoming directly compromised or exposed to an attacker.
 
 Assuming you trust that the open-source, audited PRNG producing the random bits for your private keys is using trustworthy sources, then this isn't a problem (i.e. `/dev/random` on Mac and Linux, and the `Crypto API` on Windows).
 
