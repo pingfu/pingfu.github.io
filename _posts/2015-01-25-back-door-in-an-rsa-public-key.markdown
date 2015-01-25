@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Backdoor in RSA Public Key"
+title: "Backdoor in an RSA Public Key"
 date: 2015-01-10
 categories: Security Cryptography RSA Backdoor
 tags: rsa backdoor
@@ -8,9 +8,7 @@ tags: rsa backdoor
 
 **Sources:** A github [gist][gist] from [ryan-c][ryan-c] which inspired a technical [write-up][write-up] of the problem, and a c# proof of concept tool, [kleptography.net][kleptography.net].
 
-There seems to be a problem with RSA. In short, a specially crafted RSA key pair can expose your private key, through information embedded in the public key.
-
-This means that even if you lock, bury or incinerate your private key, it can still be recoverable from the public key component of the pair.
+There seems to be a problem with RSA. In short, a specially crafted RSA key pair can expose your private key, through information embedded in the public key. This means that even if you lock, bury or incinerate your private key, it can still be recoverable from the public key component of the pair.
 
 ---
 
