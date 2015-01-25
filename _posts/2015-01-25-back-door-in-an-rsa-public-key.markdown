@@ -14,7 +14,7 @@ The problem centers around the modulus component (the product of the two prime n
 
 Building on this trait, by using a `Curve25519` public key (more commonly used for key exchange between two parties) as a PRNG seed when generating a new RSA key pair, a small (relative to the size of the modulus) artefact can be knitted into the modulus of the resulting RSA public key. This embedded value allows an attacker to, at a later date, derive the RSA private key from the value embeded into the public key. That is without the RSA private key ever becoming directly compromised or exposed to an attacker.
 
-Assuming you trust that the open-source, audited PRNG producing the random bits for your private keys is using trustworthy sources, then this isn't a problem (i.e. `/dev/random` on Mac and Linux, and the `Crypto API` on Windows).
+Assuming you trust that the open-source, audited PRNG producing the random bits for your private keys is using trustworthy sources, then this isn't a problem (i.e. `/dev/urandom` ([urandom][urandom]) on Mac and Linux, and the `Crypto API` on Windows).
 
 But it does raise questions around the efficacy of closed-source crypto products responsible for generating and storing RSA private keys, particularly hardware security modules.
 
@@ -42,3 +42,4 @@ Incase you missed it, the last suspected RSA backdoor was [confirmed][schneier] 
 [nsa_paid_rsa]: http://www.theregister.co.uk/2013/12/21/nsa_paid_rsa_10_million/
 [Dual_EC_DRBG]: http://en.wikipedia.org/wiki/Dual_EC_DRBG
 [safecurves]: http://safecurves.cr.yp.to
+[urandom]: http://sockpuppet.org/blog/2014/02/25/safely-generate-random-numbers/
