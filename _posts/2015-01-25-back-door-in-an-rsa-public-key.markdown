@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Backdoor in an RSA Public Key"
+title: "Backdoor in an RSA Public Key?"
 date: 2015-01-25
 categories: Security Cryptography RSA Backdoor
 tags: rsa backdoor
