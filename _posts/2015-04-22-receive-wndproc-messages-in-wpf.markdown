@@ -1,24 +1,26 @@
 ---
 layout: post
-title: "How to handle WndProc messages in WPF"
-date: 2015-07-22
+title: "How to receive WndProc messages in WPF"
+date: 2015-04-22
 categories: csharp
 tags: 
 ---
 
-Access to the WindowProc callback function in Windows Forms is achieved by overriding `void WndProc(ref Message m)`, this registers the window class to recieve Windows event messages. As most WPF elements are drawn onto the WPF canvas, it's common to have a single hWnd which represents everything inside the window. Conversely, in a normal Win32 application most controls will have their own hWnd handle.
+Access to the WindowProc callback function in Windows Forms is achieved by overriding `void WndProc(ref Message m)`, this registers the window class to receive Windows event messages. However, in WPF, most elements are drawn onto the WPF canvas, and it's common to only have a single hWnd which represents everything inside the window. Conversely, in a normal Win32 application most controls will have their own hWnd handle.
 
-When registering to recieve WndProc messages using WPF you are registering the Window handle, rather than a control handle. In order to get the Window handle the `using System.Windows.Interop` namespace exposes the `HwndSource` class with a static `FromVisual()` method.
+When registering to receive WndProc messages using WPF it is the Window handle, rather than a control handle that must be registered. We can get the Window handle from the `System.Windows.Interop` namespace class `HwndSource` which exposes a static `FromVisual()` method.
 
 ```csharp
 var hwndSource = PresentationSource.FromVisual(this) as HwndSource;
 var hWnd = hwndSource.Handle;
 ```
-The above code will return the window handle associated with the WPF application to `hWnd` typed as `IntPtr`. The `HwndSource` class exposes an `AddHook()` method which adds an event handler that receives all window messages matching the `HwndSourceHook` delegate.
+The above code will return the window handle associated with the WPF application to `hWnd` typed as `IntPtr`. The `HwndSource` class also exposes an `AddHook()` method which, when supplied with a method signature matching the `HwndSourceHook` delegate adds an event handler which will receive all window messages. By defining a method which matches the delegate signature in our code and supplying it to `AddHook()` on the HwndSource instance of our WPF window, we receive all window messages.
 
-By defining a method which matches the delegate signature in our code and supplying it to `AddHook` we recieve all window messages. This has to be done in OnSourceInitialized() as if we tried to register the `WndProc` callback in the constructor, it would fail because we wouldn't have a valid hWnd at that point.
+This has to be done in the overridden `OnSourceInitialized()` method. If we tried to register the `WndProc` callback in the constructor, it would fail because we wouldn't have a valid window hWnd handle at that point.
 
-A complete sample is included below;
+A complete example is included below;
+
+<!--excerpt-->
 
 {% highlight csharp linenos %}
 using System;
@@ -80,8 +82,6 @@ namespace WpfApplication1
     }
 }
 {% endhighlight %}
-
-<!--excerpt-->
 
 You may have noticed the I'm casting `msg` into `WindowMessage` and `wParam` into `WindowMessageParameter`. This is simply for brevity. 
 
