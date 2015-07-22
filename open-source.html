@@ -1,41 +1,120 @@
 ---
 layout: default
 title: Open Source — Pingfu
-breadcrumb: Open Source Projects
+breadcrumb: Open Source
 ---
 
 <section class="boxed">
 
-	<div class="breadcrumb"><a href="/">Pingfu</a> <span class="divider">›</span> {{ page.breadcrumb }}</div>
-
-	<h1>{{ page.breadcrumb }}</h1>
-	<p>Most of the work I release is written in C#, and tested to compile under Mono. Below is a partial list of projects, <a href="https://github.com/pingfu?tab=repositories" target="_blank">GitHub</a> contains a more complete view of work.</p>
-
-
-	<h2>IIS Module to remove unwanted http headers</h2>
-	<p>A module for IIS which removes unwanted HTTP headers from a server response.</p>
-	<p><a href="/iis-remove-server-headers">Read More ›</a>
-
-
-	<h2>A simple guide to hardening Web.config</h2>
-	<p>A few simple steps to help harden web.config in production deployments..</p>
-	<p><a target="_blank" href="https://github.com/pingfu/notes/blob/master/Security%20-%20IIS%20-%20Hardening%20the%20web.config.md">GitHub ›</a>
-
-
-	<h2>Bitcoin block chain parser</h2>
-	<p>BlockChainSharp is a block chain parser library written in C# for Bitcoin. It eats block chain files, in the format of blkxxxx.dat, and digests the data into iterable BlockChainReader objects.</p>
-	<p><a target="_blank" href="https://github.com/pingfu/blockchainsharp">GitHub ›</a>
-
+	<h1>Open source - Home grown</h1>
 	
-	<h2>SimpleAES</h2>
-	<p>An extremely simple (non-AEAD) helper app to work with AES encrypted data. Used among other things as a proof-of-concept to decrypt DRM protected content referenced in m3u8 playlists.</p>
-	<p><a target="_blank" href="https://gist.github.com/marcbarry/96470e5424bfa2ffd193">SimpleAES.cs</a></p>
-	
-	
-	<!--
-	<h2>Fluency</h2>
-	<p>Fluency is an internationalisation (i18n) and localisation (l10n) library. Build Fluency into your project and use it to translate your application into different languages. An alternative to resx.</p>
-	<p><a target="_blank" href="https://github.com/pingfu/fluency">GitHub ›</a>
-	-->
+	<p>A collection of links to a few home grown tools, and some interesting projects from the wider open-source community.</p>
 
+	<ul class="tools">
+	
+		<li>
+			<h2><a target="_blank" href="http://disposable.pingfu.net/">Disposable email</a></h2>
+			<p>A little help to circumventing spammers and unnecessary signups, create short lived throw-away email addresses.</p>
+		</li>
+		
+		<li>
+			<h2><a target="_blank" href="https://github.com/pingfu/iis-remove-server-headers">pingfu/iis-remove-server-headers IIS Module</a></h2>
+			<p>Install to the GAC, removes unwanted http headers from IIS responses.</p>
+		</li>
+		
+		<li>
+			<h2><a target="_blank" href="https://gist.github.com/marcbarry/47644b4a43fbfb63ef54">Security hardening web.config</a></h2>
+			<p>A simple template to help harden asp.net applications.</p>
+		</li>
+		
+		<li>
+			<h2><a target="_blank" href="https://github.com/pingfu/blockchainsharp">Bitcoin block chain parser</a></h2>
+			<p>A pure C# block chain parser library for Bitcoin. It eats binary blkxxxx.dat files and produces an IEnumerable strongly typed in-memory representation.</p>
+		</li>
+		
+		<li>
+			<h2><a target="_blank" href="https://gist.github.com/marcbarry/96470e5424bfa2ffd193">simple-aes.cs</a></h2>
+			<p>Proof-of-concept code used, among other things, to decrypt DRM protected content referenced in m3u8 playlists.</p>
+		</li>
+		
+	</ul>
+
+</section>
+
+
+
+<section class="boxed">
+
+	<h1>Open source - third party</h1>
+
+	<p>A few perhaps less well known, but exceptional projects I've had the pleasure of discovering.</p>
+
+	<ul class="tools">
+		<li>
+			<h2><a target="_blank" href="http://www.secdev.org/projects/scapy/">Scapy</a></h2>
+			<p>A fantastically capable tool for crafting packets by hand.</p>
+		</li>
+
+		<li>
+			<h2><a target="_blank" href="https://github.com/takezoe/gitbucket">takezoe/gitbucket</a></h2>
+			<p>A Github clone written in Scala. Perfect for a private Git repository on a low cost DigitalOcean or AWS server. The primary developer, Naoki Takezoe, places a strong emphasis on ease of installation which I absolutely love.
+			</p>
+		</li>
+
+		<li>
+			<h2><a target="_blank" href="https://cesanta.com/mongoose.shtml">Mongoose</a></h2>
+			<p>A powerful asyncronouns, non-blocking web server designed for use in embedded systems. Supports CGI, SSL, Digest auth, Websocket, WebDAV, Resumed download, URL rewrite, file blacklist, IP-based ACL, and available as a <a target="_blank" href="https://github.com/cesanta/mongoose/blob/master/mongoose.c">single file</a>.
+			</p>
+		</li>
+		
+		<li>
+			<h2><a target="_blank" href="http://fenixwebserver.com/">Fenix</a></h2>
+			<p>Another webserver, desktop based and designed to serve static content.
+			</p>
+		</li>
+		
+		<li>
+			<h2><a target="_blank" href="http://unix4lyfe.org/darkhttpd/">darkhttpd</a></h2>
+			<p>Also available as a single file - darkhttpd has a simpler feature set compared to Mongoose, but very useful <em>"when you need a web server in a hurry.."</em>
+			</p>
+		</li>
+
+		<li>
+			<h2><a target="_blank" href="https://github.com/etsy/statsd/">StatsD</a></h2>
+			<p>A simple daemon for stats aggregation, part of the Etsy <a href="http://codeascraft.com/2011/02/15/measure-anything-measure-everything/" target="_blank">Measure Anything, Measure Everything</a> mantra. Applications are instrumented by developers using language-specific libraries which communicate metrics to StatsD using its simple UDP protocol.
+			</p>
+		</li>
+
+		<li>
+			<h2><a target="_blank" href="http://influxdb.com/">InfluxDB</a></h2>
+			<p>InfluxDb is a beautifully crafted open-source distributed time series database with an SQL-like query language exposed by a native HTTP API.
+			</p>
+		</li>
+
+		<li>
+			<h2><a target="_blank" href="http://www.elasticsearch.org/">ElasticSearch</a></h2>
+			<p>A distributed, RESTful real-time search and analytics engine which wraps Apache Lucene. <a href="http://stackoverflow.com/questions/10213009/solr-vs-elasticsearch" target="_blank">Like Solr</a>, but with an architecture <a href="http://stackoverflow.com/questions/2271600/elasticsearch-sphinx-lucene-solr-xapian-which-fits-for-which-usage/2288211#2288211" target="_blank">designed</a> for scalability in modern distributed environments.
+			</p>
+		</li>
+
+		<li>
+			<h2><a target="_blank" href="http://www.elasticsearch.org/overview/kibana/">Kibana</a></h2>
+			<p>Kibana is a tool for graphing, searching visualising and understanding data. It's implemented as a minimalist browser based application which relies on Javascript, and HTTP APIs to interface and pull data out of Elasticsearch.
+			</p>
+		</li>
+
+		<li>
+			<h2><a target="_blank" href="https://developers.google.com/web/starter-kit/">Google Web Starter Kit (WSK)</a></h2>
+			<p>Complementing Google's <a href="https://developers.google.com/web/fundamentals/" target="_blank">Web Fundamentals</a> project and inspired by <a href="http://html5boilerplate.com/mobile/" target="_blank">Mobile HTML5 Boilerplate</a>, WSK provides Google opinionated building blocks for constructing best practice aligned multi-screen applications.
+			</p>
+		</li>
+
+		<li>
+			<h2><a target="_blank" href="https://github.com/dypsilon/frontend-dev-bookmarks/">dypsilon/frontend-dev-bookmarks</a></h2>
+			<p>Dmitriy Navrotskyy's huge list of frontend development resources. <em>"Sorted from general knowledge at the top to concrete problems at the bottom".</em>
+			</p>
+		</li>
+
+	</ul>
+	
 </section>

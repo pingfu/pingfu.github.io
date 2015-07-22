@@ -1,194 +1,22 @@
 ---
 layout: default
 title: Home — Pingfu
+breadcrumb: Welcome
 ---
+
 
 <section class="boxed large">
 
-	<div id="tabs">
-
-		<ul>
-			<li><a class="show-hero" id="menu-tab-1" href="#tabs-1">Welcome</a></li>
-			<li><a class="hide-hero" id="menu-tab-2" href="#tabs-2">Dns Resolver</a></li>
-			<li><a class="hide-hero" id="menu-tab-3" href="#tabs-3">Generate Passwords</a></li>
-			<li><a class="hide-hero userip" id="menu-tab-9" href="#tabs-9"></a></li>
-		</ul>
-
-
-
-
-		<div id="tabs-1" class="tabbed-content">
-
-			<h1 class="text-align-center">
-				Hello, I'm Marc, a freelance infrastructure specialist, C# developer and computer security enthusiast 
-				based in <a href="http://maps.google.co.uk/maps?q=Wales">Wales, UK</a>. <strike>I'm available for hire</strike>.
-			</h1>
-
-			<hr />
-
-			<div class="column3">
-				<div class="column">
-					<h2>About</h2>
-					<p>Pingfu is a mash-up between my work and play. I write, publish code, and a few other things here on occasion too.</p>
-					<p><a href="/about">More ›</a></p>
-				</div>
-			</div>
-
-			<div class="column3">
-				<div class="column">
-					<h2>Open Source</h2>
-					<p>My small collection of projects have a home here, with source code available on <a href="https://github.com/pingfu">github</a>.</p>
-					<p><a href="/open-source">More ›</a></p>
-				</div>
-			</div>
-
-			<div class="column3">
-				<div class="column">
-					<h2>Tools</h2>
-					<p>A collection of links to a few home grown tools, and some interesting work from the wider open-source world too.</p>
-					<p><a href="/tools">More ›</a></p>
-				</div>
-			</div>
-
-			<div class="clearfix"></div>
-
-
-			<hr />
-
-
-			<h2>Blog Posts</h2>
-			<p>Mostly a collection of thoughts on programming, performance, technology and cyber.</p>
-			<br />
-
-
-			<ul class="posts">
-			{% for post in site.posts %}
-				<li><span class="postDate">{{ post.date | date_to_string }}</span> — <a href="{{ post.url }}">{{ post.title }}</a></li>
-			{% endfor %}
-			</ul>
-
-
-		</div>
-
-
-
-
-		<div id="tabs-2">
-
-			<h1>Dns Resolver</h1>
-			<p>You can use this free (rfc-compliant <a href="http://www.ietf.org/rfc/rfc1033.txt">rfc1033</a>, <a href="http://www.ietf.org/rfc/rfc1034.txt">rfc1034</a>, <a href="http://www.ietf.org/rfc/rfc1035.txt">rfc1035</a>) tool to perform dns queries using either our name servers, or those of your choosing. It supports common query types such as A, NS, CNAME, SOA, PTR, MX, TXT, RP, AXFR, AAAA, ANY, and more in addition to full support for IPv6.</p>
-
-			<div class="formFields">
-
-				<p><input id="question" placeholder="example.net" /> ... dns name, or question.</p>
-				<p><input id="nameserver" placeholder=""> ... specify a name server, or leave blank to use ours.</p>
-
-				<p>
-
-					<select id="queryType" name="queryType">
-					<option value="255">Any</option>
-					<option value="1">A</option>
-					<option value="2">NS</option>
-					<option value="5">CNAME</option>
-					<option value="6">SOA</option>
-					<option value="12">PTR</option>
-					<option value="15">MX</option>
-					<option value="16">TXT</option>
-					<option value="17">RP</option>
-					<option value="28">AAAA</option>
-					<option value="33">SRV</option>
-					<option value="35">NAPTR</option>
-					<option value="37">CERT</option>
-					<option value="43">DS</option>
-					<option value="44">SSHFP</option>
-					<option value="99">SPF</option>
-					<option value="252">AXFR</option>
-					<option value="251">IXFR</option>
-					<option value="0">NULL</option>
-					</select>
-
-					<select id="queryClass" name="queryClass">
-					<option value="1">IN</option>
-					<option value="2">CS</option>
-					<option value="3">CH</option>
-					<option value="4">HS</option>
-					<option value="255">Any</option>
-					</select>
-
-					<button id="resolve" type="button">Resolve</button>
-
-				</p>
-
-			</div>
-
-			<div class="loadingImage"><img src="/img/ajax-loader.gif" /></div>
-
-			<div id="dnsResults">
-
-				<h2>Header</h2>
-				<div class="header"></div>
-
-				<h2>Questions</h2>
-				<table class="questions"></table>
-
-				<h2>Answers</h2>
-				<table class="answers"></table>
-
-				<h2 class="authoritiesHeader">Authorities</h2>
-				<table class="authorities"></table>
-
-				<h2 class="additionalsHeader">Additionals</h2>
-				<table class="additionals"></table>
-
-			</div>
-
-			<div id="dnsResultsError" class="apiErrorMessage"></div>
-
-		</div>
-
-
-
-
-
-
-
-		<div id="tabs-3">
-
-			<h1>Complex Passwords</h1>
-			<p>Generate complex passwords of varying length and character compositions.</p>
-
-			<div>
-				<button id="loadPasswords" type="button">Generate</button>
-			</div>
-
-			<div class="loadingImage"><img src="/img/ajax-loader.gif" /></div>
-
-			<div id="randomPasswords"></div>
-			<div id="randomPasswordsError" class="apiErrorMessage"></div>
-
-		</div>
-
-
-
-
-
-
-
-
-
-		<div id="tabs-9">
-
-			<h1>Browser HTTP Headers</h1>
-			<p>You are coming to us from <strong><span class="userip userip-styled"></span></strong> Here are the http headers your browser is sending ...</p>
-
-			<div id="whoami"></div>
-
-		</div>
-
-
-
-
-	</div>
+	<h1>{{ page.breadcrumb }}</h1>
+
+	<p>A collection of thoughts on programming, performance, technology and cyber.</p>
+	<br />
+
+	<ul class="posts">
+	{% for post in site.posts %}
+		<li><span class="postDate">{{ post.date | date_to_string }}</span> — <a href="{{ post.url }}">{{ post.title }}</a></li>
+	{% endfor %}
+	</ul>
 
 </section>
 
@@ -217,31 +45,3 @@ title: Home — Pingfu
 
 
 
-<!-- page specific scripts -->
-
-<script type="text/javascript" src="/js/api.js"></script>
-<script type="text/javascript" src="/js/mustache.js"></script>
-
-<script type="text/javascript">
-
-    /* initalise tabs */
-	$(document).ready(function() {
-		if ($(this).width()<640) {
-			$("#tabs-2").remove();
-			$("#menu-tab-2").remove();
-			
-			$("#tabs-3").remove();
-			$("#menu-tab-3").remove();
-			
-			$("#tabs-9").remove();
-			$("#menu-tab-9").remove();
-		}
-		else
-		{
-			loadWhoami();
-		}
-		
-		$("#tabs").tabs();
-	});
-
-</script>

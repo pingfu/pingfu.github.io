@@ -1,139 +1,153 @@
 ---
 layout: default
 title: Tools — Pingfu
-breadcrumb: Tools I've built
+breadcrumb: Browser-based tools
 ---
 
 
-<section class="boxed">
 
-	<div class="breadcrumb"><a href="/">Pingfu</a> <span class="divider">›</span> Tools</div>
+<section id="tools" class="boxed large">
 
 	<h1>{{ page.breadcrumb }}</h1>
+	
+	<p>Your public IP address appears to be <span class="userip userip-styled"></span></p>
+	<br />
+	
+	<div id="tabs">
 
-	<p></p>
+		<ul>
+			<li><a class="show-hero" id="menu-tab-1" href="#tab-dns-resolver">Dns Resolver</a></li>
+			<li><a class="hide-hero" id="menu-tab-2" href="#tab-passwords">Generate Passwords</a></li>
+			<li><a class="hide-hero" id="menu-tab-3" href="#tab-browser-headers">Browser Headers</a></li>
+		</ul>
+			
+		<div id="tab-dns-resolver" class="tabbed-content">
 
-	<ul class="tools">
-		<li>
-			<p>
-				<a target="_blank" href="http://disposable.pingfu.net/"><strong>disposable.pingfu.net</strong></a>
-				<br>
-				Disposable email, create a short lived throw-away email address - a little help to circumvent spammers and unnecessary signups.
-			</p>
-		</li>
-	</ul>
+			<h1>Dns Resolver</h1>
+			<p>A simple, public DNS resolver. Either use our name server, or specific your own. The tool supports common query types such as A, NS, CNAME, SOA, PTR, MX, TXT, RP, AXFR, AAAA, ANY, and more in addition to full support for IPv6.</p>
 
-</section>
+			<div class="formFields">
 
+				<p><input id="question" placeholder="example.net" /> ... dns name, or question.</p>
+				<p><input id="nameserver" placeholder=""> ... specify a name server, or leave blank to use ours.</p>
 
+				<p>
 
+					<select id="queryType" name="queryType">
+						<option value="255">Any</option>
+						<option value="1">A</option>
+						<option value="2">NS</option>
+						<option value="5">CNAME</option>
+						<option value="6">SOA</option>
+						<option value="12">PTR</option>
+						<option value="15">MX</option>
+						<option value="16">TXT</option>
+						<option value="17">RP</option>
+						<option value="28">AAAA</option>
+						<option value="33">SRV</option>
+						<option value="35">NAPTR</option>
+						<option value="37">CERT</option>
+						<option value="43">DS</option>
+						<option value="44">SSHFP</option>
+						<option value="99">SPF</option>
+						<option value="252">AXFR</option>
+						<option value="251">IXFR</option>
+						<option value="0">NULL</option>
+					</select>
 
-<section class="boxed">
+					<select id="queryClass" name="queryClass">
+						<option value="1">IN</option>
+						<option value="2">CS</option>
+						<option value="3">CH</option>
+						<option value="4">HS</option>
+						<option value="255">Any</option>
+					</select>
 
-	<h1>Tools I like</h1>
+					<button id="resolve" type="button">Resolve</button>
 
-	<p>A few of the less well known, but exceptionally high quality tools I've had the pleasure of discovering.</p>
+				</p>
 
-	<ul class="tools">
-		<li>
-			<p>
-				<a target="_blank" href="http://www.secdev.org/projects/scapy/"><strong>Scapy</strong></a>
-				<br>
-				A fantastically capable tool for crafting packets by hand.
-			</p>
-		</li>
-	</ul>
+			</div>
 
-	<ul class="tools">
-		<li>
-			<p>
-				<a target="_blank" href="https://github.com/takezoe/gitbucket"><strong>GitBucket</strong></a>
-				<br>
-				A Github clone written in Scala. Perfect for a private Git repository on a low cost DigitalOcean or AWS server. The primary developer, Naoki Takezoe, places a strong emphasis on ease of installation which I absolutely love.
-			</p>
-		</li>
-	</ul>
+			<div class="loadingImage"><img src="/img/ajax-loader.gif" /></div>
 
-	<ul class="tools">
-		<li>
-			<p>
-				<a target="_blank" href="http://cesanta.com/"><strong>Mongoose</strong></a>
-				<br>
-				A powerful asyncronouns, non-blocking web server designed for use in embedded systems. Supports CGI, SSL, Digest auth, Websocket, WebDAV, Resumed download, URL rewrite, file blacklist, IP-based ACL, and available as a <a target="_blank" href="https://github.com/cesanta/mongoose/blob/master/mongoose.c">single file</a>.
-			</p>
-		</li>
-	</ul>
+			<div id="dnsResults">
 
-	<ul class="tools">
-		<li>
-			<p>
-				<a target="_blank" href="http://unix4lyfe.org/darkhttpd/"><strong>darkhttpd</strong></a>
-				<br>
-				Also available as a single file - darkhttpd has a simpler feature set compared to Mongoose, but very useful <em>"when you need a web server in a hurry.."</em>
-			</p>
-		</li>
-	</ul>
+				<h2>Header</h2>
+				<div class="header"></div>
 
-	<ul class="tools">
-		<li>
-			<p>
-				<a target="_blank" href="https://github.com/etsy/statsd/"><strong>StatsD</strong></a>
-				<br>
-				A simple daemon for stats aggregation, part of the Etsy <a href="http://codeascraft.com/2011/02/15/measure-anything-measure-everything/" target="_blank">Measure Anything, Measure Everything</a> mantra. Applications are instrumented by developers using language-specific libraries which communicate metrics to StatsD using its simple UDP protocol.
-			</p>
-		</li>
-	</ul>
+				<h2>Questions</h2>
+				<table class="questions"></table>
 
-	<ul class="tools">
-		<li>
-			<p>
-				<a target="_blank" href="http://influxdb.com/"><strong>InfluxDB</strong></a>
-				<br>
-				InfluxDb is a beautifully crafted open-source distributed time series database with an SQL-like query language exposed by a native HTTP API.
-			</p>
-		</li>
-	</ul>
+				<h2>Answers</h2>
+				<table class="answers"></table>
 
-	<ul class="tools">
-		<li>
-			<p>
-				<a target="_blank" href="http://www.elasticsearch.org/"><strong>ElasticSearch</strong></a>
-				<br>
-				A distributed, RESTful real-time search and analytics engine which wraps Apache Lucene. <a href="http://stackoverflow.com/questions/10213009/solr-vs-elasticsearch" target="_blank">Like Solr</a>, but with an architecture <a href="http://stackoverflow.com/questions/2271600/elasticsearch-sphinx-lucene-solr-xapian-which-fits-for-which-usage/2288211#2288211" target="_blank">designed</a> for scalability in modern distributed environments.
-			</p>
-		</li>
-	</ul>
+				<h2 class="authoritiesHeader">Authorities</h2>
+				<table class="authorities"></table>
 
-	<ul class="tools">
-		<li>
-			<p>
-				<a target="_blank" href="http://www.elasticsearch.org/overview/kibana/"><strong>Kibana</strong></a>
-				<br>
-				Kibana is a tool for graphing, searching visualising and understanding data. It's implemented as a minimalist browser based application which relies on Javascript, and HTTP APIs to interface and pull data out of Elasticsearch.
-			</p>
-		</li>
-	</ul>
+				<h2 class="additionalsHeader">Additionals</h2>
+				<table class="additionals"></table>
 
-	<ul class="tools">
-		<li>
-			<p>
-				<a target="_blank" href="https://developers.google.com/web/starter-kit/"><strong>Google Web Starter Kit (WSK)</strong></a>
-				<br>
-				Complementing Google's <a href="https://developers.google.com/web/fundamentals/" target="_blank">Web Fundamentals</a> project and inspired by <a href="http://html5boilerplate.com/mobile/" target="_blank">Mobile HTML5 Boilerplate</a>, WSK provides Google opinionated building blocks for constructing best practice aligned multi-screen applications.
-			</p>
-		</li>
-	</ul>
+			</div>
 
-	<ul class="tools">
-		<li>
-			<p>
-				<a target="_blank" href="https://github.com/dypsilon/frontend-dev-bookmarks/"><strong>dypsilon/frontend-dev-bookmarks</strong></a>
-				<br>
-				Dmitriy Navrotskyy's huge list of frontend development resources. <em>"Sorted from general knowledge at the top to concrete problems at the bottom".</em>
-			</p>
-		</li>
-	</ul>
+			<div id="dnsResultsError" class="apiErrorMessage"></div>
 
+		</div>
 
+		<div id="tab-passwords" class="tabbed-content">
+
+			<h1>Complex Passwords</h1>
+			<p>Generate complex passwords of varying length and character compositions.</p>
+
+			<div>
+				<button id="loadPasswords" type="button">Generate</button>
+			</div>
+
+			<div class="loadingImage"><img src="/img/ajax-loader.gif" /></div>
+
+			<div id="randomPasswords"></div>
+			<div id="randomPasswordsError" class="apiErrorMessage"></div>
+
+		</div>
+
+		<div id="tab-browser-headers" class="tabbed-content">
+
+			<h1>Browser Headers</h1>
+			<p>These are the HTTP headers your browser is sending ...</p>
+
+			<div id="whoami"></div>
+
+		</div>
+
+	</div>
 
 </section>
+
+
+
+
+
+<!-- page specific scripts -->
+
+<script type="text/javascript" src="/js/api.js"></script>
+<script type="text/javascript" src="/js/mustache.js"></script>
+
+<script type="text/javascript">
+
+    /* initalise tabs */
+	$(document).ready(function() {
+		if ($(this).width()<460) {
+		
+			$("#menu-tab-2").remove();
+			$("#menu-tab-3").remove();
+			
+			$("#tab-passwords").remove();			
+			$("#tab-browser-headers").remove();
+		}
+		
+		$("#tabs").tabs();
+			
+		loadWhoami();
+	});
+
+</script>

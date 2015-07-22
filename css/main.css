@@ -132,7 +132,7 @@ section.boxed {
 }
 
 section.large {
-   min-height: 1000px;
+   min-height: 900px;
 }
 
 section table {
@@ -187,7 +187,6 @@ section th {
 #wrapper h1 {
   font-size: 30px;
   line-height: 1.8em;
-  margin: 0;
 }
 
 #wrapper h2 { 
@@ -249,6 +248,18 @@ section th {
   margin: 0 0 5px;
 }
 
+#wrapper ul.tools {
+  margin-top: 45px;
+}
+
+#wrapper ul.tools li {
+  margin: 15px 0 35px;
+}
+#wrapper ul.tools h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
 #wrapper li a {
   /* white-space: nowrap; */
 }
@@ -264,7 +275,7 @@ section th {
 #wrapper pre > code {
   background-color: #f8f8f8;
   border: 1px solid #ddd;
-  line-height: 19px;
+  line-height: 16px;
   overflow: auto;
   padding: 6px 10px;
   border-radius: 3px;
@@ -298,6 +309,11 @@ sup {
 
 .text-align-center { 
   text-align: center;
+}
+
+#about-me {
+  margin: 40px auto;
+  max-width: 840px;
 }
 
 .breadcrumb {
