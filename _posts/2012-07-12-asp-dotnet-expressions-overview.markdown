@@ -6,16 +6,7 @@ categories: Programming Troubleshooting
 tags: asp.net
 ---
 
-ASPX in-page expressions are, if you don't know what to call them, nearly impossible to search. So on the off chance that this helps somebody, here are some search-friendly terms that might one day get crawled;
-
-* less than percent hash
-* less than percent equals
-* in-page expressions
-* data binding
-* data bound
-* bee strings
-* asp.net server tags
-* code render blocks
+ASPX in-page expressions are, if you don't know what to call them, nearly impossible to search. So on the off chance that this helps somebody, here are some search-friendly terms that might one day get crawled; (less than percent hash), (less than percent equals), (in-page expressions), (data binding), (data bound), (bee strings), (asp.net server tags), (code render blocks)
 
 * `<% %>` is for inline code (especially logic flow)
 * `<%$ %>` is for evaluating expressions (like resource variables)

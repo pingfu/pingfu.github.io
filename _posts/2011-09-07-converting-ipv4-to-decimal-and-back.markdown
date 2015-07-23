@@ -10,7 +10,7 @@ After reading this [post][hinky-hack-ipconvc] by [mrhinkydink][mrhinkydink] I th
 
 First, let's construct a method to accept a string representation of an ipv4 address in dotted decimal notation (that’s 127.0.0.1) and convert it into numeric, or "long" format (2,130,706,433):
 
-```csharp
+{% highlight csharp linenos %}
 public Double IpStringToLong( String ipString )
 {
     var octets = ipString.Split('.');
@@ -20,13 +20,13 @@ public Double IpStringToLong( String ipString )
          + Double.Parse( octets[1] ) * 65536 
          + Double.Parse( octets[0] ) * 16777216;
 }
-```
+{% endhighlight %}
 
 Okay, and back the other way:
 
 <!--excerpt-->
 
-```csharp
+{% highlight csharp linenos %}
 public string LongToString(Double ipAsLong)
 {
     var ip = String.Empty;
@@ -49,11 +49,11 @@ public string LongToString(Double ipAsLong)
     }
     return ip;
 }
-```
+{% endhighlight %}
 
 Finally if the input is either a string- or a long and we don’t know which but we want the opposite:
 
-```csharp
+{% highlight csharp linenos %}
 var value = "127.0.0.1";
 var value = 2130706433;
 
@@ -62,7 +62,7 @@ if (value.IndexOf(".") != -1)
     return String.Format("{0} in decimal is {1}", value, StringToLong(value));
 }
 return String.Format("{0} in dotted decimal is {1}", value, LongToString(value));
-```
+{% endhighlight %}
 
 [hinky-hack-ipconvc]: http://mrhinkydink.blogspot.com/2011/08/hinky-hack-ipconvc.html
 [mrhinkydink]: http://mrhinkydink.blogspot.com/

@@ -6,13 +6,11 @@ categories: Programming
 tags: c#
 ---
 
-I’m a great believer in making the most of what you’ve got in terms of CPU and compute performance, and in a strange way I quite enjoy reading highly optimised code.
+I’m a great believer in making the most of available compute resources, and I quite appreciate clean and optimised code.
 
-Shailesh from [http://www.somacon.com][somacon] has done an excellent job in optimising a method to convert bytes in to a human-friendly file size string.
+Shailesh from [http://www.somacon.com][somacon] has done an excellent job with this method to convert an integer representing a byte count in to a human-friendly string shown below with minor cosmetic modifications to reduce the character count.
 
-I’ve made some modifications to reduce the character count; the guts are pretty much intact. So here is my (amended) method to format bytes into KB, MB, GB etc.
-
-```csharp
+{% highlight csharp linenos %}
 /// <summary>
 /// Returns a human-readable size discriptor for up 64-bit length fields
 /// </summary>
@@ -28,7 +26,8 @@ private static string FormatBytes(Int64 bytes)
 	if (bytes >= 0x400) { return ((double)(bytes) / 1024).ToString("0.###") + " KB"; }
 	return bytes.ToString("0 Bytes");
 }
-```
+{% endhighlight %}
+
 Here is the [original snippet][original] Shailesh posted.
 
 [somacon]: http://www.somacon.com/

@@ -37,7 +37,7 @@ System.ServiceProcess
 
 Step 3. The code:
 
-```csharp
+{% highlight csharp linenos %}
 using System;
 using System.Text;
 using System.Configuration.Install;
@@ -181,7 +181,7 @@ namespace sample
 		}
 	}
 }
-```
+{% endhighlight %}
 
 Step 4. Compile
 
@@ -222,8 +222,6 @@ g:\winservice>sample.exe -u
 The uninstall is beginning.
 The uninstall has completed.
 ```
-
-Simples.
 
 [googlesearch]: http://www.google.co.uk/search?q=how+to+create+a+windows+service+c%23
 [sysinternals]: http://live.sysinternals.com/
