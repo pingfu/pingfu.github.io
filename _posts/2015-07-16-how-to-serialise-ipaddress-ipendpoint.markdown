@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to serialise classes that include IPAddress or IPEndPoint"
+title: "How to serialise classes which include IPAddress or IPEndPoint"
 date: 2015-07-16
 categories: csharp
 tags: 
