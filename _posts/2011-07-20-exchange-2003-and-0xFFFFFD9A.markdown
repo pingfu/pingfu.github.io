@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Exchange 2003 and 0xFFFFFD9A"
+title: "Exchange 2003, 0xFFFFFD9A and EventID 1159"
 date: 2011-07-20
 categories: Troubleshooting
 tags: exchange

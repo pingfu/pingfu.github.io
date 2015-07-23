@@ -6,7 +6,7 @@ categories: Programming Troubleshooting
 tags: asp.net
 ---
 
-ASPX in-page expressions are - if you don't know what to call this group of expressions. Nearly impossible to search for due to their search un-friendly construction. So to help bridge that divide here are some friendly terms that might help lost users find their way:
+ASPX in-page expressions are, if you don't know what to call them, nearly impossible to search. So on the off chance that this helps somebody, here are some search-friendly terms that might one day get crawled;
 
 * less than percent hash
 * less than percent equals
@@ -17,14 +17,12 @@ ASPX in-page expressions are - if you don't know what to call this group of expr
 * asp.net server tags
 * code render blocks
 
-And for anybody lucky enough to get here by organic search, here's an explanation of the what and why behind <%$, <%@, <%=, <%# and so on:
-
 * `<% %>` is for inline code (especially logic flow)
 * `<%$ %>` is for evaluating expressions (like resource variables)
 * `<%@ %>` is for Page directives, registering assemblies, importing namespaces, etc.
 * `<%= %>` is short-hand for Response.Write (discussed here)
 * `<%# %>` is used for data binding expressions.
-* `<%: %>` is short-hand for Response.Write(Server.HTMLEncode()) ASP.net 4.0+
+* `<%: %>` is short-hand for Response.Write(Server.HTMLEncode()) in ASP.net 4.0+
 * `<%-- --%>` is for server-side comments
 
 This information is replicated from the following sources [StackOverflow][stackoverflow] post, [Dan Crevier’s][dancre] blog and in an [MSDN][d5bd1tad] article. No excuses then.
