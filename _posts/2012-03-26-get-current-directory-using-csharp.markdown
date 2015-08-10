@@ -6,22 +6,21 @@ categories: Performance
 tags: c#
 ---
 
-How should you get the current directory in C#? There are several properties which expose the directory from which an application is executing, but there are subtle differences to each:
+How should you get the "current" directory of the executing binary in C#? There are a couple of options expose the directory and name of executing application, but with subtle differences:
 
-1. `Application.ExecutablePath` - Includes the assembly name.
-2. `Application.StartupPath` - This is inside the Windows.System.Forms namespace.
-3. `Directory.GetCurrentDirectory()`- Executes a Windows API call to GetCurrentDirectory() in kernel32.dll.
-4. `Environment.CurrentDirectory` - This is an alias to Directory.GetCurrentDirectory() in System.IO.
+1. `AppDomain.BaseDirectory` - Gets the base directory that the assembly resolver uses to probe for assemblies.
+2. `Application.ExecutablePath` - Includes the assembly name.
+3. `Application.StartupPath` - This is inside the Windows.System.Forms namespace.
+4. `Directory.GetCurrentDirectory()`- Executes a Windows API call to GetCurrentDirectory() in kernel32.dll.
+5. `Environment.CurrentDirectory` - This is an alias to Directory.GetCurrentDirectory() in System.IO.
 5. `this.GetType().Assembly.Location` - Includes the assembly name, or the base directory if you are calling a separate class library.
+7. `Assembly.GetExecutingAssembly().Location` - From the System.Reflection namespace.
+8. `Assembly.GetAssembly(typeof(MyAssemblyType)).Location` - Derive from a given type.
 
-However, for me the most appropriate method in most cases is to simply use `AppDomain.CurrentDomain.BaseDirectory`. It works with ASP.Net, Forms and Console applications. It will also return the correct base directory for class libraries too.
+My prefered method is `AppDomain.CurrentDomain.BaseDirectory`, it works with ASP.Net, Forms, WPF, Console applications and Services. It will also return the correct base directory for class libraries too.
 
 ```
 var path = AppDomain.CurrentDomain.BaseDirectory;
 ```
 
-The path string returned includes a trailing backslash; For example:
-
-```
-C:\Project1\bin\Debug\
-```
+The string returned includes a trailing backslash; For example: `C:\Project1\bin\Debug\`
