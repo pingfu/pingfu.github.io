@@ -6,7 +6,7 @@ categories: csharp
 tags: 
 ---
 
-There two most popular formats for text-based serialisation are Xml and Json, often using the built-in `XmlSerializer` and `Json.Net` library respectively. There are others of course, but many seem to have some objection to serialising `IPAddress`, or objects containing references to that class.
+The two most popular formats for text-based serialisation are Xml and Json, often using the built-in `XmlSerializer` and `Json.Net` library respectively. There are others of course, but many seem to have some objection to serialising `IPAddress`, or objects containing references to that class.
 
 In the case of the XmlSerializer, during de-serialization an instance of the target class is created before the serialised fields and properties are populated. Without a public parameterless constructor (as is the case with `System.Net.IPAddress`) the XmlSerializer refuses to populate the values and throws an exception. This is actually a limitation of `XmlSerializer`, `BinaryFormatter` and `DataContractSerializer` do not require a parameterless constructors, they create uninitalised objects.
 
