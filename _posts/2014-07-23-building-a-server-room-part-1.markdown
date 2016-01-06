@@ -2,8 +2,8 @@
 layout: post
 title: "Building a Server Room (Part 1/5)"
 date: 2014-07-23
-categories: Contract Server-Room Architecture
-tags: server-room
+categories: server-room-build
+tags: 
 ---
 
 *This is the first in a series of five posts documenting the planning, architecture, and build of a new server room under various building, budgetary and time constraints. The build is now complete and I’m making this first post retrospectively (2014-11-21).*
@@ -28,20 +28,28 @@ Fast-forward a few months, and after extensive planning, fantastic client co-ope
 
 So, with the background covered, lets take a first look at the shell of the new office space.
 
-<div class="owl-carousel">
-	<div><img class="lazyOwl" data-src="/uploads/fitout/2014-07-23/1.jpg"></div>
-	<div><img class="lazyOwl" data-src="/uploads/fitout/2014-07-23/2.jpg"></div>
-	<div><img class="lazyOwl" data-src="/uploads/fitout/2014-07-23/3.jpg"></div>
-	<div><img class="lazyOwl" data-src="/uploads/fitout/2014-07-23/4.jpg"></div>
-	<div><img class="lazyOwl" data-src="/uploads/fitout/2014-07-23/5.jpg"></div>
+<div class="slick-carousel">
+	<div>
+		<img src="/uploads/fitout/2014-07-23/1.jpg">
+		<p><code>1</code> Three cabinets have made it over to the new office, but they've been dropped off in what will become a part of the open-plan area and not the server room. The sound-dampening wall partitions were still being built.</p>
+	</div>
+	<div>
+		<img src="/uploads/fitout/2014-07-23/2.jpg">
+		<p><code>2</code> It’s exciting to see the shell of the comms room space start to take shape, but it looks empty and unimpressive at the moment.</p>
+	</div>
+	<div>
+		<img src="/uploads/fitout/2014-07-23/3.jpg">
+		<p><code>3</code> xxx</p>
+	</div>
+	<div>
+		<img src="/uploads/fitout/2014-07-23/4.jpg">
+		<p><code>4</code> At least the anti-static floor tile coverings are down, but those radiators will need to be disconnected.</p>
+	</div>
+	<div>
+		<img src="/uploads/fitout/2014-07-23/5.jpg">
+		<p><code>5</code> The boardroom is pictured on the right-hand side of the picture, keep an eye on that as it develops.</p>
+	</div>
 </div>
-
-<ul>
-	<li>Photo <code>1</code>: Three cabinets have made it over to the new office, but they've been dropped off in what will become a part of the open-plan area and not the server room. The sound-dampening wall partitions were still being built.</li>
-	<li>Photo <code>2</code>: It’s exciting to see the shell of the comms room space start to take shape, but it looks empty and unimpressive at the moment.</li>
-	<li>Photo <code>4</code>: At least the anti-static floor tile coverings are down, but those radiators will need to be disconnected.</li>
-	<li>Photo <code>5</code>: The boardroom is pictured on the right-hand side of the picture, keep an eye on that as it develops.</li>
-</ul>
 
 The building is brand new, and we have the entire second floor. As you can see in photo `1`, the raised floor and lighting are already in, and we've brought three emptied racks across from the soon-to-be previous office. Photo `2` is a view of the new server room (single point of entry) doorway. Anti-static floor tiles are already down, and the window is open. Unfortunately the office space didn't present us with a window free area, so we're stuck with at least some degree of solar gain in the room. Also, the plumbers got into the building before us, hence the radiators. The building is eco-friendly and designed for natural temperature control most of the year owing to the climate and the building's location, shape and window arrangements. Needless to say the radiators were locked off immediately.
 

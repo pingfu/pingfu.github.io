@@ -22,13 +22,9 @@
   <link rel="stylesheet" type="text/css" href="/css/syntax.css">
   <link rel="stylesheet" type="text/css" href="/css/api.css">
 
-  <!-- Owl carousel jquery plugin assets -->
-  <link rel="stylesheet" href="/js/owl-carousel/owl.carousel.css">
-  <link rel="stylesheet" href="/js/owl-carousel/owl.theme.css">
-  <link rel="stylesheet" href="/js/owl-carousel/owl.transitions.css">
-
-  <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <!-- http://kenwheeler.github.io/slick/ -->
+  <link rel="stylesheet" type="text/css" href="/js/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="/js/slick/slick-theme.css"/>
 
   <!--[if lt IE 9]> <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
@@ -47,24 +43,35 @@
 
   <blockquote>Knock knock<br />Race condition<br />Who's there?</blockquote>
 
-  <!-- owl-carousel jquery plugin -->
-  <script type="text/javascript" src="/js/owl-carousel/owl.carousel.min.js"></script>
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   
+  <!-- slick-carousel jquery plugin -->
+  <script type="text/javascript" src="/js/slick/slick.min.js"></script>
+
   <script type="text/javascript">
 
-    /* owl-carousel init */
+    /* slick-carousel init */
 	$(document).ready(function()
 	{
-		$(".owl-carousel").owlCarousel({
-			stopOnHover : true,
-			navigation: false,
-			paginationSpeed : 1000,
-			goToFirstSpeed : 2000,
-			lazyLoad : true,
-			singleItem : true,
-			autoHeight : true,
-			paginationNumbers: true,
-			transitionStyle:"fade"
+		$(".slick-carousel").slick({
+			dots: false,
+			infinite: true,
+			speed: 300,
+			adaptiveHeight: true,
+			arrows: true,
+			centerMode: true,
+			centerPadding: '0px',
+			slidesToShow: 1,
+			lazyLoad: 'ondemand',
+			responsive: [
+			{
+			  breakpoint: 1024,
+			  settings: {
+				dots: false
+			  }
+			}
+	]
 		});
 	});
 	
