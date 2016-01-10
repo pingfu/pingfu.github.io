@@ -18,7 +18,7 @@ The business wanted to use the office move as an opportunity to undertake a cost
 
 Despite the initial capital investment in on-premise, a significant hardware refresh would have been due within 18 months, so while the existing hardware was beginning to age, it could still put to good use post move supporting internal systems. On balance, switching to a cloud-based hosting model was a natural fit for the company’s production environments.
 
-The first rule of data center design is to plan for the future (it's far cheaper to over-provision capacity you don't need now than to add it retrospectively). However despite the long-term cost effectiveness, but this isn't always the most tenable position, economically speaking.
+The first rule of data center design is to plan for the future (it's usually cheaper to over-provision capacity you don't today, than to add it retrospectively). However despite the long-term cost effectiveness, but this isn't always the most tenable position, economically speaking.
 
 With this in mind, fast-forward a few months, and after extensive planning, fantastic client co-operation, revisions to contracts, and updated charging structures my team was ready to move. We had migrated all production and client-owned equipment running in the nine 47U cabinets of bare-metal and hypervised infrastructure running on a resilient BGP multi-homed feeds to a mix of PaAS and IaAS cloud architectures. This left only two cabinets of development-servers and internal infrastructure remaining on-premise to support BAU. We also planned for a third cabinet to support switching and comms in new office space.
 
