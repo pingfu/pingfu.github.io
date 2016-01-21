@@ -115,8 +115,19 @@ header a:hover {
   color: #ffffff;
 }
 
+nav a:hover {
+	padding-bottom: 4px;
+	border-bottom: solid 2px #bbb;
+}
+	
 header .active-link {
   color: #ffffff;
+  padding-bottom: 4px;
+  border-bottom: solid 2px #bbb;
+}
+
+header .active-link:hover {
+  border-bottom: solid 2px #bbb;
 }
 
 section {
