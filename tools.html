@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Tools — Pingfu
-breadcrumb: Browser-based tools
+breadcrumb: Network tools
 ---
 
 
@@ -16,14 +16,14 @@ breadcrumb: Browser-based tools
 	<div id="tabs">
 
 		<ul>
-			<li><a class="show-hero" id="menu-tab-1" href="#tab-dns-resolver">Dns Resolver</a></li>
-			<li><a class="hide-hero" id="menu-tab-2" href="#tab-passwords">Generate Passwords</a></li>
-			<li><a class="hide-hero" id="menu-tab-3" href="#tab-browser-headers">Browser Headers</a></li>
+			<li><a class="show-hero" id="menu-tab-1" href="#tab-dns-resolver">Dns resolver</a></li>
+			<li><a class="hide-hero" id="menu-tab-3" href="#tab-ip-info">IP Metadata</a></li>
+			<li><a class="hide-hero" id="menu-tab-2" href="#tab-passwords">Passwords</a></li>
 		</ul>
 			
 		<div id="tab-dns-resolver" class="tabbed-content">
 
-			<h1>Dns Resolver</h1>
+			<h1>Dns resolver</h1>
 			<p>A simple, public DNS resolver. Either use our name server, or specific your own. The tool supports common query types such as A, NS, CNAME, SOA, PTR, MX, TXT, RP, AXFR, AAAA, ANY, and more in addition to full support for IPv6.</p>
 
 			<div class="formFields">
@@ -100,7 +100,7 @@ breadcrumb: Browser-based tools
 			<p>Generate complex passwords of varying length and character compositions.</p>
 
 			<div>
-				<button id="loadPasswords" type="button">Generate</button>
+				<button id="loadPasswords" type="button">Generate another set ...</button>
 			</div>
 
 			<div class="loadingImage"><img src="/img/ajax-loader.gif" /></div>
@@ -110,13 +110,12 @@ breadcrumb: Browser-based tools
 
 		</div>
 
-		<div id="tab-browser-headers" class="tabbed-content">
+		<div id="tab-ip-info" class="tabbed-content">
 
-			<h1>Browser Headers</h1>
-			<p>These are the HTTP headers your browser is sending ...</p>
+			<h1>IP Metadata</h1>
+			<p>Information about your IP address, courtesy of <a href="http://ipinfo.io" target="_blank" norel>http://ipinfo.io/</a></p>
 
-			<div id="whoami"></div>
-
+			<div id="ip-info"></div>
 		</div>
 
 	</div>
@@ -137,17 +136,15 @@ breadcrumb: Browser-based tools
     /* initalise tabs */
 	$(document).ready(function() {
 		if ($(this).width()<460) {
-		
 			$("#menu-tab-2").remove();
 			$("#menu-tab-3").remove();
-			
 			$("#tab-passwords").remove();			
-			$("#tab-browser-headers").remove();
+			$("#tab-ip-info").remove();
 		}
 		
 		$("#tabs").tabs();
 			
-		loadWhoami();
+		loadIpInfo();
 	});
 
 </script>

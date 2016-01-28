@@ -9,40 +9,26 @@ function init()
 	$(".hide-hero").click(function() {
 		$("#logo").slideUp();
 		$(".blog-posts").hide();
-	})
+	});
 
 	$(".show-hero").click(function() {
+
 		$("#logo").slideDown();
 		$(".blog-posts").show();
-	})
+	});
 }
 
-function loadWhoami()
+function loadIpInfo()
 {
-	var whoamiUrl = 'http://pingfu-api.azurewebsites.net/2014-01/?method=pingfu.network.whoami&format=jsonp&callback=?';
+	$.getJSON('http://ipinfo.io/json', function(data)
+	{
+		$(".userip").text(data.ip);
 
-	$.ajax({
-		type: 'GET',
-		url: whoamiUrl,
-		jsonpCallback: 'jsonCallback',
-		contentType: "application/json",
-		dataType: 'jsonp',
-		success: function(json)
-		{
-			if (json.Code == 429)
-			{
-				$(".userip").text(json.Message);
-				$("#whoami").html("--");
-			}
-			else
-			{
-				$(".userip").text(json.Ip);
-
-				$.get("/templates/whoami.html", function (template) {
-					$("#whoami").html(Mustache.to_html(template, json));
-				});
-			}
-		}
+		data['lowerCaseCountry'] = data.country.toLowerCase();
+		
+		$.get("/templates/ip-info.html", function (template) {
+			$("#ip-info").html(Mustache.to_html(template, data));
+		});
 	});
 }
 
@@ -91,7 +77,6 @@ function loadPasswords()
 		}
 	});
 }
-
 
 function resolveByForm()
 {
@@ -209,7 +194,6 @@ function resolve(rawQuestion, question, nameserver, queryClass, queryType, dnsUr
 	});
 }
 
-
 function tabuliseDns(entry)
 {
 	var recordType = translateType(entry.Type);
@@ -237,7 +221,6 @@ function tabuliseDns(entry)
 
 	return row;
 }
-
 
 function translateType(dnsType)
 {
@@ -313,7 +296,6 @@ function translateType(dnsType)
 	return translateEnum(typeEnum, dnsType);
 }
 
-
 function translateClass(dnsClass)
 {
 	var classEnum = 
@@ -327,7 +309,6 @@ function translateClass(dnsClass)
 	return translateEnum(classEnum, dnsClass);
 }
 
-
 function translateEnum(enumtype, enumvalue)
 {
 	for (var enumName in enumtype)
@@ -339,13 +320,11 @@ function translateEnum(enumtype, enumvalue)
 	}
 }
 
-
 $("#loadPasswords").click(function (e) {
 	e.preventDefault();
 	init();
 	loadPasswords();
 });
-
 
 $("#resolve").click(function (e) {
 	e.preventDefault();
@@ -357,3 +336,4 @@ $("#resolve").click(function (e) {
 //
 
 init();
+loadPasswords();
