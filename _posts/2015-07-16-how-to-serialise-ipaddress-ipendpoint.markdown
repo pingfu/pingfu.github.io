@@ -16,7 +16,7 @@ Talking of other serialisers, the `BinaryFormatter` is not without its quirks. I
 
 Let's take a quick look at binary serialisation of the IPAddress class using the `BinaryFormatter`...
 
-```csharp
+{% highlight csharp linenos %}
 using System.Runtime.Serialization.Formatters.Binary;
 
 ..
@@ -26,7 +26,7 @@ using (var writer = new MemoryStream())
     new BinaryFormatter().Serialize(writer, IPAddress.Parse("170.187.204.221"));
     Console.WriteLine(BitConverter.ToString(writer.ToArray()));
 }
-```
+{% endhighlight %}
 
 I've used the IP address `170.187.204.221` because it converts to an easy to spot value in hexadecimal. In decimal it is 2,864,434,397 and in hexadecimal its written as `AA-BB-CC-DD`. Can you spot the four bytes of our IPv4 address in this mess? As you might expect, the `BinaryFormatter` produces trademark Microsoft bloat (for great alternatives that can produce concise binary output see [MessagePack](http://msgpack.org/), [CBOR](http://cbor.io/), [Protobuf](https://github.com/google/protobuf) and [CapNProto](https://capnproto.org/)).
 
