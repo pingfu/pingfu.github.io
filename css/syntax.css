@@ -64,6 +64,7 @@
 .highlight pre code { display: block; white-space: pre; overflow-x: auto; word-wrap: normal; }
 
 .highlight table { border: none; }
+.highlight td { border: none; }
 
 /* instruct browser not to allow lineno elements to contain selectable text */
 .lineno {
