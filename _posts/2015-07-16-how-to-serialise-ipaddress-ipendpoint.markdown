@@ -16,7 +16,7 @@ Talking of other serialisers, the `BinaryFormatter` is not without its quirks. I
 
 Let's take a quick look at binary serialisation of the IPAddress class using the `BinaryFormatter`...
 
-~~~csharp
+~~~c#
 using System.Runtime.Serialization.Formatters.Binary;
 
 ..
