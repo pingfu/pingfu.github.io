@@ -16,7 +16,7 @@ Talking of other serialisers, the `BinaryFormatter` is not without its quirks. I
 
 Let's take a quick look at binary serialisation of the IPAddress class using the `BinaryFormatter`...
 
-~~~csharp
+```csharp
 using System.Runtime.Serialization.Formatters.Binary;
 
 ..
@@ -26,11 +26,11 @@ using (var writer = new MemoryStream())
     new BinaryFormatter().Serialize(writer, IPAddress.Parse("170.187.204.221"));
     Console.WriteLine(BitConverter.ToString(writer.ToArray()));
 }
-~~~
+```
 
 I've used the IP address `170.187.204.221` because it converts to an easy to spot value in hexadecimal. In decimal it is 2,864,434,397 and in hexadecimal its written as `AA-BB-CC-DD`. Can you spot the four bytes of our IPv4 address in this mess? As you might expect, the `BinaryFormatter` produces trademark Microsoft bloat (for great alternatives that can produce concise binary output see [MessagePack](http://msgpack.org/), [CBOR](http://cbor.io/), [Protobuf](https://github.com/google/protobuf) and [CapNProto](https://capnproto.org/)).
 
-~~~text
+{% highlight text linenos %}
 Offset(h) 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 --------  -----------------------------------------------
 00000000  00 01 00 00 00 FF FF FF FF 01 00 00 00 00 00 00  .....ÿÿÿÿ.......
@@ -55,13 +55,13 @@ Offset(h) 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 00000130  00 00 00 00 00 00 00 0F 04 00 00 00 08 00 00 00  ................
 00000140  0E 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
 00000150  00 0B                                            ..
-~~~
+{% endhighlight %}
 
 The IPAddress object represents both IPv4 addresses at 32 bits in length, and IPv6 addresses at 128 bits in length. Of course, an IPAddress is just a number, but what matters is the representation (See [endianness](https://en.wikipedia.org/wiki/Endianness) and host or network order for further reading).
 
 For example, this is the IP address of my local gateway device in several different representations.
 
-~~~text
+{% highlight text linenos %}
 Binary                              1100 0000 1010 1000 0000 0001 0000 0001
 Decimal                             3,232,235,777
 Hexadecimal                         0xC0A80101
@@ -69,13 +69,13 @@ Base64 encoded                      wKgBAQ==
 IPv4 dotted decimal notation        192.168.1.1
 IPv6                                0:0:0:0:0:ffff:c0a8:101
 Byte array                          0xC0, 0xA8, 0x01, 0x01
-~~~
+{% endhighlight %}
 
 There is no correct way to represent an IP address, and IPv6 can complicate the representation element further. The `IPAddress` class is a complex object which stores more than just the address component. So arguably, there is a good reason why `System.Net.IPAddress` and classes which include references to it are not serialisable by default, but its annoying as hell - so lets fix that.
 
 Lets look at a simple program which should produce some JSON for us.
 
-~~~csharp
+{% highlight csharp linenos %}
 using System;
 using System.Net;
 using Newtonsoft.Json;
@@ -115,7 +115,7 @@ namespace ConsoleApplication1
         public IPAddress Machine2 { get; set; }
     }
 }
-~~~
+{% endhighlight %}
 
 Predictably, this throws a `Newtonsoft.Json.JsonSerializationException` exception at line 19, as we call `SerializeObject()`: "Error getting value from 'ScopeId' on 'System.Net.IPAddress'". Put simply, Json.Net doesn't know how best to represent the IPAddress object as JSON, so we need to help it.
 
@@ -123,7 +123,7 @@ The `JsonConverter` class in the `Newtonsoft.Json` namespace is our saviour, it 
 
 We'll start by creating a new class called `IPAddressConverter` which inherits from `JsonConverter` and override these three methods.
 
-~~~csharp
+{% highlight csharp linenos %}
 using System;
 using Newtonsoft.Json;
 
@@ -144,13 +144,13 @@ namespace ConsoleApplication1
         }
     }
 }
-~~~
+{% endhighlight %}
 
 The `WriteJson()` method will define how our IPAddress object translates into JSON. The `ReadJson()` method is be responsible for converting JSON values back into IPAddress objects. `CanConvert()` allows us to define if the object type being passed into our custom converter class is a type we're expecting, but more importantly a type we're able to understand and convert.
 
 In order to wire up this class so that Json.Net will use it when it encounters an IPAddress we need go back to the class we wanted serialised, and decorate the IPAddress properties as follows;
 
-~~~csharp
+{% highlight csharp linenos %}
 public class SampleClass
 {
     [JsonConverter(typeof(IPAddressConverter))]
@@ -159,41 +159,42 @@ public class SampleClass
     [JsonConverter(typeof(IPAddressConverter))]
     public IPAddress Machine2 { get; set; }
 }
-~~~
+{% endhighlight %}
 
 In keeping with JSON's readability we'll represent our IPAddress object in JSON as a simple string value in dotted decimal notation. What we want is neat JSON that looks like this:
 
-~~~javascript
+{% highlight javascript linenos %}
 {
     "Machine1":"8.8.8.8",
     "Machine2":"8.8.4.4"
 }
-~~~
+{% endhighlight %}
 
 When `WriteJson()` is called, the `value` argument contains an IPAddress object, all we have to do is convert that object to the representation of our choice, create a `JToken` from it, and then write it to the `JsonWriter`, also passed in as an argument (`writer`). In this case then, we are just converting the IPAddress object into a string and writing it back to Json.Net.
 
-~~~csharp
+{% highlight csharp linenos %}
 public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
 {
     var address = value.ToString();
     JToken.FromObject(address).WriteTo(writer);
 }
+{% endhighlight %}
 
 Equally, when `ReadJson()` is invoked the `reader` argument contains the Json string and the `objectType` argument contains a reference to the type of object Json.Net is expecting us to convert the `reader` value into.
 
-~~~csharp
+{% highlight csharp linenos %}
 public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
 {
     var address = JToken.Load(reader).ToString();
     return IPAddress.Parse(address);
 }
-~~~
+{% endhighlight %}
 
 That's all there is to it.
 
 The full `IPAddressConverter.cs` class is shown below. It is capable of serialising both `IPAddress` and `List<IPAddress>` objects, but you can extend it as required.
 
-~~~csharp
+{% highlight csharp linenos %}
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -269,7 +270,7 @@ namespace ConsoleApplication1
         }
     }
 }
-~~~
+{% endhighlight %}
 
 As promised (in the post title) I've written an `IPEndPointConverter` for `IPEndPoint` typed objects too which [lives here as a GitHub gist](https://gist.github.com/marcbarry/2e7a64fed2ae539cf415) along with the `IPAddressConverter` too.
 
