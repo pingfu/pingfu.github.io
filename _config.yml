@@ -1,4 +1,4 @@
 name: pingfu
 excerpt_separator: <!--excerpt-->
 gems:
-	- jekyll-redirect-from
+ - jekyll-redirect-from
