@@ -1,11 +1,12 @@
 ---
 layout: default
+redirect_from: "/blog/"
 ---
 
 
 <section class="boxed">
 
-	<div class="breadcrumb"><a href="/">Home</a> <span class="divider">›</span> {{ page.title }}</div>
+	<div class="breadcrumb"><a href="/writing.html">Tech Writing</a> <span class="divider">›</span> {{ page.title }}</div>
 
 	<h2>{{ page.title }}</h2>
 	<p class="meta">{{ page.date | date_to_string }} — {% for category in page.categories %} <span class="category">{{ category }}</span> {% endfor %}</p>
@@ -31,6 +32,6 @@ layout: default
 
     </script>
 
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    <a href="//disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 </section>
