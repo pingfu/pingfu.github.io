@@ -11,6 +11,11 @@ body {
   min-width: 320px;
 }
 
+figure {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 #mobile-navigation {
   display: none;
 }
