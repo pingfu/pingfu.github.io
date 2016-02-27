@@ -28,7 +28,7 @@ using (var writer = new MemoryStream())
 }
 {% endhighlight %}
 
-I've used the IP address `170.187.204.221` because it converts to an easy to spot value in hexadecimal. In decimal it is 2,864,434,397 and in hexadecimal its written as `AA-BB-CC-DD`. Can you spot the four bytes of our IPv4 address in this mess? As you might expect, the `BinaryFormatter` produces trademark Microsoft bloat (for great alternatives that can produce concise binary output see [MessagePack](http://msgpack.org/), [CBOR](http://cbor.io/), [Protobuf](https://github.com/google/protobuf) and [CapNProto](https://capnproto.org/)).
+I've used the IP address `170.187.204.221` because it converts to an easy to spot value in hexadecimal. In decimal it is 2,864,434,397 and in hexadecimal its written as `AA-BB-CC-DD`. As you might expect, once serialised, the `BinaryFormatter` produces trademark Microsoft bloat as the serialisd binary data below shows (for great alternatives that can produce concise binary output see [MessagePack](http://msgpack.org/), [CBOR](http://cbor.io/), [Protobuf](https://github.com/google/protobuf) and [CapNProto](https://capnproto.org/)). Can you spot the four bytes of our IPv4 address in this mess? (Hint: 0x000000E2)
 
 {% highlight text linenos %}
 Offset(h) 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
