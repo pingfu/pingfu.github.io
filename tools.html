@@ -18,7 +18,7 @@ redirect_from: "/dns/"
 
 		<ul>
 			<li><a class="show-hero" id="menu-tab-1" href="#tab-dns-resolver">Dns resolver</a></li>
-			<li><a class="hide-hero" id="menu-tab-3" href="#tab-ip-info">IP Metadata</a></li>
+			<!--<li><a class="hide-hero" id="menu-tab-3" href="#tab-ip-info">IP Metadata</a></li>-->
 			<li><a class="hide-hero" id="menu-tab-2" href="#tab-passwords">Passwords</a></li>
 		</ul>
 			
@@ -95,6 +95,7 @@ redirect_from: "/dns/"
 
 		</div>
 
+		<!--
 		<div id="tab-ip-info" class="tabbed-content">
 
 			<h1>IP metadata</h1>
@@ -102,6 +103,7 @@ redirect_from: "/dns/"
 
 			<div id="ip-info"></div>
 		</div>
+		-->
 
 		<div id="tab-passwords" class="tabbed-content">
 
@@ -137,15 +139,13 @@ redirect_from: "/dns/"
     /* initalise tabs */
 	$(document).ready(function() {
 		if ($(this).width()<460) {
-			$("#menu-tab-2").remove();
-			$("#menu-tab-3").remove();
 			$("#tab-passwords").remove();			
-			$("#tab-ip-info").remove();
+			//$("#tab-ip-info").remove();
 		}
 		
 		$("#tabs").tabs();
 			
-		loadIpInfo();
+		//loadIpInfo();
 	});
 
 </script>
