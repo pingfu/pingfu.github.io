@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Using the powershell cmdlet Get-WinEvent to search and filter event and diagnostic logs"
-date: 2015-01-10
+date: 2016-09-28
 categories: Administration
 tags: powershell
 ---
