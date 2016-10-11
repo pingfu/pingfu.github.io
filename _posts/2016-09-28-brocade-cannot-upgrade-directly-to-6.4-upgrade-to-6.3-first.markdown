@@ -6,15 +6,13 @@ categories: Infrastructure
 tags: fibre storage
 ---
 
-Brocade fiber channel switches are expensive, but are extremely robust over long periods of time, delivering solid performance with excellent mean time between failure (MTBF) ratings. To maintain a secure and reliable fibre channel fabric you'll need to periodically upgrade the firmware on your switches, but despite how capable the switches are HP have not done a great deal to simplify the process of obtaining the firmware.
+Brocade fiber channel switches are expensive, but extremely robust over long periods of time, delivering solid performance with excellent mean time between failure (MTBF) ratings. To maintain a secure and reliable fibre channel fabric you'll need to periodically upgrade the firmware on your switches. Despite how capable the switches are, HP have not done a great deal to assist in the process of obtaining firmware...
 
-I recently needed to upgrade the firmware on some old B-Series (8/12) switches running version `v6.1.0_8e1` of the firmware which proved to be quite time consuming.
+I recently needed to upgrade the firmware on B-Series SAN (8/12c) switches running version `v6.1.0_8e1` of the firmware which proved to be quite time consuming.
 
-The Brocade Fibre Channel Switch allows for non-disruptive upgrades, which means it is possible to upgrade the firmware with a High Availability (HA) reboot so that when the switch reloads, the fibre channel ports stay online, and only management connections to the switch is lost for the duration of the reboot.
+The Brocade fibre channel switch allows non-disruptive upgrades, meaning it is possible to upgrade the firmware with a High Availability (HA) reboot so as the switch reloads, the fibre channel ports stay online, and only management connections to the switch are lost for the duration of the reboot.
 
-Note that non-disruptive upgrades are only possible when moving from a single major version of the firmware to the next, or if you're upgrading within a single major. In my case the latest version of the firmware available at the time of writing was `v7.4.1d1`.
-
-After sifting through the 119 available versions firmware posted to the [HPE website][hpe-firmware], my upgrade path from `v6.1.0_8e1` to `v7.4.1d` looked like this;
+*Note:* Non-disruptive upgrades are only possible when moving from a single major version of the firmware to the next, or if you're upgrading within a single major. In my case the latest version of the firmware available at the time of writing was `v7.4.1d1`. After sifting through the 119 available versions firmware posted to the [HPE website][hpe-firmware], the upgrade path from `v6.1.0_8e1` to `v7.4.1d` looked like this;
 
 * `6.1.0_8e1`
 * `v6.2.2f9`
@@ -26,15 +24,13 @@ After sifting through the 119 available versions firmware posted to the [HPE web
 * `v7.3.2b`
 * `v7.4.1d`
 
-That's seven disruptive firmware upgrades which take the switch out of action and cause the FC ports to stop functioning during the reboot for each upgrade. I won't cover the upgrade process in much detail other than to say the only commands I need required were `firmwaredownload`, `firmwaredownloadstatus` and `firmwareshow`. There is an excellent post [workinghardinit][here] written by Didier Van Hoye about how to perform a switch upgrade.
+That's seven disruptive firmware upgrades which take the switch out of action and cause the FC ports to stop functioning during the reboot for each upgrade. I won't cover the upgrade process as there is an excellent post [here][workinghardinit] written by Didier Van Hoye about how to perform firmware upgrades on these switches.
 
-During my upgrade process I became stuck quite early on in the process at the transition from `v6.2.2f9`. The HPE website doesn't list any `6.3` firmware download options and the switch was preventing me from skipping a `6.3` firmware and upgrading directly to `6.4`.
+After starting to upgrade from one version to the nest, I quickly became stuck trying to move on from `v6.2.2f9`. The HPE website didn't list any upgrade options for versions `6.3` of the firmware, and the switch was preventing me from skipping version `6.3` and moving directly on to version `6.4`:
 
-`Cannot upgrade directly to 6.4. Please upgrade to 6.3 first and then upgrade to 6.4.`
+* "Cannot upgrade directly to 6.4. Please upgrade to 6.3 first and then upgrade to 6.4."
 
-It took some time to discover that version `6.3` of the firmware is no longer supported by HPE, so there is no normal download link to it (as per this [hpe-community][community post]) and it is not available to download via HTTP.
-
-The community post includes a link to HP's public FTP server which contains the missing `6.3` version of the firmware needed to continue with the upgrade process.
+It took some searching around to discover that version `6.3` of the firmware is no longer supported by HPE, so there is no normal download link to it (as per this [community post][hpe-community]). The community post does includes a direct file link to HP's public FTP server containing the missing version of the firmware needed to continue with the upgade process.
 
 `ftp://ftp.hp.com/pub/softlib/software11/COL22074/co-81903-1/v6.3.0d.zip`
 
