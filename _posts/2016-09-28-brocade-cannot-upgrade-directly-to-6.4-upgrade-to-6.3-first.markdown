@@ -26,15 +26,15 @@ The Brocade fibre channel switch allows non-disruptive upgrades, meaning it is p
 
 That's seven disruptive firmware upgrades which take the switch out of action and cause the FC ports to stop functioning during the reboot for each upgrade. I won't cover the upgrade process as there is an excellent post [here][workinghardinit] written by Didier Van Hoye about how to perform firmware upgrades on these switches.
 
-After starting to upgrade from one version to the nest, I quickly became stuck trying to move on from `v6.2.2f9`. The HPE website didn't list any upgrade options for versions `6.3` of the firmware, and the switch was preventing me from skipping version `6.3` and moving directly on to version `6.4`:
+After starting to upgrade from one version to the nest, I quickly became stuck trying to move on from `v6.2.2f9`. The HPE website doesn't provide links to version `6.3` of the firmware, and the switch prevented me from skipping version `6.3` and moving directly on to version `6.4`:
 
 * "Cannot upgrade directly to 6.4. Please upgrade to 6.3 first and then upgrade to 6.4."
 
 It took some searching around to discover that version `6.3` of the firmware is no longer supported by HPE, so there is no normal download link to it (as per this [community post][hpe-community]). The community post does includes a direct file link to HP's public FTP server containing the missing version of the firmware needed to continue with the upgade process.
 
-`ftp://ftp.hp.com/pub/softlib/software11/COL22074/co-81903-1/v6.3.0d.zip`
+* `v6.3.0d` - [ftp://ftp.hp.com/pub/softlib/software11/COL22074/co-81903-1/v6.3.0d.zip][v6.3.0d]
 
-In case `v6.3.0d` disappears from the HP servers I've mirrored it to S3 storage for safe keeping. The firmware, [v6.3.0d.zip][s3-63-firmware] is 1.22 GB (1,228,374,895 bytes) with an MD5 checksum of `256DDCF0A6D6D8F92A179EFF31DC1EE4`.
+In case v6.3.0d disappears from the HP servers I've mirrored it to S3 storage for safe keeping. The mirrored file [v6.3.0d.zip][s3-63-firmware] is 1.22 GB (1,228,374,895 bytes) with an MD5 checksum of `256DDCF0A6D6D8F92A179EFF31DC1EE4`.
 
 Frustratingly the HPE website doesn't appear to have any kind of coherent order presenting the firmware upgrade version options, so it can take a few minutes to find the latest version of each major release. To save time I've listed below direct download links to each firmware that I used during the upgrade.
 
