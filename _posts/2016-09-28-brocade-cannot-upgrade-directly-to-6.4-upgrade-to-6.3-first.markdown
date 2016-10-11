@@ -34,18 +34,18 @@ It took some searching around to discover that version `6.3` of the firmware is 
 
 `ftp://ftp.hp.com/pub/softlib/software11/COL22074/co-81903-1/v6.3.0d.zip`
 
-In case `v6.3.0d` disappears from the HP servers I've mirrored it to S3 storage for safe keeping. The firmware, [s3-63-firmware][v6.3.0d.zip] is 1.22 GB (1,228,374,895 bytes) with an MD5 checksum of `256ddcf0a6d6d8f92a179eff31dc1ee4`.
+In case `v6.3.0d` disappears from the HP servers I've mirrored it to S3 storage for safe keeping. The firmware, [v6.3.0d.zip][s3-63-firmware] is 1.22 GB (1,228,374,895 bytes) with an MD5 checksum of `256DDCF0A6D6D8F92A179EFF31DC1EE4`.
 
 Frustratingly the HPE website doesn't appear to have any kind of coherent order presenting the firmware upgrade version options, so it can take a few minutes to find the latest version of each major release. To save time I've listed below direct download links to each firmware that I used during the upgrade.
 
-* `v6.2.2f9` - [v6.2.2f9][http://downloads.hpe.com/pub/softlib/software12/COL22074/co-138585-1/v6.2.2f9.zip]
-* `v6.3.0d` - [v6.3.0d][ftp://ftp.hp.com/pub/softlib/software11/COL22074/co-81903-1/v6.3.0d.zip]
-* `v6.4.3h` - [v6.4.3h][http://downloads.hpe.com/pub/softlib/software13/COL22074/co-155018-1/v6.4.3h.zip]
-* `v7.0.2e` - [v7.0.2e][http://downloads.hpe.com/pub/softlib/software12/COL38684/co-133135-1/v7.0.2e.zip]
-* `v7.1.2b1` - [v7.1.2b1][http://downloads.hpe.com/pub/softlib/software12/COL38684/co-138558-1/v7.1.2b1.zip]
-* `v7.2.1g` - [v7.2.1g][http://downloads.hpe.com/pub/softlib/software13/COL59674/co-157071-1/v7.2.1g.zip]
-* `v7.3.2b` - [v7.3.2b][http://downloads.hpe.com/pub/softlib/software13/COL59674/co-174109-2/v7.3.2b.zip]
-* `v7.4.1d` - [v7.4.1d][http://downloads.hpe.com/pub/softlib/software13/COL59674/co-171426-1/v7.4.1d.zip]
+* `v6.2.2f9` - [http://downloads.hpe.com/pub/softlib/software12/COL22074/co-138585-1/v6.2.2f9.zip][v6.2.2f9]
+* `v6.3.0d` - [ftp://ftp.hp.com/pub/softlib/software11/COL22074/co-81903-1/v6.3.0d.zip][v6.3.0d]
+* `v6.4.3h` - [http://downloads.hpe.com/pub/softlib/software13/COL22074/co-155018-1/v6.4.3h.zip][v6.4.3h]
+* `v7.0.2e` - [http://downloads.hpe.com/pub/softlib/software12/COL38684/co-133135-1/v7.0.2e.zip][v7.0.2e]
+* `v7.1.2b1` - [http://downloads.hpe.com/pub/softlib/software12/COL38684/co-138558-1/v7.1.2b1.zip][v7.1.2b1]
+* `v7.2.1g` - [http://downloads.hpe.com/pub/softlib/software13/COL59674/co-157071-1/v7.2.1g.zip][v7.2.1g]
+* `v7.3.2b` - [http://downloads.hpe.com/pub/softlib/software13/COL59674/co-174109-2/v7.3.2b.zip][v7.3.2b]
+* `v7.4.1d` - [http://downloads.hpe.com/pub/softlib/software13/COL59674/co-171426-1/v7.4.1d.zip][v7.4.1d]
 
 
 
