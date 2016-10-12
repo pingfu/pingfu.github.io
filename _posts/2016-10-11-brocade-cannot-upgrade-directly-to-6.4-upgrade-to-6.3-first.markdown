@@ -36,7 +36,7 @@ It took some searching to discover that version 6.3 of the firmware is no longer
 
 In case v6.3.0d disappears from the HP servers I've mirrored it to S3 storage for safe keeping. The mirrored file [v6.3.0d.zip][s3-63-firmware] is 1.22 GB (1,228,374,895 bytes) with an MD5 checksum of `256DDCF0A6D6D8F92A179EFF31DC1EE4`.
 
-Frustratingly the HPE website doesn't appear to have any kind of coherent order presenting the firmware upgrade version options, so it can take a few minutes to find the latest version of each major release. To save time I've listed below direct download links to each firmware that I used during the upgrade.
+Frustratingly the HPE website doesn't appear to have any kind of coherent order presenting the firmware version options, so it can take a few minutes to find the relevant version of each major release. To save time I've listed below direct download links to each firmware that I used during the upgrade.
 
 * `v6.2.2f9` - [http://downloads.hpe.com/pub/softlib/software12/COL22074/co-138585-1/v6.2.2f9.zip][v6.2.2f9]
 * `v6.3.0d` - [ftp://ftp.hp.com/pub/softlib/software11/COL22074/co-81903-1/v6.3.0d.zip][v6.3.0d]
