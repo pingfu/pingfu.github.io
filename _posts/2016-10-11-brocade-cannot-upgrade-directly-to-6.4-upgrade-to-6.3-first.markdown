@@ -14,7 +14,7 @@ I recently needed to upgrade the firmware on B-Series SAN (8/12c) switches runni
 
 The Brocade fibre channel switch allows non-disruptive upgrades, meaning it is possible to upgrade the firmware with a High Availability (HA) reboot so as the switch reloads, the fibre channel ports stay online, and only management connections to the switch are lost for the duration of the reboot.
 
-*Note:* Non-disruptive upgrades are only possible when moving from a single major version of the firmware to the next, or if you're upgrading within a single major. In my case the latest version of the firmware available at the time of writing was `v7.4.1d1`. After sifting through the 119 available versions firmware posted to the [HPE website][hpe-firmware], the upgrade path from `v6.1.0_8e1` to `v7.4.1d` looked like this;
+*Note:* Non-disruptive upgrades are only possible when moving from a single major version of the firmware to the next, or if you're upgrading within a single major version. In my case the latest version of the firmware available at the time of writing was `v7.4.1d1`. After sifting through the 119 available versions firmware posted to the [HPE website][hpe-firmware], the upgrade path from `v6.1.0_8e1` to `v7.4.1d` looked like this;
 
 * `6.1.0_8e1`
 * `v6.2.2f9`
