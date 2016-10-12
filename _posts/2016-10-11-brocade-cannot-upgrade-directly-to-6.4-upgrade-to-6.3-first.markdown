@@ -6,9 +6,7 @@ categories: Infrastructure
 tags: fibre storage
 ---
 
-Brocade fiber channel switches are expensive, but extremely robust over long periods of time, delivering solid performance with excellent mean time between failure (MTBF) ratings. To maintain a secure and reliable fibre channel fabric you'll need to periodically upgrade the firmware on your switches. Despite how capable the switches are, HP have not done a great deal to assist in the process of obtaining firmware...
-
-I recently needed to upgrade the firmware on B-Series SAN (8/12c) switches running version `v6.1.0_8e1` of the firmware which proved to be quite time consuming.
+Brocade fiber channel switches are extremely robust over long periods of time, delivering solid performance with excellent mean time between failure (MTBF) ratings, but periodically require firmware upgrades. Unfortunatley finding the latest firmware versions from the HPE website can be less than straight forward, as I discovered recently when upgrading some B-Series SAN (8/12c) switches running an old version (`v6.1.0_8e1`) of the firmware, which proved to be quite time consuming...
 
 <!--excerpt-->
 
