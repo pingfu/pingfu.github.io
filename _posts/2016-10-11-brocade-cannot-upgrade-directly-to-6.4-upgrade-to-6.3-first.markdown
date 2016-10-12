@@ -26,11 +26,11 @@ The Brocade fibre channel switch allows non-disruptive upgrades, meaning it is p
 
 That's seven disruptive firmware upgrades which take the switch out of action and cause the FC ports to stop functioning during the reboot for each upgrade. I won't cover the upgrade process as there is an excellent post [here][workinghardinit] written by Didier Van Hoye about how to perform firmware upgrades on these switches.
 
-After starting to upgrade from one version to the nest, I quickly became stuck trying to move on from `v6.2.2f9`. The HPE website doesn't provide links to version `6.3` of the firmware, and the switch prevented me from skipping version `6.3` and moving directly on to version `6.4`:
+After starting to upgrade from one version to the next, I became stuck trying to move forwards from `v6.2.2f9`. The HPE website doesn't list any 6.3x versions of the firmware, and the switch prevented me from skipping version 6.3 and moving directly on to version 6.4 with this message:
 
 * "Cannot upgrade directly to 6.4. Please upgrade to 6.3 first and then upgrade to 6.4."
 
-It took some searching around to discover that version `6.3` of the firmware is no longer supported by HPE, so there is no normal download link to it (as per this [community post][hpe-community]). The community post does includes a direct file link to HP's public FTP server containing the missing version of the firmware needed to continue with the upgade process.
+It took some searching to discover that version 6.3 of the firmware is no longer supported by HPE, so there is no normal download link to it (as per this [community post][hpe-community]). HP do however still offer the missing firmware via their public FTP server, it just isn't linked from the website.
 
 * `v6.3.0d` - [ftp://ftp.hp.com/pub/softlib/software11/COL22074/co-81903-1/v6.3.0d.zip][v6.3.0d]
 
