@@ -45,6 +45,6 @@ One of the most important lessons I've learnt using tcpdump is that the interfac
 
 The lesson is that packet injection to localhost will fail, but tcpdump will make it look as if it is not failing. Instead, injecting packets onto the localhost interface is best achieved using raw sockets.
 
-See [here][seclists] for more information.
+See [seclists.org][seclists] for more information.
 
 [seclists]: http://seclists.org/tcpdump/2009/q1/110
