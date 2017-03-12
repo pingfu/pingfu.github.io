@@ -16,6 +16,7 @@ How should you get the "current" directory of the executing binary in C#? There 
 5. `this.GetType().Assembly.Location` - Includes the assembly name, or the base directory if you are calling a separate class library.
 7. `Assembly.GetExecutingAssembly().Location` - From the System.Reflection namespace.
 8. `Assembly.GetAssembly(typeof(MyAssemblyType)).Location` - Derive from a given type.
+9. `System.Reflection.Assembly.GetEntryAssembly().Location` - Gets the full path or UNC location of the loaded file that contains the manifest.
 
 My prefered method is `AppDomain.CurrentDomain.BaseDirectory`, it works with ASP.Net, Forms, WPF, Console applications and Services. It will also return the correct base directory for class libraries too.
 
