@@ -22,22 +22,25 @@ redirect_from: "/writing/"
 </section>
 
 
+{% comment %}
 
-<!-- posts -->
+	<!-- posts -->
 
-{% for post in site.posts %}
-<section class="boxed blog-posts">
+	{% for post in site.posts %}
+	<section class="boxed blog-posts">
 
-	<h2><a id="{{ post.title }}" href="{{ post.url }}">{{ post.title }}</a></h2>
-	<p class="meta">{{ post.date | date_to_string }} — {% for category in post.categories %} <span class="category">{{ category }}</span> {% endfor %}</p>
+		<h2><a id="{{ post.title }}" href="{{ post.url }}">{{ post.title }}</a></h2>
+		<p class="meta">{{ post.date | date_to_string }} — {% for category in post.categories %} <span class="category">{{ category }}</span> {% endfor %}</p>
 
-	<div class="post">
-		{{ post.excerpt }}
-	</div>
-	
-	{% if post.content contains "<!--excerpt-->" %}
-		<p><a id="{{ post.title }}" href="{{ post.url }}">Read More ...</a></p>
-	{% endif %}
+		<div class="post">
+			{{ post.excerpt }}
+		</div>
+		
+		{% if post.content contains "<!--excerpt-->" %}
+			<p><a id="{{ post.title }}" href="{{ post.url }}">Read More ...</a></p>
+		{% endif %}
 
-</section>
-{% endfor %}
+	</section>
+	{% endfor %}
+
+{% endcomment %}
