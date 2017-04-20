@@ -5,7 +5,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 body { 
   font-size: 1.05em;
   line-height: 1.25em;
-  font-family: 'Segoe UI', Helvetica, Arial;
+  font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
   background: #F0F2F3;
   color: #555;
   min-width: 320px;
@@ -161,7 +161,6 @@ section table {
 }
 
 section table, section td {	
-	font-family: Helvetica, Arial, sans-serif;
 	font-size: small;
 	color: #626566;
 	line-height: 1.6;
@@ -226,7 +225,6 @@ section th {
 }
 
 #wrapper p {
-  font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
   color: #626566;
   font-size: 14px;
   line-height: 1.9;
