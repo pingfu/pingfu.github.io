@@ -225,17 +225,13 @@ section th {
   margin: 0 0 8px;
 }
 
-#wrapper p:first-child {
-  margin: 0 0 24px 0;
-}
-
 #wrapper p {
   font-family: 'Segoe UI', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   color: #626566;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.9;
   letter-spacing: .01em;
-  margin: 24px 0 24px 0;
+  margin: 0 0 14px 0;
 }
 
 #wrapper .column3 { 
@@ -285,15 +281,16 @@ section th {
 
 #wrapper code { 
   margin: 0 2px;
-  padding: 0px 5px;
-  border: 1px solid #ddd;
-  background-color: #f8f8f8;
+  padding: 1px 5px 3px 5px;
+  border: 1px solid #eee;
+  background-color: #FFFFF5;
   border-radius: 3px;
+  font-size: 11px;
 }
 
 #wrapper pre > code {
+  border: 1px solid #eee;
   background-color: #f8f8f8;
-  border: 1px solid #ddd;
   line-height: 16px;
   overflow: auto;
   padding: 6px 10px;
