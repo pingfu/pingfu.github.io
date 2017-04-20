@@ -5,7 +5,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 body { 
   font-size: 1.05em;
   line-height: 1.25em;
-  font-family: Helvetica Neue, Helvetica, Arial;
+  font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial;
   background: #F0F2F3;
   color: #555;
   min-width: 320px;
@@ -225,13 +225,17 @@ section th {
   margin: 0 0 8px;
 }
 
+#wrapper p:first-child {
+  margin: 0 0 24px 0;
+}
+
 #wrapper p {
-  font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   color: #626566;
-  font-size: 13px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.9;
   letter-spacing: .01em;
-  margin: 0 0 14px;
+  margin: 24px 0 24px 0;
 }
 
 #wrapper .column3 { 
@@ -255,7 +259,7 @@ section th {
 }
 
 #wrapper li { 
-  font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   color: #626566;
   font-size: 13px;
   line-height: 1.6;
@@ -332,7 +336,7 @@ sup {
 }
 
 .breadcrumb {
-  font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   color: #626566;
   font-size: 11px;
   line-height: 1.6;
