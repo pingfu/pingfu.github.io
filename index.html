@@ -15,7 +15,10 @@ redirect_from: "/writing/"
 
 	<ul class="posts">
 	{% for post in site.posts %}
-		<li><span class="postDate">{{ post.date | date_to_string }}</span> — <a href="{{ post.url }}">{{ post.title }}</a></li>
+		<li>
+			<span class="postDate">{{ post.date | date_to_string }}</span>
+			<a href="{{ post.url }}">{{ post.title }}</a>
+		</li>
 	{% endfor %}
 	</ul>
 
@@ -24,8 +27,8 @@ redirect_from: "/writing/"
 
 {% comment %}
 
+	<!-- this section is JEKYLL commented out -->
 	<!-- posts -->
-
 	{% for post in site.posts %}
 	<section class="boxed blog-posts">
 

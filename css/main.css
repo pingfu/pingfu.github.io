@@ -516,8 +516,24 @@ blockquote {
     color: #fff;
   }
   
+  .posts ul {
+    list-style: none;
+  }
+
+  .posts li {
+    color: #626566;
+    font-size: 13px;
+    line-height: 1.6;
+    letter-spacing: .01em;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 15px 0;
+    position: relative;
+    list-style-type: none;
+    font-size: 18px;
+  }
+
   .postDate { 
-	width: auto;
+	  float: right;
   }
 }
 
