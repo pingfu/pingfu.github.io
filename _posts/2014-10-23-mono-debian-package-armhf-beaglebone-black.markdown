@@ -4,6 +4,9 @@ title: "Debian package for Mono on Beaglebone Black (ARMhf)"
 date: 2014-10-23
 categories: Programming Troubleshooting Hardware
 tags: beagleboard mono armhf
+permalink: /:title.html
+redirect_from:
+  - "/programming/troubleshooting/hardware/2014/10/23/mono-debian-package-armhf-beaglebone-black.html"
 ---
 
 It is frustrating to discover that at the time of writing Mono cannot be installed on Debian or Ubuntu using the standard package sources and the Beaglebone Black. It seems the only packages which exist are targeting ARMel architecture, rather than ARMhf (hard-float) of the BBB.
