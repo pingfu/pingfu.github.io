@@ -377,6 +377,26 @@ blockquote {
 	max-width: 100%;
 	max-height: 100%;
 }
+  
+#posts {
+  list-style: none;
+}
+
+#posts li {
+  color: #626566;
+  font-size: 13px;
+  line-height: 1.6;
+  letter-spacing: .01em;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding: 15px 0;
+  position: relative;
+  list-style-type: none;
+  font-size: 18px;
+}
+
+#posts .postDate { 
+  float: right;
+}
 
 
 
@@ -514,26 +534,6 @@ blockquote {
 
   #mobile-navigation a:hover {
     color: #fff;
-  }
-  
-  #posts {
-    list-style: none;
-  }
-
-  #posts li {
-    color: #626566;
-    font-size: 13px;
-    line-height: 1.6;
-    letter-spacing: .01em;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    padding: 15px 0;
-    position: relative;
-    list-style-type: none;
-    font-size: 18px;
-  }
-
-  #posts .postDate { 
-	  float: right;
   }
 }
 
