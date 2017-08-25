@@ -4,7 +4,7 @@ title: "Subverting RSA key generation"
 date: 2015-01-25
 categories: Security Cryptography RSA Backdoor
 tags: rsa backdoor
-permalink: /:title.html
+permalink: /:title
 redirect_from:
   - "/security/cryptography/rsa/backdoor/2015/01/25/back-door-in-an-rsa-public-key.html"
 ---

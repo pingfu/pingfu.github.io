@@ -4,7 +4,7 @@ title: "How to serialise classes which include IPAddress or IPEndPoint"
 date: 2015-07-16
 categories: csharp
 tags: 
-permalink: /:title.html
+permalink: /:title
 redirect_from:
   - "/csharp/2015/07/16/how-to-serialise-ipaddress-ipendpoint.html"
 ---

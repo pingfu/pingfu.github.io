@@ -4,7 +4,7 @@ title: "Service “Must specify value for source” error."
 date: 2011-08-10
 categories: Programming
 tags: c#
-permalink: /:title.html
+permalink: /:title
 redirect_from:
   - "/programming/2011/08/10/service-must-specify-value-for-source-error.html"
 ---

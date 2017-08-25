@@ -4,7 +4,7 @@ title: "Converting IPv4 to decimal, and back"
 date: 2011-09-07
 categories: Programming
 tags: c#
-permalink: /:title.html
+permalink: /:title
 redirect_from:
   - "/programming/2011/09/07/converting-ipv4-to-decimal-and-back.html"
 ---

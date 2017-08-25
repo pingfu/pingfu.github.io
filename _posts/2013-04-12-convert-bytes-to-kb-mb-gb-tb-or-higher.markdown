@@ -4,7 +4,7 @@ title: "Convert bytes to KB, MB, GB, TB or higher using c#"
 date: 2013-04-12
 categories: Programming
 tags: c#
-permalink: /:title.html
+permalink: /:title
 redirect_from:
   - "/programming/2013/04/12/convert-bytes-to-kb-mb-gb-tb-or-higher.html"
 ---

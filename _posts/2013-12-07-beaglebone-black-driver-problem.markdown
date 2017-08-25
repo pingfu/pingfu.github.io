@@ -4,7 +4,7 @@ title: "Beaglebone Driver Problem"
 date: 2013-12-07
 categories: Programming Troubleshooting Hardware
 tags: beagleboard
-permalink: /:title.html
+permalink: /:title
 redirect_from:
   - "/programming/troubleshooting/hardware/2013/12/07/beaglebone-black-driver-problem.html"
 ---

@@ -4,7 +4,7 @@ title: "How to receive WndProc messages in WPF"
 date: 2015-04-22
 categories: csharp
 tags: 
-permalink: /:title.html
+permalink: /:title
 redirect_from:
   - "/csharp/2015/04/22/receive-wndproc-messages-in-wpf.html"
 ---

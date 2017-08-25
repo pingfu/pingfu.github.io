@@ -4,7 +4,7 @@ title: "Debian package for Mono on Beaglebone Black (ARMhf)"
 date: 2014-10-23
 categories: Programming Troubleshooting Hardware
 tags: beagleboard mono armhf
-permalink: /:title.html
+permalink: /:title
 redirect_from:
   - "/programming/troubleshooting/hardware/2014/10/23/mono-debian-package-armhf-beaglebone-black.html"
 ---

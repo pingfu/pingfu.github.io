@@ -4,7 +4,7 @@ title: "ASP.net Expressions Overview"
 date: 2012-07-12
 categories: Programming Troubleshooting
 tags: asp.net
-permalink: /:title.html
+permalink: /:title
 redirect_from:
   - "/programming/troubleshooting/2012/07/12/asp-dotnet-expressions-overview.html"
 ---

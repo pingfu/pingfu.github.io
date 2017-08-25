@@ -4,7 +4,7 @@ title: "Exchange 2003, 0xFFFFFD9A and EventID 1159"
 date: 2011-07-20
 categories: Troubleshooting
 tags: exchange
-permalink: /:title.html
+permalink: /:title
 redirect_from:
   - "/troubleshooting/2011/07/20/exchange-2003-and-0xFFFFFD9A.html"
 ---

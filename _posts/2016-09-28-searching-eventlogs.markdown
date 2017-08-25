@@ -4,7 +4,7 @@ title: "Using the PowerShell cmdlet Get-WinEvent to search and filter event and 
 date: 2016-09-28
 categories: Administration
 tags: powershell
-permalink: /:title.html
+permalink: /:title
 redirect_from:
   - "/administration/2016/09/28/searching-eventlogs.html"
 ---

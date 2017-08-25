@@ -1,5 +1,5 @@
 name: pingfu
 excerpt_separator: <!--excerpt-->
-permalink: /:title.html
+permalink: /:title
 gems:
  - jekyll-redirect-from

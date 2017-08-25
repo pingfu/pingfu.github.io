@@ -4,7 +4,7 @@ title: "Cross domain communication with Ajax and JsonP"
 date: 2014-01-13
 categories: Programming Troubleshooting
 tags: javascript
-permalink: /:title.html
+permalink: /:title
 redirect_from:
   - "/programming/troubleshooting/2014/01/13/cross-domain-with-ajax-and-jsonp.html"
 ---

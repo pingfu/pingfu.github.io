@@ -4,7 +4,7 @@ title: "Get the current directory using C#"
 date: 2012-03-26
 categories: Performance
 tags: c#
-permalink: /:title.html
+permalink: /:title
 redirect_from:
   - "/performance/2012/03/26/get-current-directory-using-csharp.html"
 ---

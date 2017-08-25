@@ -4,7 +4,7 @@ title: "Creating a self installing windows service with c#"
 date: 2011-08-11
 categories: Programming
 tags: c#
-permalink: /:title.html
+permalink: /:title
 redirect_from:
   - "/programming/2011/08/11/creating-a-self-installing-windows-service-with-csharp.html"
 ---
