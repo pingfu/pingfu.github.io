@@ -4,6 +4,9 @@ title: "Converting IPv4 to decimal, and back"
 date: 2011-09-07
 categories: Programming
 tags: c#
+permalink: /:title.html
+redirect_from:
+  - "/programming/2011/09/07/converting-ipv4-to-decimal-and-back.html"
 ---
 
 After reading this [post][hinky-hack-ipconvc] by [mrhinkydink][mrhinkydink] I thought I’d share a c# way to accomplish the same thing; converting an IP address between dotted decimal notation and its numeric format. There are pre-written libraries and name spaces available everywhere to accomplish this task, but I’m going to show you the raw maths of the conversion process.

@@ -4,6 +4,9 @@ title: "Get the current directory using C#"
 date: 2012-03-26
 categories: Performance
 tags: c#
+permalink: /:title.html
+redirect_from:
+  - "/performance/2012/03/26/get-current-directory-using-csharp.html"
 ---
 
 How should you get the "current" directory of the executing binary in C#? There are a couple of options expose the directory and name of executing application, but with subtle differences:

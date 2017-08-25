@@ -4,6 +4,9 @@ title: "ASP.net Expressions Overview"
 date: 2012-07-12
 categories: Programming Troubleshooting
 tags: asp.net
+permalink: /:title.html
+redirect_from:
+  - "/programming/troubleshooting/2012/07/12/asp-dotnet-expressions-overview.html"
 ---
 
 ASPX in-page expressions are, if you don't know what to call them, nearly impossible to search. So on the off chance that this helps somebody, here are some search-friendly terms that might one day get crawled; (less than percent hash), (less than percent equals), (in-page expressions), (data binding), (data bound), (bee strings), (asp.net server tags), (code render blocks)

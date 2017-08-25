@@ -4,6 +4,9 @@ title: "Beaglebone Driver Problem"
 date: 2013-12-07
 categories: Programming Troubleshooting Hardware
 tags: beagleboard
+permalink: /:title.html
+redirect_from:
+  - "/programming/troubleshooting/hardware/2013/12/07/beaglebone-black-driver-problem.html"
 ---
 
 I'll spare you the back story, but in brief installing the USB NIC driver for the beaglebone black is horribly annoying if you're using a UK keyboard layout.

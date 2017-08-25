@@ -4,6 +4,9 @@ title: "Cross domain communication with Ajax and JsonP"
 date: 2014-01-13
 categories: Programming Troubleshooting
 tags: javascript
+permalink: /:title.html
+redirect_from:
+  - "/programming/troubleshooting/2014/01/13/cross-domain-with-ajax-and-jsonp.html"
 ---
 
 I recently needed to find a way to display third party RSS content on a domain which wasn't the content originator. The same-origin policy implemented in most browsers makes it awkward to directly consume content from a foreign domain, but the most common options are:

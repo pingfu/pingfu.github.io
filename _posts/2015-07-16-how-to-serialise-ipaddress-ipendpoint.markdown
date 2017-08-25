@@ -4,6 +4,9 @@ title: "How to serialise classes which include IPAddress or IPEndPoint"
 date: 2015-07-16
 categories: csharp
 tags: 
+permalink: /:title.html
+redirect_from:
+  - "/csharp/2015/07/16/how-to-serialise-ipaddress-ipendpoint.html"
 ---
 
 The two most popular formats for text-based serialisation are Xml and Json, often using the built-in `XmlSerializer` and `Json.Net` library respectively. There are others of course, but many seem to have some objection to serialising `IPAddress`, or objects containing references to that class.

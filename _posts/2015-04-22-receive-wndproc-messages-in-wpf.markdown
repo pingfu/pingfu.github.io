@@ -4,6 +4,9 @@ title: "How to receive WndProc messages in WPF"
 date: 2015-04-22
 categories: csharp
 tags: 
+permalink: /:title.html
+redirect_from:
+  - "/csharp/2015/04/22/receive-wndproc-messages-in-wpf.html"
 ---
 
 Access to the WindowProc callback function in Windows Forms is achieved by overriding `void WndProc(ref Message m)`, this registers the window class to receive Windows event messages. However, in WPF, most elements are drawn onto the WPF canvas, and it's common to only have a single hWnd which represents everything inside the window. Conversely, in a normal Win32 application most controls will have their own hWnd handle.

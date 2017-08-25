@@ -4,6 +4,9 @@ title: "Brocade - Cannot upgrade directly to 6.4. Please upgrade to 6.3 first an
 date: 2016-10-11
 categories: Infrastructure
 tags: fibre storage
+permalink: /:title.html
+redirect_from:
+  - "/infrastructure/2016/10/11/brocade-cannot-upgrade-directly-to-6.4-upgrade-to-6.3-first.html"
 ---
 
 Brocade fiber channel switches are extremely robust over long periods of time, delivering solid performance with excellent mean time between failure (MTBF) ratings, but periodically require firmware upgrades. Unfortunatley finding the latest firmware versions from the HPE website can be less than straight forward, as I discovered recently when upgrading some B-Series SAN (8/12c) switches running an old version (`v6.1.0_8e1`) of the firmware, which proved to be quite time consuming...

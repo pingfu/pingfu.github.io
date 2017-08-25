@@ -4,6 +4,9 @@ title: "Using the PowerShell cmdlet Get-WinEvent to search and filter event and 
 date: 2016-09-28
 categories: Administration
 tags: powershell
+permalink: /:title.html
+redirect_from:
+  - "/administration/2016/09/28/searching-eventlogs.html"
 ---
 
 Recently, a colleague wanted a way to search the body of Windows eventlogs – for instance if you wanted to count the occurances of a certain type of event where the traditional filtering fields are unable to differentiate between events.

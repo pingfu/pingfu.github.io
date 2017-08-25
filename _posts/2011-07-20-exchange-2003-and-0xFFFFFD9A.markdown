@@ -4,6 +4,9 @@ title: "Exchange 2003, 0xFFFFFD9A and EventID 1159"
 date: 2011-07-20
 categories: Troubleshooting
 tags: exchange
+permalink: /:title.html
+redirect_from:
+  - "/troubleshooting/2011/07/20/exchange-2003-and-0xFFFFFD9A.html"
 ---
 
 Problem: you regularly use BackupExec, or a comparable product to take backups of Exchange. Occasionally all of the Outlook clients throughout the organisation simultaneously start to crash, hang, or otherwise report failure in connecting to Exchange. In the Exchange server’s application event log you discover a series of errors (similar to those listed below and probably in an equally similar order) and find your Mailbox Store and Public Folder Store marked offline:

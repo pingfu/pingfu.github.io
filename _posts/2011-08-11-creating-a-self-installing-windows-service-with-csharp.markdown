@@ -4,6 +4,9 @@ title: "Creating a self installing windows service with c#"
 date: 2011-08-11
 categories: Programming
 tags: c#
+permalink: /:title.html
+redirect_from:
+  - "/programming/2011/08/11/creating-a-self-installing-windows-service-with-csharp.html"
 ---
 
 Services are not presented as a thing of beauty in .net - in fact, typically creating a service is gut wrenchingly awful. There are multiple design time components to drop in (and for some reason position as icons), and multiple classes for your Service, your ServiceInstaller, and ServiceBase. Then you meet InstallUtil.exe, so much example code which demonstrates installing services relies on the use of [InstallUtil.exe][googlesearch]. Finally, packaging it all together into an installer. Really, it's all quite disgusting.
