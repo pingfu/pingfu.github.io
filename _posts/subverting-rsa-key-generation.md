@@ -1,9 +1,11 @@
 ---
 layout: post
-title: "Backdoor in an RSA Public Key?"
+title: "Subverting RSA key generation"
 date: 2015-01-25
 categories: Security Cryptography RSA Backdoor
 tags: rsa backdoor
+redirect_from:
+  - cryptography/rsa/backdoor/2015/01/25/back-door-in-an-rsa-public-key.html
 ---
 
 **Sources:** A github [gist][gist] from [ryan-c][ryan-c] which inspired a technical [write-up][write-up] of the problem, and a c# proof of concept tool, [kleptography.net][kleptography.net].
