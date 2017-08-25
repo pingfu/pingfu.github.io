@@ -227,7 +227,7 @@ section th {
 
 #wrapper p {
   color: #626566;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.9;
   letter-spacing: .01em;
   margin: 0 0 14px 0;
@@ -358,12 +358,6 @@ blockquote {
     left: 10px;
 }
 
-.postDate { 
-	width: 80px;
-	display: inline-block;
-	white-space: wrap;
-}
-
 .slick-slide p {
 	margin-top: 16px !important;
 }
@@ -378,27 +372,37 @@ blockquote {
 	max-height: 100%;
 }
   
-#posts {
+#posts ul {
   list-style: none;
+  margin: 0;
+  padding-left: 0;
 }
 
 #posts li {
   color: #626566;
-  font-size: 13px;
   line-height: 1.6;
   letter-spacing: .01em;
   border-bottom: 1px solid rgba(0,0,0,0.05);
   padding: 15px 0;
   position: relative;
   list-style-type: none;
-  font-size: 18px;
+  font-size: 15px;
 }
 
-#posts .postDate { 
+#posts li:last-child {
+  border-bottom: none;
+}
+
+#posts .postDate {
   float: right;
+  word-break: none;
+  word-wrap: none;
 }
 
-
+#welcome-block {
+  text-align: center;
+  margin: 30px auto 60px 0;
+}
 
 
 

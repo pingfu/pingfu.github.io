@@ -8,19 +8,25 @@ redirect_from: "/writing/"
 
 <section class="boxed">
 
-	<h1>Tech Writing</h1>
-
-	<p>Hi, I'm <a href="/about">Marc</a>. Welcome to pingfu.net, a small collection of my thoughts on technology; programming, performance, infrastructure and cyber.</p>
+	<div id="welcome-block">
+		<h1>Hi, I'm Marc Barry</h1>
+		<p>A freelance <a href="/about">C# developer, computer security analyst and infrastructure specialist</a> working between London and Cardiff.</p>
+	</div>
+		
 	<br />
 
-	<ul id="posts">
-	{% for post in site.posts %}
-		<li>
-			<span class="postDate">{{ post.date | date_to_string }}</span>
-			<a href="{{ post.url }}">{{ post.title }}</a>
-		</li>
-	{% endfor %}
-	</ul>
+	<h1>Tech Writing</h1>
+	
+	<div id="posts">
+		<ul>
+		{% for post in site.posts %}
+			<li>
+				<span class="postDate">{{ post.date | date_to_string }}</span>
+				<a href="{{ post.url }}">{{ post.title }}</a>
+			</li>
+		{% endfor %}
+		</ul>
+	</div>
 
 </section>
 

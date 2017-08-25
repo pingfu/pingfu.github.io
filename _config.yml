@@ -1,5 +1,6 @@
 name: pingfu
 excerpt_separator: <!--excerpt-->
 permalink: /:title
-gems:
+plugins:
  - jekyll-redirect-from
+
