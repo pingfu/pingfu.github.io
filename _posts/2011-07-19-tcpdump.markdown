@@ -4,7 +4,7 @@ title: "Tcpdump"
 date: 2011-07-19
 categories: Security
 tags: tcpdump
-permalink: /:title.html
+permalink: /:title
 redirect_from:
   - "/security/2011/07/19/tcpdump.html"
 ---
