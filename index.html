@@ -13,7 +13,7 @@ redirect_from: "/writing/"
 	<p>Hi, I'm <a href="/about">Marc</a>. Welcome to pingfu.net, a small collection of my thoughts on technology; programming, performance, infrastructure and cyber.</p>
 	<br />
 
-	<ul class="posts">
+	<ul id="posts">
 	{% for post in site.posts %}
 		<li>
 			<span class="postDate">{{ post.date | date_to_string }}</span>

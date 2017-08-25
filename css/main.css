@@ -516,11 +516,10 @@ blockquote {
     color: #fff;
   }
   
-  .posts ul {
     list-style: none;
   }
 
-  .posts li {
+  #posts li {
     color: #626566;
     font-size: 13px;
     line-height: 1.6;
@@ -532,7 +531,7 @@ blockquote {
     font-size: 18px;
   }
 
-  .postDate { 
+  #posts .postDate { 
 	  float: right;
   }
 }
