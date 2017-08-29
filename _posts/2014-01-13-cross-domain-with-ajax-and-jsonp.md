@@ -2,7 +2,7 @@
 layout: post
 title: "Cross domain communication with Ajax and JsonP"
 date: 2014-01-13
-categories: Programming Troubleshooting
+categories: code troubleshooting
 tags: javascript
 permalink: /:title
 redirect_from:

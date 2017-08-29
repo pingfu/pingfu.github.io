@@ -2,7 +2,7 @@
 layout: post
 title: "ASP.net Expressions Overview"
 date: 2012-07-12
-categories: Programming Troubleshooting
+categories: code troubleshooting
 tags: asp.net
 permalink: /:title
 redirect_from:

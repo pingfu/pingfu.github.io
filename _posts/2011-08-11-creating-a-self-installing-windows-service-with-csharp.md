@@ -2,7 +2,7 @@
 layout: post
 title: "Creating a self installing windows service with c#"
 date: 2011-08-11
-categories: Programming
+categories: code
 tags: c#
 permalink: /:title
 redirect_from:
@@ -19,7 +19,9 @@ No third party code to bundle or execute, no bloat.
 
 NB. You can, of course, drop this unedited code into a Visual Studio project and compile as a Console application.
 
-Step 1. Let's review how to compile at the command line. We use csc.exe which can be used in a number of ways. We’ll be using it like this:
+### Step 1
+
+Let's review how to compile at the command line. We use csc.exe which can be used in a number of ways. We’ll be using it like this:
 
 ```
 csc.exe /out:CompliedBinary.exe sourceCode.cs
@@ -31,14 +33,18 @@ Remember where csc.exe lives and that compiling happens like this:
 C:\WINDOWS\Microsoft.NET\Framework\v3.5>csc.exe /out:G:\winservice\sample.exe G:\winservice\sample.cs
 ```
 
-Step 2. (Optional) Project references for Visual Studio - If you’re not compiling by hand, remember to add these two references to your project:
+### Step 2 (optional)
+
+Add library references to Visual Studio - remember to add these two references to your project if you're not compiling using `csc.exe`
 
 ```
 System.Configuration.Install
 System.ServiceProcess
 ```
 
-Step 3. The code:
+### Step 3
+
+The code
 
 {% highlight csharp linenos %}
 using System;
@@ -186,7 +192,9 @@ namespace sample
 }
 {% endhighlight %}
 
-Step 4. Compile
+### Step 4
+
+Compile
 
 ```
 C:\>cd C:\WINDOWS\Microsoft.NET\Framework\v3.5\
@@ -199,7 +207,9 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 C:\WINDOWS\Microsoft.NET\Framework\v3.5>
 ```
 
-Step 5. Run! You’ll notice (using SysInternals Suite – [Process Explorer][sysinternals]) that a new service process has spawned, and if you scrutinize services.mmc you’ll also note that your new service is installed and running.
+### Step 5
+
+Execute. You’ll notice (using SysInternals Suite – [Process Explorer][sysinternals]) that a new service process has spawned, and if you scrutinize services.mmc you’ll also note that your new service is installed and running.
 
 ```
 g:\winservice>sample.exe
@@ -217,7 +227,9 @@ Installation successful, starting service 'snaplen'...
 g:\winservice>
 ```
 
-Step 6. Uninstall
+### Step 6
+
+Uninstall
 
 ```
 g:\winservice>sample.exe -u

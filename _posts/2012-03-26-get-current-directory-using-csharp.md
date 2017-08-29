@@ -2,7 +2,7 @@
 layout: post
 title: "Get the current directory using C#"
 date: 2012-03-26
-categories: Performance
+categories: code
 tags: c#
 permalink: /:title
 redirect_from:

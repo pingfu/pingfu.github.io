@@ -1,19 +1,82 @@
----
-layout: master
----
+<!DOCTYPE html>
 
-<div id="mobile-navigation">
-  <a href="#" id="pull">Pingfu</a>
-  {% include /menu.html %}
-</div>
+<html lang="en">
 
-<div id="wrapper">
+<head>
 
-  <header id="api">
-    <span id="welcome"><a href="http://pingfu.net/">{{ site.name }}</a></span>
-    <nav>{% include /menu.html %}</nav>
-  </header>
+    <title>{{ page.title }} — Pingfu</title>
 
-  {{ content }}
+    <meta charset="utf-8">
+    <meta name="description" content="{{ page.description }}">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 
-</div>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300|Open+Sans+Condensed:300|Roboto:300">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"       integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"             integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="/js/slick/slick.css"/> <!-- http://kenwheeler.github.io/slick/ -->
+    <link rel="stylesheet" type="text/css" href="/js/slick/slick-theme.css"/>
+
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.2.1.min.js"                                      integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"       integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"              integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    {% include /nav.html %}
+
+    {{ content }}
+
+
+
+
+
+
+    <div id="footer">
+        <blockquote>Knock knock<br />Race condition<br />Who's there?</blockquote>
+    </div>
+
+    <script type="text/javascript" src="/js/slick/slick.min.js"></script>
+    <script type="text/javascript">
+
+        /* slick-carousel init */
+        $(document).ready(function() {
+            $(".slick-carousel").slick({
+                dots: false,
+                infinite: true,
+                speed: 300,
+                adaptiveHeight: true,
+                arrows: true,
+                centerMode: true,
+                centerPadding: '0px',
+                slidesToShow: 1,
+                lazyLoad: 'ondemand',
+                responsive: [ { breakpoint: 1024, settings: { dots: false } } ]
+            });
+        });
+        
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-244950-9']);
+        _gaq.push(['_setDomainName', 'pingfu.net']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script');
+            var s = document.getElementsByTagName('script')[0];
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    
+            s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+
+</body>
+</html>

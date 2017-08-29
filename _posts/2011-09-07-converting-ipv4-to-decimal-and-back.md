@@ -2,7 +2,7 @@
 layout: post
 title: "Converting IPv4 to decimal, and back"
 date: 2011-09-07
-categories: Programming
+categories: code
 tags: c#
 permalink: /:title
 redirect_from:
