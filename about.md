@@ -6,7 +6,7 @@ css_class_name: about
 
 ![pingfu logo](/img/pingfu.png "pingfu logo")
 
-# Hi, I'm [Marc](https://www.linkedin.com/in/marc-barry-10277a1a), C# developer, computer security analyst and infrastructure specialist based in [Wales, UK](http://maps.google.co.uk/maps?q=Wales).
+# Hi, I'm [Marc](https://www.linkedin.com/in/marc-barry), C# developer, computer security analyst and infrastructure specialist based in [Wales, UK](http://maps.google.co.uk/maps?q=Wales).
 
 <hr />
 
@@ -29,7 +29,7 @@ Recently worked with
 
 * Aerospace and defense contractor [General Dynamics](http://www.generaldynamics.uk.com/) — Under the office of the CTO leading an implementation of [IODEF](https://tools.ietf.org/html/rfc5070) and [RID](https://tools.ietf.org/html/rfc6545) RFCs in partnership with [EMC](http://www.emc.com/).
 
-* Digital agency [Sequence](http://www.sequence.co.uk/) — as an infrastructure architect and security lead.
+* Digital agency [Sequence](https://www.sequence.co.uk/) — as an infrastructure architect and security lead.
 
 ## Location
 
