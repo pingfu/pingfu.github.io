@@ -675,10 +675,12 @@ ul {
     body { 
         background: $white;
     }
+
     section { 
         border: 0px transparent;
         margin: 0;
     }
+
     #footer {
         margin-top: 140px;
     }
@@ -686,6 +688,12 @@ ul {
     #protocol-header-cheetsheets {
         td {
             white-space: normal;
+        }
+    }
+        
+    #about {
+        img {
+            padding: 20px;
         }
     }
 }
