@@ -13,7 +13,7 @@ A set of cheetsheets for Ethernet, IPv4, UDP, TCP and ICMP protocol headers.
 * [TCP Protocol Header](#tcp-header)
 * [UDP Protocol Header](#udp-header)
 * [ICMP Protocol Header](#icmp-header)
-* [A3 Wall Poster](#protocol-frames-cheetsheet---a3-poster)
+* [A3 Wall Poster](#protocol-frames-cheetsheet---a3-wall-poster)
 * [Source code and licence](#source-code-and-licence)
 
 ## Ethernet Frame Header
@@ -116,7 +116,7 @@ Maximum legal ICMP payload size                 | `65,507` bytes | Maximum IPv4 
 
 ---
 
-## Protocol Frames Cheetsheet - A3 Poster
+## Protocol Frames Cheetsheet - A3 Wall Poster
 
 [![Protocol Frames Cheetsheet A3 Poster](/img/cheat-sheets/ethernet-cheatsheet.png)](/img/cheat-sheets/ethernet-cheatsheet.png)
 
