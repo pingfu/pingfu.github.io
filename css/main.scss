@@ -574,7 +574,7 @@ ul {
     }
    
     td:last-child {
-        word-wrap:break-word; 
+        word-wrap: break-word; 
         white-space: normal;
     }
 }
@@ -584,6 +584,7 @@ ul {
         max-width: 100%;
     }
 }
+
 #footer {
     blockquote {
         font-style: italic;
@@ -670,5 +671,11 @@ ul {
     }
     #footer {
         margin-top: 140px;
+    }
+    
+    #protocol-header-cheetsheets {
+        td {
+            white-space: normal;
+        }
     }
 }
