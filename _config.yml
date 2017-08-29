@@ -1,6 +1,15 @@
-name: pingfu
-excerpt_separator: <!--excerpt-->
-permalink: /:title
+name:                 pingfu
+markdown: 		        kramdown
+highlighter: 	        rouge
+excerpt_separator:    <!--excerpt-->
+permalink:            /:title
+url: 			            "https://pingfu.net/"
+baseurl: 		          "/"
+
 plugins:
  - jekyll-redirect-from
+
+sass:
+ sass_dir: _sass
+ style: :compressed
 
