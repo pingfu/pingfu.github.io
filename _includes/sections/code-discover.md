@@ -26,7 +26,7 @@ A fantastically capable tool for crafting packets by hand.
 * ## [Fenix](http://fenixwebserver.com/) 
  Another webserver, desktop based and designed to serve static content.
  
- * ## [darkhttpd]http://unix4lyfe.org/darkhttpd/) 
+ * ## [darkhttpd](http://unix4lyfe.org/darkhttpd/) 
   Also available as a single file - darkhttpd has a simpler feature set compared to Mongoose, but very useful <em>"when you need a web server in a hurry.."</em>
 
 * ## [StatsD](https://github.com/etsy/statsd/) 
