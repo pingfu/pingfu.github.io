@@ -8,7 +8,7 @@ css_class_name: index
 
 # Hi, I'm Marc Barry
 
-A freelance <a href="/about">C# developer and infrastructure specialist with a background in security</a> working between London and Cardiff.
+A freelance <a href="/about">C# developer and infrastructure specialist</a> with a background in security working between London and Cardiff.
 
 ## Posts
 
