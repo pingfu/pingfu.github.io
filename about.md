@@ -6,7 +6,7 @@ css_class_name: about
 
 ![pingfu logo](/img/pingfu.png "pingfu logo")
 
-# Hi, I'm [Marc](https://www.linkedin.com/in/marc-barry), C# developer, computer security analyst and infrastructure specialist based in [Wales, UK](http://maps.google.co.uk/maps?q=Wales).
+# Hi, I'm [Marc](https://www.linkedin.com/in/marc-barry), C# developer and infrastructure specialist with a background in security based in [Wales, UK](http://maps.google.co.uk/maps?q=Wales).
 
 <hr />
 
