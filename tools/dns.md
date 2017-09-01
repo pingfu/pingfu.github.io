@@ -137,8 +137,6 @@ redirect_from: "/dns/"
         var queryServer   = server      == null ? "" : "&server=" + encodeURIComponent(server);
         var query         = queryQuestion + queryClass + queryType + queryServer;
 
-        console.log(query);
-
         $("#dns-toolbox-answers").show();
         $(".loadingImage").show();
         $("#dnsResultsError").hide();

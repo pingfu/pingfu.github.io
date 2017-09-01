@@ -16,13 +16,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"       integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"             integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <!-- http://kenwheeler.github.io/slick/
-    <link rel="stylesheet" type="text/css" href="/js/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="/js/slick/slick-theme.css"/>
-    -->
+    {% capture mainstyles %}{% include scss/main.scss %}{% endcapture %}
+    {% capture syntaxstyles %}{% include scss/syntax.scss %}{% endcapture %}
 
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+    <style>
+        {{ mainstyles | scssify }}
+        {{ syntaxstyles | scssify }}
+    </style>
 
     <script type="text/javascript" src="//code.jquery.com/jquery-3.2.1.min.js"                                      integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"       integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
