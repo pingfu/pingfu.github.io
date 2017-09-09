@@ -8,6 +8,7 @@ baseurl: 		          "/"
 
 plugins:
  - jekyll-redirect-from
+ - jekyll-sitemap
 
 sass:
  sass_dir: _sass
