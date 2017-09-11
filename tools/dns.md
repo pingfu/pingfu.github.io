@@ -8,7 +8,7 @@ redirect_from: "/dns/"
 
 <section id="dns-toolbox">
 
-    <h1>Dns toolbox</h1>
+    <h1>DNS toolbox</h1>
 
     <p>A simple, public DNS resolver. Either use our name server, or specific your own. The tool supports common query types such as A, NS, CNAME, SOA, PTR, MX, TXT, RP, AXFR, AAAA, ANY, and more in addition to full support for IPv6.</p>
 
