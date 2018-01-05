@@ -642,6 +642,10 @@ button {
     img {
         max-width: 100%;
     }
+	
+	pre {
+		margin: 0;
+	}
 }
 
 #footer {
@@ -663,6 +667,32 @@ button {
     min-height:80vh;
 }
 
+table.vcruntime {
+
+	margin: 0 0 14px 0;
+	padding: 0;
+	border-spacing: 1px;
+	border-collapse: separate;
+	border: 1px solid #ddd;
+
+	th {
+		background-color: #fafafa;
+		border: 1px solid #ddd;
+		padding: 5px 10px 5px 10px;
+		min-width: 100px;
+	}
+
+	td {
+		border: 1px solid #ddd;
+		padding: 3px 10px 3px 10px;
+		min-width: 100px;
+	}
+	
+	td:nth-child(1) {
+		font-family: 'Consolas';
+		font-size: 12px;
+	}
+}
 
 
 
