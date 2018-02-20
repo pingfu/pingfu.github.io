@@ -69,7 +69,9 @@ return String.Format("{0} in dotted decimal is {1}", value, LongToString(value))
 
 ---
 
-### Edit 2018-02-21: Adding extension method class to this post:
+### Edit 2018-02-21
+
+Adding extension method class to this post:
 
 {% highlight csharp linenos %}
 using System;
