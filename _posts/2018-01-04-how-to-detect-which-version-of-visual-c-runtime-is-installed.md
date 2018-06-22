@@ -276,6 +276,10 @@ namespace ConsoleApp1
             new VcRuntimeVersion(Guid.Parse("{7FED75A1-600C-394B-8376-712E2A8861F2}"), MscVersion.VisualStudio2017, ArchitectureType.x86, "14.12.25810 - Additional Runtime"),
             new VcRuntimeVersion(Guid.Parse("{C99E2ADC-0347-336E-A603-F1992B09D582}"), MscVersion.VisualStudio2017, ArchitectureType.x64, "14.12.25810 - Minimum runtime"),
             new VcRuntimeVersion(Guid.Parse("{828952EB-5572-3666-8CA9-000B6CE79350}"), MscVersion.VisualStudio2017, ArchitectureType.x86, "14.12.25810 - Minimum runtime"),
+            new VcRuntimeVersion(Guid.Parse("{03EBF679-E886-38AD-8E70-28658449F7F9}"), MscVersion.VisualStudio2017, ArchitectureType.x64, "14.14.26429 - Minimum Runtime"),
+            new VcRuntimeVersion(Guid.Parse("{7753EC39-3039-3629-98BE-447C5D869C09}"), MscVersion.VisualStudio2017, ArchitectureType.x86, "14.14.26429 - Minimum Runtime"),
+            new VcRuntimeVersion(Guid.Parse("{B12F584A-DE7A-3EE3-8EC4-8A64DBC0F2A7}"), MscVersion.VisualStudio2017, ArchitectureType.x64, "14.14.26429 - Additional Runtime"),
+            new VcRuntimeVersion(Guid.Parse("{6F0267F3-7467-350D-A8C8-33B72E3658D8}"), MscVersion.VisualStudio2017, ArchitectureType.x86, "14.14.26429 - Additional Runtime")
         };
     }
 }
@@ -431,6 +435,10 @@ The information used to build the code for this post is reprinted below in tabul
 | {7fed75a1-600c-394b-8376-712e2a8861f2} | x86          | Visual Studio 2017 | 14.12.25810        | Additional Runtime |
 | {c99e2adc-0347-336e-a603-f1992b09d582} | x64          | Visual Studio 2017 | 14.12.25810        | Minimum runtime |
 | {828952eb-5572-3666-8ca9-000b6ce79350} | x86          | Visual Studio 2017 | 14.12.25810        | Minimum runtime |
+| {03EBF679-E886-38AD-8E70-28658449F7F9} | x64          | Visual Studio 2017 | 14.14.26429        | Minimum Runtime |
+| {7753EC39-3039-3629-98BE-447C5D869C09} | x86          | Visual Studio 2017 | 14.14.26429        | Minimum Runtime |
+| {B12F584A-DE7A-3EE3-8EC4-8A64DBC0F2A7} | x64          | Visual Studio 2017 | 14.14.26429        | Additional Runtime |
+| {6F0267F3-7467-350D-A8C8-33B72E3658D8} | x86          | Visual Studio 2017 | 14.14.26429        | Additional Runtime |
 
 
 
