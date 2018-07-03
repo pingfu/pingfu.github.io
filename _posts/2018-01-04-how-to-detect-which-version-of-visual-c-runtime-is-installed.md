@@ -7,6 +7,8 @@ tags:
 permalink: /:title
 ---
 
+_Page last updated July 3 2018._
+
 In `C++` if we want to check if a particular version of the runtime is installed we can write conditionals to test the value of the built-in preprocessor macro `_MSC_VER` against known values indicating major releases of the Visual C++ compiler. See [this post from the Visual C++ Team Blog](https://blogs.msdn.microsoft.com/vcblog/2016/10/05/visual-c-compiler-version/) on Visual C++ Compiler Version and the MSDN page on [Predefined Macros](https://msdn.microsoft.com/en-us/library/b0084kay.aspx).
 
 {% highlight c++ linenos %}
