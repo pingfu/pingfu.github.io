@@ -23,15 +23,23 @@ In `C++` if we want to check if a particular version of the runtime is installed
 The following table highlights the major versions of Visual C++ against the _MSC_VER value.
  
 {:.vcruntime}
-| Visual Studio Version | MSVC++ Version | _MSC_VER | 
-| --------------------- | -------------- | -------- |
-| Visual Studio 2005    | MSVC++ 8.0     | 1400     |
-| Visual Studio 2008    | MSVC++ 9.0     | 1500     |
-| Visual Studio 2010    | MSVC++ 10.0    | 1600     |
-| Visual Studio 2012    | MSVC++ 11.0    | 1700     |
-| Visual Studio 2013    | MSVC++ 12.0    | 1800     |
-| Visual Studio 2015    | MSVC++ 14.0    | 1900     |
-| Visual Studio 2017    | MSVC++ 14.1    | 1910     |
+| Visual Studio Version                 | MSVC++ Version | _MSC_VER | 
+| ------------------------------------- | -------------- | -------- |
+| Visual Studio 97 version 5.0          | MSVC++ 5.0     | 1100     |
+| Visual Studio 6.0 version 6.0         | MSVC++ 6.0     | 1200     |
+| Visual Studio .NET 2002 version 7.0   | MSVC++ 7.0     | 1300     |
+| Visual Studio .NET 2003 version 7.1   | MSVC++ 7.1     | 1310     |
+| Visual Studio 2005 version 8.0        | MSVC++ 8.0     | 1400     |
+| Visual Studio 2008 version 9.0        | MSVC++ 9.0     | 1500     |
+| Visual Studio 2010 version 10.0       | MSVC++ 10.0    | 1600     |
+| Visual Studio 2012 version 11.0       | MSVC++ 11.0    | 1700     |
+| Visual Studio 2013 version 12.0       | MSVC++ 12.0    | 1800     |
+| Visual Studio 2015 version 14.0       | MSVC++ 14.0    | 1900     |
+| Visual Studio 2017 version 15.0       | MSVC++ 14.1    | 1910     |
+| Visual Studio 2017 version 15.3       | MSVC++ 14.11   | 1911     |
+| Visual Studio 2017 version 15.5       | MSVC++ 14.12   | 1912     |
+| Visual Studio 2017 version 15.6       | MSVC++ 14.13   | 1913     |
+| Visual Studio 2017 version 15.7       | MSVC++ 14.14   | 1914     |
 
 In `C#` its not so easy. Instead we have to look for the Visual C++ runtime as installed products. The Microsoft Windows Installer function `MsiQueryProductState()` can help with this. It  takes a product code guid as the input parameter, and returns the installation state of the program.
 
@@ -123,13 +131,14 @@ namespace ConsoleApp1
     {
         public enum MscVersion
         {
+            VisualStudio2003 = 1300, // MSVC++ 7.0
             VisualStudio2005 = 1400, // MSVC++ 8.0
             VisualStudio2008 = 1500, // MSVC++ 9.0
             VisualStudio2010 = 1600, // MSVC++ 10.0
             VisualStudio2012 = 1700, // MSVC++ 11.0
             VisualStudio2013 = 1800, // MSVC++ 12.0
-            VisualStudio2015 = 1900, // MSVC++ 14.0 
-            VisualStudio2017 = 1910, // MSVC++ 14.1 
+            VisualStudio2015 = 1900, // MSVC++ 14.0
+            VisualStudio2017 = 1910  // MSVC++ 14.1
         }
 
         public enum ArchitectureType
