@@ -32,7 +32,7 @@ foreach (var n in Enumerable.Range(1, 100).Select(i =>
 {% endraw %}
 {% endhighlight %}
 
-With formatting and extraneous spacing removed, the same code, golfed onto a single line weighs in at 138 characters:
+After formatting and extraneous spaces are removed, the same code, golfed onto a single line weighs in at 138 characters:
 
 {% highlight csharp linenos %}
 {% raw %}
