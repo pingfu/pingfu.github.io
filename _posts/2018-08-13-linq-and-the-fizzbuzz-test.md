@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "LINQ and the FizzBuzz test"
-date: 2018-08-09
+date: 2018-08-13
 categories: csharp
 tags: 
 permalink: /:title
