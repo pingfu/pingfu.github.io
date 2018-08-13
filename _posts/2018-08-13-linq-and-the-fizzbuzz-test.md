@@ -11,13 +11,13 @@ In February of 2007, Jeff Atwood wrote [Why Can't Programmers.. Program](https:/
 
 > Write a program that prints the numbers from 1 to 100. But for multiples of three print "Fizz" instead of the number and for the multiples of five print "Buzz". For numbers which are multiples of both three and five print "FizzBuzz".
 
-Reglardless of your position on how suitable the FizzBuzz test is in an interview situation, it has inspired code golf implementations in almost every concievable programming language.
+Regardless of your position on how suitable the FizzBuzz test is in an interview situation, it has inspired code golf implementations in almost every conceivable programming language.
 
-I enjoy code golf solutions that are concise, demonstrate thorough understanding of the problem, and most importantly maintain code readability. A wide-held realisation in FizzBuzz solutions is the realisation that numbers which are both multiples of three and five are also divisible by 15. So its common in code golf solutions including a mod 15 operation. However, that's not part of Jeff's spec.
+I enjoy code golf solutions that are concise, demonstrate thorough understanding of the problem, and most importantly maintain code readability. A wide-held realisation in FizzBuzz solutions is the realisation that numbers which are both multiples of three and five are also divisible by 15. So it’s common in code golf solutions including a mod 15 operation. However, that's not part of Jeff's spec.
 
-In the spirit of code-golf, the `i % 15` realisation is an elegant solution, but what is the cost relative to `(i % 3 && i % 5)`? I believe readability and code comprehension is really important, so given that `i % 15` is a departure from the spec, I'd be inclined to preserve the slightly longer evaluation in this case.
+In the spirit of code-golf, the `i % 15` realisation is an elegant solution, but what is the cost relative to `(i % 3 && i % 5)`? I believe readability and code comprehension is important, so given that `i % 15` is a arguably departure from the spec, I'd be inclined to preserve the slightly longer evaluation in this case.
 
-So with that in mind, here's my FizzBuzz solution formatted for readability leaning on LINQ, string interpolation and the inline if feature of C#.
+With that in mind, here's my FizzBuzz solution formatted for readability leaning on LINQ, string interpolation and the inline if feature of C#.
 
 {% highlight csharp linenos %}
 {% raw %}
