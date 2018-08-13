@@ -19,7 +19,8 @@ In the spirit of code-golf, the `i % 15` realisation is an elegant solution, but
 
 So with that in mind, here's my FizzBuzz solution formatted for readability leaning on LINQ, string interpolation and the inline if feature of C#.
 
-```csharp
+{% highlight csharp linenos %}
+{% raw %}
 foreach (var n in Enumerable.Range(1, 100).Select(i =>
     i % 3 == 0 && i % 5 == 0 ? "FizzBuzz"
         : i % 3 == 0 ? "Fizz"
@@ -28,10 +29,13 @@ foreach (var n in Enumerable.Range(1, 100).Select(i =>
 {
     Console.WriteLine(n);
 }
-```
+{% endraw %}
+{% endhighlight %}
 
 With formatting and extraneous spacing removed, the same code, golfed onto a single line weighs in at 138 characters:
 
-```csharp
+{% highlight csharp linenos %}
+{% raw %}
 foreach(var n in Enumerable.Range(1, 100).Select(i=>i%3==0&&i%5==0?"FizzBuzz":i%3==0?"Fizz":i%5==0?"Buzz":$"{i}")){Console.WriteLine(n);}
-```
+{% endraw %}
+{% endhighlight %}
