@@ -37,7 +37,15 @@ It took some searching to discover that version 6.3 of the firmware is no longer
 
 * `v6.3.0d` - [ftp://ftp.hp.com/pub/softlib/software11/COL22074/co-81903-1/v6.3.0d.zip][v6.3.0d]
 
-In case v6.3.0d disappears from the HP servers I've mirrored it to S3 storage for safe keeping. The mirrored file [v6.3.0d.zip][s3-63-firmware] is 1.22 GB (1,228,374,895 bytes) with an MD5 checksum of `256DDCF0A6D6D8F92A179EFF31DC1EE4`.
+~~In case v6.3.0d disappears from the HP servers I've mirrored it to S3 storage for safe keeping. The mirrored file [v6.3.0d.zip][s3-63-firmware] is 1.22 GB (1,228,374,895 bytes) with an MD5 checksum of `256DDCF0A6D6D8F92A179EFF31DC1EE4`.~~
+
+Edit: Brocade sent me the following DMCA take-down notice for the [v6.3.0d.zip][s3-63-firmware] file on the 12th of October 2021, so accordingly I've had to remove this file, sorry.
+
+```
+The Brocade Fabric Operating System (or FOS) firmware is being hosted without permission or authorization on the above URL. AWS is listed as the host for this infringing material. A link to Broadcom’s description of the software can be found here: https://www.broadcom.com/products/fibre-channel-networking/software/fabric-operating-system. This firmware is not available publicly and is only available through Brocade with a proper license. I hereby request that you remove or disable access to this material as it appears on your service in as expedient a fashion as possible.
+
+Comments (4KB max): The Brocade Fabric Operating System (or FOS) firmware is being hosted without permission or authorization on the above URL. AWS is listed as the host for this infringing material. A link to Broadcom’s description of the software can be found here: https://www.broadcom.com/products/fibre-channel-networking/software/fabric-operating-system. This firmware is not available publicly and is only available through Brocade with a proper license. I hereby request that you remove or disable access to this material as it appears on your service in as expedient a fashion as possible.
+```
 
 Frustratingly the HPE website doesn't appear to have any kind of coherent order presenting the firmware version options, so it can take a few minutes to find the relevant version of each major release. To save time I've listed below direct download links to each firmware that I used during the upgrade.
 
