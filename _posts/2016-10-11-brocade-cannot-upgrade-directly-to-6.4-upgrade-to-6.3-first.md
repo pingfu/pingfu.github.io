@@ -43,8 +43,6 @@ Edit: Brocade sent me the following DMCA take-down notice for the [v6.3.0d.zip][
 
 ```
 The Brocade Fabric Operating System (or FOS) firmware is being hosted without permission or authorization on the above URL. AWS is listed as the host for this infringing material. A link to Broadcom’s description of the software can be found here: https://www.broadcom.com/products/fibre-channel-networking/software/fabric-operating-system. This firmware is not available publicly and is only available through Brocade with a proper license. I hereby request that you remove or disable access to this material as it appears on your service in as expedient a fashion as possible.
-
-Comments (4KB max): The Brocade Fabric Operating System (or FOS) firmware is being hosted without permission or authorization on the above URL. AWS is listed as the host for this infringing material. A link to Broadcom’s description of the software can be found here: https://www.broadcom.com/products/fibre-channel-networking/software/fabric-operating-system. This firmware is not available publicly and is only available through Brocade with a proper license. I hereby request that you remove or disable access to this material as it appears on your service in as expedient a fashion as possible.
 ```
 
 Frustratingly the HPE website doesn't appear to have any kind of coherent order presenting the firmware version options, so it can take a few minutes to find the relevant version of each major release. To save time I've listed below direct download links to each firmware that I used during the upgrade.
