@@ -1,6 +1,6 @@
 # Discover
 
-I keep a list of (arguably less well-known) projects of exceptional quality I've usually discovered during their formative stages, listed here for future reference.
+I keep a list of (arguably less well-known) projects of exceptional quality I've usually discovered lurking on Hacker News, listed here for future reference.
 
 * ## [hangfire.io](http://hangfire.io/)
  An embeddable c# library which provides an easy, reliable and flexible interface to manage and perform background task processing, without Windows Service or separate process.

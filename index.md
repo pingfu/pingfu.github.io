@@ -6,15 +6,19 @@ redirect_from: "/writing/"
 css_class_name: index
 ---
 
-# Hi, I'm Marc Barry
+# Hi, I'm Marc
 
-A freelance <a href="/about">C# developer and infrastructure specialist</a> with an MSC in computer security working between London and Cardiff.
+A dotnet, infrastructure and security specialist based in Wales.
 
 <div class="row">
     <div class="col-md-6">
         <h2>Tools</h2>
         <div class="assets">
             <ul>
+                <li>
+                    <h3><a href="/tools/youtube">Embedded YouTube Player</a></h3>
+                    <p>YouTube ads aren't played on embedded videos, so copy the YouTube Video ID and play it here.</p>
+                </li>
                 <li>
                     <h3><a href="/tools/dns">DNS toolbox</a></h3>
                     <p>A visual DNS toolbox supporting common query types such as <code>A</code>, <code>NS</code>, <code>CNAME</code>, <code>SOA</code>, <code>PTR</code>, <code>MX</code>, <code>TXT</code>, <code>RP</code>, <code>AXFR</code>, <code>AAAA</code>, <code>ANY</code> and <code>IPv6</code>.</p>

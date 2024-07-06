@@ -1,6 +1,6 @@
 # Code
 
-A small collection of scripts and projects I maintain.
+A collection of small scripts and projects.
 
 * ## [![Build Status](https://ci.appveyor.com/api/projects/status/github/Pingfu/arpscan?branch=master&svg=true)](https://ci.appveyor.com/project/Pingfu/arpscan) [ArpScan](https://github.com/pingfu/arpscan)
  Enumerates local adapters and makes an ARP request to each address in the subnet. For when your laptop is on the other side of the room and you want to know its ip address.
@@ -10,9 +10,6 @@ A small collection of scripts and projects I maintain.
 
 * ## [![Build Status](https://ci.appveyor.com/api/projects/status/github/Pingfu/blockchainsharp?branch=master&svg=true)](https://ci.appveyor.com/project/Pingfu/blockchainsharp) [Bitcoin block chain parser](https://github.com/pingfu/blockchainsharp)
  A pure C# block chain parser library for Bitcoin. It eats binary blkxxxx.dat files and produces an IEnumerable strongly typed in-memory representation.
- 
-* ## [simple-aes.cs](https://gist.github.com/marcbarry/96470e5424bfa2ffd193)
-  Unsalted AES256 reference code, to aid decryption of DRM protected content referenced in m3u8 playlists.
 
-* ## [Security hardening web.config](https://gist.github.com/marcbarry/47644b4a43fbfb63ef54)
-  A simple template to help harden asp.net web applications.
+* ## [Multicast Testing Tool](https://github.com/enclave-networks/multicast-test)
+  Testing multicast traffic can be challenging and tends to involve running an application on two systems, physical or virtual connected to the network. iPerf can be complicated, and VLC multicast streaming can be buggy. This is a simpler command-line tool that runs on both Linux and Windows to help validate multicast connectivity.
