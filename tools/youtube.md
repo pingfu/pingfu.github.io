@@ -1,7 +1,7 @@
 ---
 layout: tools
-title: YouTube Embed
-redirect_from: "/ty"
+title: Embedded YouTube Player
+redirect_from: "/yt"
 redirect_from: "/youtube/"
 ---
 
@@ -37,7 +37,7 @@ redirect_from: "/youtube/"
 
     function sanitizeInput(input) {
         const pattern = /^[a-zA-Z0-9_-]{11}$/;
-        return pattern.test(input) ? input.trim() : '';
+        return pattern.test(input.trim()) ? input.trim() : '';
     }
 
     function playVideo(encodedUrl) {
@@ -55,12 +55,6 @@ redirect_from: "/youtube/"
             youTubeLinkContainer.style.display = 'block';
             addToPlayedVideos(videoUrl);
             document.activeElement.blur();
-        } else {
-            videoContainer.innerHTML = '';
-            videoLink.href = '#';
-            videoLink.textContent = '';
-            videoLink.style.display = 'none';
-            youTubeLinkContainer.style.display = 'none';
         }
     }
 
@@ -142,14 +136,16 @@ redirect_from: "/youtube/"
     document.addEventListener('paste', (event) => {
         if (document.activeElement !== videoId) {
             const paste = (event.clipboardData || window.clipboardData).getData('text');
-            embedVideo(sanitizeInput(paste));
+            const id = sanitizeInput(paste);
+            embedVideo(id);
         }
     });
 
     // paste into videoId input
     videoId.addEventListener('paste', (event) => {
         const paste = (event.clipboardData || window.clipboardData).getData('text');
-        embedVideo(sanitizeInput(paste));
+        const id = sanitizeInput(paste);
+        embedVideo(id);
     });
 
 </script>
