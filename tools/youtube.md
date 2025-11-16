@@ -231,8 +231,16 @@ redirect_from: "/youtube/"
             const response = await fetch(oembedUrl);
             if (response.ok) {
                 const data = await response.json();
-                console.log(`Fetched video title from ${oembedUrl}:`, data.title);
-                return data.title || '';
+                // Extract @handle from author_url (e.g., "https://www.youtube.com/@ChannelName" -> "@ChannelName")
+                let channelHandle = '';
+                if (data.author_url) {
+                    const urlParts = data.author_url.split('/');
+                    channelHandle = urlParts[urlParts.length - 1] || '';
+                }
+                const title = data.title || '';
+                const fullTitle = channelHandle && title ? `${channelHandle} — ${title}` : title;
+                console.log(`Fetched video title from ${oembedUrl}:`, fullTitle);
+                return fullTitle;
             } else {
                 console.log(`Failed to fetch video title from ${oembedUrl} - HTTP status:`, response.status, response.statusText);
             }
