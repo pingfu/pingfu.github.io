@@ -84,6 +84,7 @@ redirect_from: "/youtube/"
         color: #333;
         cursor: pointer;
         transition: opacity 0.2s;
+        white-space: nowrap;
     }
 
     #youtube-embed #playedVideos .group-tag .remove-tag {
