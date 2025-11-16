@@ -65,7 +65,7 @@ redirect_from: "/youtube/"
     /* Group input: fills parent cell */
     #youtube-embed #playedVideos td:nth-child(4) input.group-input {
         display: block !important;
-        width: 160px;
+        width: 200px;
         box-sizing: border-box;
         margin: 0;
         padding: 6px 10px !important;
