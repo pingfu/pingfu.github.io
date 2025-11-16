@@ -182,7 +182,7 @@ redirect_from: "/youtube/"
         <tbody></tbody>
     </table>
     <div>
-        <a id="forgetAll" class="forget-all" onclick="forgetAll()">Forget all recently played videos</a>
+        <a id="forgetAll" class="forget-all" onclick="forgetAll()">Forget all videos</a>
     </div>
 </div>
 
