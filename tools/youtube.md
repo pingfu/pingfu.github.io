@@ -196,7 +196,12 @@ redirect_from: "/youtube/"
     const videoId = document.getElementById('videoId');
     const youTubeLinkContainer = document.getElementById('youTubeLinkContainer');
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
+        // Check for refresh URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('refresh')) {
+            await refreshAllTitles();
+        }
         displayPlayedVideos();
         document.getElementById('videoId').focus();
     });
@@ -248,6 +253,30 @@ redirect_from: "/youtube/"
             console.log(`Error fetching video title from ${oembedUrl}:`, error.message);
         }
         return '';
+    }
+
+    // Refresh all video titles from the API
+    async function refreshAllTitles() {
+        console.log('Refreshing all video titles...');
+        let playedVideos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+        for (let i = 0; i < playedVideos.length; i++) {
+            const video = playedVideos[i];
+            console.log(`Refreshing ${i + 1}/${playedVideos.length}: ${video.url}`);
+
+            const newTitle = await fetchVideoTitle(video.url);
+            if (newTitle) {
+                video.notes = newTitle;
+            }
+
+            // Small delay to avoid hammering the API
+            if (i < playedVideos.length - 1) {
+                await new Promise(resolve => setTimeout(resolve, 500));
+            }
+        }
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(playedVideos));
+        console.log('Finished refreshing all video titles');
     }
 
     async function addToPlayedVideos(videoUrl) {
@@ -302,7 +331,7 @@ redirect_from: "/youtube/"
         const playedVideosContainer = document.querySelector('#playedVideos tbody');
         playedVideosContainer.innerHTML = '';
 
-        // Sort: untagged first (by timestamp desc), then by group, then by timestamp within groups
+        // Sort: untagged first (by timestamp desc), then by group, then by notes within groups
         playedVideos.sort((a, b) => {
             const aHasGroup = a.group && a.group.trim();
             const bHasGroup = b.group && b.group.trim();
@@ -321,8 +350,10 @@ redirect_from: "/youtube/"
             const groupCompare = a.group.toLowerCase().localeCompare(b.group.toLowerCase());
             if (groupCompare !== 0) return groupCompare;
 
-            // Same group - sort by timestamp descending
-            return new Date(b.timestamp) - new Date(a.timestamp);
+            // Same group - sort by notes alphabetically
+            const aNotes = (a.notes || '').toLowerCase();
+            const bNotes = (b.notes || '').toLowerCase();
+            return aNotes.localeCompare(bNotes);
         });
 
         playedVideos.forEach(video => {
