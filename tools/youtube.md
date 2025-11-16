@@ -136,6 +136,11 @@ redirect_from: "/youtube/"
         background-color: #f0f0f0;
     }
 
+    #youtube-embed .autocomplete-item .group-tag {
+        padding: 4px 14px 3px 12px !important;
+        margin: 2px 0;
+    }
+
     /* Forget column: fixed width, centered text */
     #youtube-embed #playedVideos td:nth-child(5) {
         width: 60px;
@@ -367,7 +372,7 @@ redirect_from: "/youtube/"
     }
 
     // Update group tag for a video
-    function updateGroup(encodedUrl, groupName) {
+    function updateGroup(encodedUrl, groupName, restoreFocus = true) {
         const videoUrl = decodeURIComponent(encodedUrl);
         let playedVideos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
@@ -404,29 +409,12 @@ redirect_from: "/youtube/"
         });
 
         localStorage.setItem(STORAGE_KEY, JSON.stringify(playedVideos));
-        displayPlayedVideos(videoUrl);
-    }
-
-    // Update group tag without restoring focus (used when clearing tags)
-    function updateGroupWithoutFocus(encodedUrl, groupName) {
-        const videoUrl = decodeURIComponent(encodedUrl);
-        let playedVideos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-
-        playedVideos = playedVideos.map(video => {
-            if (video.url === videoUrl) {
-                video.group = '';
-                video.groupColor = '';
-            }
-            return video;
-        });
-
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(playedVideos));
-        displayPlayedVideos(); // Don't pass videoUrl to avoid restoring focus
+        displayPlayedVideos(restoreFocus ? videoUrl : null);
     }
 
     // Remove tag with single click on X button
     function removeTag(encodedUrl) {
-        updateGroupWithoutFocus(encodedUrl, '');
+        updateGroup(encodedUrl, '', false);
     }
 
     // Show input when clicking on tag badge
@@ -459,6 +447,19 @@ redirect_from: "/youtube/"
     let selectedAutocompleteIndex = -1;
     let autocompleteJustOpened = false;
 
+    // Create autocomplete item element
+    function createAutocompleteItem(tag, index, encodedUrl) {
+        const item = document.createElement('div');
+        item.className = 'autocomplete-item';
+        item.dataset.index = index;
+        item.innerHTML = `<span class="group-tag" style="background-color: ${tag.color}">${tag.displayName}</span>`;
+        item.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            updateGroup(encodedUrl, tag.displayName, true);
+        });
+        return item;
+    }
+
     // Show autocomplete dropdown
     function showAutocomplete(input, encodedUrl) {
         hideAutocomplete();
@@ -469,15 +470,7 @@ redirect_from: "/youtube/"
 
         const tags = getAllTags();
         tags.forEach((tag, index) => {
-            const item = document.createElement('div');
-            item.className = 'autocomplete-item';
-            item.dataset.index = index;
-            item.innerHTML = `<span class="group-tag" style="background-color: ${tag.color}">${tag.displayName}</span>`;
-            item.addEventListener('mousedown', (e) => {
-                e.preventDefault();
-                updateGroup(encodedUrl, tag.displayName);
-            });
-            dropdown.appendChild(item);
+            dropdown.appendChild(createAutocompleteItem(tag, index, encodedUrl));
         });
 
         if (tags.length > 0) {
@@ -503,15 +496,7 @@ redirect_from: "/youtube/"
             : tags;
 
         filtered.forEach((tag, index) => {
-            const item = document.createElement('div');
-            item.className = 'autocomplete-item';
-            item.dataset.index = index;
-            item.innerHTML = `<span class="group-tag" style="background-color: ${tag.color}">${tag.displayName}</span>`;
-            item.addEventListener('mousedown', (e) => {
-                e.preventDefault();
-                updateGroup(encodedUrl, tag.displayName);
-            });
-            dropdown.appendChild(item);
+            dropdown.appendChild(createAutocompleteItem(tag, index, encodedUrl));
         });
 
         if (filtered.length > 0) {
@@ -522,7 +507,7 @@ redirect_from: "/youtube/"
     }
 
     // Hide autocomplete dropdown
-    function hideAutocomplete(input) {
+    function hideAutocomplete() {
         if (autocompleteJustOpened) {
             return; // Don't hide if we just opened it
         }
@@ -552,7 +537,7 @@ redirect_from: "/youtube/"
                 const value = input.value.trim();
                 if (!value) {
                     // Clearing the tag - don't restore focus
-                    updateGroupWithoutFocus(encodedUrl, '');
+                    updateGroup(encodedUrl, '', false);
                 } else {
                     updateGroup(encodedUrl, value);
                 }
