@@ -5,9 +5,89 @@ redirect_from: "/yt"
 redirect_from: "/youtube/"
 ---
 
+<style>
+    /* Container: full-width layout with padding (overrides Bootstrap) */
+    body .container#youtube-embed {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 60px !important;
+        margin: 0 auto !important;
+    }
+
+    /* Remove default padding (overrides main.scss) */
+    #youtube-embed {
+        padding: 0 !important;
+    }
+
+    /* Video player: maintains 16:9 aspect ratio, responsive to viewport (overrides main.scss) */
+    #youtube-embed iframe {
+        width: 100%;
+        height: calc((100vw - 120px) * 9 / 16) !important;
+        max-height: calc(100vh - 100px);
+        min-height: 400px;
+    }
+
+    /* Table: fixed layout for predictable column widths */
+    #youtube-embed #playedVideos {
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    /* Timestamp and URL columns: shrink to content width */
+    #youtube-embed #playedVideos td:nth-child(1),
+    #youtube-embed #playedVideos td:nth-child(2) {
+        width: 1px;
+        white-space: nowrap;
+    }
+
+    /* Notes column: expands to fill remaining table width */
+    #youtube-embed #playedVideos td:nth-child(3) {
+        width: 100%;
+        padding: 0;
+    }
+
+    /* Notes input: fills parent cell (overrides main.scss) */
+    #youtube-embed #playedVideos td:nth-child(3) input.notes-input {
+        display: block !important;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 6px 10px !important;
+    }
+
+    /* Forget column: fixed width, centered text */
+    #youtube-embed #playedVideos td:nth-child(4) {
+        width: 60px;
+        text-align: center;
+    }
+
+    /* Override Bootstrap responsive breakpoints */
+    @media (min-width: 768px) {
+        body .container#youtube-embed {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+    }
+
+    @media (min-width: 992px) {
+        body .container#youtube-embed {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        body .container#youtube-embed {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+    }
+</style>
+
 <div class="container" id="youtube-embed">
     <input type="text" id="videoId" placeholder="Paste, or enter a YouTube Video ID" onfocus="this.select()">
-    <button onclick="embedVideo(videoId.value)">Play without ads</button>
+    <button onclick="embedVideo(videoId.value)">Play</button>
     <div id="videoContainer"></div>
     <div id="youTubeLinkContainer">
         Watch on YouTube: <a id="videoLink" class="video-link" href="#" target="_blank"></a>
