@@ -77,7 +77,7 @@ redirect_from: "/youtube/"
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        padding: 4px 8px 3px 12px;
+        padding: 4px 8px 3px 16px;
         margin: 4px 0;
         border-radius: 12px;
         font-weight: 500;
@@ -86,20 +86,15 @@ redirect_from: "/youtube/"
         transition: opacity 0.2s;
     }
 
-    #youtube-embed #playedVideos .group-tag:hover {
-        opacity: 0.8;
-    }
-
     #youtube-embed #playedVideos .group-tag .remove-tag {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 14px;
-        height: 14px;
+        width: 15px;
+        height: 15px;
         border-radius: 50%;
-        background: rgba(0, 0, 0, 0.15);
         color: #333;
-        font-size: 10px;
+        font-size: 11px;
         line-height: 1;
         cursor: pointer;
         transition: background 0.2s;
@@ -130,7 +125,7 @@ redirect_from: "/youtube/"
     }
 
     #youtube-embed .autocomplete-item {
-        padding: 8px 12px;
+        padding: 5px 12px;
         cursor: pointer;
         display: flex;
         justify-content: flex-end;
@@ -139,10 +134,6 @@ redirect_from: "/youtube/"
     #youtube-embed .autocomplete-item:hover,
     #youtube-embed .autocomplete-item.selected {
         background-color: #f0f0f0;
-    }
-
-    #youtube-embed .autocomplete-item .group-tag {
-        margin: 0;
     }
 
     /* Forget column: fixed width, centered text */
@@ -311,7 +302,10 @@ redirect_from: "/youtube/"
             if (!video.hasOwnProperty('groupColor')) video.groupColor = '';
 
             const groupCellContent = video.group && video.group.trim()
-                ? `<span class="group-tag" style="background-color: ${video.groupColor}" onclick="showGroupInput('${encodeURIComponent(video.url)}')">${video.group}</span>`
+                ? `<span class="group-tag" style="background-color: ${video.groupColor}" onclick="showGroupInput('${encodeURIComponent(video.url)}')">
+                    <span>${video.group}</span>
+                    <span class="remove-tag" onclick="event.stopPropagation(); removeTag('${encodeURIComponent(video.url)}')">×</span>
+                </span>`
                 : `<input type="text" class="group-input" value="" placeholder="Add group..."
                     onfocus="showAutocomplete(this, '${encodeURIComponent(video.url)}')"
                     onblur="setTimeout(() => hideAutocomplete(), 200)"
@@ -428,6 +422,11 @@ redirect_from: "/youtube/"
 
         localStorage.setItem(STORAGE_KEY, JSON.stringify(playedVideos));
         displayPlayedVideos(); // Don't pass videoUrl to avoid restoring focus
+    }
+
+    // Remove tag with single click on X button
+    function removeTag(encodedUrl) {
+        updateGroupWithoutFocus(encodedUrl, '');
     }
 
     // Show input when clicking on tag badge
