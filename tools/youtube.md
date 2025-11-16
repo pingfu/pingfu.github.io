@@ -49,7 +49,7 @@ redirect_from: "/youtube/"
     /* Notes input: fills parent cell (overrides main.scss) */
     #youtube-embed #playedVideos td:nth-child(3) input.notes-input {
         display: block !important;
-        width: 100%;
+        width: 99%;
         margin: 0;
         padding: 6px 10px !important;
     }
