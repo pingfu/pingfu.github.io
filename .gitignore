@@ -166,3 +166,4 @@ pip-log.txt
 .DS_Store
 
 .jekyll-cache
+.jekyll-metadata
