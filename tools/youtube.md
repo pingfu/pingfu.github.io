@@ -223,11 +223,30 @@ redirect_from: "/youtube/"
         }
     }
 
-    function addToPlayedVideos(videoUrl) {
+    // Fetch video title from YouTube oEmbed API
+    async function fetchVideoTitle(videoUrl) {
+        try {
+            const oembedUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(videoUrl)}&format=json`;
+            const response = await fetch(oembedUrl);
+            if (response.ok) {
+                const data = await response.json();
+                console.log(`Fetched video title from ${oembedUrl}:`, data.title);
+                return data.title || '';
+            } else {
+                console.log(`Failed to fetch video title from ${oembedUrl} - HTTP status:`, response.status, response.statusText);
+            }
+        } catch (error) {
+            console.log(`Error fetching video title from ${oembedUrl}:`, error.message);
+        }
+        return '';
+    }
+
+    async function addToPlayedVideos(videoUrl) {
         const playedVideos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
         if (!playedVideos.some(video => video.url === videoUrl)) {
             const timestamp = new Date().toLocaleString();
-            playedVideos.push({ url: videoUrl, timestamp, notes: '', group: '', groupColor: '' });
+            const title = await fetchVideoTitle(videoUrl);
+            playedVideos.push({ url: videoUrl, timestamp, notes: title, group: '', groupColor: '' });
             localStorage.setItem(STORAGE_KEY, JSON.stringify(playedVideos));
             displayPlayedVideos();
         }
