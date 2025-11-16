@@ -201,6 +201,10 @@ redirect_from: "/youtube/"
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has('refresh')) {
             await refreshAllTitles();
+            // Remove the refresh parameter from URL
+            urlParams.delete('refresh');
+            const newUrl = window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : '');
+            window.history.replaceState({}, '', newUrl);
         }
         displayPlayedVideos();
         document.getElementById('videoId').focus();
