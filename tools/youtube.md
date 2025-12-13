@@ -211,8 +211,27 @@ redirect_from: "/youtube/"
     });
 
     function sanitizeInput(input) {
-        const pattern = /^[a-zA-Z0-9_-]{11}$/;
-        return pattern.test(input.trim()) ? input.trim() : '';
+        const trimmed = input.trim();
+
+        // Direct video ID (11 characters)
+        const idPattern = /^[a-zA-Z0-9_-]{11}$/;
+        if (idPattern.test(trimmed)) {
+            return trimmed;
+        }
+
+        // youtu.be short URL (e.g., https://youtu.be/T6dNEdAD5Hg?si=...)
+        const shortUrlMatch = trimmed.match(/youtu\.be\/([a-zA-Z0-9_-]{11})/);
+        if (shortUrlMatch) {
+            return shortUrlMatch[1];
+        }
+
+        // Standard YouTube URL (e.g., https://www.youtube.com/watch?v=...)
+        const standardUrlMatch = trimmed.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
+        if (standardUrlMatch) {
+            return standardUrlMatch[1];
+        }
+
+        return '';
     }
 
     function playVideo(encodedUrl) {
