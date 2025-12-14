@@ -3,193 +3,44 @@ layout: tools
 title: Embedded YouTube Player
 redirect_from: "/yt"
 redirect_from: "/youtube/"
+body_class: youtube-page
 ---
 
-<style>
-    /* Container: full-width layout with padding (overrides Bootstrap) */
-    body .container#youtube-embed {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 60px !important;
-        margin: 0 auto !important;
-    }
-
-    /* Remove default padding (overrides main.scss) */
-    #youtube-embed {
-        padding: 0 !important;
-    }
-
-    /* Video player: maintains 16:9 aspect ratio, responsive to viewport (overrides main.scss) */
-    #youtube-embed iframe {
-        width: 100%;
-        height: calc((100vw - 120px) * 9 / 16) !important;
-        max-height: calc(100vh - 100px);
-        min-height: 400px;
-    }
-
-    /* Table: fixed layout for predictable column widths */
-    #youtube-embed #playedVideos {
-        width: 100%;
-        table-layout: fixed;
-    }
-
-    /* Timestamp and URL columns: shrink to content width */
-    #youtube-embed #playedVideos td:nth-child(1),
-    #youtube-embed #playedVideos td:nth-child(2) {
-        width: 1px;
-        white-space: nowrap;
-    }
-
-    /* Notes column: expands to fill remaining table width */
-    #youtube-embed #playedVideos td:nth-child(3) {
-        width: 100%;
-        padding: 0;
-    }
-
-    /* Notes input: fills parent cell (overrides main.scss) */
-    #youtube-embed #playedVideos td:nth-child(3) input.notes-input {
-        display: block !important;
-        width: 99%;
-        margin: 0;
-        padding: 6px 10px !important;
-    }
-
-    /* Group column: fixed width, right-aligned */
-    #youtube-embed #playedVideos td:nth-child(4) {
-        width: 160px;
-        text-align: right;
-        padding: 0 !important;
-        position: relative;
-    }
-
-    /* Group input: fills parent cell */
-    #youtube-embed #playedVideos td:nth-child(4) input.group-input {
-        display: block !important;
-        width: 200px;
-        box-sizing: border-box;
-        margin: 0;
-        padding: 6px 10px !important;
-        text-align: right;
-    }
-
-    /* Group tag badge: styled appearance when not focused */
-    #youtube-embed #playedVideos .group-tag {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 4px 8px 3px 16px;
-        margin: 4px 0;
-        border-radius: 12px;
-        font-weight: 500;
-        color: #333;
-        cursor: pointer;
-        transition: opacity 0.2s;
-        white-space: nowrap;
-    }
-
-    #youtube-embed #playedVideos .group-tag .remove-tag {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        color: #333;
-        font-size: 11px;
-        line-height: 1;
-        cursor: pointer;
-        transition: background 0.2s;
-    }
-
-    #youtube-embed #playedVideos .group-tag .remove-tag:hover {
-        background: rgba(0, 0, 0, 0.3);
-    }
-
-    /* Autocomplete dropdown */
-    #youtube-embed .autocomplete-dropdown {
-        position: absolute;
-        background: white;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-        max-height: 200px;
-        overflow-y: auto;
-        z-index: 1000;
-        right: 0;
-        top: 100%;
-        min-width: 150px;
-        display: none;
-    }
-
-    #youtube-embed .autocomplete-dropdown.show {
-        display: block;
-    }
-
-    #youtube-embed .autocomplete-item {
-        padding: 5px 12px;
-        cursor: pointer;
-        display: flex;
-        justify-content: flex-end;
-    }
-
-    #youtube-embed .autocomplete-item:hover,
-    #youtube-embed .autocomplete-item.selected {
-        background-color: #f0f0f0;
-    }
-
-    #youtube-embed .autocomplete-item .group-tag {
-        padding: 4px 14px 3px 12px !important;
-        margin: 2px 0;
-    }
-
-    /* Forget column: fixed width, centered text */
-    #youtube-embed #playedVideos td:nth-child(5) {
-        width: 60px;
-        text-align: center;
-    }
-
-    /* Override Bootstrap responsive breakpoints */
-    @media (min-width: 768px) {
-        body .container#youtube-embed {
-            width: 100% !important;
-            max-width: 100% !important;
-        }
-    }
-
-    @media (min-width: 992px) {
-        body .container#youtube-embed {
-            width: 100% !important;
-            max-width: 100% !important;
-        }
-    }
-
-    @media (min-width: 1200px) {
-        body .container#youtube-embed {
-            width: 100% !important;
-            max-width: 100% !important;
-        }
-    }
-</style>
-
 <div class="container" id="youtube-embed">
-    <input type="text" id="videoId" placeholder="Paste, or enter a YouTube Video ID" onfocus="this.select()">
-    <button onclick="embedVideo(videoId.value)">Play</button>
+    <div class="input-row">
+        <input type="text" id="videoId" placeholder="Paste, or enter a YouTube Video ID" autocomplete="off" onfocus="this.select()">
+        <button onclick="embedVideo(videoId.value)">Play</button>
+    </div>
     <div id="videoContainer"></div>
     <div id="youTubeLinkContainer">
         Watch on YouTube: <a id="videoLink" class="video-link" href="#" target="_blank"></a>
     </div>
-    <div id="recentlyPlayed">Recently Played</div>
-    <table id="playedVideos">
-        <tbody></tbody>
-    </table>
-    <div>
+    <div id="recentlyPlayed">Watch history</div>
+    <div class="table-container">
+        <table id="playedVideos">
+            <tbody></tbody>
+        </table>
+    </div>
+    <div class="table-actions">
         <a id="forgetAll" class="forget-all" onclick="forgetAll()">Forget all videos</a>
+        <span class="action-separator">|</span>
+        <span class="sort-label">Order by:</span>
+        <a class="sort-link" onclick="sortByAdded()">date</a>
+        <span class="sort-separator">·</span>
+        <a class="sort-link" onclick="sortByChannel()">channel</a>
+        <span class="sort-separator sort-group-separator">·</span>
+        <a id="sortByGroup" class="sort-link" onclick="sortByGroup()">group</a>
     </div>
 </div>
 
 <script type="text/javascript">
 
     const STORAGE_KEY = 'playedVideos';
+    const SORT_ORDER_KEY = 'playedVideosSortOrder';
+    const SORT_BY_DATE = 'date';
+    const SORT_BY_CHANNEL = 'channel';
+    const SORT_BY_GROUP = 'group';
+    let currentlyPlayingUrl = null;
 
     const videoContainer = document.getElementById('videoContainer');
     const videoLink = document.getElementById('videoLink');
@@ -206,9 +57,35 @@ redirect_from: "/youtube/"
             const newUrl = window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : '');
             window.history.replaceState({}, '', newUrl);
         }
-        displayPlayedVideos();
+        applySortOrder();
         document.getElementById('videoId').focus();
     });
+
+    function formatTimestamp(timestamp) {
+        const date = new Date(timestamp);
+        const now = new Date();
+        const diffMs = now - date;
+        const diffMins = Math.floor(diffMs / 60000);
+        const diffHours = Math.floor(diffMs / 3600000);
+        const diffDays = Math.floor(diffMs / 86400000);
+
+        if (diffMins < 1) return 'Just now';
+        if (diffMins < 60) return `${diffMins}m ago`;
+        if (diffHours < 24) return `${diffHours}h ago`;
+        if (diffDays === 1) return 'Yesterday';
+        if (diffDays < 7) return `${diffDays}d ago`;
+
+        // Older than a week - show date
+        const day = date.getDate();
+        const month = date.toLocaleString('default', { month: 'short' });
+        const year = date.getFullYear();
+        const currentYear = now.getFullYear();
+
+        if (year === currentYear) {
+            return `${day} ${month}`;
+        }
+        return `${day} ${month} ${year}`;
+    }
 
     function sanitizeInput(input) {
         const trimmed = input.trim();
@@ -234,8 +111,44 @@ redirect_from: "/youtube/"
         return '';
     }
 
+    function copyVideoId(element) {
+        const id = element.textContent;
+        navigator.clipboard.writeText(id);
+
+        // Show copied state
+        element.classList.add('copied');
+        setTimeout(() => {
+            element.classList.remove('copied');
+        }, 800);
+    }
+
     function playVideo(encodedUrl) {
         embedVideo(new URL(decodeURIComponent(encodedUrl)).searchParams.get('v'));
+    }
+
+    function highlightPlayingRow(videoUrl) {
+        currentlyPlayingUrl = videoUrl;
+        // Remove highlight and reset icons on all rows
+        document.querySelectorAll('#playedVideos .video-item').forEach(row => {
+            row.classList.remove('playing');
+            const icon = row.querySelector('.play-col i');
+            if (icon) {
+                icon.classList.remove('fa-play-circle');
+                icon.classList.add('fa-play-circle-o');
+            }
+        });
+        // Add highlight and pause icon to current row
+        if (videoUrl) {
+            const row = document.querySelector(`#playedVideos .video-item[data-url="${videoUrl}"]`);
+            if (row) {
+                row.classList.add('playing');
+                const icon = row.querySelector('.play-col i');
+                if (icon) {
+                    icon.classList.remove('fa-play-circle-o');
+                    icon.classList.add('fa-play-circle');
+                }
+            }
+        }
     }
 
     function embedVideo(id) {
@@ -248,48 +161,61 @@ redirect_from: "/youtube/"
             videoLink.style.display = 'inline';
             youTubeLinkContainer.style.display = 'block';
             addToPlayedVideos(videoUrl);
+            highlightPlayingRow(videoUrl);
             document.activeElement.blur();
         }
     }
 
-    // Fetch video title from YouTube oEmbed API
-    async function fetchVideoTitle(videoUrl) {
+    // Fetch video info from YouTube oEmbed API
+    async function fetchVideoInfo(videoUrl) {
         try {
             const oembedUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(videoUrl)}&format=json`;
             const response = await fetch(oembedUrl);
             if (response.ok) {
                 const data = await response.json();
                 // Extract @handle from author_url (e.g., "https://www.youtube.com/@ChannelName" -> "@ChannelName")
-                let channelHandle = '';
+                let author = '';
                 if (data.author_url) {
                     const urlParts = data.author_url.split('/');
-                    channelHandle = urlParts[urlParts.length - 1] || '';
+                    author = urlParts[urlParts.length - 1] || '';
                 }
                 const title = data.title || '';
-                const fullTitle = channelHandle && title ? `${channelHandle} — ${title}` : title;
-                console.log(`Fetched video title from ${oembedUrl}:`, fullTitle);
-                return fullTitle;
+                const authorUrl = data.author_url || '';
+                console.log(`Fetched video info from ${oembedUrl}:`, { title, author, authorUrl });
+                return { title, author, authorUrl };
             } else {
-                console.log(`Failed to fetch video title from ${oembedUrl} - HTTP status:`, response.status, response.statusText);
+                console.log(`Failed to fetch video info from ${oembedUrl} - HTTP status:`, response.status, response.statusText);
             }
         } catch (error) {
-            console.log(`Error fetching video title from ${oembedUrl}:`, error.message);
+            console.log(`Error fetching video info from ${oembedUrl}:`, error.message);
         }
-        return '';
+        return { title: '', author: '', authorUrl: '' };
     }
 
-    // Refresh all video titles from the API
+    // For backwards compatibility - parse author from notes field
+    function parseAuthorFromNotes(notes) {
+        if (!notes) return { author: '', title: notes || '' };
+        const match = notes.match(/^(@[^\s]+)\s*—\s*(.*)$/);
+        if (match) {
+            return { author: match[1], title: match[2] };
+        }
+        return { author: '', title: notes };
+    }
+
+    // Refresh all video info from the API
     async function refreshAllTitles() {
-        console.log('Refreshing all video titles...');
+        console.log('Refreshing all video info...');
         let playedVideos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
         for (let i = 0; i < playedVideos.length; i++) {
             const video = playedVideos[i];
             console.log(`Refreshing ${i + 1}/${playedVideos.length}: ${video.url}`);
 
-            const newTitle = await fetchVideoTitle(video.url);
-            if (newTitle) {
-                video.notes = newTitle;
+            const info = await fetchVideoInfo(video.url);
+            if (info.title) {
+                video.notes = info.title;
+                video.author = info.author;
+                video.authorUrl = info.authorUrl;
             }
 
             // Small delay to avoid hammering the API
@@ -299,15 +225,23 @@ redirect_from: "/youtube/"
         }
 
         localStorage.setItem(STORAGE_KEY, JSON.stringify(playedVideos));
-        console.log('Finished refreshing all video titles');
+        console.log('Finished refreshing all video info');
     }
 
     async function addToPlayedVideos(videoUrl) {
         const playedVideos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
         if (!playedVideos.some(video => video.url === videoUrl)) {
             const timestamp = new Date().toLocaleString();
-            const title = await fetchVideoTitle(videoUrl);
-            playedVideos.push({ url: videoUrl, timestamp, notes: title, group: '', groupColor: '' });
+            const info = await fetchVideoInfo(videoUrl);
+            playedVideos.push({
+                url: videoUrl,
+                timestamp,
+                notes: info.title,
+                author: info.author,
+                authorUrl: info.authorUrl,
+                group: '',
+                groupColor: ''
+            });
             localStorage.setItem(STORAGE_KEY, JSON.stringify(playedVideos));
             displayPlayedVideos();
         }
@@ -354,39 +288,20 @@ redirect_from: "/youtube/"
         const playedVideosContainer = document.querySelector('#playedVideos tbody');
         playedVideosContainer.innerHTML = '';
 
-        // Sort: untagged first (by timestamp desc), then by group, then by notes within groups
-        playedVideos.sort((a, b) => {
-            const aHasGroup = a.group && a.group.trim();
-            const bHasGroup = b.group && b.group.trim();
-
-            // Untagged videos first
-            if (!aHasGroup && bHasGroup) return -1;
-            if (aHasGroup && !bHasGroup) return 1;
-
-            // Both untagged or both tagged
-            if (!aHasGroup && !bHasGroup) {
-                // Sort by timestamp descending
-                return new Date(b.timestamp) - new Date(a.timestamp);
-            }
-
-            // Both tagged - sort by group name
-            const groupCompare = a.group.toLowerCase().localeCompare(b.group.toLowerCase());
-            if (groupCompare !== 0) return groupCompare;
-
-            // Same group - sort by notes alphabetically
-            const aNotes = (a.notes || '').toLowerCase();
-            const bNotes = (b.notes || '').toLowerCase();
-            return aNotes.localeCompare(bNotes);
-        });
-
         playedVideos.forEach(video => {
             const videoItem = document.createElement('tr');
             videoItem.className = 'video-item';
             videoItem.dataset.url = video.url;
 
-            // Initialize group and groupColor if missing (for backwards compatibility)
+            // Initialize fields if missing (for backwards compatibility)
             if (!video.hasOwnProperty('group')) video.group = '';
             if (!video.hasOwnProperty('groupColor')) video.groupColor = '';
+            // Parse author from notes for old data that doesn't have separate author field
+            if (!video.hasOwnProperty('author') || !video.author) {
+                const parsed = parseAuthorFromNotes(video.notes);
+                video.author = parsed.author;
+            }
+            if (!video.hasOwnProperty('authorUrl')) video.authorUrl = '';
 
             const groupCellContent = video.group && video.group.trim()
                 ? `<span class="group-tag" style="background-color: ${video.groupColor}" onclick="showGroupInput('${encodeURIComponent(video.url)}')">
@@ -399,17 +314,25 @@ redirect_from: "/youtube/"
                     oninput="filterAutocomplete(this, '${encodeURIComponent(video.url)}')"
                     onkeydown="handleGroupKeydown(event, '${encodeURIComponent(video.url)}')">`;
 
+            const videoId = video.url.split('v=')[1] || video.url;
+            const authorCell = video.authorUrl
+                ? `<a href="${video.authorUrl}" target="_blank" class="author-link">${video.author}</a>`
+                : video.author || '';
             videoItem.innerHTML = `
-                <td>${video.timestamp}</td>
+                <td class="play-col" onclick="playVideo('${encodeURIComponent(video.url)}')">
+                    <i class="fa fa-play-circle-o"></i>
+                </td>
+                <td onclick="playVideo('${encodeURIComponent(video.url)}')"><span>${formatTimestamp(video.timestamp)}</span></td>
                 <td>
-                    <a href="#" onclick="playVideo('${encodeURIComponent(video.url)}'); return false;">${video.url}</a>
-                    <a href="${video.url}" target="_blank" class="youtube-icon" title="Open in YouTube">
-                        <i class="fas fa-external-link-alt"></i>
+                    <span class="video-id" onclick="copyVideoId(this)" title="Click to copy">${videoId}</span>
+                    <a href="${video.url}" target="_blank" class="external-link" title="Open in YouTube">
+                        <i class="fa fa-external-link"></i>
                     </a>
                 </td>
+                <td>${authorCell}</td>
                 <td><input type="text" class="notes-input" value="${video.notes || ''}" placeholder="Add notes..." oninput="updateNotes('${encodeURIComponent(video.url)}', this.value)"></td>
                 <td>${groupCellContent}</td>
-                <td><a href="#" onclick="forgetVideo('${encodeURIComponent(video.url)}'); return false;">Forget</a></td>
+                <td><a href="#" onclick="forgetVideo('${encodeURIComponent(video.url)}'); return false;" title="Forget"><i class="fa fa-trash-o"></i></a></td>
             `;
             playedVideosContainer.appendChild(videoItem);
 
@@ -431,13 +354,19 @@ redirect_from: "/youtube/"
         if (playedVideos.length > 0)
         {
             document.getElementById('recentlyPlayed').style.display = 'block';
-            document.getElementById('playedVideos').style.display = 'inline-block';
-            document.getElementById('forgetAll').style.display = 'inline-block';
+            document.querySelector('.table-container').style.display = 'block';
+            document.querySelector('.table-actions').style.display = 'block';
         }
         else {
             document.getElementById('recentlyPlayed').style.display = 'none';
-            document.getElementById('playedVideos').style.display = 'none';
-            document.getElementById('forgetAll').style.display = 'none';
+            document.querySelector('.table-container').style.display = 'none';
+            document.querySelector('.table-actions').style.display = 'none';
+        }
+
+        // Re-apply highlight to currently playing video
+        if (currentlyPlayingUrl) {
+            const row = document.querySelector(`#playedVideos .video-item[data-url="${currentlyPlayingUrl}"]`);
+            if (row) row.classList.add('playing');
         }
     }
 
@@ -508,12 +437,12 @@ redirect_from: "/youtube/"
         if (video) {
             const row = document.querySelector(`tr[data-url="${CSS.escape(videoUrl)}"]`);
             if (row) {
-                const groupCell = row.children[3];
+                const groupCell = row.children[5];
                 const currentGroup = video.group || '';
 
                 groupCell.innerHTML = `<input type="text" class="group-input" value="${currentGroup}" placeholder="Add group..."
                     onfocus="showAutocomplete(this, '${encodeURIComponent(videoUrl)}')"
-                    onblur="setTimeout(() => hideAutocomplete(), 200)"
+                    onblur="setTimeout(() => { hideAutocomplete(); displayPlayedVideos(); }, 200)"
                     oninput="filterAutocomplete(this, '${encodeURIComponent(videoUrl)}')"
                     onkeydown="handleGroupKeydown(event, '${encodeURIComponent(videoUrl)}')">`;
 
@@ -534,7 +463,7 @@ redirect_from: "/youtube/"
         const item = document.createElement('div');
         item.className = 'autocomplete-item';
         item.dataset.index = index;
-        item.innerHTML = `<span class="group-tag" style="background-color: ${tag.color}">${tag.displayName}</span>`;
+        item.innerHTML = `<span class="group-tag" style="background-color: ${tag.color}; padding: 3px 12px 2px 12px; max-width: none;">${tag.displayName}</span>`;
         item.addEventListener('mousedown', (e) => {
             e.preventDefault();
             updateGroup(encodedUrl, tag.displayName, true);
@@ -627,7 +556,7 @@ redirect_from: "/youtube/"
         } else if (event.key === 'Escape') {
             event.preventDefault();
             hideAutocomplete();
-            input.blur();
+            displayPlayedVideos();
         } else if (event.key === 'ArrowDown') {
             event.preventDefault();
 
@@ -673,6 +602,53 @@ redirect_from: "/youtube/"
         localStorage.removeItem(STORAGE_KEY);
         displayPlayedVideos();
         document.getElementById('recentlyPlayed').style.display = 'none';
+    }
+
+    function sortByGroup() {
+        localStorage.setItem(SORT_ORDER_KEY, SORT_BY_GROUP);
+        applySortOrder();
+    }
+
+    function sortByAdded() {
+        localStorage.setItem(SORT_ORDER_KEY, SORT_BY_DATE);
+        applySortOrder();
+    }
+
+    function sortByChannel() {
+        localStorage.setItem(SORT_ORDER_KEY, SORT_BY_CHANNEL);
+        applySortOrder();
+    }
+
+    function applySortOrder() {
+        const sortOrder = localStorage.getItem(SORT_ORDER_KEY) || SORT_BY_DATE;
+        let playedVideos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+        if (sortOrder === SORT_BY_GROUP) {
+            playedVideos.sort((a, b) => {
+                const groupA = (a.group || '').toLowerCase();
+                const groupB = (b.group || '').toLowerCase();
+                if (groupA === groupB) return 0;
+                if (groupA === '') return -1;
+                if (groupB === '') return 1;
+                return groupA.localeCompare(groupB);
+            });
+        } else if (sortOrder === SORT_BY_CHANNEL) {
+            playedVideos.sort((a, b) => {
+                const authorA = (a.author || '').toLowerCase();
+                const authorB = (b.author || '').toLowerCase();
+                if (authorA === authorB) return 0;
+                if (authorA === '') return 1;
+                if (authorB === '') return -1;
+                return authorA.localeCompare(authorB);
+            });
+        } else {
+            playedVideos.sort((a, b) => {
+                return new Date(b.timestamp) - new Date(a.timestamp);
+            });
+        }
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(playedVideos));
+        displayPlayedVideos();
     }
 
     // paste on page

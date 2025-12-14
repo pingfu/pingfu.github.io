@@ -2,7 +2,6 @@
 layout: post
 title: "Brocade - Cannot upgrade directly to 6.4. Please upgrade to 6.3 first and then upgrade to 6.4."
 date: 2016-10-11
-categories: Infrastructure
 tags: fibre storage
 permalink: /:title
 redirect_from:

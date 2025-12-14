@@ -1,6 +1,6 @@
 ---
 layout: tools
-title: Dns Toolbox
+title: DNS Toolbox
 redirect_from: "/tools"
 redirect_from: "/dns/"
 ---
@@ -10,45 +10,53 @@ redirect_from: "/dns/"
 
     <h1>DNS toolbox</h1>
 
-    <p>A simple, public DNS resolver. Either use our name server, or specific your own. The tool supports common query types such as A, NS, CNAME, SOA, PTR, MX, TXT, RP, AXFR, AAAA, ANY, and more in addition to full support for IPv6.</p>
+    <p>A simple, public DNS resolver. Either use our name server, or specify your own. The tool supports common query types such as A, NS, CNAME, SOA, PTR, MX, TXT, RP, AXFR, AAAA, ANY, and more in addition to full support for IPv6.</p>
 
-    <div class="formFields">
-
-        <p><input id="question" placeholder="pingfu.net" /> ... dns name, or question.</p>
-        <p><input id="nameserver" placeholder=""> ... specify a name server, or leave blank to use ours.</p>
-
-        <select id="queryType" name="queryType">
-            <option value="255">ANY</option>
-            <option value="1">A</option>
-            <option value="2">NS</option>
-            <option value="5">CNAME</option>
-            <option value="6">SOA</option>
-            <option value="12">PTR</option>
-            <option value="15">MX</option>
-            <option value="16">TXT</option>
-            <option value="17">RP</option>
-            <option value="28">AAAA</option>
-            <option value="33">SRV</option>
-            <option value="35">NAPTR</option>
-            <option value="37">CERT</option>
-            <option value="43">DS</option>
-            <option value="44">SSHFP</option>
-            <option value="99">SPF</option>
-            <option value="252">AXFR</option>
-            <option value="251">IXFR</option>
-            <option value="0">NULL</option>
-        </select>
-
-        <select id="queryClass" name="queryClass">
-            <option value="1">IN</option>
-            <option value="2">CS</option>
-            <option value="3">CH</option>
-            <option value="4">HS</option>
-            <option value="255">ANY</option>
-        </select>
-
-        <button id="resolve" type="button">Resolve</button>
-
+    <div class="form-container">
+        <div class="options-row">
+            <div class="option-group">
+                <label for="queryType">Type</label>
+                <select id="queryType" name="queryType">
+                    <option value="255">ANY</option>
+                    <option value="1">A</option>
+                    <option value="2">NS</option>
+                    <option value="5">CNAME</option>
+                    <option value="6">SOA</option>
+                    <option value="12">PTR</option>
+                    <option value="15">MX</option>
+                    <option value="16">TXT</option>
+                    <option value="17">RP</option>
+                    <option value="28">AAAA</option>
+                    <option value="33">SRV</option>
+                    <option value="35">NAPTR</option>
+                    <option value="37">CERT</option>
+                    <option value="43">DS</option>
+                    <option value="44">SSHFP</option>
+                    <option value="99">SPF</option>
+                    <option value="252">AXFR</option>
+                    <option value="251">IXFR</option>
+                    <option value="0">NULL</option>
+                </select>
+            </div>
+            <div class="option-group">
+                <label for="queryClass">Class</label>
+                <select id="queryClass" name="queryClass">
+                    <option value="1">IN</option>
+                    <option value="2">CS</option>
+                    <option value="3">CH</option>
+                    <option value="4">HS</option>
+                    <option value="255">ANY</option>
+                </select>
+            </div>
+            <div class="option-group nameserver-group">
+                <label for="nameserver">Nameserver</label>
+                <input id="nameserver" type="text" placeholder="Optional, e.g. 8.8.8.8" autocomplete="off" />
+            </div>
+        </div>
+        <div class="input-row">
+            <input id="question" type="text" placeholder="Enter a domain name, e.g. pingfu.net" autocomplete="off" />
+            <button id="resolve" type="button">Resolve</button>
+        </div>
     </div>
 
 </section>

@@ -2,7 +2,6 @@
 layout: post
 title: "Service “Must specify value for source” error."
 date: 2011-08-10
-categories: Programming
 tags: c#
 permalink: /:title
 redirect_from:
@@ -43,7 +42,7 @@ ti.Installers.Add(new ServiceInstaller());
 ti.Install(new Hashtable());
 ```
 
-The exception complaining about, “must specify a value for source” actually meant, I hadn’t set the ServiceName property. The reason for this is that my TransactedInstaller was creating a new instance of a framework class, rather than a new instance of my class, so the code that set ServiceName was never being called and violla: must specify value for source.
+The exception complaining about, “must specify a value for source” actually meant, I hadn’t set the ServiceName property. The reason for this is that my TransactedInstaller was creating a new instance of a framework class, rather than a new instance of my class, so the code that set ServiceName was never being called and voilà: must specify value for source.
 
 So, an easy fix:
 

@@ -2,7 +2,6 @@
 layout: post
 title: "Forcing uniqueness in a single column on a Google Spreadsheet"
 date: 2023-04-26
-categories: 
 tags: 
 permalink: /:title
 ---

@@ -2,12 +2,15 @@
 layout: post
 title: "Exchange 2003, 0xFFFFFD9A and EventID 1159"
 date: 2011-07-20
-categories: Troubleshooting
 tags: exchange
 permalink: /:title
 redirect_from:
   - "/troubleshooting/2011/07/20/exchange-2003-and-0xFFFFFD9A.html"
 ---
+
+_Last updated December 13 2025._
+
+> This post relates to Exchange Server 2003, which reached end of support in April 2014. It is preserved here for historical reference only.
 
 Problem: you regularly use BackupExec, or a comparable product to take backups of Exchange. Occasionally all of the Outlook clients throughout the organisation simultaneously start to crash, hang, or otherwise report failure in connecting to Exchange. In the Exchange server’s application event log you discover a series of errors (similar to those listed below and probably in an equally similar order) and find your Mailbox Store and Public Folder Store marked offline:
 
@@ -44,9 +47,9 @@ When a backup operation against Exchange commences it puts the Exchange database
 
 The problem appeared because backups were scheduled to start at 9pm, and the on-line maintenance intervals for the Mail Store were scheduled in Exchange to run between 2am and 6am (Right click Mailbox Store -> Properties -> Database tab -> Maintenance interval) . As the backups can take an indeterminable amount of time, depending on network conditions and varying size, our scheduling produced an opportunity for these tasks to frequently overlap. Put simply, our backup job would exceed 8 hours.
 
-Due to the timing overlap, each day we edged closer towards the uncommitted log file limit in Exchange depending on the duration of the job, and eventually caused Exchange to unmount the store. As the online maintenance interval a fixed duration, and the back-up job is open-ended, it made sense for us to simply reverse the scheduled in this case.
+Due to the timing overlap, each day we edged closer towards the uncommitted log file limit in Exchange depending on the duration of the job, and eventually caused Exchange to unmount the store. As the online maintenance interval is a fixed duration, and the back-up job is open-ended, it made sense for us to simply reverse the scheduled in this case.
 
-To address what we thought was the cause of our problems we changed the on-line maintenance window to run in Exchange on a custom time schedule, daily, between 7pm and midnight. We then updated the Backup Exec job based on our Exchange maintenance interval to kick off a 12:10am.
+To address what we thought was the cause of our problems we changed the on-line maintenance window to run in Exchange on a custom time schedule, daily, between 7pm and midnight. We then updated the Backup Exec job based on our Exchange maintenance interval to kick off at 12:10am.
 
 There is an excellent related article [here][windowsitpro].
 

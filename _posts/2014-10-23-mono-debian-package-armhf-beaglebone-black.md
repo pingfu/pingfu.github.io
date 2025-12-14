@@ -2,12 +2,15 @@
 layout: post
 title: "Debian package for Mono on Beaglebone Black (ARMhf)"
 date: 2014-10-23
-categories: Programming Troubleshooting Hardware
 tags: beagleboard mono armhf
 permalink: /:title
 redirect_from:
   - "/programming/troubleshooting/hardware/2014/10/23/mono-debian-package-armhf-beaglebone-black.html"
 ---
+
+_Last updated December 13 2025._
+
+> This post describes compiling Mono 3.8 for ARM in 2014. Today, .NET runs natively on ARM Linux. Install the modern .NET SDK directly.
 
 It is frustrating to discover that at the time of writing Mono cannot be installed on Debian or Ubuntu using the standard package sources and the Beaglebone Black. It seems the only packages which exist are targeting ARMel architecture, rather than ARMhf (hard-float) of the BBB.
 

@@ -7,26 +7,24 @@ title: Generate Passwords
 
     <h1>Passwords</h1>
 
-    <p>A set of complex passwords, of varying length and character compositions generated randomly just for you.</p>
+    <p>A fresh set of randomly generated complex passwords, of varying length and character composition.</p>
 
-    <div id="passwords"></div>
-    <div id="error" class="apiErrorMessage"></div>
-    
-    <button id="loadPasswords" type="button">Generate another set &hellip;</button>
-
-    <img class="loading" src="/img/ajax-loader.gif" />
+    <div class="password-container">
+        <div class="passwords-frame">
+            <div id="passwords"></div>
+            <button id="loadPasswords" type="button">Generate another set</button>
+            <img class="loading" src="/img/ajax-loader.gif" />
+        </div>
+        <div id="error" class="apiErrorMessage"></div>
+    </div>
 
 </section>
 
-
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
 
     function init()
     {
-        new Clipboard('.copyButton');
-
 	    $("#passwords").hide();
 	    $("#error").hide();
 	    $(".loading").hide();
@@ -63,9 +61,14 @@ title: Generate Passwords
                     var ul = $('<ul>');
                     json.forEach(function(entry, i) {
                         ul.append($('<li>')
-                            .append($(document.createElement('span')).addClass('length').html(' (' + entry.Length + ')'))
-                            .append($(document.createElement('span')).addClass('password password-' + i).html(entry.Value))
-                            .append($(document.createElement('button')).text("copy").addClass("copyButton").attr("data-clipboard-action", "copy").attr("data-clipboard-target", ".password-" + i))
+                            .append($(document.createElement('span')).addClass('password').html(entry.Value).on('click', function() {
+                                var el = $(this);
+                                navigator.clipboard.writeText(entry.Value);
+                                $('.password').removeClass('last-copied');
+                                el.addClass('copied last-copied');
+                                setTimeout(function() { el.removeClass('copied'); }, 600);
+                            }))
+                            .append($(document.createElement('span')).addClass('length').html(entry.Length + ' chars'))
                             );
                     });
                     $('#passwords').append(ul);

@@ -2,7 +2,6 @@
 layout: post
 title: "How to receive WndProc messages in WPF"
 date: 2015-04-22
-categories: csharp
 tags: 
 permalink: /:title
 redirect_from:
@@ -25,7 +24,7 @@ A complete example is included below;
 
 <!--excerpt-->
 
-{% highlight csharp linenos %}
+```csharp
 using System;
 using System.Windows;
 using System.Windows.Interop;
@@ -84,15 +83,15 @@ namespace WpfApplication1
         }
     }
 }
-{% endhighlight %}
+```
 
 You may have noticed the I'm casting `msg` into `WindowMessage` and `wParam` into `WindowMessageParameter`. This is simply for brevity. 
 
-I've found what I think is a fairly complete list of `WindowMessage` and `WindowMessageParameter` codes. In my case I was interested in capturing `POWER_BROADCAST` events, specifically to handle handl the `SUSPEND_RESUME` event. The message code corrosponding to the `WM_POWERBROADCAST` event is `0x0218` (or `218` in decimal given the parameter is an `int`) and diferentiated as `PBT_APMRESUMEAUTOMATIC` subcode `0x12` but the enum makes more readable code.
+I've found what I think is a fairly complete list of `WindowMessage` and `WindowMessageParameter` codes. In my case I was interested in capturing `POWER_BROADCAST` events, specifically to handle the `SUSPEND_RESUME` event. The message code corrosponding to the `WM_POWERBROADCAST` event is `0x0218` (or `218` in decimal given the parameter is an `int`) and diferentiated as `PBT_APMRESUMEAUTOMATIC` subcode `0x12` but the enum makes more readable code.
 
 For an interesting bit of history about wParam and lParam, see [this post](http://stackoverflow.com/questions/17851348/what-do-lresult-wparam-and-lparam-mean) on stackoverflow.com.
 
-{% highlight csharp linenos %}
+```csharp
 using System;
 
 namespace WpfApplication1
@@ -859,4 +858,4 @@ namespace WpfApplication1
         BROADCAST_QUERY_DENY = 0x424D5144 //
     }
 }
-{% endhighlight %}
+```

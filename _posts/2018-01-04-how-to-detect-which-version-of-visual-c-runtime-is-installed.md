@@ -2,7 +2,6 @@
 layout: post
 title: "How to check if the Microsoft Visual C++ Runtime is installed"
 date: 2018-01-04
-categories: csharp
 tags: 
 permalink: /:title
 ---
@@ -13,7 +12,7 @@ _Last updated October 16 2019._
 
 In `C++` if we want to check if a particular version of the runtime is installed we can write conditionals to test the value of the built-in preprocessor macro `_MSC_VER` against known values indicating major releases of the Visual C++ compiler. See [this post from the Visual C++ Team Blog](https://blogs.msdn.microsoft.com/vcblog/2016/10/05/visual-c-compiler-version/) on Visual C++ Compiler Version and the MSDN page on [Predefined Macros](https://msdn.microsoft.com/en-us/library/b0084kay.aspx).
 
-{% highlight c++ linenos %}
+```cpp
 #if _MSC_VER >= 1900
 	// ...
 #elif _MSC_VER >= 1800
@@ -21,7 +20,7 @@ In `C++` if we want to check if a particular version of the runtime is installed
 #else
 	// ...
 #endif
-{% endhighlight %}
+```
 
  
 The following table highlights the major versions of Visual C++ against the _MSC_VER value.
@@ -47,8 +46,7 @@ The following table highlights the major versions of Visual C++ against the _MSC
 
 In `C#` its not so easy. Instead we have to look for the Visual C++ runtime as installed products. The Microsoft Windows Installer function `MsiQueryProductState()` can help with this. It  takes a product code guid as the input parameter, and returns the installation state of the program.
 
-{% highlight csharp linenos %}
-{% raw %}
+```csharp
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,7 +68,7 @@ namespace ConsoleApp1
 
         public static bool IsProductInstalled(Guid productCode)
         {
-            var state = MsiQueryProductState($"{{{productCode}}}");
+            var state = MsiQueryProductState($"{{productCode}}");
 
             if (state == InstallState.INSTALLSTATE_LOCAL ||
                 state == InstallState.INSTALLSTATE_DEFAULT)
@@ -103,8 +101,7 @@ namespace ConsoleApp1
         }
     }
 }
-{% endraw %}
-{% endhighlight %}
+```
 
 We therefore need to know the guid product code of each version to check if its installed. As it turns out, there are a lot of versions. Microsoft don't seem to publish a full list with associated guids either,  so we have to assemble our own.
 
@@ -114,17 +111,14 @@ Calling `VcRuntime.KnownRuntimeVersions` will return the full list of known runt
 
 We can use these two functions to craft expressive queries. In the following example, I want to know if any versions of the vc++ runtime are installed from Visual Studio 2013 onwards which also target 64bit operating systems.
 
-{% highlight csharp linenos %}
-{% raw %}
+```csharp
 var filteredRuntimes = VcRuntime.KnownRuntimeVersions.Where(n => n.MscVer >= VcRuntime.MscVersion.VisualStudio2013 && n.Architecture == VcRuntime.ArchitectureType.x64);
 var installedRuntimes = VcRuntime.GetInstalledRuntimeVersions(filteredRuntimes);
-{% endraw %}
-{% endhighlight %}
+```
 
 The full `VcRuntime` class is below:
 
-{% highlight csharp linenos %}
-{% raw %}
+```csharp
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -296,8 +290,7 @@ namespace ConsoleApp1
         };
     }
 }
-{% endraw %}
-{% endhighlight %}
+```
 
 
 

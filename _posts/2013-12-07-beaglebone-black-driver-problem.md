@@ -2,7 +2,6 @@
 layout: post
 title: "Beaglebone Driver Problem"
 date: 2013-12-07
-categories: Programming Troubleshooting Hardware
 tags: beagleboard
 permalink: /:title
 redirect_from:
@@ -28,7 +27,7 @@ Investigating the XML file reveals several sets of language tags;
 
 <!--excerpt-->
 
-The the code for British English is missing, and the binary quite unforgivingly handles this situation by refusing to install, rather than picking US English or any other language as a default. 
+The code for British English is missing, and the binary quite unforgivingly handles this situation by refusing to install, rather than picking US English or any other language as a default. 
 
 It was easy enough to fix. A quick search and I've found a document published by Microsoft titled, `“Language Identifier Constants and Strings”` which enumerates the language and locale specific identifier codes built into the Windows API, so `0×0809` – the code for United Kingdom (GB). Maybe you can find yours in the list too.
 
@@ -37,7 +36,7 @@ It was easy enough to fix. A quick search and I've found a document published by
 I added the missing locale identifier to the XML document and moved on to the next obstacle.
 
 ```html
-<language code=”0×0409″></language>
+<language code="0x0809"></language>
 ```
 
 Next problem: The drivers are unsigned and Windows 8 doesn't like that.

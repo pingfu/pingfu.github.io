@@ -2,7 +2,6 @@
 layout: post
 title: "Subverting RSA key generation"
 date: 2015-01-25
-categories: Security Cryptography RSA Backdoor
 tags: rsa backdoor
 permalink: /:title
 redirect_from:

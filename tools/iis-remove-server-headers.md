@@ -35,7 +35,7 @@ gacutil.exe /i Pingfu.RemoveServerHeaderModule.dll
 
 1. Open the <strong>Internet Information Services (IIS) Manager</strong> snap-in.
 2. Open the <strong>Modules</strong> administration feature at the server level.
-3. Select <strong>Add Managed Module...
+3. Select <strong>Add Managed Module...</strong>
     1. For Name enter a descriptive name, for example "Pingfu.RemoveServerHeaderModule"
     2. For Type select the module from the list.
 

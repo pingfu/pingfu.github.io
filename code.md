@@ -11,8 +11,4 @@ css_class_name: code
 {% include /sections/code-projects.md %}
 </section>
 
-<section markdown="1">
-{% include /sections/code-discover.md %}
-</section>
-
 </div>

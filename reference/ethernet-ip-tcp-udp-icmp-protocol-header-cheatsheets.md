@@ -1,19 +1,19 @@
 ---
 layout: page
-title: Protocol Header Cheetsheets
-css_class_name: protocol-header-cheetsheets
+title: Protocol Header Cheatsheets
+css_class_name: protocol-header-cheatsheets
 ---
 
 # {{page.title}}
 
-A set of cheetsheets for Ethernet, IPv4, UDP, TCP and ICMP protocol headers.
+A set of cheatsheets for Ethernet, IPv4, UDP, TCP and ICMP protocol headers.
 
 * [Ethernet Frame Header](#ethernet-frame-header)
 * [IPv4 Protocol Header](#ipv4-header)
 * [TCP Protocol Header](#tcp-header)
 * [UDP Protocol Header](#udp-header)
 * [ICMP Protocol Header](#icmp-header)
-* [A3 Wall Poster](#protocol-frames-cheetsheet---a3-wall-poster)
+* [A3 Wall Poster](#protocol-frames-cheatsheet---a3-wall-poster)
 * [Source code and licence](#source-code-and-licence)
 
 ## Ethernet Frame Header
@@ -39,9 +39,9 @@ A set of cheetsheets for Ethernet, IPv4, UDP, TCP and ICMP protocol headers.
 
 Description | Value | Explanation
 ------------|-------|------------
-Basic frame size | `64` bytes upto `1,518` bytes | `1,538` bytes on the wire
-Q-tagged (802.1q) frame size | `64` bytes upto `1,522` bytes | `1,542` bytes on the wire
-Envelope frame size | `64` bytes upto `2,000` bytes |
+Basic frame size | `64` bytes up to `1,518` bytes | `1,538` bytes on the wire
+Q-tagged (802.1q) frame size | `64` bytes up to `1,522` bytes | `1,542` bytes on the wire
+Envelope frame size | `64` bytes up to `2,000` bytes |
 Maximum frame payload without fragmentation | `1,500` bytes |
 Minimum frame payload | `46` bytes |
 Minimum frame payload with 802.Q tag | `42` bytes |
@@ -55,7 +55,7 @@ Minimum frame payload with 802.Q tag | `42` bytes |
 ### Notes
 
 * The Internet Protocol (IPv4) is defined in [RFC 791](http://tools.ietf.org/html/rfc791) which specifies the format of the header.
-* **IHL** (Internet Header Length) is 4 bits long and specifies the header length in increments of 32 bits (DWORD). The IHL field can hold values from 0 (Binary `0000`) to 15 (Binary `1111`). So the longest the IP header size can be is upto 480 bits, which is 60 bytes. The shortest header size is 5 dwords (20 bytes), where the IHL field has the value of 5 (Binary `0101`). This is because all of the required fields in the header require 20 bytes as a minimum.
+* **IHL** (Internet Header Length) is 4 bits long and specifies the header length in increments of 32 bits (DWORD). The IHL field can hold values from 0 (Binary `0000`) to 15 (Binary `1111`). So the longest the IP header size can be is up to 480 bits, which is 60 bytes. The shortest header size is 5 dwords (20 bytes), where the IHL field has the value of 5 (Binary `0101`). This is because all of the required fields in the header require 20 bytes as a minimum.
 * The **Type of Service (ToS)** field is obsoleted by [RFC 2474](https://tools.ietf.org/html/rfc2474) (updated by [RFC 3168](https://tools.ietf.org/html/rfc3168) and [RFC 3260](https://tools.ietf.org/html/rfc3260)) is used for [Differentiated Services Code Point (DSCP)](https://en.wikipedia.org/wiki/Differentiated_services) and [Explicit Congestion Notification (ECN)](https://en.wikipedia.org/wiki/Explicit_Congestion_Notification).
 * The **Flags** field is composed of 3 smaller fields: Reserved (must be 0), Don't fragment bit (DF) and More fragments bit (MF).
 
@@ -79,7 +79,7 @@ Maximum legal IPv4 payload size | `65,515` bytes | Maximum IPv4 packet size at 6
 
 Description | Value | Explanation
 ------------|-------|------------
-Maximim TCP payload size without fragmentation | `1,460` bytes | Maximum Ethernet frame size at 1,500 bytes **minus** IPv4 header at 20 bytes **minus** TCP header at 20 bytes
+Maximum TCP payload size without fragmentation | `1,460` bytes | Maximum Ethernet frame size at 1,500 bytes **minus** IPv4 header at 20 bytes **minus** TCP header at 20 bytes
 Maximum legal TCP payload size | `65,495` bytes | Maximum IPv4 packet size at 65,535 bytes (x0FFFF) **minus** IPv4 header at 20 bytes **minus** TCP header at 20 bytes
 
 ---
@@ -90,13 +90,13 @@ Maximum legal TCP payload size | `65,495` bytes | Maximum IPv4 packet size at 65
 
 ### Notes
 
-* A UDP datagram is carried in a single IP packet and is hence limited to a maximum payload of `65,507` bytes for IPv4 and `65,527` bytes for IPv6
+A UDP datagram is carried in a single IP packet and is hence limited to a maximum payload of `65,507` bytes for IPv4 and `65,527` bytes for IPv6.
 
 ### Summary
 
 Description | Value | Explanation
 ------------|-------|------------
-Maximim UDP payload size without fragmentation | `1,472` bytes | Maximum Ethernet frame size at 1,500 bytes **minus** IPv4 header at 20 bytes **minus** UDP header at 8 bytes
+Maximum UDP payload size without fragmentation | `1,472` bytes | Maximum Ethernet frame size at 1,500 bytes **minus** IPv4 header at 20 bytes **minus** UDP header at 8 bytes
 Maximum legal UDP payload size | `65,507` bytes | Maximum IPv4 packet size at 65,535 bytes (x0FFFF) **minus** IPv4 header at 20 bytes **minus** UDP header at 8 bytes
 
 ---
@@ -116,9 +116,9 @@ Maximum legal ICMP payload size                 | `65,507` bytes | Maximum IPv4 
 
 ---
 
-## Protocol Frames Cheetsheet - A3 Wall Poster
+## Protocol Frames Cheatsheet - A3 Wall Poster
 
-[![Protocol Frames Cheetsheet A3 Poster](/img/cheat-sheets/ethernet-cheatsheet.png)](/img/cheat-sheets/ethernet-cheatsheet.png)
+[![Protocol Frames Cheatsheet A3 Poster](/img/cheat-sheets/ethernet-cheatsheet.png)](/img/cheat-sheets/ethernet-cheatsheet.png)
 
 ---
 

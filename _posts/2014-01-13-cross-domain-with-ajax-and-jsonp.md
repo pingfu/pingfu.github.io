@@ -2,12 +2,15 @@
 layout: post
 title: "Cross domain communication with Ajax and JsonP"
 date: 2014-01-13
-categories: code troubleshooting
 tags: javascript
 permalink: /:title
 redirect_from:
   - "/programming/troubleshooting/2014/01/13/cross-domain-with-ajax-and-jsonp.html"
 ---
+
+_Last updated December 13 2025._
+
+> The Google Feed API used in this article was shut down in 2016. For cross-domain requests, use CORS (Cross-Origin Resource Sharing) which is now widely supported by browsers and servers.
 
 I recently needed to find a way to display third party RSS content on a domain which wasn't the content originator. The same-origin policy implemented in most browsers makes it awkward to directly consume content from a foreign domain, but the most common options are:
 
@@ -25,7 +28,7 @@ Web Messaging is an API introduced as part of the HTML5 specification. `window.p
 
 <!--excerpt-->
 
-I would prefer to discharge the responsibility of fetching and rendering the content directly to the browser, but the same-origin policy does seems to get in the way. Consider an alternative: create a server-side entity to syndicate the RSS feed, download updates and cache them locally so that server-side page construction could pull the content into response body for each request? A lot of effort that anybody might want to invest to pull scrape  some data.
+I would prefer to discharge the responsibility of fetching and rendering the content directly to the browser, but the same-origin policy does seems to get in the way. Consider an alternative: create a server-side entity to syndicate the RSS feed, download updates and cache them locally so that server-side page construction could pull the content into response body for each request? A lot of effort to invest just to scrape some data.
 
 Depending on what sort of availability levels and use-cases are motivating you, there may of course be a compelling reason to put in the extra effort, but in my this case, keep it simple, stupid won.
 

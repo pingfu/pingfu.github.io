@@ -1,0 +1,21 @@
+name: pingfu
+
+services:
+  jekyll:
+    container_name: jekyll
+    build: .
+    volumes:
+      - .:/srv/jekyll
+    ports:
+      - "4000:4000"
+      - "35729:35729"
+    command: jekyll serve --host 0.0.0.0 --force_polling --incremental --livereload
+
+  screenshot:
+    container_name: playwright
+    image: mcr.microsoft.com/playwright:v1.57.0-noble
+    depends_on:
+      - jekyll
+    volumes:
+      - ./screenshots/screenshot.png:/output/screenshot.png
+    entrypoint: ["tail", "-f", "/dev/null"]

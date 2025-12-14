@@ -2,12 +2,15 @@
 layout: post
 title: "ASP.net Expressions Overview"
 date: 2012-07-12
-categories: code troubleshooting
 tags: asp.net
 permalink: /:title
 redirect_from:
   - "/programming/troubleshooting/2012/07/12/asp-dotnet-expressions-overview.html"
 ---
+
+_Last updated December 13 2025._
+
+> This post covers classic ASP.NET WebForms syntax. Modern .NET development typically uses Razor syntax in ASP.NET Core MVC, Razor Pages, or Blazor.
 
 ASPX in-page expressions are, if you don't know what to call them, nearly impossible to search. So on the off chance that this helps somebody, here are some search-friendly terms that might one day get crawled; (less than percent hash), (less than percent equals), (in-page expressions), (data binding), (data bound), (bee strings), (asp.net server tags), (code render blocks)
 

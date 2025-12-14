@@ -9,7 +9,7 @@ A collection of small scripts and projects.
   A simple command-line tool to easily export zone information from Route53. Periodically snapshot, or backup data from <strong>all</strong> hosted zones.
 
 * ## [![Build Status](https://ci.appveyor.com/api/projects/status/github/Pingfu/blockchainsharp?branch=master&svg=true)](https://ci.appveyor.com/project/Pingfu/blockchainsharp) [Bitcoin block chain parser](https://github.com/pingfu/blockchainsharp)
- A pure C# block chain parser library for Bitcoin. It eats binary blkxxxx.dat files and produces an IEnumerable strongly typed in-memory representation.
+ A pure C# block chain parser library for Bitcoin. Eats binary blkxxxx.dat files and produces an IEnumerable strongly typed in-memory representation.
 
 * ## [Multicast Testing Tool](https://github.com/enclave-networks/multicast-test)
   Testing multicast traffic can be challenging and tends to involve running an application on two systems, physical or virtual connected to the network. iPerf can be complicated, and VLC multicast streaming can be buggy. This is a simpler command-line tool that runs on both Linux and Windows to help validate multicast connectivity.

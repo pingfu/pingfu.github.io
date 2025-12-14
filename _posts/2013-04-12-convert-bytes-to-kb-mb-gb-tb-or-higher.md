@@ -2,7 +2,6 @@
 layout: post
 title: "Convert bytes to KB, MB, GB, TB or higher using c#"
 date: 2013-04-12
-categories: Programming
 tags: c#
 permalink: /:title
 redirect_from:
@@ -13,7 +12,7 @@ I’m a great believer in making the most of available compute resources, and I 
 
 Shailesh from [http://www.somacon.com][somacon] has done an excellent job with this method to convert an integer representing a byte count in to a human-friendly string shown below with minor cosmetic modifications to reduce the character count.
 
-{% highlight csharp linenos %}
+```csharp
 /// <summary>
 /// Returns a human-readable size discriptor for up 64-bit length fields
 /// </summary>
@@ -29,7 +28,7 @@ private static string FormatBytes(Int64 bytes)
 	if (bytes >= 0x400) { return ((double)(bytes) / 1024).ToString("0.###") + " KB"; }
 	return bytes.ToString("0 Bytes");
 }
-{% endhighlight %}
+```
 
 Here is the [original snippet][original] Shailesh posted.
 
