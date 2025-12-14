@@ -39,8 +39,50 @@
 
 
     <div id="footer">
-        <blockquote>Knock knock<br />Race condition<br />Who's there?</blockquote>
+        <blockquote id="joke"></blockquote>
     </div>
+
+    <script>
+        (function() {
+            var lore = [
+                "Knock knock<br />Race condition<br />Who's there?",
+                "A SQL query walks into a bar,<br />walks up to two tables and asks,<br />'Can I join you?'",
+                "I'd tell you a UDP joke,<br />but you might not get it.",
+                "// This code works, I have no idea why.",
+                "Debugging: Being the detective in a crime movie where you are also the murderer.",
+                "If at first you don't succeed,<br />call it version 1.0.",
+                "Weeks of coding can save you hours of planning.",
+                "git commit -m 'fuck'",
+                "// here be dragons",
+                "; DROP TABLE users;--",
+                "&lt;erno&gt; hm. I've lost a machine..<br />&lt;erno&gt; literally lost. it responds to ping, it works completely,<br />&lt;erno&gt; I just can't figure out where in my apartment it is.",
+                "Keyboard not found.<br />Press F1 to continue.",
+                "Stack Overflow is down.<br />We're fucked.",
+                "Would you like to install the Ask toolbar?",
+                "A/S/L?",
+                "You wouldn't download a car.",
+                "Sign my guestbook!",
+                "Under construction 🚧",
+                "+++ATH0",
+                "2600",
+                "640K ought to be enough for anybody.",
+                "The cake is a lie.",
+                "Finish him.",
+                "Rise and shine, Mr. Freeman.",
+                "ILOVEYOU",
+                "Your CD tray just opened itself.",
+                "Back Orifice says hello.",
+                "All your base are belong to us.",
+                "Thank you Mario!<br />But our princess is in another castle.",
+                "Hadouken!",
+                ":(){ :|:&amp; };:",
+                "chmod 777 *",
+                "Have you tried turning it off and on again?",
+                "/me slaps you with a large trout"
+            ];
+            document.getElementById('joke').innerHTML = lore[Math.floor(Math.random() * lore.length)];
+        })();
+    </script>
 
     <!-- 
     <script type="text/javascript" src="/js/slick/slick.min.js"></script> -->

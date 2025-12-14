@@ -16,7 +16,8 @@
       "Bash(powershell -File stop.ps1)",
       "Bash(powershell:*)",
       "Bash(docker ps:*)",
-      "Skill(frontend-design)"
+      "Skill(frontend-design)",
+      "WebFetch(domain:github.com)"
     ],
     "deny": [],
     "ask": []

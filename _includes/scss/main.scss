@@ -378,6 +378,7 @@ blockquote {
         
         li:last-child {
             border-bottom: none;
+            padding-bottom: 0;
         }
         
         span {
@@ -390,30 +391,63 @@ blockquote {
         }  
     }
 
-    .assets {
+    .assets.row {
+        margin-top: 46px;
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: -10px;
+        margin-right: -10px;
+
+        > .col-md-6 {
+            display: flex;
+            flex: 0 0 50%;
+            max-width: 50%;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
         .asset-card {
             position: relative;
-            background-color: $home-page-boxes;
+            background-color: #fafafa;
+            border: 1px solid #f0f0f0;
             border-radius: 8px;
             padding: 20px;
-            margin-bottom: 20px;
-            height: calc(100% - 20px);
+            width: 100%;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            user-select: none;
 
-            .asset-type {
-                position: absolute;
-                top: 12px;
-                right: 12px;
-                background: #fff;
-                border-radius: 4px;
-                padding: 4px 10px;
-                font-size: $font-size-sm;
-                color: $shadow;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
+            // Staggered fade-in animation
+            animation: cardFadeIn 0.4s ease forwards;
+
+            &:hover {
+                transform: translateY(-3px);
+
+                h3 {
+                    a {
+                        color: $primary-blue;
+                    }
+
+                    i {
+                        color: $primary-blue;
+                    }
+                }
             }
 
             h3 {
                 margin: 0 0 8px 0;
+                font-size: $font-size-xl;
+                line-height: 1.4;
+
+                a {
+                    color: $charcoal;
+                    text-decoration: none;
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
 
                 i {
                     display: inline-flex;
@@ -423,14 +457,64 @@ blockquote {
                     background-color: #fff;
                     border-radius: 6px;
                     margin-right: 6px;
+                    transition: transform 0.2s ease, color 0.2s ease;
                 }
             }
 
             p {
                 text-align: left;
                 margin: 0;
+                margin-left: 64px;
+                font-size: $font-size-base;
+                line-height: 1.5;
+                color: $shadow;
             }
         }
+
+        // Staggered delays
+        .col-md-6:nth-child(1) .asset-card { animation-delay: 0s; }
+        .col-md-6:nth-child(2) .asset-card { animation-delay: 0.1s; }
+        .col-md-6:nth-child(3) .asset-card { animation-delay: 0.2s; }
+        .col-md-6:nth-child(4) .asset-card { animation-delay: 0.3s; }
+
+        // Single column on smaller screens
+        @media (max-width: 992px) {
+            margin-left: 0;
+            margin-right: 0;
+            justify-content: center;
+
+            > .col-md-6 {
+                padding-left: 0;
+                padding-right: 0;
+                margin-bottom: 12px;
+                flex: 0 0 100%;
+                max-width: 500px;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+            .asset-card {
+                padding: 16px;
+
+                h3 i {
+                    padding: 6px 12px;
+                }
+
+                p {
+                    margin-left: 50px;
+                }
+            }
+        }
+    }
+}
+
+@keyframes cardFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
 
