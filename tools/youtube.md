@@ -151,7 +151,7 @@ body_class: youtube-page
         }
     }
 
-    function embedVideo(id) {
+    async function embedVideo(id) {
         if (id) {
             const videoUrl = `https://www.youtube.com/watch?v=${id}`;
             videoContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1" allow="autoplay" allowfullscreen></iframe>`;
@@ -160,7 +160,7 @@ body_class: youtube-page
             videoLink.textContent = videoUrl;
             videoLink.style.display = 'inline';
             youTubeLinkContainer.style.display = 'block';
-            addToPlayedVideos(videoUrl);
+            await addToPlayedVideos(videoUrl);
             highlightPlayingRow(videoUrl);
             document.activeElement.blur();
         }
