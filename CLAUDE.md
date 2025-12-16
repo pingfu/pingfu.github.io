@@ -37,4 +37,5 @@ Add `--full-page` for full page height. Read `screenshots/screenshot.png` to vie
 ## External Services
 
 - Google Analytics 4: G-GVTKN05RK1
+- Plausible Analytics: analytics.pingfu.net (self-hosted)
 - Disqus comments: shortname 'pingfu'
