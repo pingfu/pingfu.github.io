@@ -30,6 +30,23 @@ body_class: youtube-page
         <a class="sort-link" onclick="sortByChannel()">channel</a>
         <span class="sort-separator sort-group-separator">·</span>
         <a id="sortByGroup" class="sort-link" onclick="sortByGroup()">group</a>
+        <span class="action-separator">|</span>
+        <a id="exportLink" class="sort-link" onclick="exportVideos()">Export list</a>
+        <span class="sort-separator">·</span>
+        <a class="sort-link" onclick="showImportModal()">Import</a>
+    </div>
+</div>
+
+<div id="importModal" class="import-modal-overlay" onclick="if(event.target===this)hideImportModal()">
+    <div class="import-modal">
+        <h3>Import Videos</h3>
+        <p>Paste your exported data below. New videos will be added to your existing list.</p>
+        <textarea id="importData" placeholder="Paste base64 string here..."></textarea>
+        <div class="import-validation" id="importValidation"></div>
+        <div class="import-actions">
+            <button onclick="hideImportModal()">Cancel</button>
+            <button id="importBtn" onclick="importVideos()" disabled>Import</button>
+        </div>
     </div>
 </div>
 
@@ -680,6 +697,113 @@ body_class: youtube-page
         const id = sanitizeInput(paste);
         embedVideo(id);
     });
+
+    // Export videos to base64
+    function exportVideos() {
+        const playedVideos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        const exportLink = document.getElementById('exportLink');
+        const originalText = exportLink.textContent;
+
+        if (playedVideos.length === 0) {
+            exportLink.textContent = 'Nothing to export';
+            setTimeout(() => {
+                exportLink.textContent = originalText;
+            }, 1500);
+            return;
+        }
+
+        const json = JSON.stringify(playedVideos);
+        const base64 = btoa(unescape(encodeURIComponent(json)));
+
+        navigator.clipboard.writeText(base64).then(() => {
+            exportLink.textContent = 'Copied!';
+            setTimeout(() => {
+                exportLink.textContent = originalText;
+            }, 1500);
+        });
+    }
+
+    // Import modal functions
+    function showImportModal() {
+        document.getElementById('importModal').classList.add('show');
+        document.getElementById('importData').value = '';
+        document.getElementById('importValidation').textContent = '';
+        document.getElementById('importValidation').className = 'import-validation';
+        document.getElementById('importBtn').disabled = true;
+        document.getElementById('importData').focus();
+    }
+
+    function hideImportModal() {
+        document.getElementById('importModal').classList.remove('show');
+    }
+
+    // Validate import data on input, close modal on Escape
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('importData').addEventListener('input', validateImportData);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && document.getElementById('importModal').classList.contains('show')) {
+                hideImportModal();
+            }
+        });
+    });
+
+    let parsedImportData = null;
+
+    function validateImportData() {
+        const input = document.getElementById('importData').value.trim();
+        const validation = document.getElementById('importValidation');
+        const importBtn = document.getElementById('importBtn');
+
+        if (!input) {
+            validation.textContent = '';
+            validation.className = 'import-validation';
+            importBtn.disabled = true;
+            parsedImportData = null;
+            return;
+        }
+
+        try {
+            const json = decodeURIComponent(escape(atob(input)));
+            const data = JSON.parse(json);
+
+            if (!Array.isArray(data)) {
+                throw new Error('Invalid format');
+            }
+
+            // Count new videos (not already in list)
+            const existing = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+            const existingUrls = new Set(existing.map(v => v.url));
+            const newVideos = data.filter(v => v.url && !existingUrls.has(v.url));
+
+            parsedImportData = newVideos;
+
+            if (newVideos.length === 0) {
+                validation.textContent = `All ${data.length} videos already in your list`;
+                validation.className = 'import-validation valid';
+                importBtn.disabled = true;
+            } else {
+                validation.textContent = `${newVideos.length} new video${newVideos.length === 1 ? '' : 's'} to add`;
+                validation.className = 'import-validation valid';
+                importBtn.disabled = false;
+            }
+        } catch (e) {
+            validation.textContent = 'Invalid data';
+            validation.className = 'import-validation invalid';
+            importBtn.disabled = true;
+            parsedImportData = null;
+        }
+    }
+
+    function importVideos() {
+        if (!parsedImportData || parsedImportData.length === 0) return;
+
+        const existing = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        const merged = [...existing, ...parsedImportData];
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+
+        hideImportModal();
+        applySortOrder();
+    }
 
 </script>
 
