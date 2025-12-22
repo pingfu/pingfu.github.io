@@ -1044,6 +1044,7 @@ blockquote {
     padding: 24px;
     width: 80vw;
     height: 80vh;
+    min-height: 300px;
     display: flex;
     flex-direction: column;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
