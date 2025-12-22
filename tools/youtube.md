@@ -25,7 +25,7 @@ body_class: youtube-page
         <a id="forgetAll" class="forget-all" onclick="forgetAll()">Forget all videos</a>
         <span class="action-separator">|</span>
         <span class="sort-label">Order by:</span>
-        <a class="sort-link" onclick="sortByAdded()">date</a>
+        <a class="sort-link" onclick="sortByAdded()">date added</a>
         <span class="sort-separator">·</span>
         <a class="sort-link" onclick="sortByChannel()">channel</a>
         <span class="sort-separator sort-group-separator">·</span>
@@ -48,6 +48,20 @@ body_class: youtube-page
     const youTubeLinkContainer = document.getElementById('youTubeLinkContainer');
 
     document.addEventListener('DOMContentLoaded', async () => {
+        // Fix old non-ISO timestamps (e.g., locale-specific "12/22/2025, 3:45:00 PM")
+        let playedVideos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        let fixed = false;
+        playedVideos = playedVideos.map(video => {
+            if (!video.timestamp || !video.timestamp.includes('T')) {
+                video.timestamp = new Date().toISOString();
+                fixed = true;
+            }
+            return video;
+        });
+        if (fixed) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(playedVideos));
+        }
+
         // Check for refresh URL parameter
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has('refresh')) {
@@ -231,7 +245,7 @@ body_class: youtube-page
     async function addToPlayedVideos(videoUrl) {
         const playedVideos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
         if (!playedVideos.some(video => video.url === videoUrl)) {
-            const timestamp = new Date().toLocaleString();
+            const timestamp = new Date().toISOString();
             const info = await fetchVideoInfo(videoUrl);
             playedVideos.push({
                 url: videoUrl,
