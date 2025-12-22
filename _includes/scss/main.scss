@@ -1032,6 +1032,15 @@ blockquote {
     &.show {
         display: flex;
     }
+
+    @media (max-width: 600px) {
+        .import-modal {
+            width: 95vw;
+            height: 90vh;
+            padding: 16px;
+            min-height: 250px;
+        }
+    }
 }
 
 .import-modal {
