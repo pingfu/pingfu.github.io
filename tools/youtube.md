@@ -30,9 +30,12 @@ body_class: youtube-page
         <a class="sort-link" onclick="sortByChannel()">channel</a>
         <span class="sort-separator sort-group-separator">·</span>
         <a id="sortByGroup" class="sort-link" onclick="sortByGroup()">group</a>
-        <span class="action-separator">|</span>
-        <a id="exportLink" class="sort-link" onclick="exportVideos()">Export list</a>
-        <span class="sort-separator">·</span>
+    </div>
+    <div class="import-export-actions">
+        <span id="exportContainer">
+            <a id="exportLink" class="sort-link" onclick="exportVideos()">Export list</a>
+            <span class="sort-separator">·</span>
+        </span>
         <a class="sort-link" onclick="showImportModal()">Import</a>
     </div>
 </div>
@@ -387,11 +390,13 @@ body_class: youtube-page
             document.getElementById('recentlyPlayed').style.display = 'block';
             document.querySelector('.table-container').style.display = 'block';
             document.querySelector('.table-actions').style.display = 'block';
+            document.getElementById('exportContainer').style.display = 'inline';
         }
         else {
             document.getElementById('recentlyPlayed').style.display = 'none';
             document.querySelector('.table-container').style.display = 'none';
             document.querySelector('.table-actions').style.display = 'none';
+            document.getElementById('exportContainer').style.display = 'none';
         }
 
         // Re-apply highlight to currently playing video

@@ -807,6 +807,12 @@ blockquote {
         user-select: none;
     }
 
+    // Import/Export always visible
+    .import-export-actions {
+        margin-top: 20px;
+        user-select: none;
+    }
+
     // Action links
     .forget-all,
     .sort-link {
