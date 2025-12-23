@@ -25,9 +25,9 @@ body_class: youtube-page
         <a id="forgetAll" class="forget-all" onclick="forgetAll()">Forget all videos</a>
         <span class="action-separator">|</span>
         <span class="sort-label">Order by:</span>
-        <a class="sort-link" onclick="sortByAdded()">date added</a>
+        <a id="sortByDate" class="sort-link" onclick="sortByAdded()">date added</a>
         <span class="sort-separator">·</span>
-        <a class="sort-link" onclick="sortByChannel()">channel</a>
+        <a id="sortByChannel" class="sort-link" onclick="sortByChannel()">channel</a>
         <span class="sort-separator sort-group-separator">·</span>
         <a id="sortByGroup" class="sort-link" onclick="sortByGroup()">group</a>
     </div>
@@ -277,7 +277,7 @@ body_class: youtube-page
                 groupColor: ''
             });
             localStorage.setItem(STORAGE_KEY, JSON.stringify(playedVideos));
-            displayPlayedVideos();
+            applySortOrder();
         }
     }
 
@@ -685,6 +685,20 @@ body_class: youtube-page
 
         localStorage.setItem(STORAGE_KEY, JSON.stringify(playedVideos));
         displayPlayedVideos();
+        updateSortIndicator();
+    }
+
+    function updateSortIndicator() {
+        const sortOrder = localStorage.getItem(SORT_ORDER_KEY) || SORT_BY_DATE;
+        document.querySelectorAll('.sort-link').forEach(link => link.classList.remove('active'));
+
+        if (sortOrder === SORT_BY_DATE) {
+            document.getElementById('sortByDate').classList.add('active');
+        } else if (sortOrder === SORT_BY_CHANNEL) {
+            document.getElementById('sortByChannel').classList.add('active');
+        } else if (sortOrder === SORT_BY_GROUP) {
+            document.getElementById('sortByGroup').classList.add('active');
+        }
     }
 
     // paste on page

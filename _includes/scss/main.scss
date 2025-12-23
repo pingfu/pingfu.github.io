@@ -830,6 +830,10 @@ blockquote {
 
     .sort-link {
         color: $primary-blue;
+
+        &.active {
+            font-weight: 500;
+        }
     }
 
     .action-separator {
