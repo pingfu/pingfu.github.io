@@ -968,48 +968,215 @@ blockquote {
         }
     }
 
-    // Responsive: mobile layout
-    @media (max-width: 900px) {
+    // Mobile layout (single breakpoint)
+    @media (max-width: 1100px) {
         &.container {
-            padding: 10px 10px 10px 10px !important;
+            padding: 12px !important;
         }
 
         iframe {
-            height: calc((100vw - 20px) * 9 / 16);
-            min-height: 200px;
+            height: calc((100vw - 24px) * 9 / 16);
+            min-height: 180px;
         }
 
-        // Tighter table spacing on mobile
-        #playedVideos td {
-            padding: 4px 5px;
+        .input-row {
+            flex-direction: column;
+            gap: 8px;
+
+            #videoId {
+                width: 100%;
+            }
+
+            button {
+                width: 100%;
+            }
         }
 
-        #playedVideos td:nth-child(5) {
-            min-width: 0;
+        .table-container {
+            padding: 0;
+            border: none;
+            background: transparent;
         }
 
-        // Hide external link icon on mobile
-        .external-link {
-            display: none;
-        }
-    }
+        #playedVideos {
+            display: block;
 
-    // Tablet: hide timestamp column
-    @media (max-width: 1100px) {
-        #playedVideos td:nth-child(2) {
-            display: none;
-        }
-    }
+            tbody {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
 
-    // Smaller tablet: hide group column and sort by group link
-    @media (max-width: 800px) {
-        #playedVideos td:nth-child(6) {
-            display: none;
+            // Mobile rows - reordered layout
+            tr.video-item {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 6px 8px;
+                padding: 14px 4px 18px 4px;
+                position: relative;
+
+                // Inset border to align with second line
+                &::before {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 36px;
+                    right: 4px;
+                    border-bottom: 1px solid #ddd;
+                }
+
+                // Reset all td styles for card layout
+                td {
+                    display: flex;
+                    align-items: center;
+                    width: auto !important;
+                    min-width: 0 !important;
+                    max-width: none !important;
+                    padding: 0 !important;
+                    white-space: normal;
+                    border: none;
+
+                    &::before {
+                        display: none !important;
+                    }
+                }
+
+                // Row 1: Play | Notes | Trash
+                // Play button
+                td:nth-child(1) {
+                    order: 1;
+                    background: transparent !important;
+
+                    i {
+                        font-size: $font-size-xl;
+                    }
+
+                    &:active, &:focus {
+                        background: transparent !important;
+                    }
+                }
+
+                // Notes
+                td:nth-child(5) {
+                    order: 2;
+                    flex: 1;
+                    min-width: 150px;
+                    background: transparent !important;
+
+                    .notes-input {
+                        width: 100%;
+                        padding: 8px 10px;
+                        background: transparent;
+                        border: 1px solid #ddd;
+                        border-radius: 6px;
+                        font-size: $font-size-md;
+
+                        &:focus {
+                            background: #fff;
+                            border-color: $primary-blue;
+                        }
+                    }
+                }
+
+                // Trash - end of row 1
+                td:nth-child(7) {
+                    order: 3;
+                }
+
+                // Line break between row 1 and row 2
+                &::after {
+                    content: '';
+                    flex-basis: 100%;
+                    order: 4;
+                }
+
+                // Row 2: Video ID | Channel | Group
+                td:nth-child(3) {
+                    order: 5;
+                    font-size: $font-size-sm;
+                    color: $muted-grey;
+                    margin-left: 30px;
+                    background: transparent !important;
+
+                    &::after {
+                        content: '|';
+                        color: #ccc;
+                        margin-left: 6px;
+                    }
+
+                    .video-id {
+                        padding: 2px 6px;
+                        font-size: $font-size-sm;
+                    }
+
+                    .external-link {
+                        display: none;
+                    }
+                }
+
+                // Channel
+                td:nth-child(4) {
+                    display: flex !important;
+                    order: 6;
+                    font-size: $font-size-sm;
+                    background: transparent !important;
+
+                    &::after {
+                        content: '|';
+                        color: #ccc;
+                        margin-left: 6px;
+                    }
+
+                    a {
+                        color: $primary-blue;
+                    }
+                }
+
+                // Group - right aligned, inset from edge
+                td:nth-child(6) {
+                    display: flex !important;
+                    order: 7;
+                    background: transparent !important;
+                    margin-left: auto;
+                    margin-right: 20px;
+
+                    .group-tag {
+                        margin: 0;
+                        font-size: $font-size-sm;
+                    }
+
+                    .group-input {
+                        text-align: right;
+                        background: transparent;
+                        border: 1px solid #ddd;
+                        padding: 4px 8px;
+                        font-size: $font-size-sm;
+                    }
+                }
+
+                // Timestamp - hidden
+                td:nth-child(2) {
+                    display: none !important;
+                }
+
+                // Playing state
+                &.playing {
+                    background: $highlight-playing;
+                }
+            }
         }
 
+        // Show group sort on mobile since it's visible in cards
         .sort-group-separator,
         #sortByGroup {
-            display: none;
+            display: inline !important;
+        }
+
+        // Adjust action links spacing
+        .table-actions,
+        .import-export-actions {
+            text-align: center;
         }
     }
 }
