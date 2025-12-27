@@ -9,7 +9,7 @@ body_class: youtube-page
 <div class="container" id="youtube-embed">
     <div class="input-row">
         <input type="text" id="videoId" placeholder="Paste, or enter a YouTube Video ID" autocomplete="off" onfocus="this.select()">
-        <button onclick="embedVideo(videoId.value)">Play</button>
+        <button onclick="embedVideo(sanitizeInput(videoId.value))">Play</button>
     </div>
     <div id="videoContainer"></div>
     <div id="youTubeLinkContainer">
@@ -712,6 +712,7 @@ body_class: youtube-page
 
     // paste into videoId input
     videoId.addEventListener('paste', (event) => {
+        event.preventDefault();
         const paste = (event.clipboardData || window.clipboardData).getData('text');
         const id = sanitizeInput(paste);
         embedVideo(id);
