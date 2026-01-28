@@ -39,3 +39,7 @@ Add `--full-page` for full page height. Read `screenshots/screenshot.png` to vie
 - Google Analytics 4: G-GVTKN05RK1
 - Plausible Analytics: analytics.pingfu.net (self-hosted)
 - Disqus comments: shortname 'pingfu'
+
+## Writing Style
+
+- Do not use em dashes (—). Use commas, colons, full stops, or restructure the sentence instead.

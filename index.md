@@ -6,10 +6,6 @@ redirect_from: "/writing/"
 css_class_name: index
 ---
 
-# Hi, I'm Marc
-
-A network, infrastructure and security engineer based in Wales.
-
 <div class="row assets">
     <div class="col-md-6">
         <div class="asset-card" onclick="location.href='/tools/youtube'">
