@@ -91,6 +91,13 @@ body_class: youtube-page
             const newUrl = window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : '');
             window.history.replaceState({}, '', newUrl);
         }
+
+        // Auto-play video from URL hash (e.g. #dQw4w9WgXcQ)
+        const hashId = sanitizeInput(window.location.hash.substring(1));
+        if (hashId) {
+            embedVideo(hashId);
+        }
+
         applySortOrder();
         document.getElementById('videoId').focus();
     });
@@ -196,6 +203,7 @@ body_class: youtube-page
             youTubeLinkContainer.style.display = 'block';
             await addToPlayedVideos(videoUrl);
             highlightPlayingRow(videoUrl);
+            history.replaceState(null, '', '#' + id);
             document.activeElement.blur();
         }
     }
