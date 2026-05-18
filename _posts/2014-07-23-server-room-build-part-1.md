@@ -47,7 +47,7 @@ We've brought three racks with us from the old office here to the new space, you
   <figcaption>Anti-static floor tile coverings going down</figcaption>
 </figure>
 
-It's exciting to see the shell of the comms room space I've designed start to take shape, but it does look a bit empty (and unimpressive) at the moment. The roadmap shrinks the current footprint from nine cabinets down to three for the move, so this is what I've got to work with. Still, encouraging to see rapid progress against the build plan with anti-static floor tile coverings laid, but the bloody plumbers got in first and fitted heating and water pipework under the raised floor and helpfully added two radiators in the server room space (sigh!) which will now need to be disconnected. The clearance they've left in the floor void is miniscule too, and we're going to be fighting them for every centimetre.
+It's exciting to see the shell of the comms room start to take shape, but it does look a bit empty (and unimpressive) at the moment. The roadmap shrinks the current footprint from nine cabinets down to three for the move, so this is what we've got to work with. Still, encouraging to see rapid progress against the build plan with anti-static floor tile coverings laid, but the bloody plumbers got in first and fitted heating and water pipework under the raised floor and helpfully added two radiators in the server room space (sigh!) which will now need to be disconnected. The clearance they've left in the floor void is miniscule too, and we're going to be fighting them for every centimetre.
 
 <figure>
   <img src="/uploads/fitout/2014-07-23/4.jpg" alt="Ah. Heating and water pipework has already been routed through the space we allocated on drawings for the comms room">

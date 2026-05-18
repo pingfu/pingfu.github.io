@@ -23,7 +23,7 @@ Four days on from part 3 (22 August 2014). Patch panels are in, the carrier is l
   <figcaption>The UPS sits at the base of the rack</figcaption>
 </figure>
 
-The UPS is installed at the base of the rack due to its weight. The three cabinets are bolted together as a single mechanical assembly, with the side panels left in place so that each cabinet keeps its own front-to-back airflow path rather than turning the row into one big shared thermal zone. We'd originally planned a different orientation to give the row a hot-and-cold-ish split, but the floor void left us no choice (the bloody pipes again, same story as the Cab 1/Cab 3 swap in part 3), so the racks went where they could physically sit. Three cabinets in a row against a wall doesn't give you proper hot/cold aisles anyway, just sensible per-cabinet containment.
+The UPS is installed at the base of the rack due to its weight. The three cabinets are bolted together as a single mechanical assembly, with the side panels left in place so that each cabinet keeps its own front-to-back airflow path rather than turning the row into one big shared thermal zone. I'd originally planned a different orientation to give the row a hot-and-cold-ish split, but the floor void left us no choice (the bloody pipes again, same story as the Cab 1/Cab 3 swap in part 3), so the racks went where they could physically sit. Three cabinets in a row against a wall doesn't give you proper hot/cold aisles anyway, just sensible per-cabinet containment.
 
 <figure>
   <img src="/uploads/fitout/2014-08-22/2.jpg" alt="Rear of Cab 3: patch leads dressed neatly down one side, IEC leads down the other">
