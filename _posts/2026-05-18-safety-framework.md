@@ -45,11 +45,11 @@ It's a phenomenon that emerges not just with the GriGri, but from many other dev
 
 In the case of the GriGri, if the user misunderstands its safety properties, it's easy to see how their attention can drift, or brake-hand discipline can soften. It also explains why users sometimes start to override cams for convenience, or anthropomorphise the device as "automatic". In each case, the lapse in correct operating procedure is underpinned by the dangerously flawed belief that *the GriGri will automatically catch the climber*.
 
-**Without appreciating that failure modes exist, users often stop actively defend against them.**
+**Without appreciating that failure modes exist, users often stop actively defending against them.**
 
-Said another way, users will often treat `Level 3: Safety Assisted` devices as `Level 4: Fail-Safe` devices if their failure modes are not apparent during normal use, or cannot be discovered without training. 
+Said another way, users will often treat `Level 3: Safety Assisted` devices as `Level 4: Fail-Safe` devices if their failure modes are not apparent during normal use, or cannot be discovered without training.
 
-And that's a much harder catch in the field, because the user doesn't know what they don't know. Asking "can you use that device competently and safely?" turns an honest, well-intentioned answer into something insidiously difficult to verify.
+And that's a much harder catch in the field, because the user doesn't know what they don't know. Asking "can you use that device competently and safely?" yields an honest, well-intentioned answer which is insidiously difficult to verify.
 
 Does the belayer understand exactly when and how their belay device will fail? Hopefully. But if they're using a GriGri, that becomes a lot harder to reason about.
 
@@ -67,10 +67,10 @@ And that's the paradox: the GriGri *is* materially safer than an ATC, but it sha
 
 It's a symptom of many `Level 3` devices, and generalises far beyond climbing.
 
-Ask any motorcyclist about the first time they experienced thermal brake fade. Halfway down a long descent, the brake lever loses resistance and the bike just… doesn’t slow down anymore. In that moment, without training beforehand, the rider likely discovered for the first time that what they thought was a `Level 4: Fail-Safe` system,  was actually a `Level 3: Safety Assisted` system with a failure mode they just didn't know about.
+Ask any motorcyclist about the first time they experienced thermal brake fade. Halfway down a long descent, the brake lever loses resistance and the bike just… doesn’t slow down anymore. In that moment, without training beforehand, the rider likely discovered for the first time that what they thought was a `Level 4: Fail-Safe` system was actually a `Level 3: Safety Assisted` system with a failure mode they just didn't know about.
 
-In this case, failure modes tend to be subtle, rare, or counterintuitive, and invisible right up until the operator hits them. And because the system usually works, operators can go years without ever learning where those edges actually are, until it's too late.
+In both cases, failure modes tend to be subtle, rare, or counterintuitive, and invisible right up until the operator hits them. And because the system usually works, operators can go years without ever learning where those edges actually are, until it's too late.
 
-This is what makes upgrading `Level 1` or `Level 2` systems and devices to `Level 3` so dangerous; without the requirement of training, the operator is often unwittingly swapping a dangerous-by-default device they fully understood for one that will fail in ways they didn’t anticipate.
+This is what makes upgrading `Level 1` or `Level 2` devices to `Level 3` so dangerous; without mandatory training, the operator is often unwittingly swapping a dangerous-by-default device they fully understood for one that will fail in ways they didn’t anticipate.
 
 See [https://safety-framework.fawltea.net/](https://safety-framework.fawltea.net/) for the full Safety by Design Index.
