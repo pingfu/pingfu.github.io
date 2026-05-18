@@ -21,17 +21,21 @@ Case in point, a climber I know (the typical gear-head type) was recently talkin
 
 As it turns out that's true, but only partly.
 
-The GriGri has a failure mode: The cam only engages if the rope geometry, tension, orientation, and user behaviour remain within the operating envelope the device was designed around. Okay, fine - that's the exact same failure mode as the ATC isn't it? Except that the GriGri adds an extra protection: passive emergency gain increase in rope tension under load, or *it grabs harder when things get spicy*. So that's an unambiguous win then. Right? The GriGri's cam locks the rope automatically, therefore it's safer.
+The GriGri has a failure mode: the cam only engages if the rope geometry, tension, orientation, and user behaviour remain within the operating envelope the device was designed around. But wait, that's the exact same failure mode as the ATC, isn't it? Well, yes. Except that the GriGri introduces an extra protection / safeguard: the cam mechanism is designed to passively grip the rope harder as tension rises under load, or *it grabs harder when things get spicy*. So that's an unambiguous win then. Right? The GriGri's cam locks the rope automatically, therefore it's safer.
 
-This didn't sit well with me, as an engineer. Indeed, there are videos online of experienced climbers [hitting](https://youtu.be/We-nxljgnw4) the [deck](https://youtu.be/v8pEe5X1-Lc) while their belayer unexpectedly discovered the edge of the envelope. And for me that's a life-changing sharp edge, when user of a safety device unexpectededly discovers it's failure mode during field use.
+Well, sort of - but I think it's more complicated than that.
 
-So how does a device, designed, marketed, sold and bought as a safer alternative to another piece of equiptment, become less safe in the field? **Humans**.
+There are videos online of experienced climbers [hitting](https://youtu.be/We-nxljgnw4) the [deck](https://youtu.be/v8pEe5X1-Lc) as their belayer unexpectedly discovered the edges of the GriGri's safe operating envelope. That's the kind of foot cannon you don't want in a safety any device, to unexpectedly discover its failure mode during field use.
 
-Depending on personality, situation, distraction, or how comfortable the belayer feels with the device, believing a device is safer than it actually is can lead to casual technique, or to a kind of arrogance with the device. The failure modes are still there, you're just not watching for them, because you don't know they exist. It's Rumsfeld's known unknowns versus unknown unknowns all over.
+And that’s the thing about ATCs; they don't have hidden failure modes. The instant you use it incorrectly, everybody knows, because the device continuously forces its failure modes into the operator’s awareness. If your brake hand comes off, the rope runs free and the climber falls. The cognitive model of the device matches its physics.
 
-Knowledge of the ATC's failure modes are forced onto the user. It continuously communicates danger and demands constant brake-hand discipline, because it's painfully obvious, everyone viscerally understands: there is no backup. If your brake hand comes off, the rope runs free, the climber falls. The failure path is obvious, and you can defend against it. The cognitive model matches the physics.
+So how does the GriGri have a failure mode that ends up hidden from some users? How does a device designed, marketed, sold (and then bought) as a safer alternative to the ATC, become activley less safe in the field?
 
-But the failure modes of the GriGri don't present to the user, **until they happen**, often for the first time. And because operators GriGri often aren't formally trained - they just pick one up from the store and start using it, they'll often percieve with a "it's a safety device" mindset, which paradoxically makes them more suceptible to attention drifts, brake-hand discipline softening, overriding the cams for convenience or anthropomorphising the device as “automatic”, or said another way - treating it as a device designed to fail-safe, rather than provide a level of safety assistance.
+Its a phenomenan that arrises when users believe that devices are activley safe, without understanding that failure conditions still exist, or what they are. In the case of the GriGri, if the user miss-classifies or miss-understands it's properties, it's easy to see why attention can drift, or brake-hand discipline can soften. It explains why users might override cams for convenience or anthropomorphise the device as "automatic". In each case, it's the dangerously uninformed believe is that *the GriGri will catch their climber*.
+
+Without appreciating failure modes still exist, operator no longer actively defend against them. Or said another way, users will often treat level 3 devices (safety assisted) as level 4 devices (fail-safe) because the failure modes are not apparent during normal use and cannot be discovered without training.
+
+And that's a much harder catch, because the operator doesn't know what they don't know, so you can't ask "can you use that device competenatly and safely" because a well intentioned and honest answer becomes insideiously difficult to trust. Does my belayer understand exactly how and when their belay device will fail? If there's a GriGri on the wall, that becomes a lot harder to reason about.
 
 | Level | Name | What the device provides |
 |:---:|---|---|
@@ -43,8 +47,10 @@ But the failure modes of the GriGri don't present to the user, **until they happ
 | **5** | Inherently Safe | Hazard designed out. Cannot cause serious harm. |
 {:.safety-levels}
 
-And that's why this is such a counter-inutitive conversation, because the GriGri *is* materialy safer than an ATC, but the very fact of presenting it to the market as such means there's a real chance owners will incorrectly imagine that the device is designed as a `Fail-safe` device (Level 4 on the [Safety by Design Index](https://safety-framework.fawltea.net/) which can, has, and will continue to mean unsuspecting climbers meet with devestating consequences.
+And that is the paradox: the GriGri is materially safer than an ATC, but it shaes the same predisposition that many other safety devices in it's class do, which is to subconciously present in the minds of operators as a Level 4 device, leading to behaviours that can reintroduce catastrophic risk.
 
-## What else exists in this space
+It's a symptom of many level 3 devices, and generalises far beyond climbing. Ask any motorcyclist about the first time they experience brake fade. Halfway down a long descent and the brake lever looses resistance and the bike just… doesn’t slow down. In that moment, without special training beforehand they likely discovered for the first time, in the field, the level 4 system was actually a level 3, with a poorly communicated failure mode all along.
 
+That’s the danger when `Safety Assisted` systems mix with humans. The failure modes of a Level 3 device tend to be subtle, rare, or counterintuitive, invisible right up until the operator hits them. And because the system usually works, operators can go years without ever learning where those edges actually are, until its too late. Which is what makes the apparent upgrade from Level 1 to Level 3 so dangerous: you swap a device you fully understood for one that fails in ways you didn’t anticipate.
 
+See [https://safety-framework.fawltea.net/](https://safety-framework.fawltea.net/) for the full Safety-by-Design Index.
