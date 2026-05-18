@@ -1974,15 +1974,33 @@ blockquote {
 
 #post .post table.safety-levels {
     font-size: 13px;
-    margin-left: -40px;
-    margin-right: -40px;
-    width: calc(100% + 80px);
+    margin-left: -30px;
+    margin-right: -30px;
+    width: calc(100% + 60px);
     max-width: none;
 
     td:nth-child(2),
     th:nth-child(2) {
         white-space: nowrap;
     }
+
+    td:nth-child(1) strong {
+        display: inline-block;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        line-height: 28px;
+        text-align: center;
+        font-weight: 600;
+        color: #333;
+    }
+
+    tbody tr:nth-child(1) td:nth-child(1) strong { background-color: #fca5a5; }
+    tbody tr:nth-child(2) td:nth-child(1) strong { background-color: #fdba74; }
+    tbody tr:nth-child(3) td:nth-child(1) strong { background-color: #fcd34d; }
+    tbody tr:nth-child(4) td:nth-child(1) strong { background-color: #6ee7b7; }
+    tbody tr:nth-child(5) td:nth-child(1) strong { background-color: #5eead4; }
+    tbody tr:nth-child(6) td:nth-child(1) strong { background-color: #7dd3fc; }
 }
 
 table.vcruntime {

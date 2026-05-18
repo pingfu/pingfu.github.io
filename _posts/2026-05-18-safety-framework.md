@@ -43,7 +43,7 @@ But the failure modes of the GriGri don't present to the user, **until they happ
 | **5** | Inherently Safe | Hazard designed out. Cannot cause serious harm. |
 {:.safety-levels}
 
-And that's why this is such a counter-inutitive conversation, because the GriGri is materialy safer than an ATC, but the very fact of presenting it to the market as such means there's a real chance owners will incorrectly imagine that the device as a level 4 on the [Safety by Design Index](https://safety-framework.fawltea.net/): `Fail-safe`. Which can, has, and will continue leading to devestating consequences for unsuspecting climbers.
+And that's why this is such a counter-inutitive conversation, because the GriGri *is* materialy safer than an ATC, but the very fact of presenting it to the market as such means there's a real chance owners will incorrectly imagine that the device is designed as a `Fail-safe` device (Level 4 on the [Safety by Design Index](https://safety-framework.fawltea.net/) which can, has, and will continue to mean unsuspecting climbers meet with devestating consequences.
 
 ## What else exists in this space
 
