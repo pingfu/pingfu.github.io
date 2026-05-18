@@ -1972,6 +1972,19 @@ blockquote {
     min-height:80vh;
 }
 
+#post .post table.safety-levels {
+    font-size: 13px;
+    margin-left: -40px;
+    margin-right: -40px;
+    width: calc(100% + 80px);
+    max-width: none;
+
+    td:nth-child(2),
+    th:nth-child(2) {
+        white-space: nowrap;
+    }
+}
+
 table.vcruntime {
 
 	margin: 0 0 14px 0;
