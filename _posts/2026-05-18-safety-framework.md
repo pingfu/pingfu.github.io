@@ -7,12 +7,11 @@ tags: safety design framework
 permalink: /:title
 ---
 
-> This post makes use of the [Safety by Design](https://safety-framework.fawltea.net/) Index, which is a common language and set of levels for discussing device safety, and encouraging safer-by-design development, developed by the author.
+> This post makes use of the [Safety by Design](https://safety-framework.fawltea.net/) Index, a common language and set of levels for discussing device safety and encouraging safer-by-design development. The index was created by the author.
 
 I climb, but in the same way some people, myself included, "speak French": somewhere between a beginner and a liability. Mostly sport, and mostly outdoors.
 
 So naturally, like many other recreational climbers, I’ve also developed strong opinions about gear, safety systems, and load paths I probably have no business having.
-
 
 Case in point, a climber (typical gear-head equipment collector type) was recently talking up his Petzl GriGri as the obviously safer choice compared to a tube-style ATC, and suggesting everybody try belaying with it.
 
@@ -41,7 +40,7 @@ And that’s the thing about ATCs: they don't have hidden failure modes. The ins
 
 So how does the GriGri have a failure mode that ends up hidden from some users? How does a device designed, marketed, sold (and then bought) as a safer alternative to the ATC become actively less safe in the field?
 
-It's a phenomenon that emerges not just with the GriGri, but from many other devices too. It arises when users believe that devices are actively safe, without understanding that failure conditions still exist, or what they are.
+It's a phenomenon that emerges not just with the GriGri, but with many other devices too. It arises when users believe that devices are actively safe, without understanding that failure conditions still exist, or what they are.
 
 In the case of the GriGri, if the user misunderstands its safety properties, it's easy to see how their attention can drift, or brake-hand discipline can soften. It also explains why users sometimes start to override cams for convenience, or anthropomorphise the device as "automatic". In each case, the lapse in correct operating procedure is underpinned by the dangerously flawed belief that *the GriGri will automatically catch the climber*.
 

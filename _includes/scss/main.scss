@@ -1842,6 +1842,11 @@ blockquote {
 
 #post {
 
+    hr {
+        border-top: 1px solid #bbb;
+        margin: 40px auto;
+    }
+
     > h1,
     > .meta,
     > .post {
@@ -1977,6 +1982,10 @@ blockquote {
         text-align: right;
         padding-bottom: 25px;
         border: none;
+
+        &::before {
+            content: none;
+        }
         background: none;
     }
 }
