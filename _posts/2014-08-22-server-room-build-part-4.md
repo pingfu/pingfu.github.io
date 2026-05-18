@@ -23,14 +23,14 @@ Four days on from part 3 (22 August 2014). Patch panels are in, the carrier is l
   <figcaption>The UPS sits at the base of the rack</figcaption>
 </figure>
 
-The UPS is installed at the base of the rack due to its weight. The three cabinets are bolted together as a single mechanical assembly, with the side panels left in place so that each cabinet keeps its own front-to-back airflow path rather than turning the row into one big shared thermal zone.
+The UPS is installed at the base of the rack due to its weight. The three cabinets are bolted together as a single mechanical assembly, with the side panels left in place so that each cabinet keeps its own front-to-back airflow path rather than turning the row into one big shared thermal zone. We'd originally planned a different orientation to give the row a hot-and-cold-ish split, but the floor void left us no choice (the bloody pipes again, same story as the Cab 1/Cab 3 swap in part 3), so the racks went where they could physically sit. Three cabinets in a row against a wall doesn't give you proper hot/cold aisles anyway, just sensible per-cabinet containment.
 
 <figure>
-  <img src="/uploads/fitout/2014-08-22/2.jpg" alt="Rear of Cab 1: patch leads dressed neatly down one side, IEC leads down the other">
-  <figcaption>Rear of Cab 1: patch leads dressed neatly down one side, IEC leads down the other</figcaption>
+  <img src="/uploads/fitout/2014-08-22/2.jpg" alt="Rear of Cab 3: patch leads dressed neatly down one side, IEC leads down the other">
+  <figcaption>Rear of Cab 3: patch leads dressed neatly down one side, IEC leads down the other</figcaption>
 </figure>
 
-Patch panels, power lines, UPS, and PSUs are installed and the cabinets are earthed. Power into each rack arrives via IP44 quick-release angled commando sockets under the raised floor: 16A single phase to Cab 1, and a mix of 16A and 32A feeds to cabinets two and three, sized for what each cabinet is expected to hold.
+Patch panels, power lines, UPS, and PSUs are installed and the cabinets are earthed. Power into each rack arrives via IP44 quick-release angled commando sockets under the raised floor: 16A single phase to Cab 3, and a mix of 16A and 32A feeds to cabinets one and two, sized for what each cabinet is expected to hold.
 
 <figure>
   <img src="/uploads/fitout/2014-08-22/3.jpg" alt="Cable tray running from the wall enclosure down into the floor void">
@@ -40,8 +40,8 @@ Patch panels, power lines, UPS, and PSUs are installed and the cabinets are eart
 The cable tray to the OpenReach NTE is installed alongside the earth path. Every metallic element in the room, racks, trays, the DB enclosure, lands on the copper bar visible top-right of frame.
 
 <figure>
-  <img src="/uploads/fitout/2014-08-22/7.jpg" alt="21CN NTE rack-mounted in Cab 1 with the patch field directly below it">
-  <figcaption>21CN NTE rack-mounted in Cab 1 with the patch field directly below it</figcaption>
+  <img src="/uploads/fitout/2014-08-22/7.jpg" alt="21CN NTE rack-mounted in Cab 3 with the patch field directly below it">
+  <figcaption>21CN NTE rack-mounted in Cab 3 with the patch field directly below it</figcaption>
 </figure>
 
 <figure>
@@ -61,7 +61,7 @@ The store room runs on variable-height steel shelving with dado trunking present
   <figcaption>Daikin ceiling cassette, isolator on the wall</figcaption>
 </figure>
 
-Air-conditioning is installed. A ceiling-cassette comfort unit rather than precision cooling, sized for the load three cabinets generate rather than the nine we left behind.
+Air-conditioning is installed. A ceiling-cassette comfort unit rather than precision cooling, sized for the load three cabinets generate rather than the nine we left behind. It was originally going to drop in from the ceiling facing all three cabinets and blow cold air across the row, but there wasn't enough room for the cassette in that position. It had to move to face Cab 1, mounted above the power box and the earth bar, which leaves the final configuration a bit janky.
 
 <figure>
   <img src="/uploads/fitout/2014-08-22/10.jpg" alt="One of three Aruba access points, ceiling-mounted with power and data alongside">
