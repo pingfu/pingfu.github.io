@@ -32,7 +32,7 @@ Only use for significant visual changes or debugging rendering issues. Not for e
 ```bash
 docker exec playwright sh -c "npx playwright screenshot http://jekyll:4000/ /output/screenshot.png >/dev/null 2>&1"
 ```
-Add `--full-page` for full page height. Read `screenshots/screenshot.png` to view. Container can only write to this single file. Directory is gitignored.
+Add `--full-page` for full page height. Read `.screenshots/screenshot.png` to view. Container can only write to this single file. Directory is gitignored.
 
 ## External Services
 

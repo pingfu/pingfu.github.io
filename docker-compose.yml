@@ -17,5 +17,5 @@ services:
     depends_on:
       - jekyll
     volumes:
-      - ./screenshots/screenshot.png:/output/screenshot.png
+      - ./.screenshots/screenshot.png:/output/screenshot.png
     entrypoint: ["tail", "-f", "/dev/null"]

@@ -169,4 +169,4 @@ pip-log.txt
 .jekyll-metadata
 
 # Screenshots from Playwright sidecar
-screenshots/
+.screenshots/
