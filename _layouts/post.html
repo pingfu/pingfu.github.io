@@ -6,25 +6,27 @@ redirect_from: "/blog/"
 
 <section id="post">
 
-	<div class="breadcrumb"><a href="/">Home</a> <span class="divider">›</span> {{ page.title }}</div>
-
-	<h2>{{ page.title }}</h2>
-	<p class="meta">Posted: {{ page.date | date_to_string }}</p>
+	<h1>{{ page.title }}</h1>
+	<p class="meta"><a href="/" class="back-home">&lsaquo; Home</a> <span class="meta-divider">|</span> Posted: {{ page.date | date: "%-d %B %Y" }}{% if page.last_updated %} <span class="meta-divider">|</span> Last updated: {{ page.last_updated | date: "%-d %B %Y" }}{% endif %}</p>
 
 	<div class="post disqus">
 		{{ content }}
 	</div>
+
+</section>
+
+<section id="post-comments">
 
     <div id="disqus_thread"></div>
 
     <script type="text/javascript">
 
 		// more options @ http://help.disqus.com/customer/portal/articles/472098-javascript-configuration-variables
-        var disqus_shortname = 'pingfu';		
+        var disqus_shortname = 'pingfu';
 
         (function() {
-            var dsq = document.createElement('script'); 
-            dsq.type = 'text/javascript'; 
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
             dsq.async = true;
             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);

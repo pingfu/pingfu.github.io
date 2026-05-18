@@ -2,13 +2,12 @@
 layout: post
 title: "Cross domain communication with Ajax and JsonP"
 date: 2014-01-13
+last_updated: 2025-12-13
 tags: javascript
 permalink: /:title
 redirect_from:
   - "/programming/troubleshooting/2014/01/13/cross-domain-with-ajax-and-jsonp.html"
 ---
-
-_Last updated December 13 2025._
 
 > The Google Feed API used in this article was shut down in 2016. For cross-domain requests, use CORS (Cross-Origin Resource Sharing) which is now widely supported by browsers and servers.
 

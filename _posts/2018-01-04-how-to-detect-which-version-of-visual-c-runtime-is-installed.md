@@ -2,11 +2,10 @@
 layout: post
 title: "How to check if the Microsoft Visual C++ Runtime is installed"
 date: 2018-01-04
+last_updated: 2019-10-16
 tags: 
 permalink: /:title
 ---
-
-_Last updated October 16 2019._
 
 > This post discusses how to check if the Microsoft Visual C++ Runtime is installed. If you're just looking for a quick way to do this, you may want to consider using the library MscVersion source code on [GitHub](https://github.com/enclave-networks/mscversion) and a package on [NuGet](https://www.nuget.org/packages/MscVersion/). MscVersion is a pure C# library alternative to the _MSC_VER macro in C++ which lets you check what version of the VcRuntime is installed.
 

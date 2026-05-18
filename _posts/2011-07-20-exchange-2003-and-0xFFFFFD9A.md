@@ -2,13 +2,12 @@
 layout: post
 title: "Exchange 2003, 0xFFFFFD9A and EventID 1159"
 date: 2011-07-20
+last_updated: 2025-12-13
 tags: exchange
 permalink: /:title
 redirect_from:
   - "/troubleshooting/2011/07/20/exchange-2003-and-0xFFFFFD9A.html"
 ---
-
-_Last updated December 13 2025._
 
 > This post relates to Exchange Server 2003, which reached end of support in April 2014. It is preserved here for historical reference only.
 

@@ -14,7 +14,12 @@ The powershell cmdlet `Get-WinEvent` output can be piped into `where-object` to 
 
 
 ```powershell
-Get-WinEvent -FilterHashtable @{logname='application'; ProviderName='ASP.NET 4.0.30319.0'} | where-object  { $_.Message -like '*The timeout period elapsed prior to obtaining a connection from the pool*' }
+Get-WinEvent -FilterHashtable @{
+    logname      = 'application'
+    ProviderName = 'ASP.NET *'
+} | Where-Object {
+    $_.Message -like '*The timeout period elapsed prior to obtaining a connection from the pool*'
+}
 ```
 
 Thanks Matt.

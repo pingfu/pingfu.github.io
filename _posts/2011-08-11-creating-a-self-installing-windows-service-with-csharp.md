@@ -2,13 +2,12 @@
 layout: post
 title: "Creating a self installing windows service with c#"
 date: 2011-08-11
+last_updated: 2025-12-13
 tags: c#
 permalink: /:title
 redirect_from:
   - "/programming/2011/08/11/creating-a-self-installing-windows-service-with-csharp.html"
 ---
-
-_Last updated December 13 2025._
 
 > This post uses .NET Framework 3.5 patterns. For modern .NET, consider using Worker Services with `Microsoft.Extensions.Hosting` which provides a much cleaner approach to background services.
 
