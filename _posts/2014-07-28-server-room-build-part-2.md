@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Building a Server Room, Part 2: Fibre, Floor, and First Frames"
-subtitle: "OpenReach blow the fibre, and the raised floor fights back"
 date: 2014-07-28
 tags: infrastructure server-room fitout
 permalink: /:title
@@ -16,7 +15,7 @@ permalink: /:title
 - [Part 5 — Live, Patched, and Moved In](/server-room-build-part-5)
 {:.series-nav}
 
-Five days on from part 1 (28 July 2014). The shell is ready, but before the racks can go in we need a carrier circuit, cable pathways, and somewhere for the building services to politely move out of the way.
+Five days on from part 1 (28 July 2014). The shell is ready, but before the racks can go in we need a carrier circuit, cable pathways, and somewhere to push the existing building services out of the way.
 
 <figure>
   <img src="/uploads/fitout/2014-07-28/1.jpg" alt="The plant room splice point where OpenReach hand off our fibre">
@@ -66,7 +65,7 @@ The matting traces the path the patch cables will take to reach the comms room. 
   <figcaption>Three cabinets positioned, labelled, and ready for the kit</figcaption>
 </figure>
 
-Cab 1 will be the patching and comms cabinet. Cab 2 and Cab 3 will hold the development and infrastructure servers we've kept on-prem.
+Cab 1 will be the patching and comms cabinet. Cab 2 and cab 3 will hold the development and infrastructure servers we've kept on-prem.
 
 ---
 

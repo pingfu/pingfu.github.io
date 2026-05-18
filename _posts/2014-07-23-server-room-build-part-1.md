@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Building a Server Room, Part 1: Nine Cabinets into Three"
-subtitle: "Setting the brief, on a fit-out budget"
 date: 2014-07-23
 tags: infrastructure server-room fitout
 permalink: /:title

@@ -41,7 +41,7 @@ css_class_name: index
     {% for post in site.posts %}
         <li>
             <span>{{ post.date | date_to_string }}</span>
-            <a href="{{ post.url }}">{{ post.title }}</a>
+            <a href="{{ post.url }}">{{ post.title }}</a>{% if post.subtitle %} <small class="post-subtitle">{{ post.subtitle }}</small>{% endif %}
         </li>
     {% endfor %}
     </ul>

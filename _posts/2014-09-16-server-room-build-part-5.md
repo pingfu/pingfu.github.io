@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Building a Server Room, Part 5: Live, Patched, and Moved In"
-subtitle: "Cisco, HP, a hygrometer on the sill, and 50 staff back on production work by 11am Monday"
 date: 2014-09-16
 tags: infrastructure server-room fitout
 permalink: /:title
@@ -28,7 +27,7 @@ Nearly four weeks on from part 4 (16 September 2014). The room is finished, the 
   <figcaption>Cabinets 1 and 2: production racks, fully patched</figcaption>
 </figure>
 
-Coloured patch leads do the documentation job for us: at a glance you can see which switch a port lands on, which VLAN it belongs to, and whether something has been re-patched by hand in the middle of the night.
+Coloured patch leads make the topology obvious at a glance: which switch a port lands on, which VLAN it's in, and whether someone has re-patched it by hand.
 
 <figure>
   <img src="/uploads/fitout/2014-09-16/2.jpg" alt="Network rack: BT 21CN NTE, Cisco switches, and a pair of ASA firewalls">
@@ -47,7 +46,7 @@ HP c3000 enclosure and SAN units make up the bulk of cabinets two and three. The
   <figcaption>Steel shelving for spares and equipment better suited to shelves than 19" cabinets, complete with the obligatory Cisco VoIP handset</figcaption>
 </figure>
 
-The steel shelving carries everything that doesn't earn a rack unit: cold-spare desktops, small appliances, a Mac mini, and a hot-swap Cisco VoIP phone ready to drop in if anyone's desk phone fails.
+The steel shelving carries everything that doesn't need to sit in a cabinet: cold-spare desktops, small appliances, a Mac mini, and a hot-swap Cisco VoIP phone ready to drop in if anyone's desk phone fails.
 
 <figure>
   <img src="/uploads/fitout/2014-09-16/6.jpg" alt="Spares organised so anything we need at 3am is in reach without unboxing">
@@ -60,8 +59,8 @@ The steel shelving carries everything that doesn't earn a rack unit: cold-spare 
 </figure>
 
 <figure>
-  <img src="/uploads/fitout/2014-09-16/8.jpg" alt="Mechanical keypad: no batteries, no card reader, no panel to fail">
-  <figcaption>Mechanical keypad: no batteries, no card reader, no panel to fail</figcaption>
+  <img src="/uploads/fitout/2014-09-16/8.jpg" alt="Mechanical keypad: no batteries, no card reader, nothing electronic to go wrong">
+  <figcaption>Mechanical keypad: no batteries, no card reader, nothing electronic to go wrong</figcaption>
 </figure>
 
 <figure>
@@ -109,7 +108,7 @@ If I were doing this again, or arguing the case for the next one, the headline l
 * **Run flexible power under the floor**, terminated in IP44 commando sockets, so racks can be re-positioned without re-wiring the DB.
 * **Size the UPS for the actual critical load, with realistic runtime,** and consider a generator for prolonged outages if uptime warrants it.
 * **More space under the raised floor.** 11cm of clearance with pre-existing building services running through it is not enough, and I designed around it rather than fixing it.
-* **Survey the floor void and building services before the drawings are final.** Designing around the pipework instead of around the brief had consequences that cascaded: Cab 1 and Cab 3 swapped roles, the row couldn't be oriented for a hot/cold-ish split, and the AC cassette had to be re-sited above the DB rather than across the row of cabinets. The building decides the layout if you don't survey it first, which here wasn't really an option. The space was a new-build constructed for general office use, and we were too far down the stakeholder chain to influence where the building services went in. Unintended consequences in the fit-out were the natural result, but thankfully nothing the team couldn't work around.
+* **Survey the floor void and building services before the drawings are final.** Designing around the pipework instead of around the brief had consequences that cascaded: cab 1 and cab 3 swapped roles, the row couldn't be oriented for a hot/cold-ish split, and the AC cassette had to be re-sited above the DB rather than across the row of cabinets. Properly surveying the building first wasn't really an option here: the space was a new-build constructed for general office use, and we were too far down the stakeholder chain to influence where the building services went in. Unintended consequences in the fit-out were the natural result, but thankfully nothing the team couldn't work around.
 * **More space generally, better physical security, water detection, and proper environmental monitoring** rather than a hygrometer on the sill.
 * **Multi-homed BGP resilience** at the carrier level, sized to the cost of downtime to the business. We have it; smaller offices often don't, and regret it the first time the only circuit goes dark.
 

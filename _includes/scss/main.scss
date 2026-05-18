@@ -443,6 +443,13 @@ blockquote {
             font-variant-numeric: tabular-nums;
             margin-left: 6px;
         }
+
+        .post-subtitle {
+            color: #8a8d8e;
+            font-size: $font-size-md;
+            font-style: italic;
+            margin-left: 6px;
+        }
     }
 
     .assets.row {
