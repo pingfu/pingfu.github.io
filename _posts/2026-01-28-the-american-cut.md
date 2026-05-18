@@ -37,7 +37,7 @@ As British citizens, when we buy petrol, groceries, order online or catch the bu
 
 This is of course not a uniquely British problem. It's also how local payments look for most of the world, where card transactions mean paying rent to Visa and Mastercard to the tune of $70+ billion annually in combined net revenue.
 
-This, as you might imagine, creates a lot of political leverage and soft power for the US Government, since the US-domiciled duopoly, together with the Government, decides who can participate, who can't, what fees are charged, and ultimately whose interests are served.
+This, as you might imagine, is a comfortable arrangement for the US Government, since the US-domiciled duopoly, together with the Government, decides who can participate, who can't, what fees are charged, and ultimately whose interests are served. Soft power doesn't get much softer than that.
 
 Readers in China, India, Brazil, Sweden, the Netherlands and Poland, however, might be scratching their heads at this point, as the Governments of those countries have all invested in their national payment infrastructure, making it easy for consumers to use at point of sale, and so have also successfully reduced their dependency on Visa and Mastercard.
 
