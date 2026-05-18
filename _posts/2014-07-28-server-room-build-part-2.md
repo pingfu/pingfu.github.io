@@ -66,7 +66,7 @@ The matting traces the path the patch cables will take to reach the comms room. 
   <figcaption>Three cabinets positioned, labelled, and ready for the kit</figcaption>
 </figure>
 
-Cab 1 will be the patching and comms cabinet, Cab 2 and Cab 3 will hold the development and infrastructure servers we've kept on-prem.
+Cab 1 will be the patching and comms cabinet. Cab 2 and Cab 3 will hold the development and infrastructure servers we've kept on-prem.
 
 ---
 

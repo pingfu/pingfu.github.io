@@ -16,13 +16,13 @@ permalink: /:title
 - [Part 5 — Live, Patched, and Moved In](/server-room-build-part-5)
 {:.series-nav}
 
-For some months I've been preparing to move the IT infrastructure of a Cardiff based company into a new office space. Besides moving with minimal downtime to the production team, the business had made the strategic decision to lean more heavily on cloud hosting for their customers, and so challenged me to reduce their current on-premise hardware footprint into the smallest viable space I could for the office.
+For some months I've been preparing to move the IT infrastructure of a Cardiff based company into a new office space. Besides moving with minimal downtime to the production team, the business had made the strategic decision to lean more heavily on cloud hosting for their customers, and so challenged me to reduce their on-premise hardware footprint to the smallest viable space possible for the office.
 
 The business had previously (around 2004) invested in building an on-premise server room, with cooling and UPS power supplying nine 47U cabinets of rack mounted servers in a standard office block, in addition to renting expensive rack space in a tier-4 data centre for high-profile customers, or those with policies governing where their sensitive data could be held (read: Government).
 
 The most natural split when planning which systems would be migrated out to cloud hosting was to only move services where the cost of running on cloud could be recouped. Consequently only customer-chargeable services would be migrated, keeping development servers and other infrastructure like file servers in-house to make best use of previous investments in rack mounted hardware.
 
-With significant planning, fantastic customer co-operation, updated charging structures and revision of hosting contracts it looked achievable to condense nine cabinets of highly bespoke production workloads running on a resilient BGP multi-homed connection down into three cabinets of only development servers and internal infrastructure necessary for BAU, with those workloads moved to cloud hosting.
+With significant planning, fantastic customer co-operation, updated charging structures and revision of hosting contracts, it looked achievable to condense nine cabinets of highly bespoke production workloads running on a resilient BGP multi-homed connection down into three cabinets of only development servers and internal infrastructure necessary for BAU. The production workloads themselves would move to cloud hosting.
 
 Well in advance of drawing up the designs for the new server room then, there was a huge effort to migrate the production customer-facing applications and services from on-premise colocation hardware out to a mixture of IaaS and PaaS cloud deployments. I'm not going to cover that work in these posts, but instead skip on to the server room build.
 
@@ -35,7 +35,7 @@ With the background covered, on to a first look at the new space.
   <figcaption>The wider shell, freshly painted, awaiting fit-out. The three cabinets we've brought across are parked in the middle</figcaption>
 </figure>
 
-We've brought three racks with us from the old office here to the new space, you can see them above in an aera that will become part of the open-plan floor space. 
+We've brought three racks with us from the old office. You can see them above, in an area that will become part of the open-plan floor space. 
 
 <figure>
   <img src="/uploads/fitout/2014-07-23/2.jpg" alt="The shell of the designated comms room beginning to take shape">

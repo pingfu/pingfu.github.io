@@ -18,7 +18,7 @@ permalink: /:title
 
 Three weeks on from part 2 (18 August 2014). The cabinets are in position, the cabling contractor is on site, and the BT engineers have been back to light the circuit. This is the post where the room starts to look like a comms room.
 
-Small confession before we go on: in part 2 I had Cab 1 pegged as the comms cab. That hasn't survived contact with reality. The miniscule clearance under the raised floor (the bloody pipes again) forced all the access runs from the floor boxes to enter the room on the right-hand side, you can see the route in the matting photo in part 2, hitting Cab 3 before anything else. Dragging that lot back across the room just to land it on the "first" cabinet would have been daft, so Cab 1 and Cab 3 have swapped roles. Cab 3 is now the patching and comms cab.
+Small confession before we go on: in part 2 I had Cab 1 pegged as the comms cab. That hasn't survived contact with reality. The miniscule clearance under the raised floor (the bloody pipes again) forced all the access runs from the floor boxes to enter the room on the right-hand side (you can see the route in the matting photo in part 2), hitting Cab 3 before anything else. Dragging that lot back across the room just to land it on the "first" cabinet would have been daft, so Cab 1 and Cab 3 have swapped roles. Cab 3 is now the patching and comms cab.
 
 <figure>
   <img src="/uploads/fitout/2014-08-18/1.jpg" alt="Patch panels installed into Cab 3">
