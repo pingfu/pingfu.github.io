@@ -69,7 +69,7 @@ It's a symptom of many `Level 3` devices, and generalises far beyond climbing.
 
 Ask any motorcyclist about the first time they experienced thermal brake fade. Halfway down a long descent, the brake lever loses resistance and the bike just… doesn’t slow down anymore. In that moment, without training beforehand, the rider likely discovered for the first time that what they thought was a `Level 4: Fail-Safe` system was actually a `Level 3: Safety Assisted` system with a failure mode they just didn't know about.
 
-In both cases, failure modes tend to be subtle, rare, or counterintuitive, and invisible right up until the operator hits them. And because the system usually works, operators can go years without ever learning where those edges actually are, until it's too late.
+In both cases, failure modes tend to be subtle, rare, or counterintuitive, and invisible right up until the operator hits them. And because the system usually works, operators can go years without ever learning where those edges are, until it's too late.
 
 This is what makes upgrading `Level 1` or `Level 2` devices to `Level 3` so dangerous; without mandatory training, the operator is often unwittingly swapping a dangerous-by-default device they fully understood for one that will fail in ways they didn’t anticipate.
 
