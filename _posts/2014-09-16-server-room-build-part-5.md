@@ -117,7 +117,7 @@ The bigger lesson is that the design has to be appropriate to the requirements o
 
 It's worth reading what the very large operators do, even if you'll never build at that scale. Facebook's data centre fabric write-up is a good example: they make the case that forcing air through a raised-floor plenum and perforated floor tiles is an inefficient use of energy, and instead pressurise the entire data hall with cool air. That isn't a lesson you can directly apply to three cabinets in an office block, but the underlying point, design for the actual thermal load and stop copying patterns from the last room you built, is universal. And keep an eye on hardware lifecycles: Cisco's published end-of-life schedules are a useful reminder that anything bought today has a defined runway and should be planned out, not panicked out.
 
-A server room built well lasts ten to fifteen years. This one should comfortably see out that horizon at this site, and if and when the business outgrows it again, most of the lessons above will still apply.
+A well-built server room lasts ten to fifteen years. This one should comfortably see out that horizon at this site, and if and when the business outgrows it again, most of the lessons above will still apply.
 
 ---
 
