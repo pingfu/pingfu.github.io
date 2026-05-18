@@ -51,7 +51,7 @@ Cruickshank, having seen how breaking British Telecom's monopoly had opened up t
 
 His 2000 report concluded that the UK's payment systems were an oligopoly. A consortium of big banks owned the payments infrastructure, set prices, and decided who got to play. He recommended the establishment of an independent regulator with statutory powers, which he called "PayCom".
 
-Brown's government rejected it in favour of industry self-regulation. Eight years later, the 2008 financial crisis discredited "light touch" regulation and Labour lost the 2010 election.
+Brown's government rejected it in favour of industry self-regulation, the prevailing theory being that banks, as grown-ups, could be trusted to police themselves. Eight years later, the 2008 financial crisis discredited "light touch" regulation and Labour lost the 2010 election. So that worked out.
 
 ---
 
@@ -63,7 +63,7 @@ She saw payment infrastructure the way she saw electricity grids: public utiliti
 
 Her 2015 Market Review identified the problem: the big banks (notably Barclays, HSBC, Lloyds, RBS, and Santander, who together held about 85% of the shares) controlled Vocalink, the company that operated Britain's national payment infrastructure, while also being its main users. This gave them no incentive to innovate or lower fees. Her solution was to force them to sell.
 
-Nixon recommended the banks divest; however, her hoped-for "competitive market" didn't materialise. There was no queue of British fintechs with £700 million to spend on national payment infrastructure. There was one serious bidder, and before she could formally require it, Mastercard offered to buy and the PSR accepted the offer as a way to resolve the ownership problem.
+Nixon recommended the banks divest; however, her hoped-for "competitive market" didn't materialise. There was no queue of British fintechs with £700 million to spend on national payment infrastructure. There was exactly one serious bidder, and before Nixon could formally require divestment, Mastercard offered to buy and the PSR accepted their offer as a way to resolve the ownership problem. The fix for "the wrong people own this" turned out to be "let different wrong people own it."
 
 Yes, you read that correctly.
 
@@ -75,7 +75,7 @@ Their shareholders expect that revenue to grow. When money moves through A2A, it
 
 By acquiring Vocalink, Mastercard would gain control over the infrastructure that could route payments around their card network. They would own both the toll road and the free alternative.
 
-And the PSR handed it over under the naive belief that it would improve competition.
+And the PSR handed it over under the naive belief that this would improve competition. It would not. See [Privatisation of British Rail](https://en.wikipedia.org/wiki/Privatisation_of_British_Rail)
 
 ---
 
@@ -88,7 +88,7 @@ The government could have intervened on national interest grounds. Instead, Hamm
   <figcaption>fffffffff.</figcaption>
 </figure>
 
-The Competition and Markets Authority reviewed the deal. They raised concerns about ATM switching, where Mastercard and Vocalink were two of only three credible providers. On the core issue, a card network acquiring the A2A infrastructure that could bypass it, the CMA found "no competition concerns." They accepted behavioural remedies: Mastercard would license some protocols and transfer LINK's messaging specification. The deal was approved in April 2017.
+The Competition and Markets Authority reviewed the deal. They raised concerns about ATM switching, where Mastercard and Vocalink were two of only three credible providers. On the core issue, a card network acquiring the A2A infrastructure that could bypass it, the CMA found "no competition concerns." That is to say, the body charged with protecting competition concluded that allowing a card monopoly to buy the only thing that might compete with cards was, on balance, fine. They accepted behavioural remedies: Mastercard would license some protocols and transfer LINK's messaging specification. The deal was approved in April 2017.
 
 Brexit was no doubt a major political driver of the time, but it strikes me as a strange move nevertheless. Those who voted for Britain to leave the European Union did so on a platform of increasing sovereignty, and "taking back control" from foreign powers. For the Government to promptly complete a fire sale of critical national infrastructure to an American corporation seems, at the very least, and if we're being generous, somewhat at odds with that ideology.
 
@@ -98,7 +98,7 @@ So Mastercard and Visa operate a global duopoly on card payments, which includes
 
 They are both publicly traded US corporations whose legal obligation is to maximise returns for their, largely American, institutional investors like Vanguard and BlackRock. They have no duty to the British public, no obligation to keep fees low, and no requirement to act in the national interest.
 
-Once Brexit removed the cap on UK-EEA interchange fees, Mastercard and Visa predictably raised their cross-border fees fivefold, from 0.2% to 1.15% for debit cards and 0.3% to 1.5% for credit cards. In June 2025, the Competition Appeal Tribunal ruled that Visa and Mastercard's interchange fee structures breach competition law, with potential damages in the billions.
+Once Brexit removed the cap on UK-EEA interchange fees, Mastercard and Visa did what unregulated duopolies tend to do, which is raise prices. Cross-border fees rose fivefold, from 0.2% to 1.15% for debit cards and 0.3% to 1.5% for credit cards. In June 2025, the Competition Appeal Tribunal ruled that Visa and Mastercard's interchange fee structures breach competition law, with potential damages in the billions.
 
 In July 2025, the Bank of England fined Vocalink £11.9 million for failing to meet risk management requirements. This was the first fine the Bank has ever issued to a payment infrastructure operator.
 
