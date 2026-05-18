@@ -25,31 +25,31 @@ Most major economies have something called a national payment infrastructure: se
 - Thailand has [PromptPay](https://www.bot.or.th/en/financial-innovation/digital-finance/digital-payment/PromptPay.html)
 - Late to the game, Europe is *building* [Wero](https://wero-wallet.eu/)
 
-These systems are almost always domestically owned, for example by the *Federal Reserve* in America, the *People's Bank of China* in ... China, and a *consortium of 16 major European banks* in Europe, and so on.
+These systems are almost always domestically owned: by the *Federal Reserve* in America, the *People's Bank of China* in ... China, a *consortium of 16 major European banks* in Europe, and so on.
 
 The companies which deliver this infrastructure are so important that they usually fall under the umbrella of critical national infrastructure (alongside power grids, water supply, and telecoms), because foreign control means foreign leverage: the ability to raise fees, access transaction data, and disrupt or deny service entirely.
 
-You might therefore quite reasonably conclude that all but international payments would flow through these domestic systems, and you'd be right. Except for inside the UK where that's not the case (yay!).
+You might therefore quite reasonably conclude that all but international payments would flow through these domestic systems, and you'd be right. Except inside the UK, where that's not the case (yay!).
 
 So, let's begin.
 
-As British citizens, when we buy petrol, groceries, order online or catch the bus, we're almost certainly making card payments, and in those cases the transaction is not handled by our national payment infrastructure, it is routed from our bank through Mastercard or Visa's network instead (who take a cut of the transaction for providing the service) and then back to the merchant bank to settle, even if the merchant and the customer share the same British bank and are both in the UK.
+As British citizens, when we buy petrol, groceries, order online or catch the bus, we're almost certainly making card payments, and in those cases the transaction is not handled by our national payment infrastructure; instead, it is routed from our bank through Mastercard or Visa's network (who take a cut of the transaction for providing the service) and then back to the merchant bank to settle, even if the merchant and the customer share the same British bank and are both in the UK.
 
-This is of course not a uniquely British problem. Its also how local payments look for most of the world, where card transactions mean paying rent to Visa and Mastercard to the tune of about $60 billion annually.
+This is of course not a uniquely British problem. It's also how local payments look for most of the world, where card transactions mean paying rent to Visa and Mastercard to the tune of about $60 billion annually.
 
-This, as you might imagine, creates a lot of political leverage and soft power for the US Government as the US domiciled duopoly, together with the US Government decides who can participate, who can't, what fees are charged, and ultimately whose interests are served.
+This, as you might imagine, creates a lot of political leverage and soft power for the US Government, since the US-domiciled duopoly, together with the Government, decides who can participate, who can't, what fees are charged, and ultimately whose interests are served.
 
-Readers in China, India, Brazil, Sweden, the Netherlands and Poland however might be scratching their heads at this point, as the Governments of those countries have all invested in their national payment infrastructure, making it easy for consumers to use at point of sale, and so have also successfully reduced their dependency on Visa and Mastercard.
+Readers in China, India, Brazil, Sweden, the Netherlands and Poland, however, might be scratching their heads at this point, as the Governments of those countries have all invested in their national payment infrastructure, making it easy for consumers to use at point of sale, and so have also successfully reduced their dependency on Visa and Mastercard.
 
-This is also a priority issue for the European Commission and European Central Bank too as they continue to build out the Wero system, hoping to achieve "greater independence from the market power of American payment service providers" and provide "sovereignty and independence from the US in terms of payment solutions."
+This is also a priority issue for the European Commission and European Central Bank as they continue to build out the Wero system, hoping to achieve "greater independence from the market power of American payment service providers" and provide "sovereignty and independence from the US in terms of payment solutions."
 
-Anyway, back to Blighty, as we in Britain of course took a different path.
+Anyway, back to Blighty. We in Britain, of course, took a different path.
 
 Back in 1998, when Gordon Brown was Chancellor under a Labour government, the prevailing economic philosophy was that competition benefits consumers, but regulation is needed to prevent monopolies. Brown commissioned Don Cruickshank, who had just finished running Oftel (the British telecoms regulator), to examine competition in British banking.
 
-Cruickshank, having seen how breaking British Telecom's monopoly had opened up telecommunications and believed the same medicine could work for the payments industry.
+Cruickshank, having seen how breaking British Telecom's monopoly had opened up telecommunications, believed the same medicine could work for the payments industry.
 
-His 2000 report concluded that the UK's payment systems were an oligopoly. A consortium of big banks owned the payments infrastructure, set prices, and decided who got to play. He recommended establishment of an independent regulator with statutory powers, which he called "PayCom".
+His 2000 report concluded that the UK's payment systems were an oligopoly. A consortium of big banks owned the payments infrastructure, set prices, and decided who got to play. He recommended the establishment of an independent regulator with statutory powers, which he called "PayCom".
 
 Brown's government rejected it in favour of industry self-regulation. Eight years later, the 2008 financial crisis discredited "light touch" regulation and Labour lost the 2010 election.
 
@@ -63,7 +63,7 @@ She saw payment infrastructure the way she saw electricity grids: public utiliti
 
 Her 2015 Market Review identified the problem: the big banks (Barclays, HSBC, Lloyds, RBS, and Santander) owned Vocalink, the company that operated Britain's national payment infrastructure, while also being its main users. This gave them no incentive to innovate or lower fees. Her solution was to force them to sell.
 
-Nixon recommended the banks divest, however her hoped-for "competitive market" didn't materialise. There was no queue of British fintechs with £700 million to spend on national payment infrastructure. There was one serious bidder, and before she could formally require it, Mastercard offered to buy and the PSR accepted this as a solution to consolidated the ownership problem.
+Nixon recommended the banks divest; however, her hoped-for "competitive market" didn't materialise. There was no queue of British fintechs with £700 million to spend on national payment infrastructure. There was one serious bidder, and before she could formally require it, Mastercard offered to buy and the PSR accepted the offer as a way to resolve the ownership problem.
 
 Yes, you read that correctly.
 
@@ -71,11 +71,11 @@ Mastercard wanted Vocalink because Vocalink's infrastructure handles something c
 
 When you tap your card at a terminal, whether contactless, chip and pin, or online checkout, that transaction routes through Mastercard or Visa's network. They take a cut of every transaction (interchange fees), typically 0.2-1.5% depending on the card type. That's how Mastercard makes money.
 
-Their shareholders expect that revenue to grow. When money moves throuh A2A, it's faster (seconds vs days for settlement) and cheaper (fractions of a penny vs percentage-based fees). For Mastercard, it's an existential threat.
+Their shareholders expect that revenue to grow. When money moves through A2A, it's faster (seconds vs days for settlement) and cheaper (fractions of a penny vs percentage-based fees). For Mastercard, it's an existential threat.
 
 By acquiring Vocalink, Mastercard would gain control over the infrastructure that could route payments around their card network. They would own both the toll road and the free alternative.
 
-And PSR handed it over under the naieve believe that it would improve competition.
+And the PSR handed it over under the naive belief that it would improve competition.
 
 ---
 
@@ -88,13 +88,13 @@ The government could have intervened on national interest grounds. Instead, Hamm
   <figcaption>fffffffff.</figcaption>
 </figure>
 
-The Competition and Markets Authority reviewed the deal. They raised concerns about ATM switching, where Mastercard and Vocalink were two of only three credible providers. On the core issue, a card network acquiring the A2A infrastructure that could bypass it, the CMA found "no competition concerns." They accepted behavioral remedies: Mastercard would license some protocols and transfer LINK's messaging specification. The deal was approved in April 2017.
+The Competition and Markets Authority reviewed the deal. They raised concerns about ATM switching, where Mastercard and Vocalink were two of only three credible providers. On the core issue, a card network acquiring the A2A infrastructure that could bypass it, the CMA found "no competition concerns." They accepted behavioural remedies: Mastercard would license some protocols and transfer LINK's messaging specification. The deal was approved in April 2017.
 
-Brexit was no doubt a major political driver of the time, but it strikes me as a strange move nevertheless. For those who voted for Britain to leave the European Union, it was on a platform of increasing sovereignty, and "taking back control" from foreign powers. For the Government to promptly complete a fire sale of critical national infrastructure to an American corporation seems, at the very least, and if we're being generous — somewhat at odds with that ideology.
+Brexit was no doubt a major political driver of the time, but it strikes me as a strange move nevertheless. Those who voted for Britain to leave the European Union did so on a platform of increasing sovereignty, and "taking back control" from foreign powers. For the Government to promptly complete a fire sale of critical national infrastructure to an American corporation seems, at the very least, and if we're being generous, somewhat at odds with that ideology.
 
 ---
 
-So Mastercard, together with Visa, operate a global duopoly on card payments, which includes the UK.
+So Mastercard and Visa operate a global duopoly on card payments, which includes the UK.
 
 They are both publicly traded US corporations whose legal obligation is to maximise returns for their, largely American, institutional investors like Vanguard and BlackRock. They have no duty to the British public, no obligation to keep fees low, and no requirement to act in the national interest.
 
@@ -106,9 +106,9 @@ The systems that route most of the nation's money were found to have inadequate 
 
 In March 2025, Keir Starmer's Labour government announced they were abolishing the PSR as an independent entity, folding its functions into the FCA. The regulator that took thirteen years to create is being wound down just as the consequences of its one major intervention become clear.
 
-When Visa and Mastercard rightly suspended operations in Russia in 2022 (which remain suspended as of writing) form is a directly cited motivation for the European Commission and European Central Bank to build Wero (despite the awful name) its still an important motion towards soverignty. One which escapes us in Britain. We're busy abolishing the payment regulator.
+Visa and Mastercard's suspension of Russian operations in 2022 (still in force as of writing) is directly cited by the European Commission and European Central Bank as motivation for building Wero. Despite the awful name, it's still an important step toward sovereignty, one that escapes us in Britain. We're busy abolishing the payment regulator.
 
-I suppose at each turn, everyone was acting in good faith, following their beliefs, political pressures and ideologies and hopefully what they thought was right for the British Public too. However, the result is that Britain's payment infrastructure is now owned by a US corporation whose shareholders expect fees to rise, whose business model depends on card payments staying dominant, and who now controls the only alternative.
+I suppose at each turn, everyone was acting in good faith, following their beliefs, political pressures, and ideologies, and hopefully doing what they thought was right for the British public. However, the result is that Britain's payment infrastructure is now owned by a US corporation whose shareholders expect fees to rise, whose business model depends on card payments staying dominant, and who now controls the only alternative.
 
 - Brown believed in regulated competition.
 - Osborne believed in breaking bank power.
@@ -124,7 +124,7 @@ Looking back from 2026:
 2. Vocalink was fined £11.9 million for inadequate controls under American ownership
 3. The UK regulator is being abolished just as the consequences of its actions become clear
 4. Europe is building an alternative
-5. Britain is dismantling it oversight
+5. Britain is dismantling its oversight
 
 ---
 
