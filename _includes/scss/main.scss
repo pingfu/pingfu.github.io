@@ -249,6 +249,7 @@ button {
 blockquote {
     position: relative;
     background: none;
+    border-left: none;
     margin: 28px 0;
     padding: 4px 0 4px 20px;
     font-size: 0.92em;
@@ -2110,25 +2111,41 @@ table.vcruntime {
 }
 
 @media only screen and (max-width: 1100px) {
-    body { 
+    body {
         background: $white;
     }
 
-    section { 
+    section {
         border: 0px transparent;
-        margin: 0;
+        margin: 40px 0;
+    }
+
+    #post {
+        padding: 0 16px;
+
+        figure,
+        .post p:has(> img) {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .post table.safety-levels {
+            margin-left: 0;
+            margin-right: 0;
+            width: 100%;
+        }
     }
 
     #footer {
         margin-top: 140px;
     }
-    
+
     #protocol-header-cheatsheets {
         td {
             white-space: normal;
         }
     }
-        
+
     #about {
         img {
             padding: 20px;
