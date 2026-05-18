@@ -16,7 +16,7 @@ permalink: /:title
 - Part 5 — Live, Patched, and Handed Over
 {:.series-nav}
 
-Nearly four weeks on from part 4. The room is finished, the kit is racked, the staff have moved in, and the office around it is in daily use.
+Nearly four weeks on from part 4 (16 September 2014). The room is finished, the kit is racked, the staff have moved in, and the office around it is in daily use.
 
 <figure>
   <img src="/uploads/fitout/2014-09-16/1.jpg" alt="Finished office area showing the comms room door with a viewing panel, beside a large wall mural of a pair of headphones drawn in line work">

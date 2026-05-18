@@ -1897,11 +1897,10 @@ blockquote {
         text-align: center;
     }
 
-    .series-nav,
-    .series-nav li,
-    .series-nav a {
+    .post .series-nav li {
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         font-variant-numeric: tabular-nums;
+        font-size: 14px;
     }
 
     .post pre,

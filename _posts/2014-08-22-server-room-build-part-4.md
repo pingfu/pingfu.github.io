@@ -16,7 +16,7 @@ permalink: /:title
 - [Part 5 — Live, Patched, and Handed Over](/server-room-build-part-5)
 {:.series-nav}
 
-Four days on from part 3. Patch panels are in, the carrier is live, and the room now has to be given power, cooling, and the wireless coverage that the wider office runs on. Before any of that, a note on telephony: we've abandoned the traditional PBX and ISDN lines in favour of SIP trunking and VoIP handsets. One fewer system in the rack and one fewer copper service into the building.
+Four days on from part 3 (22 August 2014). Patch panels are in, the carrier is live, and the room now has to be given power, cooling, and the wireless coverage that the wider office runs on. Before any of that, a note on telephony: we've abandoned the traditional PBX and ISDN lines in favour of SIP trunking and VoIP handsets. One fewer system in the rack and one fewer copper service into the building.
 
 <figure>
   <img src="/uploads/fitout/2014-08-22/6.jpg" alt="APC rack-mount UPS sat at the very bottom of a rack with neat purple patch panels above and cabling routed overhead">

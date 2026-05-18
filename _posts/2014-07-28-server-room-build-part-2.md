@@ -16,7 +16,7 @@ permalink: /:title
 - [Part 5 — Live, Patched, and Handed Over](/server-room-build-part-5)
 {:.series-nav}
 
-Five days on from part 1. The shell is ready, but before the racks can go in we need a carrier circuit, cable pathways, and somewhere for the building services to politely move out of the way.
+Five days on from part 1 (28 July 2014). The shell is ready, but before the racks can go in we need a carrier circuit, cable pathways, and somewhere for the building services to politely move out of the way.
 
 <figure>
   <img src="/uploads/fitout/2014-07-28/1.jpg" alt="Fibre splice enclosure mounted to a wall with grey cable tray, conduit, and pink slack coiled around it">

@@ -16,7 +16,7 @@ permalink: /:title
 - [Part 5 — Live, Patched, and Handed Over](/server-room-build-part-5)
 {:.series-nav}
 
-Three weeks on from part 2. The cabinets are in position, the cabling contractor is on site, and the BT engineers have been back to light the circuit. This is the post where the room starts to look like a comms room.
+Three weeks on from part 2 (18 August 2014). The cabinets are in position, the cabling contractor is on site, and the BT engineers have been back to light the circuit. This is the post where the room starts to look like a comms room.
 
 <figure>
   <img src="/uploads/fitout/2014-08-18/1.jpg" alt="Rack with a black vertical cable manager flanked by tall stacks of patch panels, the leftmost rack is empty">
@@ -58,7 +58,7 @@ Brick cladding is fitted to certain spaces in the office area. The comms room is
   <figcaption>BT OpenReach FSP150CP NTE, labelled 21cn, lit on a yellow patch lead</figcaption>
 </figure>
 
-The fibre tray is installed and so is the BT OpenReach NTE. A 100Mbit circuit is run in on a 100Mbit bearer: a Virgin Media line delivered on a BT tail. The line presents PI space, advertising via BGP a route to a /21 network (2048 IP addresses).
+The fibre tray is installed and so is the BT OpenReach NTE. A 100Mbit circuit is run in on a 100Mbit bearer: a Virgin Media line delivered on a BT tail. The line presents Provider-Independent (PI) IP space, advertising via BGP a route to a /21 network (2048 IP addresses).
 
 ---
 
