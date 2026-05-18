@@ -247,13 +247,24 @@ button {
 }
 
 blockquote {
-    border-left: 3px solid $cloud;
+    position: relative;
     background: none;
     margin: 28px 0;
     padding: 4px 0 4px 20px;
-    font-size: inherit;
+    font-size: 0.92em;
     font-style: italic;
     color: $shadow;
+
+    &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3px;
+        height: calc(100% - 16px);
+        background: $cloud;
+    }
 
     p {
         margin: 0 0 12px 0;
@@ -1874,6 +1885,10 @@ blockquote {
             font-weight: normal;
             margin: 0;
         }
+
+        blockquote p {
+            font-size: inherit;
+        }
     }
 
     img {
@@ -1974,8 +1989,7 @@ blockquote {
 
 #post .post table.safety-levels {
     font-size: 13px;
-    margin-left: -30px;
-    margin-right: -30px;
+    margin: 40px -30px;
     width: calc(100% + 60px);
     max-width: none;
 
