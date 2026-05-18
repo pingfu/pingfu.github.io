@@ -71,6 +71,6 @@ Ask any motorcyclist about the first time they experienced thermal brake fade. H
 
 In both cases, failure modes tend to be subtle, rare, or counterintuitive, and invisible right up until the operator hits them. And because the system usually works, operators can go years without ever learning where those edges are, until it's too late.
 
-This is what makes upgrading `Level 1` or `Level 2` devices to `Level 3` so dangerous; without mandatory training, the operator is often unwittingly swapping a dangerous-by-default device they fully understood for one that will fail in ways they didn’t anticipate.
+This is what makes upgrading `Level 1` or `Level 2` devices to `Level 3` so dangerous; without mandatory training, the operator is often unwittingly swapping a dangerous-by-default device they fully understood for one that will fail in ways they can't anticipate.
 
 See [https://safety-framework.fawltea.net/](https://safety-framework.fawltea.net/) for the full Safety by Design Index.
