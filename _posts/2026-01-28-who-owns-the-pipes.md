@@ -25,7 +25,7 @@ Most major economies have something called a national payment infrastructure: se
 - Thailand has [PromptPay](https://www.bot.or.th/en/financial-innovation/digital-finance/digital-payment/PromptPay.html)
 - Late to the game, Europe is *building* [Wero](https://wero-wallet.eu/)
 
-These systems are almost always domestically owned: by the *Federal Reserve* in America, the *People's Bank of China* in ... China, a *consortium of 16 major European banks* in Europe, and so on.
+These systems are almost always domestically owned: by the *Federal Reserve* in America, a *state-backed consortium of Chinese banks* under the People's Bank of China in ... China, a *consortium of 16 founding European banks and payment companies* in Europe, and so on.
 
 The companies which deliver this infrastructure are so important that they usually fall under the umbrella of critical national infrastructure (alongside power grids, water supply, and telecoms), because foreign control means foreign leverage: the ability to raise fees, access transaction data, and disrupt or deny service entirely.
 
@@ -35,7 +35,7 @@ So, let's begin.
 
 As British citizens, when we buy petrol, groceries, order online or catch the bus, we're almost certainly making card payments, and in those cases the transaction is not handled by our national payment infrastructure; instead, it is routed from our bank through Mastercard or Visa's network (who take a cut of the transaction for providing the service) and then back to the merchant bank to settle, even if the merchant and the customer share the same British bank and are both in the UK.
 
-This is of course not a uniquely British problem. It's also how local payments look for most of the world, where card transactions mean paying rent to Visa and Mastercard to the tune of about $60 billion annually.
+This is of course not a uniquely British problem. It's also how local payments look for most of the world, where card transactions mean paying rent to Visa and Mastercard to the tune of $70+ billion annually in combined net revenue.
 
 This, as you might imagine, creates a lot of political leverage and soft power for the US Government, since the US-domiciled duopoly, together with the Government, decides who can participate, who can't, what fees are charged, and ultimately whose interests are served.
 
@@ -61,7 +61,7 @@ Osborne pushed through the Financial Services (Banking Reform) Act, finally crea
 
 She saw payment infrastructure the way she saw electricity grids: public utilities that shouldn't be owned by their biggest customers.
 
-Her 2015 Market Review identified the problem: the big banks (Barclays, HSBC, Lloyds, RBS, and Santander) owned Vocalink, the company that operated Britain's national payment infrastructure, while also being its main users. This gave them no incentive to innovate or lower fees. Her solution was to force them to sell.
+Her 2015 Market Review identified the problem: the big banks (notably Barclays, HSBC, Lloyds, RBS, and Santander, who together held about 85% of the shares) controlled Vocalink, the company that operated Britain's national payment infrastructure, while also being its main users. This gave them no incentive to innovate or lower fees. Her solution was to force them to sell.
 
 Nixon recommended the banks divest; however, her hoped-for "competitive market" didn't materialise. There was no queue of British fintechs with £700 million to spend on national payment infrastructure. There was one serious bidder, and before she could formally require it, Mastercard offered to buy and the PSR accepted the offer as a way to resolve the ownership problem.
 
