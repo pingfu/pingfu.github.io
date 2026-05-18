@@ -24,8 +24,8 @@ Nearly four weeks on from part 4 (16 September 2014). The room is finished, the 
 </figure>
 
 <figure>
-  <img src="/uploads/fitout/2014-09-16/7.jpg" alt="Production racks, fully patched">
-  <figcaption>Production racks, fully patched</figcaption>
+  <img src="/uploads/fitout/2014-09-16/7.jpg" alt="Cabinets 1 and 2: production racks, fully patched">
+  <figcaption>Cabinets 1 and 2: production racks, fully patched</figcaption>
 </figure>
 
 Coloured patch leads do the documentation job for us: at a glance you can see which switch a port lands on, which VLAN it belongs to, and whether something has been re-patched by hand in the middle of the night.
@@ -109,6 +109,7 @@ If I were doing this again, or arguing the case for the next one, the headline l
 * **Run flexible power under the floor**, terminated in IP44 commando sockets, so racks can be re-positioned without re-wiring the DB.
 * **Size the UPS for the actual critical load, with realistic runtime,** and consider a generator for prolonged outages if uptime warrants it.
 * **More space under the raised floor.** 11cm of clearance with pre-existing building services running through it is not enough, and I designed around it rather than fixing it.
+* **Survey the floor void and building services before the drawings are final.** Designing around the pipework instead of around the brief had consequences that cascaded: Cab 1 and Cab 3 swapped roles, the row couldn't be oriented for a hot/cold-ish split, and the AC cassette had to be re-sited above the DB rather than across the row of cabinets. The building decides the layout if you don't survey it first, which here wasn't really an option. The space was a new-build constructed for general office use, and we were too far down the stakeholder chain to influence where the building services went in. Unintended consequences in the fit-out were the natural result, but thankfully nothing the team couldn't work around.
 * **More space generally, better physical security, water detection, and proper environmental monitoring** rather than a hygrometer on the sill.
 * **Multi-homed BGP resilience** at the carrier level, sized to the cost of downtime to the business. We have it; smaller offices often don't, and regret it the first time the only circuit goes dark.
 
