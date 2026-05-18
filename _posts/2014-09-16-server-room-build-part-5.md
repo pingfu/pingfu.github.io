@@ -47,7 +47,7 @@ HP c3000 enclosure and SAN units make up the bulk of cabinets two and three. The
   <figcaption>Steel shelving for spares and equipment better suited to shelves than 19" cabinets, complete with the obligatory Cisco VoIP handset</figcaption>
 </figure>
 
-The steel shelving carries everything that doesn't earn a rack unit: cold-spare desktops, small appliances, a Mac mini, and a hot-swap Cisco VoIP phone ready to drop in if anyone's deskset fails.
+The steel shelving carries everything that doesn't earn a rack unit: cold-spare desktops, small appliances, a Mac mini, and a hot-swap Cisco VoIP phone ready to drop in if anyone's desk phone fails.
 
 <figure>
   <img src="/uploads/fitout/2014-09-16/6.jpg" alt="Spares organised so anything we need at 3am is in reach without unboxing">
@@ -85,7 +85,7 @@ All 50 or so staff were online and back on production work by 11am Monday mornin
   <figcaption>The boardroom, finished</figcaption>
 </figure>
 
-The boardroom, glimpsed in the background of the very first photo in part one of this series, now finished.
+The boardroom, glimpsed in the background of the very first photo of part one, is now finished.
 
 <figure>
   <img src="/uploads/fitout/2014-09-16/12.jpg" alt="Device test lab, with an arcade cabinet and a putting green for good measure">
@@ -115,7 +115,7 @@ If I were doing this again, or arguing the case for the next one, the headline l
 
 The bigger lesson is that the design has to be appropriate to the requirements of the business: the cost of downtime, the cost of recovery, the cost of employee idle time, the cost of lost sales, and the cost of poor publicity. Build for that, not for what a hyperscaler would do.
 
-It's worth reading what the very large operators do, even if you'll never build at that scale. Facebook's data centre fabric write-up is a good example: they make the case that forcing air through a raised-floor plenum and perforated floor tiles is an inefficient use of energy, and instead pressurise the entire data hall with cool air. That isn't a lesson you can directly apply to three cabinets in an office block, but the underlying point, design for the actual thermal load and stop copying patterns from the last room you built, is universal. And keep an eye on hardware lifecycles: Cisco's published end-of-life schedules are a useful reminder that anything bought today has a defined runway and should be planned out, not panicked out.
+It's worth reading what the very large operators do, even if you'll never build at that scale. Facebook's data centre fabric write-up is a good example: they make the case that forcing air through a raised-floor plenum and perforated floor tiles is an inefficient use of energy, and instead pressurise the entire data hall with cool air. That isn't a lesson you can directly apply to three cabinets in an office block, but the underlying point (design for the actual thermal load and stop copying patterns from the last room you built) is universal. Keep an eye on hardware lifecycles too: Cisco's published end-of-life schedules are a useful reminder that anything bought today has a defined runway and should be planned out, not panicked out.
 
 A well-built server room lasts ten to fifteen years. This one should comfortably see out that horizon at this site, and if and when the business outgrows it again, most of the lessons above will still apply.
 
