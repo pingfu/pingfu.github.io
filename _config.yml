@@ -5,6 +5,7 @@ excerpt_separator:    <!--excerpt-->
 permalink:            /:title/
 url:                  "https://pingfu.net"
 baseurl:              "/"
+timezone:             Europe/London
 
 plugins:
   - jekyll-redirect-from
