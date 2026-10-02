@@ -1,13 +1,13 @@
 ---
 layout: default
 title: Embedded YouTube Player
-description: Paste a YouTube link to play it and keep a private watch history with tags, search and thumbnails, stored only in your browser.
+description: Paste a YouTube link to play it and keep a private video library with tags, search and thumbnails, stored only in your browser.
 redirect_from:
   - "/yt"
   - "/youtube/"
 body_class: yt-page
 app_shell: true
-fonts: "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Oswald:wght@300&display=swap"
+fonts: "https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap"
 extra_scss: scss/youtube.scss
 ---
 
@@ -56,7 +56,10 @@ extra_scss: scss/youtube.scss
                 <div class="yt-heading" id="ytHeading">All videos</div>
                 <div class="yt-count" id="ytCount"></div>
                 <div class="yt-spacer"></div>
-                <input class="yt-search" id="ytSearch" type="text" placeholder="Search titles, channels, tags, IDs" autocomplete="off" aria-label="Search history">
+                <div class="yt-search-box">
+                    <input class="yt-search" id="ytSearch" type="text" placeholder="Search titles, channels, tags, IDs" autocomplete="off" aria-label="Search library">
+                    <button type="button" class="yt-search-clear" data-act="clear-search" aria-label="Clear search" hidden>×</button>
+                </div>
                 <div class="yt-seg" role="group" aria-label="Arrange by">
                     <button type="button" data-act="groupby" data-value="date">By date</button>
                     <button type="button" data-act="groupby" data-value="channel">By channel</button>
@@ -68,12 +71,17 @@ extra_scss: scss/youtube.scss
                 </div>
             </div>
             <div class="yt-filterbar" id="ytFilterbar">
-                <div class="yt-search-wrap"><input class="yt-search" id="ytSearchMobile" type="text" placeholder="Search history" autocomplete="off" aria-label="Search history"></div>
+                <div class="yt-search-wrap">
+                    <div class="yt-search-box">
+                        <input class="yt-search" id="ytSearchMobile" type="text" placeholder="Search library" autocomplete="off" aria-label="Search library">
+                        <button type="button" class="yt-search-clear" data-act="clear-search" aria-label="Clear search" hidden>×</button>
+                    </div>
+                </div>
                 <div class="yt-mchips" id="ytChips"></div>
             </div>
             <div class="yt-groups" id="ytGroups"></div>
             <div class="yt-main-data">
-                <button type="button" data-act="export">Export list</button>·<button type="button" data-act="import">Import</button>·<button type="button" class="danger" data-act="forget-all">Forget all</button>
+                <button type="button" data-act="export">Export library</button>·<button type="button" data-act="import">Import library</button>·<button type="button" class="danger" data-act="forget-all">Forget all videos</button>
             </div>
         </main>
     </div>
@@ -81,12 +89,12 @@ extra_scss: scss/youtube.scss
     <div class="yt-sheet" id="ytSheet" role="dialog" aria-label="Video options" hidden></div>
     <div class="yt-modal-backdrop" id="ytModal" data-act="modal-close" hidden>
         <div class="yt-modal" role="dialog" aria-labelledby="ytModalTitle">
-            <h3 id="ytModalTitle">Import videos</h3>
-            <p id="ytModalText">Paste an exported list below. New videos are added to your existing history.</p>
-            <textarea id="ytModalData" placeholder="Paste exported data here" spellcheck="false"></textarea>
+            <h3 id="ytModalTitle">Import library</h3>
+            <p id="ytModalText">Paste an exported library below. New videos are added to your library.</p>
+            <textarea id="ytModalData" placeholder="Paste an exported library here" spellcheck="false"></textarea>
             <div class="yt-modal-status" id="ytModalStatus"></div>
             <div class="yt-modal-actions">
-                <button type="button" class="yt-btn-outline" data-act="modal-close">Cancel</button>
+                <button type="button" class="yt-btn-secondary" data-act="modal-close">Cancel</button>
                 <button type="button" class="yt-btn-primary" id="ytModalImport" data-act="modal-import" disabled>Import</button>
             </div>
         </div>

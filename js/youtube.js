@@ -426,6 +426,7 @@
         inputEl.value = '';
         searchEl.value = '';
         searchMobileEl.value = '';
+        syncSearchClear();
         showError('');
         if (findVideo(id)) {
             state.draft = null;
@@ -484,7 +485,7 @@
     function forgetAll() {
         const n = state.videos.length;
         if (!n) return;
-        if (!window.confirm('Forget all ' + countLabel(n) + '? This clears your watch history and cached thumbnails in this browser.')) return;
+        if (!window.confirm('Forget all ' + countLabel(n) + '? This clears your library and cached thumbnails in this browser.')) return;
         state.videos.forEach(v => releaseThumb(v.id));
         state.videos = [];
         state.filter = null;
@@ -551,15 +552,15 @@
         modalStatusEl.textContent = '';
         modalStatusEl.className = 'yt-modal-status';
         if (mode === 'export') {
-            modalTitleEl.textContent = 'Export videos';
+            modalTitleEl.textContent = 'Export library';
             modalTextEl.textContent = 'Copy the text below and keep it somewhere safe. Paste it into Import on another browser or device.';
             modalDataEl.readOnly = true;
             modalImportEl.hidden = true;
             modalDataEl.focus();
             modalDataEl.select();
         } else {
-            modalTitleEl.textContent = 'Import videos';
-            modalTextEl.textContent = 'Paste an exported list below. New videos are added to your existing history.';
+            modalTitleEl.textContent = 'Import library';
+            modalTextEl.textContent = 'Paste an exported library below. New videos are added to your library.';
             modalDataEl.readOnly = false;
             modalImportEl.hidden = false;
             modalImportEl.disabled = true;
@@ -582,30 +583,59 @@
             return;
         }
         try {
-            const list = decodeList(text);
-            const existing = new Set(state.videos.map(v => v.id));
-            const fresh = list.filter(v => !existing.has(v.id));
-            importParsed = fresh;
+            const diff = diffImport(decodeList(text));
+            importParsed = diff;
+            const parts = [];
+            if (diff.fresh.length) parts.push(diff.fresh.length + ' new ' + (diff.fresh.length === 1 ? 'video' : 'videos') + ' to add');
+            if (diff.updates.length) parts.push(diff.updates.length + ' to update');
             modalStatusEl.className = 'yt-modal-status ok';
-            modalStatusEl.textContent = fresh.length
-                ? fresh.length + ' new ' + (fresh.length === 1 ? 'video' : 'videos') + ' to add'
-                : 'All ' + countLabel(list.length) + ' already in your history';
-            modalImportEl.disabled = fresh.length === 0;
+            modalStatusEl.textContent = parts.length
+                ? parts.join(', ')
+                : 'All ' + countLabel(diff.total) + ' already in your library, nothing to change';
+            modalImportEl.disabled = parts.length === 0;
         } catch (e) {
             modalStatusEl.className = 'yt-modal-status bad';
-            modalStatusEl.textContent = 'That does not look like an exported list';
+            modalStatusEl.textContent = 'That does not look like an exported library';
         }
     }
 
+    // Compare an exported library with the current one. New ids are added. Existing ids pick up a
+    // changed tag, or a title/channel we were missing. Local dates always win, and an import never
+    // clears a tag.
+    function diffImport(list) {
+        const fresh = [];
+        const updates = [];
+        list.forEach(v => {
+            const cur = findVideo(v.id);
+            if (!cur) {
+                fresh.push(v);
+                return;
+            }
+            const patch = {};
+            const tag = v.tags[0] ? canonicalTag(v.tags[0]) : '';
+            if (tag && tag !== (cur.tags[0] || '')) patch.tags = [tag];
+            if (v.title && !cur.title) patch.title = v.title;
+            if (v.channel && !cur.channel) {
+                patch.channel = v.channel;
+                patch.channelUrl = v.channelUrl;
+            }
+            if (Object.keys(patch).length) updates.push({ id: v.id, patch });
+        });
+        return { fresh, updates, total: list.length };
+    }
+
     function importList() {
-        if (!importParsed || !importParsed.length) return;
-        state.videos = state.videos.concat(importParsed).sort(byDateDesc);
+        if (!importParsed || (!importParsed.fresh.length && !importParsed.updates.length)) return;
+        importParsed.updates.forEach(u => Object.assign(findVideo(u.id), u.patch));
+        state.videos = state.videos.concat(importParsed.fresh).sort(byDateDesc);
         if (state.draft && findVideo(state.draft.id)) state.draft = null;
         saveVideos();
-        const n = importParsed.length;
+        const parts = [];
+        if (importParsed.fresh.length) parts.push('Added ' + countLabel(importParsed.fresh.length));
+        if (importParsed.updates.length) parts.push('updated ' + importParsed.updates.length);
         closeModal();
         render();
-        toast('Added ' + countLabel(n));
+        toast(parts.join(', '));
     }
 
     // ------------------------------------------------------------------ rendering
@@ -615,8 +645,8 @@
             (url ? `<img data-thumb="${id}" src="${url}" alt="" class="loaded">` : `<img data-thumb="${id}" alt="">`) +
             (isCurrent ? '<span class="yt-badge">PLAYING</span>' : '') +
             (more ? '<div class="yt-card-actions">' +
-                `<button type="button" class="yt-card-btn" data-act="card-play" data-id="${id}" aria-label="Play" title="Play"><svg viewBox="0 0 10 10" width="10" height="10" aria-hidden="true"><path d="M2.5 1.2v7.6L8.4 5z" fill="currentColor"/></svg></button>` +
-                `<button type="button" class="yt-card-btn" data-act="menu-group" data-id="${id}" aria-haspopup="menu" aria-expanded="${menuOpenFor(id) ? 'true' : 'false'}" aria-label="Tag" title="Tag"><svg viewBox="0 0 10 10" width="11" height="11" aria-hidden="true"><path d="M1.3 1.3h3.9l3.9 3.9-3.9 3.9-3.9-3.9z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="3.4" cy="3.4" r=".9" fill="currentColor"/></svg></button>` +
+                `<button type="button" class="yt-card-btn yt-card-btn-play" data-act="card-play" data-id="${id}" aria-label="Play" title="Play"><svg viewBox="0 0 10 10" width="10" height="10" aria-hidden="true"><path d="M2.5 1.2v7.6L8.4 5z" fill="currentColor"/></svg></button>` +
+                `<button type="button" class="yt-card-btn yt-card-btn-tag" data-act="menu-group" data-id="${id}" aria-haspopup="menu" aria-expanded="${menuOpenFor(id) ? 'true' : 'false'}" aria-label="Tag" title="Tag"><svg viewBox="0 0 10 10" width="11" height="11" aria-hidden="true"><path d="M1.3 1.3h3.9l3.9 3.9-3.9 3.9-3.9-3.9z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="3.4" cy="3.4" r=".9" fill="currentColor"/></svg></button>` +
                 `<button type="button" class="yt-card-btn yt-card-btn-x" data-act="remove" data-id="${id}" aria-label="Forget this video" title="Forget"><svg viewBox="0 0 10 10" width="10" height="10" aria-hidden="true"><path d="M1.8 1.8l6.4 6.4M8.2 1.8l-6.4 6.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" fill="none"/></svg></button>` +
                 '</div>' : '') +
             '</div>';
@@ -688,8 +718,8 @@
                 channels.map(c => row(chLabel(state.videos.find(v => v.channel === c)), isF('channel', c), 'channel', c, chCounts[c])).join('');
         }
         html += '<div class="yt-side-data"><div class="yt-label">Data</div>' +
-            '<button type="button" class="yt-side-row" data-act="export"><span class="yt-side-text">Export list</span></button>' +
-            '<button type="button" class="yt-side-row" data-act="import"><span class="yt-side-text">Import</span></button>' +
+            '<button type="button" class="yt-side-row" data-act="export"><span class="yt-side-text">Export library</span></button>' +
+            '<button type="button" class="yt-side-row" data-act="import"><span class="yt-side-text">Import library</span></button>' +
             '<button type="button" class="yt-side-row danger" data-act="forget-all"><span class="yt-side-text">Forget all videos</span></button></div>';
         sidebarEl.innerHTML = html;
     }
@@ -718,7 +748,7 @@
         const label = chLabel(v);
 
         tabEl.innerHTML =
-            `<button type="button" class="yt-status" data-act="toggle-save" aria-pressed="${saved}" aria-label="Saved to history">` +
+            `<button type="button" class="yt-status" data-act="toggle-save" aria-pressed="${saved}" aria-label="Saved to library">` +
             (saved ? '<span class="yt-status-check">✓</span><span>Saved</span>' + (cur ? chipHtml(cur) : '')
                    : '<span class="yt-status-ring"></span><span>Not saved</span>') +
             '</button><span class="yt-tab-div"></span>' +
@@ -726,7 +756,7 @@
 
         nowMobileEl.innerHTML =
             `<div class="yt-now-title">${esc(titleOf(v))}</div>` +
-            `<div class="yt-now-sub">${esc(label)}${label ? ' · ' : ''}${saved ? dateLabel(v.date) : 'not in history'}</div>`;
+            `<div class="yt-now-sub">${esc(label)}${label ? ' · ' : ''}${saved ? dateLabel(v.date) : 'not in library'}</div>`;
 
         renderMenu();
     }
@@ -739,23 +769,87 @@
         '<span class="yt-menu-grow">Tag</span>' + (v.tags[0] ? chipHtml(v.tags[0], true) : '<span class="yt-menu-hint">Add…</span>'),
         '', ` data-id="${v.id}"`);
 
-    function groupPickerHtml(v) {
+    // Tag picker: chip cloud with a filter/create input (Group Picker Studies, option 1c).
+    // Used under a card's chip, in the player tab menu, and in the mobile sheet.
+    function pickerCloudHtml(v, query) {
         const cur = v.tags[0];
-        const tags = allTags();
+        const q = (query || '').trim();
+        const ql = q.toLowerCase();
+        let tags = allTags();
         if (cur && tags.indexOf(cur) === -1) tags.push(cur);
+        tags.sort((a, b) => a.localeCompare(b));
+        if (ql) tags = tags.filter(t => t.toLowerCase().indexOf(ql) !== -1);
+        const exact = q && tags.some(t => t.toLowerCase() === ql);
         return tags.map(t => {
-            const c = chipColor(t), on = t === cur;
-            return menuItem('pick-group', `<span class="yt-dot" style="background:${c.dot}"></span><span class="yt-menu-grow">${esc(t)}</span>${on ? '<span class="yt-check">✓</span>' : ''}`, '', ` data-id="${v.id}" data-value="${esc(t)}"${on ? ' aria-checked="true"' : ''}`);
+            const on = t === cur;
+            return `<button type="button" class="yt-pchip${on ? ' on' : ''}" data-act="pick-group" data-id="${v.id}" data-value="${esc(t)}" aria-pressed="${on}">` +
+                (on ? '<span class="yt-pchip-check">✓</span>' : `<span class="yt-dot" style="background:${chipColor(t).dot}"></span>`) +
+                `<span class="yt-pchip-text">${esc(t)}</span></button>`;
         }).join('') +
-            (tags.length ? '<div class="yt-menu-div"></div>' : '') +
-            `<form class="yt-menu-new" data-id="${v.id}"><input type="text" placeholder="+ New tag" autocomplete="off" aria-label="New tag"></form>`;
+            (q && !exact ? `<button type="button" class="yt-pchip create" data-act="create-group" data-id="${v.id}" data-value="${esc(q)}">+ Create “${esc(q)}”</button>` : '') +
+            (!tags.length && !q ? '<span class="yt-picker-empty">No tags yet. Type a name to create one.</span>' : '');
     }
 
-    // Per-video menu in the grid/list: Play, Group, Forget.
-    // Per-video tag picker in the grid/list, opened from the Tag button on the thumbnail.
+    function pickerFootText(query) {
+        return (query || '').trim() ? '↵ first match' : 'click to move · esc';
+    }
+
+    function pickerHtml(v) {
+        const query = (state.menu && state.menu.query) || '';
+        return `<div class="yt-picker" role="dialog" aria-label="Tag" data-id="${v.id}">` +
+            '<div class="yt-picker-search"><span class="yt-picker-ring"></span>' +
+            `<input type="text" class="yt-picker-input" placeholder="Filter or create" autocomplete="off" spellcheck="false" aria-label="Filter or create a tag" value="${esc(query)}"></div>` +
+            `<div class="yt-picker-cloud">${pickerCloudHtml(v, query)}</div>` +
+            `<div class="yt-picker-foot">${pickerFootText(query)}</div></div>`;
+    }
+
+    // Re-filter an open picker in place (keeps the input focused and the caret where it is).
+    function refreshPicker(pickerEl) {
+        const v = videoById(pickerEl.dataset.id);
+        if (!v) return;
+        const query = pickerEl.querySelector('.yt-picker-input').value;
+        if (state.menu) state.menu.query = query;
+        pickerEl.querySelector('.yt-picker-cloud').innerHTML = pickerCloudHtml(v, query);
+        pickerEl.querySelector('.yt-picker-foot').textContent = pickerFootText(query);
+        markCloudScroll(pickerEl);
+    }
+
+    function markCloudScroll(pickerEl) {
+        if (!pickerEl) return;
+        const cloud = pickerEl.querySelector('.yt-picker-cloud');
+        cloud.classList.toggle('scrolls', cloud.scrollHeight > cloud.clientHeight + 1);
+    }
+
+    // Keep a card picker inside the main column: shift left if it overflows, flip above if there is no room below.
+    function positionPickers() {
+        app.querySelectorAll('.yt-card .yt-picker, .yt-row .yt-picker').forEach(pk => {
+            pk.style.left = '';
+            pk.classList.remove('above');
+            const bounds = mainEl.getBoundingClientRect();
+            let r = pk.getBoundingClientRect();
+            const over = r.right - (bounds.right - 16);
+            if (over > 0) pk.style.left = `${-Math.min(over, Math.max(0, r.left - bounds.left - 16))}px`;
+            r = pk.getBoundingClientRect();
+            const anchor = pk.parentElement.getBoundingClientRect();
+            if (r.bottom > bounds.bottom && anchor.top - bounds.top > r.height + 8) pk.classList.add('above');
+            markCloudScroll(pk);
+        });
+    }
+
+    // Per-video picker in the grid/list, opened from the card's chip, its "+ Tag" pill, or the Tag button.
     function cardMenuHtml(v) {
-        if (!menuOpenFor(v.id)) return '';
-        return `<div class="yt-menu yt-card-menu" role="menu">${groupPickerHtml(v)}</div>`;
+        return menuOpenFor(v.id) ? pickerHtml(v) : '';
+    }
+
+    // Card trigger: the chip itself (ring + "Change" on hover) or a dashed "+ Tag" pill when untagged.
+    function cardTagHtml(v) {
+        const cur = v.tags[0];
+        const open = menuOpenFor(v.id);
+        if (cur) {
+            const c = chipColor(cur);
+            return `<button type="button" class="yt-chip yt-chip-btn" data-act="menu-group" data-id="${v.id}" aria-haspopup="dialog" aria-expanded="${open}" style="background:${c.bg};color:${c.fg};--dot:${c.dot}">${esc(cur)}</button><span class="yt-change">Change</span>`;
+        }
+        return `<button type="button" class="yt-add-tag" data-act="menu-group" data-id="${v.id}" aria-haspopup="dialog" aria-expanded="${open}">+ Tag</button>`;
     }
 
     function renderMenu() {
@@ -768,8 +862,10 @@
             menuEl.innerHTML = '';
             return;
         }
+        menuEl.classList.toggle('yt-menu-picker', state.menu.view === 'group');
         if (state.menu.view === 'group') {
-            menuEl.innerHTML = groupPickerHtml(v);
+            menuEl.innerHTML = pickerHtml(v);
+            markCloudScroll(menuEl.querySelector('.yt-picker'));
             return;
         }
         menuEl.innerHTML =
@@ -778,17 +874,17 @@
             groupRowHtml(v) +
             '<div class="yt-menu-div"></div>' +
             (isDraft(v.id)
-                ? menuItem('discard', 'Discard', 'danger')
-                : menuItem('remove', 'Remove from history', 'danger', ` data-id="${v.id}"`));
+                ? menuItem('discard', 'Forget', 'danger')
+                : menuItem('remove', 'Forget', 'danger', ` data-id="${v.id}"`));
     }
 
     function focusMenuInput() {
-        const input = app.querySelector('.yt-menu .yt-menu-new input');
+        const input = app.querySelector('.yt-menu .yt-picker-input, .yt-card .yt-picker-input, .yt-row .yt-picker-input');
         if (input) input.focus();
     }
 
     function openMenu(target, view) {
-        state.menu = { target, view: view || 'main' };
+        state.menu = { target, view: view || 'main', query: '' };
         if (target === 'player') renderMenu(); else renderGroups();
         focusMenuInput();
     }
@@ -823,18 +919,18 @@
     function cardHtml(v) {
         const cur = v.id === state.currentId;
         const label = chLabel(v);
-        return `<div class="yt-card" data-id="${v.id}"><div class="yt-thumb-wrap">${thumbHtml(v.id, cur, true, true)}${cardMenuHtml(v)}</div>` +
+        return `<div class="yt-card" data-id="${v.id}"><div class="yt-thumb-wrap">${thumbHtml(v.id, cur, true, true)}</div>` +
             `<div class="yt-card-title">${esc(titleOf(v))}</div>` +
             '<div class="yt-card-meta">' + (label ? `<span class="yt-channel">${esc(label)}</span><span class="yt-date">· ${dateLabel(v.date)}</span>` : `<span class="yt-date">${dateLabel(v.date)}</span>`) + '</div>' +
-            (v.tags.length ? `<div class="yt-chip-row">${chipHtml(v.tags[0])}</div>` : '') +
+            `<div class="yt-card-foot"><div class="yt-chip-row">${cardTagHtml(v)}</div>${cardMenuHtml(v)}</div>` +
             '</div>';
     }
 
     function rowHtml(v) {
         const cur = v.id === state.currentId;
-        return `<div class="yt-row${cur ? ' current' : ''}" data-id="${v.id}"><div class="yt-thumb-wrap">${thumbHtml(v.id, cur, true, true)}${cardMenuHtml(v)}</div>` +
+        return `<div class="yt-row${cur ? ' current' : ''}" data-id="${v.id}"><div class="yt-thumb-wrap">${thumbHtml(v.id, cur, true, true)}</div>` +
             `<div class="yt-row-text"><div class="yt-row-title">${esc(titleOf(v))}</div><div class="yt-row-meta"><span>${esc(chLabel(v))}</span></div></div>` +
-            `<div class="yt-row-tags">${v.tags.length ? chipHtml(v.tags[0]) : ''}</div>` +
+            `<div class="yt-row-tags">${cardTagHtml(v)}${cardMenuHtml(v)}</div>` +
             `<div class="yt-row-date">${dateLabel(v.date)}</div></div>`;
     }
 
@@ -852,7 +948,7 @@
     function renderGroups() {
         const list = visibleVideos();
         if (!list.length) {
-            groupsEl.innerHTML = `<div class="yt-empty">${state.videos.length ? 'Nothing matches. Try a different search or tag.' : 'Paste a YouTube link above to play it. Mark it as saved to start your watch history.'}</div>`;
+            groupsEl.innerHTML = `<div class="yt-empty">${state.videos.length ? 'Nothing matches. Try a different search or tag.' : 'Paste a YouTube link above to play it. Mark it as saved to start your library.'}</div>`;
             return;
         }
         if (isMobile()) {
@@ -870,6 +966,7 @@
             ).join('');
         }
         observeThumbs();
+        positionPickers();
     }
 
     function renderSheet() {
@@ -881,27 +978,18 @@
             return;
         }
         const draft = isDraft(v.id);
-        const cur = v.tags[0];
-        const tags = allTags();
-        if (cur && tags.indexOf(cur) === -1) tags.push(cur);
         const label = chLabel(v);
         sheetEl.innerHTML =
             '<div class="yt-grabber"></div>' +
             `<div class="yt-sheet-head">${thumbHtml(v.id, false, false)}<div><div class="yt-sheet-title">${esc(titleOf(v))}</div>` +
             `<div class="yt-sheet-meta">${esc(label)}${label ? ' · ' : ''}<span class="yt-mono">${v.id}</span></div></div></div>` +
-            '<div class="yt-sheet-group"><div class="yt-label">Tag</div>' +
-            (tags.length ? '<div class="yt-sheet-chips">' + tags.map(t => {
-                const on = t === cur, c = chipColor(t);
-                return `<button type="button" class="yt-sheet-chip" data-act="sheet-tag" data-value="${esc(t)}"${on ? ` style="background:${c.bg};color:${c.fg};border-color:${c.dot}"` : ''}>` +
-                    `<span class="yt-mark">${on ? '✓' : '+'}</span><span class="yt-sheet-chip-text">${esc(t)}</span></button>`;
-            }).join('') + '</div>' : '') +
-            '<form class="yt-sheet-new" id="ytSheetForm"><input id="ytSheetInput" type="text" placeholder="New tag" autocomplete="off"><button type="submit">Add</button></form></div>' +
+            `<div class="yt-sheet-group"><div class="yt-label">Tag</div>${pickerHtml(v)}</div>` +
             '<div class="yt-sheet-actions">' +
             (v.id === state.currentId ? '' : `<button type="button" data-act="sheet-play" data-id="${v.id}">Play</button>`) +
             `<a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener">Open on YouTube ↗</a>` +
             `<button type="button" data-act="copy-id" data-id="${v.id}">Copy video ID</button>` +
-            (draft ? '<button type="button" class="danger" data-act="discard">Discard</button>'
-                   : `<button type="button" class="danger" data-act="remove" data-id="${v.id}">Remove from history</button>`) +
+            (draft ? '<button type="button" class="danger" data-act="discard">Forget</button>'
+                   : `<button type="button" class="danger" data-act="remove" data-id="${v.id}">Forget</button>`) +
             '</div>';
         observeThumbs();
     }
@@ -996,10 +1084,13 @@
                 if (menuOpenFor(id, 'group')) closeMenu();
                 else openMenu(menuOpenFor('player') ? 'player' : id, 'group');
                 break;
-            case 'pick-group': {
+            case 'pick-group':
+            case 'create-group': {
                 const v = videoById(id);
+                const fromSheet = !!t.closest('#ytSheet');
                 state.menu = null;
-                if (v) setGroup(id, v.tags[0] === value ? '' : value); else render();
+                if (fromSheet) state.sheetVideoId = null;
+                if (v) setGroup(id, act === 'pick-group' && v.tags[0] === value ? '' : value); else render();
                 break;
             }
             case 'discard':
@@ -1029,14 +1120,12 @@
             case 'sheet-close':
                 if (e.target === t) closeSheet();
                 break;
-            case 'sheet-tag': {
-                const v = videoById(state.sheetVideoId);
-                if (v) setGroup(v.id, v.tags[0] === value ? '' : value);
-                break;
-            }
             case 'sheet-play':
                 closeSheet();
                 play(id, true);
+                break;
+            case 'clear-search':
+                clearSearch(t.parentElement.querySelector('input'));
                 break;
             case 'export':
                 exportList();
@@ -1063,7 +1152,7 @@
         if (!state.menu) return;
         // composedPath is fixed at dispatch time, so it still holds the menu even if the click re-rendered it.
         const path = e.composedPath ? e.composedPath() : [];
-        if (path.some(n => n && n.classList && n.classList.contains('yt-menu')) || e.target.closest('[data-act="more-tab"], [data-act="menu-group"]')) return;
+        if (path.some(n => n && n.classList && (n.classList.contains('yt-menu') || n.classList.contains('yt-picker'))) || e.target.closest('[data-act="more-tab"], [data-act="menu-group"]')) return;
         closeMenu();
     });
 
@@ -1071,18 +1160,35 @@
         if (e.target.id === 'ytPaste') {
             e.preventDefault();
             submit(inputEl.value);
-        } else if (e.target.id === 'ytSheetForm') {
+        }
+    });
+
+    // Picker: typing filters the chips in place.
+    app.addEventListener('input', e => {
+        if (e.target.classList.contains('yt-picker-input')) refreshPicker(e.target.closest('.yt-picker'));
+    });
+
+    // Picker keys: Enter picks the first match or creates; arrows move between chips in reading order.
+    app.addEventListener('keydown', e => {
+        const picker = e.target.closest('.yt-picker');
+        if (!picker) return;
+        const chips = Array.from(picker.querySelectorAll('.yt-pchip'));
+        const input = picker.querySelector('.yt-picker-input');
+        if (e.key === 'Enter') {
             e.preventDefault();
-            const input = el('ytSheetInput');
-            if (state.sheetVideoId && input.value.trim()) setGroup(state.sheetVideoId, input.value);
-        } else if (e.target.classList.contains('yt-menu-new')) {
+            const first = chips.find(c => c.dataset.act === 'pick-group' && !c.classList.contains('on')) || chips[0];
+            if (first) first.click();
+            return;
+        }
+        const i = chips.indexOf(e.target);
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            if (!chips.length) return;
             e.preventDefault();
-            const input = e.target.querySelector('input');
-            const id = e.target.dataset.id;
-            if (id && input.value.trim()) {
-                state.menu = null;
-                setGroup(id, input.value);
-            }
+            (i === -1 ? chips[0] : chips[Math.min(i + 1, chips.length - 1)]).focus();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            if (i === -1) return;
+            e.preventDefault();
+            if (i === 0) input.focus(); else chips[i - 1].focus();
         }
     });
 
@@ -1104,9 +1210,26 @@
         if (parseId(text)) submit(text);
     });
 
+    // Show the × in the search boxes only while there is text to clear.
+    function syncSearchClear() {
+        const has = !!state.query;
+        app.querySelectorAll('[data-act="clear-search"]').forEach(b => { b.hidden = !has; });
+    }
+
+    function clearSearch(focusEl) {
+        state.query = '';
+        searchEl.value = '';
+        searchMobileEl.value = '';
+        syncSearchClear();
+        renderToolbar();
+        renderGroups();
+        if (focusEl) focusEl.focus();
+    }
+
     const onSearch = e => {
         state.query = e.target.value;
         if (e.target === searchEl) searchMobileEl.value = state.query; else searchEl.value = state.query;
+        syncSearchClear();
         renderToolbar();
         renderGroups();
     };
