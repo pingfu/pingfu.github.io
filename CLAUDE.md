@@ -8,6 +8,12 @@ Jekyll-based static blog hosted on GitHub Pages at pingfu.net.
 - `_layouts/` - Templates (default.html, post.html, tools.html)
 - `_includes/scss/` - Styles compiled via Liquid's `scssify` filter
 - `tools/` - Interactive tools (YouTube player, DNS toolbox, password generator)
+- `js/` - Static page scripts (not run through Liquid). `js/youtube.js` drives `/tools/youtube/`
+- `_includes/scss/youtube.scss` - Styles for the YouTube page only, pulled in via the `extra_scss` front matter key
+
+Pages can set `app_shell: true` in front matter to drop the site nav and footer (used by the YouTube page, which draws its own header), `fonts:` to add a Google Fonts stylesheet, and `extra_scss:` to compile an extra SCSS include.
+
+The YouTube page is deliberately light on YouTube: one oEmbed call and one thumbnail fetch when a video is first played, then everything is served from localStorage (`pingfu.history.v2`) and IndexedDB (`pingfu-history`, thumbnail blobs). Do not add calls that run on every visit.
 
 ## Config
 

@@ -1,0 +1,1560 @@
+// ==========================================================================
+// YouTube watch history (/tools/youtube) - app shell styles
+// Desktop (>= 900px): header + 240px sidebar + scrolling main.
+// Mobile  (<  900px): paste bar header, inline player, sticky filter bar,
+//                     row list, bottom sheet.
+// ==========================================================================
+
+$yt-page: #f2f1ee;
+$yt-sidebar: #ebe9e5;
+$yt-card: #fff;
+$yt-header: #2a2a29;
+$yt-header-input: #1e1e1d;
+$yt-header-border: #474644;
+$yt-ink: #1c1c1b;
+$yt-muted: #6b6a66;
+$yt-label: #7a7873;
+$yt-faint: #8a8883;
+$yt-line: #e3e1dc;
+$yt-line-2: #e1dfda;
+$yt-line-3: #eeece8;
+$yt-input-border: #dcdad5;
+$yt-dashed: #cfccc6;
+$yt-track: #e3e1dc;
+$yt-nav: #b5b3ae;
+$yt-wordmark: #d9d8d4;
+$yt-pressed: #e8e6e1;
+$yt-chip-fg: #55534f;
+$yt-chip-hover: #b8b5af;
+$yt-danger: unquote('oklch(0.5 0.15 25)');
+$yt-danger-bg: unquote('oklch(0.96 0.02 25)');
+$yt-error: unquote('oklch(0.78 0.12 25)');
+$yt-sans: 'IBM Plex Sans', system-ui, sans-serif;
+$yt-mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+$yt-ratio: unquote('16 / 9');
+$yt-stripes: repeating-linear-gradient(135deg, #e3e1dc 0 6px, #ebe9e5 6px 12px);
+$yt-ring: 0 0 0 2px #f2f1ee, 0 0 0 4px #1c1c1b;
+$yt-break: 900px;
+
+body.yt-page {
+    background: $yt-page;
+    margin: 0;
+    min-height: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+html:has(body.yt-page) {
+    height: 100%;
+}
+
+#yt-app {
+    height: 100vh;
+    height: 100dvh;
+    display: grid;
+    grid-template-rows: 56px minmax(0, 1fr);
+    background: $yt-page;
+    color: $yt-ink;
+    font-family: $yt-sans;
+    font-size: 13px;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+    button, input, textarea {
+        font-family: inherit;
+        margin: 0;
+    }
+
+    button {
+        cursor: pointer;
+    }
+
+    input::placeholder {
+        color: $yt-faint;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    [hidden] {
+        display: none !important;
+    }
+
+    // ---------------------------------------------------------------- labels
+    .yt-label {
+        font: 600 11px/1 $yt-sans;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        color: $yt-label;
+    }
+
+    .yt-mono {
+        font-family: $yt-mono;
+        font-weight: 400;
+    }
+
+    // ---------------------------------------------------------------- header
+    .yt-header {
+        display: grid;
+        grid-template-columns: 216px minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 24px;
+        background: $yt-header;
+        padding: 0 28px 0 24px;
+        position: relative;
+        z-index: 20;
+    }
+
+    .yt-brand-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .yt-wordmark {
+        font: 300 24px/1 Oswald, sans-serif;
+        letter-spacing: .14em;
+        color: $yt-wordmark;
+        text-decoration: none;
+    }
+
+    .yt-burger {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border: 0;
+        background: transparent;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        margin-right: -10px;
+        padding: 0;
+
+        span {
+            width: 22px;
+            height: 2px;
+            background: $yt-wordmark;
+            display: block;
+        }
+    }
+
+    .yt-paste {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        max-width: 600px;
+        width: 100%;
+        margin: 0;
+
+        input {
+            flex: 1;
+            min-width: 0;
+            height: 36px;
+            border-radius: 6px;
+            border: 1px solid $yt-header-border;
+            background: $yt-header-input;
+            color: $yt-page;
+            padding: 0 12px;
+            font: 400 14px $yt-sans;
+            outline: none;
+
+            &:focus {
+                border-color: #6b6a66;
+            }
+        }
+
+        .yt-play-btn {
+            height: 36px;
+            padding: 0 20px;
+            border-radius: 6px;
+            border: 0;
+            background: $yt-page;
+            color: $yt-ink;
+            font: 600 13px $yt-sans;
+
+            &:hover {
+                background: #fff;
+            }
+        }
+
+        .yt-error {
+            font-size: 12px;
+            color: $yt-error;
+            white-space: nowrap;
+        }
+    }
+
+    .yt-nav {
+        display: flex;
+        gap: 24px;
+        font: 500 12px/1 $yt-sans;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        color: $yt-nav;
+
+        > a, > .yt-nav-group > a {
+            color: $yt-nav;
+            text-decoration: none;
+
+            &:hover, &.active {
+                color: #fff;
+            }
+        }
+
+        .yt-nav-group {
+            position: relative;
+
+            > a {
+                display: block;
+                padding-bottom: 20px;
+                margin-bottom: -20px;
+            }
+
+            .yt-nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: -12px;
+                margin-top: 8px;
+                min-width: 220px;
+                background: $yt-header;
+                border: 1px solid $yt-header-border;
+                border-radius: 8px;
+                padding: 6px;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
+                z-index: 30;
+
+                a {
+                    display: block;
+                    padding: 9px 12px;
+                    border-radius: 5px;
+                    font: 400 13px $yt-sans;
+                    letter-spacing: 0;
+                    text-transform: none;
+                    color: $yt-wordmark;
+
+                    &:hover {
+                        background: $yt-header-input;
+                        color: #fff;
+                    }
+                }
+            }
+
+            &:hover .yt-nav-menu, &:focus-within .yt-nav-menu {
+                display: block;
+            }
+        }
+    }
+
+    // ---------------------------------------------------------------- body
+    .yt-body {
+        display: grid;
+        grid-template-columns: 240px minmax(0, 1fr);
+        min-height: 0;
+    }
+
+    .yt-sidebar {
+        overflow: auto;
+        padding: 20px 12px;
+        border-right: 1px solid $yt-line-2;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        background: $yt-sidebar;
+
+        .yt-label {
+            padding: 20px 10px 8px;
+
+            &:first-child {
+                padding-top: 0;
+            }
+        }
+
+        .yt-side-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            height: 32px;
+            flex: none;
+            padding: 0 10px;
+            border: 0;
+            border-radius: 6px;
+            background: transparent;
+            font: 400 13px $yt-sans;
+            color: $yt-ink;
+            text-align: left;
+            width: 100%;
+
+            &:hover {
+                background: #fff;
+            }
+
+            &.active {
+                background: #fff;
+                font-weight: 600;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, .06);
+            }
+
+            .yt-dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                flex: none;
+                background: #c9c6c0;
+            }
+
+            .yt-side-text {
+                flex: 1;
+                min-width: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .yt-side-count {
+                font: 400 11px $yt-mono;
+                color: $yt-label;
+            }
+        }
+
+        .yt-side-data {
+            margin-top: auto;
+            padding-top: 20px;
+
+            .yt-side-row {
+                font-size: 12px;
+                color: $yt-muted;
+                height: 28px;
+
+                &.danger {
+                    color: $yt-danger;
+
+                    &:hover {
+                        background: $yt-danger-bg;
+                    }
+                }
+            }
+        }
+    }
+
+    .yt-main {
+        overflow: auto;
+        padding: 24px 28px 40px;
+        min-width: 0;
+    }
+
+    // ---------------------------------------------------------------- now playing
+    // Player with the status tab on its top-right edge (Video Extension Studies, option 1a).
+    // Nothing is placed inside the video frame: that area belongs to the player's controls.
+    .yt-now {
+        max-width: 960px;
+        margin: 38px auto 28px;
+        // undo the site-wide section card
+        padding: 0;
+        background: transparent;
+        border: 0;
+    }
+
+    .yt-stage {
+        position: relative;
+    }
+
+    .yt-player {
+        aspect-ratio: $yt-ratio;
+        background: #111;
+        border-radius: 10px 0 10px 10px;
+        overflow: hidden;
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
+    }
+
+    .yt-tab {
+        position: absolute;
+        bottom: 100%;
+        right: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 38px;
+        padding: 0 4px 0 12px;
+        background: #111;
+        border-radius: 10px 10px 0 0;
+
+        // concave fillet joining the tab to the video's top edge
+        &::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            bottom: 0;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle at 0 0, transparent 10px, #111 10.5px);
+        }
+    }
+
+    .yt-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        height: 30px;
+        padding: 0 6px 0 4px;
+        margin-left: -4px;
+        border: 0;
+        border-radius: 6px;
+        background: transparent;
+        font: 500 13px $yt-sans;
+        color: $yt-wordmark;
+        white-space: nowrap;
+
+        &:hover {
+            background: rgba(255, 255, 255, .08);
+        }
+
+        &[aria-pressed="true"] {
+            font-weight: 600;
+            color: $yt-page;
+        }
+
+        .yt-status-ring {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1.5px dashed #9a9893;
+            flex: none;
+        }
+
+        .yt-status-check {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: $yt-page;
+            color: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font: 700 9.6px/1 $yt-sans;
+            flex: none;
+        }
+    }
+
+    .yt-tab-div {
+        width: 1px;
+        height: 18px;
+        background: rgba(255, 255, 255, .14);
+        margin-left: 4px;
+        flex: none;
+    }
+
+    .yt-more-btn {
+        width: 30px;
+        height: 30px;
+        border-radius: 15px;
+        border: 0;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        padding: 0;
+        flex: none;
+
+        span {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: $yt-nav;
+        }
+
+        &:hover, &[aria-expanded="true"] {
+            background: rgba(255, 255, 255, .16);
+        }
+    }
+
+    .yt-menu {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 220px;
+        padding: 4px;
+        background: #fff;
+        border: 1px solid $yt-line;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, .18);
+        display: flex;
+        flex-direction: column;
+        z-index: 5;
+
+        .yt-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            height: 34px;
+            padding: 0 12px;
+            border: 0;
+            border-radius: 6px;
+            background: transparent;
+            font: 500 13px $yt-sans;
+            white-space: nowrap;
+            color: $yt-ink;
+            text-align: left;
+            width: 100%;
+            text-decoration: none;
+
+            &:hover {
+                background: $yt-page;
+            }
+
+            &.danger {
+                color: $yt-danger;
+
+                &:hover {
+                    background: $yt-danger-bg;
+                }
+            }
+
+            .yt-menu-grow {
+                flex: 1;
+                min-width: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .yt-menu-hint {
+                color: $yt-label;
+                font-weight: 400;
+            }
+
+            .yt-dot {
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                flex: none;
+            }
+
+            .yt-chip {
+                gap: 5px;
+                max-width: 120px;
+
+                .yt-dot {
+                    width: 6px;
+                    height: 6px;
+                }
+            }
+        }
+
+        .yt-menu-div {
+            height: 1px;
+            margin: 4px 8px;
+            background: $yt-line-3;
+        }
+
+        .yt-menu-new {
+            display: flex;
+            align-items: center;
+            padding: 4px 8px;
+
+            input {
+                flex: 1;
+                min-width: 0;
+                height: 30px;
+                border: 1px dashed $yt-dashed;
+                border-radius: 6px;
+                padding: 0 10px;
+                font: 400 12px $yt-sans;
+                outline: none;
+                background: transparent;
+                color: $yt-ink;
+
+                &:focus {
+                    border-color: $yt-chip-hover;
+                }
+            }
+        }
+    }
+
+    .yt-now-mobile {
+        display: none;
+    }
+
+    // ---------------------------------------------------------------- tag chips
+    // Same shape as the original site tags: padding 3px 12px 2px, 12px radius, 13px regular.
+    .yt-chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        align-items: center;
+    }
+
+    .yt-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 3px 12px 2px;
+        border-radius: 12px;
+        font: 400 13px/1.3 $yt-sans;
+        white-space: nowrap;
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        .yt-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            flex: none;
+        }
+    }
+
+    // ---------------------------------------------------------------- toolbar
+    .yt-toolbar {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 22px;
+
+        .yt-heading {
+            font: 600 20px/1 $yt-sans;
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .yt-count {
+            font: 400 12px $yt-mono;
+            color: $yt-label;
+            white-space: nowrap;
+        }
+
+        .yt-spacer {
+            flex: 1;
+        }
+
+        .yt-search {
+            width: 280px;
+            height: 34px;
+            border: 1px solid $yt-input-border;
+            border-radius: 6px;
+            background: #fff;
+            padding: 0 12px;
+            font: 400 13px $yt-sans;
+            outline: none;
+            color: $yt-ink;
+
+            &:focus {
+                border-color: $yt-chip-hover;
+            }
+        }
+    }
+
+    .yt-seg {
+        display: flex;
+        padding: 2px;
+        border-radius: 7px;
+        background: $yt-track;
+        gap: 2px;
+
+        button {
+            height: 28px;
+            padding: 0 10px;
+            border: 0;
+            border-radius: 5px;
+            background: transparent;
+            font: 500 12px $yt-sans;
+            color: $yt-ink;
+            white-space: nowrap;
+
+            &.active {
+                background: #fff;
+            }
+        }
+    }
+
+    .yt-filterbar {
+        display: none;
+    }
+
+    // ---------------------------------------------------------------- groups
+    .yt-empty {
+        padding: 60px 0;
+        text-align: center;
+        color: $yt-label;
+        font-size: 14px;
+    }
+
+    .yt-group {
+        margin-bottom: 32px;
+    }
+
+    .yt-group-head {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        margin-bottom: 14px;
+
+        .yt-group-label {
+            font: 600 14px $yt-sans;
+        }
+
+        .yt-group-count {
+            font: 400 11px $yt-mono;
+            color: $yt-label;
+        }
+
+        .yt-rule {
+            flex: 1;
+            height: 1px;
+            background: $yt-line-2;
+            align-self: center;
+        }
+    }
+
+    .yt-thumb {
+        position: relative;
+        aspect-ratio: $yt-ratio;
+        border-radius: 6px;
+        overflow: hidden;
+        background: $yt-stripes;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            opacity: 0;
+            transition: opacity .15s ease-out;
+
+            &.loaded {
+                opacity: 1;
+            }
+        }
+
+        .yt-badge {
+            position: absolute;
+            left: 8px;
+            bottom: 8px;
+            background: $yt-ink;
+            color: #fff;
+            font: 600 10px/1 $yt-sans;
+            letter-spacing: .08em;
+            padding: 4px 6px;
+            border-radius: 3px;
+        }
+
+        &.current {
+            box-shadow: $yt-ring;
+        }
+
+        // per-video actions: a stack of circled buttons (Play, Tag, Forget) top-right, shown on hover
+        .yt-card-actions {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            opacity: 0;
+            transition: opacity .12s ease-out;
+
+            &:focus-within {
+                opacity: 1;
+            }
+        }
+
+        .yt-card-btn {
+            width: 24px;
+            height: 24px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, .55);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            transition: background .12s ease-out;
+
+            &:hover, &[aria-expanded="true"] {
+                background: rgba(0, 0, 0, .8);
+            }
+
+            &.yt-card-btn-x:hover {
+                background: $yt-danger;
+            }
+
+            &:focus-visible {
+                outline: 2px solid #fff;
+                outline-offset: 1px;
+            }
+        }
+    }
+
+    .yt-card:hover .yt-card-actions,
+    .yt-row:hover .yt-card-actions,
+    .yt-card-actions:has([aria-expanded="true"]) {
+        opacity: 1;
+    }
+
+    .yt-thumb-wrap {
+        position: relative;
+    }
+
+    // tag picker sits to the left of the button stack, level with the Tag button
+    .yt-card-menu {
+        top: 34px;
+        right: 36px;
+        width: 200px;
+    }
+
+    // grid cards
+    .yt-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 22px 16px;
+    }
+
+    .yt-card {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        min-width: 0;
+
+        .yt-card-title {
+            font: 500 13.5px/1.35 $yt-sans;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            overflow-wrap: anywhere;
+        }
+
+        .yt-card-meta {
+            display: flex;
+            gap: 8px;
+            font-size: 12px;
+            color: $yt-muted;
+            min-width: 0;
+
+            .yt-channel {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                min-width: 0;
+            }
+
+            .yt-date {
+                flex: none;
+            }
+        }
+
+        .yt-chip-row {
+            gap: 4px;
+        }
+    }
+
+    // list rows
+    .yt-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .yt-row {
+        display: grid;
+        grid-template-columns: 112px minmax(0, 1fr) 220px 80px;
+        gap: 16px;
+        align-items: center;
+        padding: 6px 8px;
+        border-radius: 8px;
+
+        &:hover, &.current {
+            background: #fff;
+        }
+
+        // list thumbnails are short, so the buttons sit in a row and the picker drops below
+        .yt-card-actions {
+            top: 4px;
+            right: 4px;
+            flex-direction: row;
+            gap: 3px;
+        }
+
+        .yt-card-btn {
+            width: 20px;
+            height: 20px;
+        }
+
+        .yt-card-menu {
+            top: calc(100% + 4px);
+            left: 0;
+            right: auto;
+        }
+
+        .yt-thumb {
+            border-radius: 4px;
+
+            .yt-badge {
+                left: 5px;
+                bottom: 5px;
+                font-size: 9px;
+                padding: 3px 5px;
+            }
+        }
+
+        .yt-row-text {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            min-width: 0;
+        }
+
+        .yt-row-title {
+            font: 500 14px/1.3 $yt-sans;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .yt-row-meta {
+            display: flex;
+            gap: 10px;
+            font-size: 12px;
+            color: $yt-muted;
+        }
+
+        .yt-row-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            justify-content: flex-end;
+            min-width: 0;
+        }
+
+        .yt-row-date {
+            font: 400 12px $yt-mono;
+            color: $yt-label;
+            text-align: right;
+        }
+    }
+
+    // mobile rows (rendered only below the breakpoint)
+    .yt-mgroup {
+        padding: 14px 0 4px;
+
+        .yt-mgroup-head {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            padding: 0 16px 6px;
+
+            .yt-group-label {
+                font: 600 13px $yt-sans;
+            }
+
+            .yt-group-count {
+                font: 400 11px $yt-mono;
+                color: $yt-label;
+            }
+        }
+    }
+
+    .yt-mrow {
+        display: grid;
+        grid-template-columns: 128px minmax(0, 1fr) 36px;
+        gap: 12px;
+        align-items: start;
+        padding: 8px 6px 8px 16px;
+        cursor: pointer;
+
+        &:active {
+            background: $yt-pressed;
+        }
+
+        &.current {
+            background: #fff;
+        }
+
+        .yt-thumb .yt-badge {
+            left: 5px;
+            bottom: 5px;
+            font-size: 9px;
+            padding: 3px 5px;
+        }
+
+        .yt-mrow-text {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 0;
+            padding-top: 1px;
+        }
+
+        .yt-mrow-title {
+            font: 500 14px/1.3 $yt-sans;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            overflow-wrap: anywhere;
+        }
+
+        .yt-mrow-meta {
+            font-size: 12px;
+            color: $yt-muted;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .yt-more {
+            width: 36px;
+            height: 44px;
+            border: 0;
+            background: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3px;
+            padding: 0;
+
+            span {
+                width: 4px;
+                height: 4px;
+                border-radius: 50%;
+                background: $yt-label;
+            }
+        }
+    }
+
+    .yt-main-data {
+        display: none;
+    }
+
+    // ---------------------------------------------------------------- bottom sheet
+    .yt-sheet-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(20, 20, 19, .45);
+        z-index: 50;
+    }
+
+    .yt-sheet {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 51;
+        background: #fff;
+        border-radius: 18px 18px 0 0;
+        padding: 10px 16px calc(28px + env(safe-area-inset-bottom));
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-height: 90vh;
+        max-height: 90dvh;
+        overflow: auto;
+
+        .yt-grabber {
+            width: 36px;
+            height: 4px;
+            border-radius: 2px;
+            background: #d6d3cd;
+            align-self: center;
+            flex: none;
+        }
+
+        .yt-sheet-head {
+            display: grid;
+            grid-template-columns: 96px minmax(0, 1fr);
+            gap: 12px;
+            align-items: center;
+
+            .yt-thumb {
+                border-radius: 5px;
+            }
+
+            .yt-sheet-title {
+                font: 600 14px/1.3 $yt-sans;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                overflow-wrap: anywhere;
+            }
+
+            .yt-sheet-meta {
+                font-size: 12px;
+                color: $yt-muted;
+                margin-top: 2px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+
+        .yt-sheet-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .yt-sheet-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .yt-sheet-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            height: 36px;
+            padding: 0 14px;
+            border-radius: 18px;
+            border: 1px solid $yt-input-border;
+            background: #fff;
+            color: $yt-chip-fg;
+            font: 500 13px $yt-sans;
+            max-width: 100%;
+
+            .yt-mark {
+                width: 12px;
+                text-align: center;
+                flex: none;
+            }
+
+            .yt-sheet-chip-text {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+
+        .yt-sheet-new {
+            display: flex;
+            gap: 8px;
+
+            input {
+                flex: 1;
+                min-width: 0;
+                height: 44px;
+                border: 1px solid $yt-input-border;
+                border-radius: 8px;
+                padding: 0 12px;
+                font: 400 15px $yt-sans;
+                outline: none;
+                color: $yt-ink;
+            }
+
+            button {
+                height: 44px;
+                padding: 0 16px;
+                border: 0;
+                border-radius: 8px;
+                background: $yt-ink;
+                color: #fff;
+                font: 600 14px $yt-sans;
+            }
+        }
+
+        .yt-sheet-actions {
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid $yt-line-3;
+
+            button, a {
+                height: 48px;
+                display: flex;
+                align-items: center;
+                border: 0;
+                border-bottom: 1px solid $yt-line-3;
+                background: transparent;
+                text-align: left;
+                font: 500 15px $yt-sans;
+                color: $yt-ink;
+                padding: 0;
+                width: 100%;
+
+                &:last-child {
+                    border-bottom: 0;
+                }
+
+                &.danger {
+                    color: $yt-danger;
+                }
+            }
+        }
+    }
+
+    // ---------------------------------------------------------------- import modal
+    .yt-modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(20, 20, 19, .45);
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+    }
+
+    .yt-modal {
+        background: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        width: 100%;
+        max-width: 560px;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, .2);
+
+        h3 {
+            margin: 0;
+            font: 600 16px $yt-sans;
+            color: $yt-ink;
+        }
+
+        p {
+            margin: 0;
+            font: 400 13px/1.5 $yt-sans;
+            color: $yt-muted;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 160px;
+            padding: 10px 12px;
+            font: 400 12px/1.4 $yt-mono;
+            border: 1px solid $yt-input-border;
+            border-radius: 6px;
+            resize: vertical;
+            outline: none;
+            color: $yt-ink;
+
+            &:focus {
+                border-color: $yt-chip-hover;
+            }
+        }
+
+        .yt-modal-status {
+            min-height: 18px;
+            font-size: 12px;
+            color: $yt-label;
+
+            &.ok {
+                color: $yt-ink;
+            }
+
+            &.bad {
+                color: $yt-danger;
+            }
+        }
+
+        .yt-modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+
+            .yt-btn-primary {
+                height: 32px;
+                padding: 0 14px;
+                border: 0;
+                border-radius: 6px;
+                background: $yt-ink;
+                color: #fff;
+                font: 600 12px $yt-sans;
+
+                &:disabled {
+                    opacity: .4;
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+
+    .yt-toast {
+        position: fixed;
+        left: 50%;
+        bottom: 24px;
+        transform: translateX(-50%);
+        background: $yt-ink;
+        color: #fff;
+        font: 500 13px $yt-sans;
+        padding: 10px 16px;
+        border-radius: 8px;
+        z-index: 70;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, .2);
+        white-space: nowrap;
+    }
+}
+
+// ==========================================================================
+// Mobile (< 900px)
+// ==========================================================================
+@media (max-width: $yt-break - 1px) {
+    #yt-app {
+        grid-template-rows: auto minmax(0, 1fr);
+        font-size: 14px;
+
+        .yt-header {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
+            padding: calc(12px + env(safe-area-inset-top)) 16px 12px;
+        }
+
+        .yt-wordmark {
+            font-size: 22px;
+        }
+
+        .yt-burger {
+            display: flex;
+        }
+
+        .yt-paste {
+            max-width: none;
+            flex-wrap: wrap;
+
+            input {
+                height: 44px;
+                border-radius: 8px;
+                font-size: 15px;
+            }
+
+            .yt-play-btn {
+                height: 44px;
+                padding: 0 18px;
+                border-radius: 8px;
+                font-size: 14px;
+            }
+
+            .yt-error {
+                flex-basis: 100%;
+                white-space: normal;
+            }
+        }
+
+        .yt-nav {
+            display: none;
+            flex-direction: column;
+            gap: 0;
+            border-top: 1px solid $yt-header-border;
+            padding-top: 8px;
+
+            &.open {
+                display: flex;
+            }
+
+            > a, .yt-nav-group > a {
+                display: block;
+                padding: 12px 0;
+                margin: 0;
+            }
+
+            .yt-nav-group .yt-nav-menu {
+                display: block;
+                position: static;
+                background: transparent;
+                border: 0;
+                box-shadow: none;
+                padding: 0 0 4px 16px;
+                margin: 0;
+                min-width: 0;
+
+                a {
+                    padding: 10px 0;
+                }
+            }
+        }
+
+        .yt-body {
+            display: block;
+            overflow: auto;
+            min-height: 0;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .yt-sidebar {
+            display: none;
+        }
+
+        .yt-main {
+            overflow: visible;
+            padding: 0 0 calc(24px + env(safe-area-inset-bottom));
+        }
+
+        .yt-now {
+            max-width: none;
+            margin: 48px 0 0;
+            border-bottom: 1px solid $yt-line;
+        }
+
+        .yt-player {
+            border-radius: 0;
+        }
+
+        .yt-tab {
+            height: 48px;
+            padding: 0 0 0 12px;
+            border-radius: 10px 0 0 0;
+        }
+
+        .yt-status {
+            font-size: 14px;
+            height: 36px;
+        }
+
+        .yt-more-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 22px;
+        }
+
+        .yt-menu {
+            display: none;
+        }
+
+        .yt-now-mobile {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 12px 16px 14px;
+            background: #fff;
+
+            .yt-now-title {
+                font: 600 16px/1.3 $yt-sans;
+                text-wrap: pretty;
+                overflow-wrap: anywhere;
+            }
+
+            .yt-now-sub {
+                font-size: 13px;
+                color: $yt-muted;
+            }
+        }
+
+        .yt-toolbar {
+            display: none;
+        }
+
+        .yt-filterbar {
+            display: flex;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            background: $yt-page;
+            padding: 12px 0 8px;
+            flex-direction: column;
+            gap: 10px;
+            border-bottom: 1px solid #e6e4df;
+
+            .yt-search-wrap {
+                padding: 0 16px;
+            }
+
+            .yt-search {
+                width: 100%;
+                height: 40px;
+                border: 1px solid $yt-input-border;
+                border-radius: 8px;
+                background: #fff;
+                padding: 0 12px;
+                font: 400 15px $yt-sans;
+                outline: none;
+                color: $yt-ink;
+            }
+
+            .yt-mchips {
+                display: flex;
+                gap: 6px;
+                overflow-x: auto;
+                padding: 0 16px 2px;
+                scrollbar-width: none;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+            }
+
+            .yt-mchip {
+                flex: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                height: 32px;
+                padding: 0 12px;
+                border-radius: 16px;
+                border: 1px solid $yt-input-border;
+                background: #fff;
+                color: $yt-ink;
+                font: 500 13px $yt-sans;
+                max-width: 220px;
+
+                .yt-dot {
+                    width: 7px;
+                    height: 7px;
+                    border-radius: 50%;
+                    background: $yt-ink;
+                    flex: none;
+                }
+
+                .yt-mchip-text {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+
+                &.active {
+                    background: $yt-ink;
+                    border-color: $yt-ink;
+                    color: #fff;
+
+                    .yt-dot {
+                        background: #fff;
+                    }
+                }
+            }
+        }
+
+        .yt-empty {
+            padding: 48px 24px;
+        }
+
+        .yt-main-data {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 4px 10px;
+            padding: 20px 16px 0;
+            font-size: 12px;
+            color: $yt-label;
+
+            button {
+                border: 0;
+                background: transparent;
+                padding: 6px 4px;
+                font: 400 12px $yt-sans;
+                color: $yt-label;
+
+                &.danger {
+                    color: $yt-danger;
+                }
+            }
+        }
+    }
+}
