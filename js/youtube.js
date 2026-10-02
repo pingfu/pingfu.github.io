@@ -279,7 +279,7 @@
         while (netActive < NET_LIMIT && netQueue.length) {
             const job = netQueue.shift();
             netActive++;
-            fetch(`https://i.ytimg.com/vi/${job.id}/mqdefault.jpg`)
+            fetch(`https://i.ytimg.com/vi/${job.id}/mqdefault.jpg`, { referrerPolicy: 'no-referrer' })
                 .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.blob(); })
                 .then(blob => {
                     dbPut({ id: job.id, blob, fetched: Date.now() }).catch(() => { /* still usable this session */ });
@@ -333,7 +333,7 @@
         if (metaPending.has(id)) return Promise.resolve();
         metaPending.add(id);
         const url = 'https://www.youtube.com/oembed?url=' + encodeURIComponent('https://www.youtube.com/watch?v=' + id) + '&format=json';
-        return fetch(url)
+        return fetch(url, { referrerPolicy: 'no-referrer' })
             .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
             .then(j => {
                 const handle = (j.author_url || '').split('/@')[1];
@@ -728,7 +728,7 @@
         if (id === playerId) return;
         playerId = id;
         playerEl.innerHTML = id
-            ? `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=${autoplayNext ? 1 : 0}&rel=0" title="YouTube player" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`
+            ? `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=${autoplayNext ? 1 : 0}&rel=0" title="YouTube player" referrerpolicy="no-referrer" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`
             : '';
     }
 
