@@ -7,39 +7,13 @@ redirect_from:
   - "/youtube/"
 body_class: yt-page
 app_shell: true
+nav_full: true
+nav_slot: youtube-paste.html
 extra_scss: scss/youtube.scss
 ---
 
 <div id="yt-app">
-    <header class="yt-header">
-        <div class="yt-brand-row">
-            <a class="yt-wordmark" href="/">PINGFU</a>
-            <button class="yt-burger" id="ytBurger" type="button" aria-label="Menu" aria-controls="ytNav" aria-expanded="false"><span></span><span></span><span></span></button>
-        </div>
-        <form class="yt-paste" id="ytPaste" autocomplete="off">
-            <input id="ytInput" type="text" placeholder="Paste a YouTube link or video ID" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="YouTube link or video ID">
-            <button class="yt-play-btn" type="submit">Play</button>
-            <span class="yt-error" id="ytError" role="alert" hidden></span>
-        </form>
-        <nav class="yt-nav" id="ytNav">
-            <a href="/">Home</a>
-            <div class="yt-nav-group">
-                <a href="/tools/youtube" class="active">Tools</a>
-                <div class="yt-nav-menu">
-                    <a href="/tools/youtube">Embedded YouTube player</a>
-                    <a href="/tools/dns">DNS toolbox</a>
-                    <a href="/tools/generate-passwords">Password generator</a>
-                </div>
-            </div>
-            <div class="yt-nav-group">
-                <a href="/reference/ethernet-ip-tcp-udp-icmp-protocol-header-cheatsheets">Reference</a>
-                <div class="yt-nav-menu">
-                    <a href="/reference/ethernet-ip-tcp-udp-icmp-protocol-header-cheatsheets">Protocol header cheatsheets</a>
-                </div>
-            </div>
-            <a href="/code">Code</a>
-        </nav>
-    </header>
+    {% include nav.html %}
     <div class="yt-body" id="ytBody">
         <aside class="yt-sidebar" id="ytSidebar" aria-label="Library"></aside>
         <main class="yt-main">

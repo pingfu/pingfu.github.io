@@ -77,7 +77,9 @@ html:has(body.yt-page) {
         color: $yt-faint;
     }
 
-    a {
+    // app links inherit their colour; the shared nav keeps its own
+    .yt-body a,
+    .yt-sheet a {
         color: inherit;
         text-decoration: none;
     }
@@ -100,51 +102,8 @@ html:has(body.yt-page) {
     }
 
     // ---------------------------------------------------------------- header
-    .yt-header {
-        display: grid;
-        grid-template-columns: 216px minmax(0, 1fr) auto;
-        align-items: center;
-        gap: 24px;
-        background: $yt-header;
-        padding: 0 28px 0 24px;
-        position: relative;
-        z-index: 20;
-    }
-
-    .yt-brand-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .yt-wordmark {
-        font: 300 28px/1 'Open Sans Condensed', sans-serif;   // same wordmark as the site navbar
-        letter-spacing: 2px;
-        color: $yt-wordmark;
-        text-decoration: none;
-    }
-
-    .yt-burger {
-        display: none;
-        width: 44px;
-        height: 44px;
-        border: 0;
-        background: transparent;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        margin-right: -10px;
-        padding: 0;
-
-        span {
-            width: 22px;
-            height: 2px;
-            background: $yt-wordmark;
-            display: block;
-        }
-    }
-
+    // The header itself is the shared site nav (_includes/nav.html, styled in main.scss) in its
+    // full-width projection. Only the paste form, rendered into the nav's slot, lives here.
     .yt-paste {
         display: flex;
         align-items: center;
@@ -188,68 +147,6 @@ html:has(body.yt-page) {
             font-size: 12px;
             color: $yt-error;
             white-space: nowrap;
-        }
-    }
-
-    .yt-nav {
-        display: flex;
-        gap: 24px;
-        font: 500 12px/1 'Inter Tight', $yt-sans;   // same face and weight as the site navbar
-        letter-spacing: .06em;
-        text-transform: uppercase;
-        color: $yt-nav;
-
-        > a, > .yt-nav-group > a {
-            color: $yt-nav;
-            text-decoration: none;
-
-            &:hover, &.active {
-                color: #fff;
-            }
-        }
-
-        .yt-nav-group {
-            position: relative;
-
-            > a {
-                display: block;
-                padding-bottom: 20px;
-                margin-bottom: -20px;
-            }
-
-            .yt-nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                right: -12px;
-                margin-top: 8px;
-                min-width: 220px;
-                background: $yt-header;
-                border: 1px solid $yt-header-border;
-                border-radius: 8px;
-                padding: 6px;
-                box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
-                z-index: 30;
-
-                a {
-                    display: block;
-                    padding: 9px 12px;
-                    border-radius: 5px;
-                    font: 400 13px 'Inter Tight', $yt-sans;
-                    letter-spacing: 0;
-                    text-transform: none;
-                    color: $yt-wordmark;
-
-                    &:hover {
-                        background: $yt-header-input;
-                        color: #fff;
-                    }
-                }
-            }
-
-            &:hover .yt-nav-menu, &:focus-within .yt-nav-menu {
-                display: block;
-            }
         }
     }
 
@@ -1506,22 +1403,6 @@ html:has(body.yt-page) {
         grid-template-rows: auto minmax(0, 1fr);
         font-size: 14px;
 
-        .yt-header {
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            gap: 12px;
-            padding: calc(12px + env(safe-area-inset-top)) 16px 12px;
-        }
-
-        .yt-wordmark {
-            font-size: 24px;
-        }
-
-        .yt-burger {
-            display: flex;
-        }
-
         .yt-paste {
             max-width: none;
             flex-wrap: wrap;
@@ -1542,39 +1423,6 @@ html:has(body.yt-page) {
             .yt-error {
                 flex-basis: 100%;
                 white-space: normal;
-            }
-        }
-
-        .yt-nav {
-            display: none;
-            flex-direction: column;
-            gap: 0;
-            border-top: 1px solid $yt-header-border;
-            padding-top: 8px;
-
-            &.open {
-                display: flex;
-            }
-
-            > a, .yt-nav-group > a {
-                display: block;
-                padding: 12px 0;
-                margin: 0;
-            }
-
-            .yt-nav-group .yt-nav-menu {
-                display: block;
-                position: static;
-                background: transparent;
-                border: 0;
-                box-shadow: none;
-                padding: 0 0 4px 16px;
-                margin: 0;
-                min-width: 0;
-
-                a {
-                    padding: 10px 0;
-                }
             }
         }
 

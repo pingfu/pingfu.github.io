@@ -33,8 +33,6 @@
     const app = el('yt-app');
     const inputEl = el('ytInput');
     const errorEl = el('ytError');
-    const navEl = el('ytNav');
-    const burgerEl = el('ytBurger');
     const bodyEl = el('ytBody');
     const mainEl = app.querySelector('.yt-main');
     const sidebarEl = el('ytSidebar');
@@ -1040,8 +1038,6 @@
             state.menu = null;
         } else {
             closeSheet();
-            navEl.classList.remove('open');
-            burgerEl.setAttribute('aria-expanded', 'false');
         }
     }
 
@@ -1242,17 +1238,11 @@
 
     modalDataEl.addEventListener('input', validateImport);
 
-    burgerEl.addEventListener('click', () => {
-        const open = navEl.classList.toggle('open');
-        burgerEl.setAttribute('aria-expanded', String(open));
-    });
-
     document.addEventListener('keydown', e => {
         if (e.key !== 'Escape') return;
         if (!modalEl.hidden) closeModal();
         else if (state.menu) closeMenu();
         else if (!sheetEl.hidden) closeSheet();
-        else if (navEl.classList.contains('open')) burgerEl.click();
     });
 
     mql.addEventListener('change', () => {

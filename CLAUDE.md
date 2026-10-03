@@ -11,7 +11,9 @@ Jekyll-based static blog hosted on GitHub Pages at pingfu.net.
 - `js/` - Static page scripts (not run through Liquid). `js/youtube.js` drives `/tools/youtube/`
 - `_includes/scss/youtube.scss` - Styles for the YouTube page only, pulled in via the `extra_scss` front matter key
 
-Pages can set `app_shell: true` in front matter to drop the site nav and footer (used by the YouTube page, which draws its own header), `fonts:` to add a Google Fonts stylesheet, and `extra_scss:` to compile an extra SCSS include.
+The site header is one component, `_includes/nav.html`, styled as `.site-nav` in main.scss. By default it sits in the centred Bootstrap container; a page can set `nav_full: true` for the full-width projection and `nav_slot: some-include.html` to render an include in its middle column. The YouTube page uses both and includes the nav itself inside its app shell.
+
+Pages can set `app_shell: true` in front matter to drop the layout's nav and footer, `fonts:` to add a Google Fonts stylesheet, and `extra_scss:` to compile an extra SCSS include.
 
 The YouTube page is deliberately light on YouTube: one oEmbed call and one thumbnail fetch when a video is first played, then everything is served from localStorage (`pingfu.history.v2`) and IndexedDB (`pingfu-history`, thumbnail blobs). Do not add calls that run on every visit.
 

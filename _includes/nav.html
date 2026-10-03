@@ -1,35 +1,34 @@
-<nav class="navbar navbar-default">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Pingfu</a>
+{% comment %}
+Site header. One component, two projections:
+  default         centred: the inner row is a Bootstrap .container, so it lines up with page content
+  nav_full: true  full width, set in a page's front matter (used by /tools/youtube/)
+Optional nav_slot: an include rendered in the middle column (the YouTube paste form).
+The burger that stacks the links on narrow screens is wired up in _layouts/default.html.
+{% endcomment %}
+<header class="site-nav{% if page.nav_full %} site-nav-full{% endif %}">
+    <div class="site-nav-inner{% unless page.nav_full %} container{% endunless %}">
+        <div class="site-nav-brand-row">
+            <a class="site-nav-brand" href="/">Pingfu</a>
+            <button class="site-nav-burger" type="button" aria-label="Menu" aria-controls="siteNavLinks" aria-expanded="false"><span></span><span></span><span></span></button>
         </div>
-    
-        <div id="navbar-main" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a class="{% if page.url == "/" %}active{% endif %}"  href="/">Home</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle{% if page.url contains "/tools/" %} active{% endif %}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tools<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/tools/youtube">Embedded YouTube player</a></li>
-                        <li><a href="/tools/dns">DNS toolbox</a></li>
-                        <li><a href="/tools/generate-passwords">Password generator</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle{% if page.url contains "/reference/" %} active{% endif %}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reference<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/reference/ethernet-ip-tcp-udp-icmp-protocol-header-cheatsheets">Protocol header cheatsheets</a></li>
-                        <!--<li><a href="/reference/csharp-language-reference">C# Language Reference</a></li>-->
-                    </ul>
-                </li>
-                <li><a class="{% if page.url == "/code" or page.url == "/code/" %}active{% endif %}" href="/code">Code</a></li>
-            </ul>
-        </div>
+        {% if page.nav_slot %}<div class="site-nav-slot">{% include {{ page.nav_slot }} %}</div>{% endif %}
+        <nav class="site-nav-links" id="siteNavLinks">
+            <a href="/"{% if page.url == "/" %} class="active"{% endif %}>Home</a>
+            <div class="site-nav-group">
+                <a href="/tools/youtube"{% if page.url contains "/tools/" %} class="active"{% endif %}>Tools</a>
+                <div class="site-nav-menu">
+                    <a href="/tools/youtube">Embedded YouTube player</a>
+                    <a href="/tools/dns">DNS toolbox</a>
+                    <a href="/tools/generate-passwords">Password generator</a>
+                </div>
+            </div>
+            <div class="site-nav-group">
+                <a href="/reference/ethernet-ip-tcp-udp-icmp-protocol-header-cheatsheets"{% if page.url contains "/reference/" %} class="active"{% endif %}>Reference</a>
+                <div class="site-nav-menu">
+                    <a href="/reference/ethernet-ip-tcp-udp-icmp-protocol-header-cheatsheets">Protocol header cheatsheets</a>
+                </div>
+            </div>
+            <a href="/code"{% if page.url == "/code" or page.url == "/code/" %} class="active"{% endif %}>Code</a>
+        </nav>
     </div>
-</nav>
+</header>

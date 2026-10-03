@@ -91,6 +91,20 @@
             var joke = document.getElementById('joke');
             if (joke) joke.innerHTML = lore[Math.floor(Math.random() * lore.length)];
         })();
+
+        // Site header: the burger stacks the links on narrow screens (see _includes/nav.html)
+        (function() {
+            var burger = document.querySelector('.site-nav-burger');
+            var links = document.getElementById('siteNavLinks');
+            if (!burger || !links) return;
+            burger.addEventListener('click', function() {
+                var open = links.classList.toggle('open');
+                burger.setAttribute('aria-expanded', String(open));
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && links.classList.contains('open')) burger.click();
+            });
+        })();
     </script>
 
     <!-- 
