@@ -1204,10 +1204,14 @@
 
     document.addEventListener('paste', e => {
         const a = document.activeElement;
-        if (a && (a.tagName === 'INPUT' || a.tagName === 'TEXTAREA' || a.isContentEditable)) return;
+        const inSearch = a === searchEl || a === searchMobileEl;
+        if (a && !inSearch && (a.tagName === 'INPUT' || a.tagName === 'TEXTAREA' || a.isContentEditable)) return;
         if (!modalEl.hidden) return;
         const text = (e.clipboardData || window.clipboardData).getData('text');
-        if (parseId(text)) submit(text);
+        if (!parseId(text)) return;
+        // A video link pasted into the search box should play, not filter.
+        if (inSearch) e.preventDefault();
+        submit(text);
     });
 
     // Show the × in the search boxes only while there is text to clear.

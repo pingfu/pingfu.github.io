@@ -278,113 +278,151 @@ blockquote {
 
 /******************************************************************************/
 
+// Site navbar. Echoes the header on /tools/youtube/: dark bar, Oswald wordmark, spaced uppercase
+// links, dropdowns that open on hover. Stays inside the centred Bootstrap container.
+$nav-bg: #2a2a29;
+$nav-panel: #1e1e1d;
+$nav-border: #474644;
+$nav-text: #b5b3ae;
+$nav-brand: #d9d8d4;
+$nav-height: 56px;
+
 .navbar {
     border-radius: 0;
-    min-height: 76px;
+    min-height: $nav-height;
     margin-bottom: 0;
-    background: $charcoal;
+    background: $nav-bg;
     border: none;
     border-color: transparent;
 
     .navbar-brand {
-        text-transform: uppercase;
+        height: $nav-height;
+        padding: 14px 15px;
+        margin-top: 0;
+        font-family: 'Open Sans Condensed', sans-serif;
         font-weight: 300;
         font-style: normal;
-        color: $fossil;
-        font-family: 'Open Sans Condensed', sans-serif;
         font-size: $font-size-xxxl;
+        line-height: 28px;
         letter-spacing: 2px;
-        margin-top: 13px;
+        text-transform: uppercase;
+        color: $nav-brand;
     }
 
     .navbar-brand:hover {
         color: $white;
     }
- 
+
     .navbar-collapse {
         border: none;
         border-color: transparent;
     }
 
     .navbar-toggle {
-        margin-top: 20px;
-        margin-right: 15px;
+        margin: 11px 0 11px 15px;
         border: none;
 
         &:hover,
         &:focus {
-            background-color: $shadow;
+            background-color: $nav-panel;
         }
 
         .icon-bar {
-            background-color: $white;
-            height: 3px;
+            background-color: $nav-brand;
+            height: 2px;
         }
-    }  
+    }
 }
 
 #navbar-main {
 
-    margin-top: 17px;
+    margin-top: 0;
 
     .navbar-nav {
 
-        .dropdown-menu {
-            border-radius: 0;
-        }
-
-        li a {
+        > li > a {
             font-family: 'Inter Tight', $font-family-inter;
             font-size: 12px;
             font-weight: 500;
-            letter-spacing: 0.6px;
-            line-height: 1.2;
+            letter-spacing: .06em;
+            line-height: 12px;
             text-transform: uppercase;
-            padding: 12px 8px 10px 8px;
-            margin: 0 6px;
-            border-bottom: solid 2px transparent;
-            color: $fossil;
+            padding: 22px 0;
+            margin: 0 12px;
+            border: 0;
+            color: $nav-text;
+            background: transparent;
 
+            // no caret: the menu reveals itself on hover
             .caret {
-                margin-left: 6px;
-                top: 0;
+                display: none;
             }
         }
-    
-        li.open {
-            a {
-                background-color: $shadow;
-                color: $white;
-                border-top-left-radius: 4px;
-                border-top-right-radius: 4px;
-            }
-        }
-    
-        li a:hover,
-        li .active {
+
+        > li > a:hover,
+        > li > a:focus,
+        > li > .active,
+        > li.open > a,
+        > li.open > a:hover,
+        > li.open > a:focus {
             color: $white;
-            border-bottom: solid 2px $cloud;
+            background: transparent;
         }
-    
-        li .dropdown-menu {
-            right: 6px;
-            background-color: $shadow;
-            border: none;
-            margin-top: -3px;
-    
-            a {
-                text-transform: none;
-                color: $fossil;
-                font-size: $font-size-md;
+
+        .dropdown-menu {
+            background: $nav-bg;
+            border: 1px solid $nav-border;
+            border-radius: 8px;
+            padding: 6px;
+            min-width: 220px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
+
+            > li > a {
+                display: block;
+                padding: 9px 12px;
+                border-radius: 5px;
                 font-family: 'Inter Tight', $font-family-inter;
+                font-size: 13px;
+                font-weight: 400;
+                letter-spacing: 0;
+                text-transform: none;
+                line-height: 1.3;
+                color: $nav-brand;
+                background: transparent;
             }
 
-            a:hover {
-                border-bottom: solid 2px transparent;
+            > li > a:hover,
+            > li > a:focus {
+                background: $nav-panel;
                 color: $white;
             }
         }
-        
+    }
+}
+
+// Desktop: dropdowns open on hover (or keyboard focus), with a transparent bridge over the gap
+// so the pointer can travel from the link to the menu without it closing.
+@media (min-width: 768px) {
+    #navbar-main .navbar-nav {
+        .dropdown-menu {
+            right: 0;
+            left: auto;
+            margin-top: 8px;
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: -9px;
+                height: 9px;
+            }
+        }
+
+        > li.dropdown:hover > .dropdown-menu,
+        > li.dropdown:focus-within > .dropdown-menu {
+            display: block;
+        }
     }
 }
 
@@ -1248,39 +1286,28 @@ table.vcruntime {
 /* notice this section is MAX width */
 @media only screen and (max-width: 768px) {
     
+    // Collapsed menu: stacked links, dropdowns flattened and indented (as on the YouTube page)
     #navbar-main {
-        
+        border-top: 1px solid $nav-border;
+        padding-top: 8px;
+
         .navbar-nav {
-            li,
-            li:hover {
-                .active,
-                a:hover {
-                    border-bottom: solid 2px transparent;
-                }
-
-                .dropdown-menu {
-                    padding: 0;
-
-                    li {
-                        padding-left: 16px;
-                        border-bottom: 1px solid $shadow-bar;
-                    }
-                    
-                    li:last-child {
-                        border-bottom: none;
-                    }
-                }
+            > li > a {
+                padding: 12px 0;
             }
 
-            li.open {
-                a { 
-                    background-color: transparent;
+            .dropdown-menu {
+                border: 0;
+                border-radius: 0;
+                box-shadow: none;
+                background: transparent;
+                padding: 0 0 4px 16px;
+                min-width: 0;
+
+                > li > a {
+                    padding: 10px 0;
                 }
             }
-        }
-        
-        li a:hover {
-            border-bottom: none;
         }
     }
 }

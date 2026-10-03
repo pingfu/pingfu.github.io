@@ -59,7 +59,6 @@ html:has(body.yt-page) {
     font-size: 13px;
     line-height: 1.4;
     font-variant-numeric: tabular-nums;
-    -webkit-font-smoothing: antialiased;
 
     *, *::before, *::after {
         box-sizing: border-box;
@@ -119,8 +118,8 @@ html:has(body.yt-page) {
     }
 
     .yt-wordmark {
-        font: 300 24px/1 Oswald, sans-serif;
-        letter-spacing: .14em;
+        font: 300 28px/1 'Open Sans Condensed', sans-serif;   // same wordmark as the site navbar
+        letter-spacing: 2px;
         color: $yt-wordmark;
         text-decoration: none;
     }
@@ -195,7 +194,7 @@ html:has(body.yt-page) {
     .yt-nav {
         display: flex;
         gap: 24px;
-        font: 500 12px/1 $yt-sans;
+        font: 500 12px/1 'Inter Tight', $yt-sans;   // same face and weight as the site navbar
         letter-spacing: .06em;
         text-transform: uppercase;
         color: $yt-nav;
@@ -236,7 +235,7 @@ html:has(body.yt-page) {
                     display: block;
                     padding: 9px 12px;
                     border-radius: 5px;
-                    font: 400 13px $yt-sans;
+                    font: 400 13px 'Inter Tight', $yt-sans;
                     letter-spacing: 0;
                     text-transform: none;
                     color: $yt-wordmark;
@@ -1516,7 +1515,7 @@ html:has(body.yt-page) {
         }
 
         .yt-wordmark {
-            font-size: 22px;
+            font-size: 24px;
         }
 
         .yt-burger {

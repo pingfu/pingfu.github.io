@@ -7,7 +7,6 @@ redirect_from:
   - "/youtube/"
 body_class: yt-page
 app_shell: true
-fonts: "https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap"
 extra_scss: scss/youtube.scss
 ---
 
