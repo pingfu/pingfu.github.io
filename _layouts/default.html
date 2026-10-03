@@ -36,9 +36,9 @@
 
 <body{% if page.body_class %} class="{{ page.body_class }}"{% endif %}>
 
+    <!-- jQuery is still used by the password generator; Bootstrap's JS is not needed since the nav is CSS-driven -->
     <script type="text/javascript" src="//code.jquery.com/jquery-3.2.1.min.js"                                      integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"              integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    
+
     {% unless page.app_shell %}{% include /nav.html %}{% endunless %}
 
     {{ content }}
@@ -107,26 +107,8 @@
         })();
     </script>
 
-    <!-- 
-    <script type="text/javascript" src="/js/slick/slick.min.js"></script> -->
     <script type="text/javascript">
 
-        /* slick-carousel init
-        $(document).ready(function() {
-            $(".slick-carousel").slick({
-                dots: false,
-                infinite: true,
-                speed: 300,
-                adaptiveHeight: true,
-                arrows: true,
-                centerMode: true,
-                centerPadding: '0px',
-                slidesToShow: 1,
-                lazyLoad: 'ondemand',
-                responsive: [ { breakpoint: 1024, settings: { dots: false } } ]
-            });
-        }); */
-        
         // Google Analytics 4
         (function() {
             var script = document.createElement('script');

@@ -1,22 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@300;400;500;600;700&display=swap');
 
 $white: #ffffff;
-$home-page-boxes: #f8f8f8;
 $background-color: #F0F2F3;
 $border-color: #e9e9e9;
 
 $cloud: #BBBBBB;
-$fossil: #AAAAAA;
 $shadow: #555555;
-$shadow-bar: #606060;
 $charcoal: #363636;
 
 $azure: #4C9CF1;
 $primary-blue: #0d6efd;
-$danger-red: #ff0000;
 $muted-grey: #888;
 $highlight-playing: #d1e7dd;
-$highlight-hover: #e9ecef;
 
 $font-family-inter: 'Inter', Helvetica, Arial, sans-serif;
 $font-family-1: $font-family-inter;
@@ -296,6 +291,15 @@ $nav-break: 900px;
     position: relative;
     z-index: 20;
     background: $nav-bg;
+
+    // no focus box at all (Bootstrap puts one on every a:focus); the links already turn white
+    // on focus, and menu items highlight, so keyboard users still see where they are
+    a:focus,
+    a:focus-visible,
+    button:focus,
+    button:focus-visible {
+        outline: none;
+    }
 
     .site-nav-inner {
         display: grid;
