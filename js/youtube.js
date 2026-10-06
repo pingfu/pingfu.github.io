@@ -391,17 +391,20 @@
     }
 
     function setGroup(id, name) {
-        const v = videoById(id);
-        if (!v) return;
-        name = (name || '').trim();
-        v.tags = name ? [canonicalTag(name)] : [];
-        // Tagging a draft means it is wanted: save it to the library as part of the same action.
-        if (isDraft(id) && name) {
-            state.videos = [Object.assign({}, v, { date: new Date().toISOString() })].concat(state.videos.filter(x => x.id !== id));
-            state.draft = null;
-        }
-        if (!isDraft(id)) saveVideos();
-        render();
+        if (!videoById(id)) return;
+        mutate(() => {
+            const v = videoById(id);
+            if (!v) return;
+            name = (name || '').trim();
+            v.tags = name ? [canonicalTag(name)] : [];
+            // Tagging a draft means it is wanted: save it to the library as part of the same action.
+            if (isDraft(id) && name) {
+                state.videos = [Object.assign({}, v, { date: new Date().toISOString() })].concat(state.videos.filter(x => x.id !== id));
+                state.draft = null;
+            }
+            if (!isDraft(id)) saveVideos();
+            render();
+        });
     }
 
     function setCurrent(id) {
@@ -464,29 +467,34 @@
 
     // Status tab: Not saved -> Saved writes the draft to history; Saved -> Not saved removes it but keeps it playing.
     function toggleSaved() {
-        const v = currentVideo();
-        if (!v) return;
-        if (isDraft(v.id)) {
-            state.videos = [Object.assign({}, v, { date: new Date().toISOString() })].concat(state.videos.filter(x => x.id !== v.id));
-            state.draft = null;
-        } else {
-            state.videos = state.videos.filter(x => x.id !== v.id);
-            state.draft = v;
-        }
-        saveVideos();
-        render();
+        if (!currentVideo()) return;
+        mutate(() => {
+            const v = currentVideo();
+            if (!v) return;
+            if (isDraft(v.id)) {
+                state.videos = [Object.assign({}, v, { date: new Date().toISOString() })].concat(state.videos.filter(x => x.id !== v.id));
+                state.draft = null;
+            } else {
+                state.videos = state.videos.filter(x => x.id !== v.id);
+                state.draft = v;
+            }
+            saveVideos();
+            render();
+        });
     }
 
     function removeVideo(id) {
-        state.videos = state.videos.filter(v => v.id !== id);
-        if (state.currentId === id) setCurrent(null);
-        if (state.sheetVideoId === id) state.sheetVideoId = null;
-        if (state.menu && state.menu.target === id) state.menu = null;
-        if (isDraft(id)) state.draft = null;
-        saveVideos();
-        dbDelete(id).catch(() => { /* ignore */ });
-        releaseThumb(id);
-        render();
+        mutate(() => {
+            state.videos = state.videos.filter(v => v.id !== id);
+            if (state.currentId === id) setCurrent(null);
+            if (state.sheetVideoId === id) state.sheetVideoId = null;
+            if (state.menu && state.menu.target === id) state.menu = null;
+            if (isDraft(id)) state.draft = null;
+            saveVideos();
+            dbDelete(id).catch(() => { /* ignore */ });
+            releaseThumb(id);
+            render();
+        });
     }
 
     function discardDraft() {
@@ -505,14 +513,16 @@
         const n = state.videos.length;
         if (!n) return;
         if (!window.confirm('Forget all ' + countLabel(n) + '? This clears your library and cached thumbnails in this browser' + (syncCfg && !syncDead ? ', and on every synced device.' : '.'))) return;
-        state.videos.forEach(v => releaseThumb(v.id));
-        state.videos = [];
-        state.filter = null;
-        state.sheetVideoId = null;
-        setCurrent(null);
-        saveVideos();
-        dbClear().catch(() => { /* ignore */ });
-        render();
+        mutate(() => {
+            state.videos.forEach(v => releaseThumb(v.id));
+            state.videos = [];
+            state.filter = null;
+            state.sheetVideoId = null;
+            setCurrent(null);
+            saveVideos();
+            dbClear().catch(() => { /* ignore */ });
+            render();
+        });
     }
 
     function setFilter(filter) {
@@ -648,14 +658,19 @@
 
     function importList() {
         if (!importParsed || (!importParsed.fresh.length && !importParsed.updates.length)) return;
-        applyDiff(importParsed);
-        saveVideos();
-        const parts = [];
-        if (importParsed.fresh.length) parts.push('Added ' + countLabel(importParsed.fresh.length));
-        if (importParsed.updates.length) parts.push('updated ' + importParsed.updates.length);
+        // Re-diff after the pull: the pasted list is compared against the freshest library.
+        const pasted = importParsed.fresh.concat(importParsed.updates.map(u => Object.assign({}, findVideo(u.id), u.patch)));
         closeModal();
-        render();
-        toast(parts.join(', '));
+        mutate(() => {
+            const diff = diffImport(pasted);
+            applyDiff(diff);
+            saveVideos();
+            const parts = [];
+            if (diff.fresh.length) parts.push('Added ' + countLabel(diff.fresh.length));
+            if (diff.updates.length) parts.push('updated ' + diff.updates.length);
+            render();
+            toast(parts.length ? parts.join(', ') : 'Nothing to change');
+        });
     }
 
     // ------------------------------------------------------------------ sync (optional, mantledb.sh)
@@ -686,6 +701,7 @@
         clearTimeout(syncTimer);
         closeSync();
         renderSync();
+        toast(syncCfg ? 'MantleDB unreachable, sync paused until page reload' : 'MantleDB unreachable');
     }
 
     // Desktop shows the Sync row in the sidebar's Data section, mobile in the row under the grid.
@@ -722,11 +738,11 @@
     }
 
     // Pull the synced library over this one. With mergeLocal, the videos and tags already here are
-    // added to it first (same rules as Import) and the result is pushed back.
+    // added to it first (same rules as Import) and the result is pushed back. Always resolves.
     function syncPull(mergeLocal) {
-        if (!syncCfg || syncDead) return;
+        if (!syncCfg || syncDead) return Promise.resolve();
         const local = mergeLocal ? state.videos : [];
-        syncFetch(syncPath(), {}, syncCfg.key)
+        return syncFetch(syncPath(), {}, syncCfg.key)
             .then(r => {
                 if (r.status === 200 && Array.isArray(r.body)) {
                     const playing = currentVideo();
@@ -745,6 +761,16 @@
                 }
             })
             .catch(() => { /* sync killed */ });
+    }
+
+    // Every change to the library goes through here: with sync on, pull the latest copy first so
+    // the push that follows carries changes made in other browsers too. Without sync, run at once.
+    function mutate(fn) {
+        if (!syncCfg || syncDead) {
+            fn();
+            return;
+        }
+        syncPull(false).then(fn);
     }
 
     function randomNs() {
