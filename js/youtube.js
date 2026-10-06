@@ -9,6 +9,11 @@
  *
  * Pasting a link plays the video as an unsaved draft. It only enters the
  * history when the user marks it as saved in the player's status tab.
+ *
+ * Sync is optional and off by default. When on, the list is mirrored to one
+ * entry at mantledb.sh under a claimed namespace: pull on load replaces the
+ * local list, every save pushes it. If the service is unreachable the sync UI
+ * disappears for that page load and the page carries on from localStorage.
  */
 (() => {
     'use strict';
@@ -24,6 +29,10 @@
     const MONTHS_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const MONTHS_LONG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const NET_LIMIT = 4;
+    const SYNC_ENABLED = true;                       // hard kill switch for the sync feature
+    const SYNC_KEY = 'pingfu.history.sync';
+    const SYNC_BASE = 'https://mantledb.sh/v2';
+    const SYNC_HASH_RE = /^#sync=([\w-]+):([\w-]+)$/;
 
     const mql = window.matchMedia('(max-width: 899px)');
     const isMobile = () => mql.matches;
@@ -50,11 +59,17 @@
     const sheetEl = el('ytSheet');
     const sheetBackdropEl = el('ytSheetBackdrop');
     const modalEl = el('ytModal');
-    const modalTitleEl = el('ytModalTitle');
-    const modalTextEl = el('ytModalText');
     const modalDataEl = el('ytModalData');
     const modalStatusEl = el('ytModalStatus');
     const modalImportEl = el('ytModalImport');
+    const syncWrapEl = el('ytSyncWrap');
+    const syncEl = el('ytSync');
+    const syncOffEl = el('ytSyncOff');
+    const syncOnEl = el('ytSyncOn');
+    const syncNsEl = el('ytSyncNs');
+    const syncKeyEl = el('ytSyncKey');
+    const syncQrEl = el('ytSyncQr');
+    const syncLinkEl = el('ytSyncLink');
 
     // ------------------------------------------------------------------ state
     const state = {
@@ -199,6 +214,7 @@
         } catch (e) {
             toast('Could not save: browser storage is full or blocked');
         }
+        syncPush();
     }
 
     function loadPrefs() {
@@ -379,6 +395,11 @@
         if (!v) return;
         name = (name || '').trim();
         v.tags = name ? [canonicalTag(name)] : [];
+        // Tagging a draft means it is wanted: save it to the library as part of the same action.
+        if (isDraft(id) && name) {
+            state.videos = [Object.assign({}, v, { date: new Date().toISOString() })].concat(state.videos.filter(x => x.id !== id));
+            state.draft = null;
+        }
         if (!isDraft(id)) saveVideos();
         render();
     }
@@ -483,7 +504,7 @@
     function forgetAll() {
         const n = state.videos.length;
         if (!n) return;
-        if (!window.confirm('Forget all ' + countLabel(n) + '? This clears your library and cached thumbnails in this browser.')) return;
+        if (!window.confirm('Forget all ' + countLabel(n) + '? This clears your library and cached thumbnails in this browser' + (syncCfg && !syncDead ? ', and on every synced device.' : '.'))) return;
         state.videos.forEach(v => releaseThumb(v.id));
         state.videos = [];
         state.filter = null;
@@ -535,7 +556,12 @@
         }
         const text = encodeList(state.videos);
         const done = () => toast('Copied ' + countLabel(state.videos.length) + ' to the clipboard');
-        const fallback = () => openModal('export', text);
+        const fallback = () => {
+            modalDataEl.value = text;
+            modalDataEl.focus();
+            modalDataEl.select();
+            toast('Could not copy. Select the text and copy it');
+        };
         if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(text).then(done, fallback);
         } else {
@@ -543,27 +569,17 @@
         }
     }
 
-    function openModal(mode, text) {
+    // One dialog for both directions: the box starts with the current library as export text, and
+    // pasting an exported library over it enables Import. Export copies the current library.
+    function openModal() {
         modalEl.hidden = false;
         importParsed = null;
-        modalDataEl.value = text || '';
-        modalStatusEl.textContent = '';
-        modalStatusEl.className = 'yt-modal-status';
-        if (mode === 'export') {
-            modalTitleEl.textContent = 'Export library';
-            modalTextEl.textContent = 'Copy the text below and keep it somewhere safe. Paste it into Import on another browser or device.';
-            modalDataEl.readOnly = true;
-            modalImportEl.hidden = true;
-            modalDataEl.focus();
-            modalDataEl.select();
-        } else {
-            modalTitleEl.textContent = 'Import library';
-            modalTextEl.textContent = 'Paste an exported library below. New videos are added to your library.';
-            modalDataEl.readOnly = false;
-            modalImportEl.hidden = false;
-            modalImportEl.disabled = true;
-            modalDataEl.focus();
-        }
+        modalDataEl.value = state.videos.length ? encodeList(state.videos) : '';
+        modalDataEl.readOnly = false;
+        modalImportEl.hidden = false;
+        modalEl.querySelector('.yt-sync-inspect').href = inspectUrl();
+        validateImport();
+        modalDataEl.focus();
     }
 
     function closeModal() {
@@ -581,15 +597,17 @@
             return;
         }
         try {
-            const diff = diffImport(decodeList(text));
+            const list = decodeList(text);
+            const diff = diffImport(list);
             importParsed = diff;
             const parts = [];
             if (diff.fresh.length) parts.push(diff.fresh.length + ' new ' + (diff.fresh.length === 1 ? 'video' : 'videos') + ' to add');
             if (diff.updates.length) parts.push(diff.updates.length + ' to update');
+            const kb = Math.max(1, Math.round(new Blob([JSON.stringify(list)]).size / 1024));
             modalStatusEl.className = 'yt-modal-status ok';
-            modalStatusEl.textContent = parts.length
+            modalStatusEl.textContent = (parts.length
                 ? parts.join(', ')
-                : 'All ' + countLabel(diff.total) + ' already in your library, nothing to change';
+                : 'All ' + countLabel(diff.total) + ' already in your library, nothing to change') + ' (' + kb + ' KB)';
             modalImportEl.disabled = parts.length === 0;
         } catch (e) {
             modalStatusEl.className = 'yt-modal-status bad';
@@ -622,11 +640,15 @@
         return { fresh, updates, total: list.length };
     }
 
+    function applyDiff(diff) {
+        diff.updates.forEach(u => Object.assign(findVideo(u.id), u.patch));
+        state.videos = state.videos.concat(diff.fresh).sort(byDateDesc);
+        if (state.draft && findVideo(state.draft.id)) state.draft = null;
+    }
+
     function importList() {
         if (!importParsed || (!importParsed.fresh.length && !importParsed.updates.length)) return;
-        importParsed.updates.forEach(u => Object.assign(findVideo(u.id), u.patch));
-        state.videos = state.videos.concat(importParsed.fresh).sort(byDateDesc);
-        if (state.draft && findVideo(state.draft.id)) state.draft = null;
+        applyDiff(importParsed);
         saveVideos();
         const parts = [];
         if (importParsed.fresh.length) parts.push('Added ' + countLabel(importParsed.fresh.length));
@@ -634,6 +656,210 @@
         closeModal();
         render();
         toast(parts.join(', '));
+    }
+
+    // ------------------------------------------------------------------ sync (optional, mantledb.sh)
+    // The remote entry is the library while sync is on. A transport failure (network, 5xx, non-JSON)
+    // sets syncDead and the sync UI vanishes for this page load; a 4xx is reported and sync stays on.
+    let syncCfg = null;         // { ns, key } or null
+    let syncDead = !SYNC_ENABLED;
+    let syncTimer = null;
+    let qrReady = null;         // promise for the lazily loaded QR script
+
+    function loadSync() {
+        try {
+            const c = JSON.parse(localStorage.getItem(SYNC_KEY));
+            if (c && typeof c.ns === 'string' && typeof c.key === 'string') syncCfg = c;
+        } catch (e) { /* ignore */ }
+    }
+
+    function setSync(cfg) {
+        syncCfg = cfg;
+        try {
+            if (cfg) localStorage.setItem(SYNC_KEY, JSON.stringify(cfg)); else localStorage.removeItem(SYNC_KEY);
+        } catch (e) { /* ignore */ }
+        renderSync();
+    }
+
+    function killSync() {
+        syncDead = true;
+        clearTimeout(syncTimer);
+        closeSync();
+        renderSync();
+    }
+
+    // Desktop shows the Sync row in the sidebar's Data section, mobile in the row under the grid.
+    function renderSync() {
+        syncWrapEl.hidden = syncDead;
+        syncWrapEl.querySelector('button').textContent = syncCfg ? 'MantleDB sync… [ON]' : 'MantleDB sync…';
+        renderSidebar();
+    }
+
+    // Resolves { status, body } for any HTTP answer the service gives. Rejects, and kills sync, only
+    // when the service itself is unreachable or broken.
+    function syncFetch(path, opts, key) {
+        const headers = {};
+        if (opts && opts.body) headers['Content-Type'] = 'application/json';
+        if (key) headers['X-Mantle-Key'] = key;
+        return fetch(SYNC_BASE + path, Object.assign({}, opts, { headers }))
+            .then(r => {
+                if (r.status >= 500) throw new Error('HTTP ' + r.status);
+                return r.json().then(body => ({ status: r.status, body }));
+            })
+            .catch(e => { killSync(); throw e; });
+    }
+
+    const syncPath = () => '/' + syncCfg.ns + '/library';
+
+    function syncPush() {
+        if (!syncCfg || syncDead) return;
+        clearTimeout(syncTimer);
+        syncTimer = setTimeout(() => {
+            syncFetch(syncPath(), { method: 'POST', body: JSON.stringify(state.videos) }, syncCfg.key)
+                .then(r => { if (r.status === 401) toast('Sync key rejected'); })
+                .catch(() => { /* sync killed */ });
+        }, 500);
+    }
+
+    // Pull the synced library over this one. With mergeLocal, the videos and tags already here are
+    // added to it first (same rules as Import) and the result is pushed back.
+    function syncPull(mergeLocal) {
+        if (!syncCfg || syncDead) return;
+        const local = mergeLocal ? state.videos : [];
+        syncFetch(syncPath(), {}, syncCfg.key)
+            .then(r => {
+                if (r.status === 200 && Array.isArray(r.body)) {
+                    const playing = currentVideo();
+                    state.videos = dedupe(r.body.map(normalise));
+                    const diff = diffImport(local);
+                    applyDiff(diff);
+                    if (playing && !isDraft(playing.id) && !findVideo(playing.id)) state.draft = playing;
+                    if (state.draft && findVideo(state.draft.id)) state.draft = null;
+                    try { localStorage.setItem(KEY, JSON.stringify(state.videos)); } catch (e) { /* ignore */ }
+                    render();
+                    if (diff.fresh.length || diff.updates.length) syncPush();
+                } else if (r.status === 404) {
+                    syncPush();
+                } else if (r.status === 401) {
+                    toast('Sync key rejected');
+                }
+            })
+            .catch(() => { /* sync killed */ });
+    }
+
+    function randomNs() {
+        const bytes = crypto.getRandomValues(new Uint8Array(8));
+        return 'pingfu-youtube-' + Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    // Empty key: claim the namespace in the box (or the generated placeholder) and push this library.
+    // Key given: connect to that existing namespace and pull its library over this one.
+    let generatedNs = '';        // the namespace offered in the dialog's placeholder
+
+    function syncOn() {
+        const ns = syncNsEl.value.trim() || generatedNs;
+        const key = syncKeyEl.value.trim();
+        if (key) {
+            if (!syncNsEl.value.trim()) {
+                toast('Enter the namespace that goes with that key');
+                return;
+            }
+            setSync({ ns, key });
+            syncPull(true);
+            openSync();
+            return;
+        }
+        syncFetch('/claim/' + ns)
+            .then(r => {
+                if (r.status === 401) {
+                    toast('That namespace is already taken');
+                    return;
+                }
+                if (r.status !== 201 || !r.body || typeof r.body.key !== 'string') {
+                    toast('Could not turn on sync');
+                    return;
+                }
+                setSync({ ns, key: r.body.key });
+                syncPush();
+                openSync();
+            })
+            .catch(() => { /* sync killed */ });
+    }
+
+    function syncOff() {
+        clearTimeout(syncTimer);
+        setSync(null);
+        closeSync();
+        toast('Disconnected. The library stays in this browser.');
+    }
+
+    const syncLink = () => location.origin + location.pathname + '#sync=' + syncCfg.ns + ':' + syncCfg.key;
+
+    function loadQr() {
+        if (!qrReady) {
+            qrReady = new Promise((resolve, reject) => {
+                const s = document.createElement('script');
+                s.src = '/js/qrcode.min.js';
+                s.onload = resolve;
+                s.onerror = () => { qrReady = null; reject(new Error('QR script failed')); };
+                document.head.appendChild(s);
+            });
+        }
+        return qrReady;
+    }
+
+    // CyberChef shows the library as beautified JSON. Its input param is base64 of the input text,
+    // and the input text is the export string, which is itself base64 of the JSON.
+    function inspectUrl() {
+        const input = encodeURIComponent(btoa(encodeList(state.videos)));
+        return "https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true,false)JSON_Beautify('%20%20%20%20',false,true)&input=" + input + '&oenc=65001';
+    }
+
+    function openSync() {
+        if (syncDead) return;
+        syncEl.hidden = false;
+        syncOffEl.hidden = !!syncCfg;
+        syncOnEl.hidden = !syncCfg;
+        const inspect = inspectUrl();
+        syncEl.querySelectorAll('.yt-sync-inspect').forEach(a => { a.href = inspect; });
+        if (!syncCfg) {
+            syncNsEl.value = '';
+            generatedNs = randomNs();
+            syncNsEl.placeholder = generatedNs;
+            syncKeyEl.value = '';
+            el('ytSyncGo').textContent = 'Claim namespace from MantleDB';
+            return;
+        }
+        const link = syncLink();
+        el('ytSyncNsOn').value = syncCfg.ns;
+        el('ytSyncKeyOn').value = syncCfg.key;
+        syncLinkEl.textContent = link;
+        syncQrEl.innerHTML = '';
+        loadQr().then(() => {
+            const qr = window.qrcode(0, 'M');
+            qr.addData(link);
+            qr.make();
+            syncQrEl.innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+        }).catch(() => {
+            syncQrEl.textContent = 'QR unavailable, copy the link instead';
+        });
+    }
+
+    function closeSync() {
+        syncEl.hidden = true;
+    }
+
+    function copySyncLink() {
+        const done = () => toast('Link copied');
+        const fail = () => {
+            const range = document.createRange();
+            range.selectNodeContents(syncLinkEl);
+            const sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+            toast('Could not copy. Select the link and copy it');
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(syncLink()).then(done, fail); else fail();
     }
 
     // ------------------------------------------------------------------ rendering
@@ -716,8 +942,8 @@
                 channels.map(c => row(chLabel(state.videos.find(v => v.channel === c)), isF('channel', c), 'channel', c, chCounts[c])).join('');
         }
         html += '<div class="yt-side-data"><div class="yt-label">Data</div>' +
-            '<button type="button" class="yt-side-row" data-act="export"><span class="yt-side-text">Export library</span></button>' +
-            '<button type="button" class="yt-side-row" data-act="import"><span class="yt-side-text">Import library</span></button>' +
+            '<button type="button" class="yt-side-row" data-act="import"><span class="yt-side-text">Import/Export library…</span></button>' +
+            (syncDead ? '' : '<button type="button" class="yt-side-row" data-act="sync"><span class="yt-side-text">MantleDB sync…</span>' + (syncCfg ? '<span class="yt-side-badge">on</span>' : '') + '</button>') +
             '<button type="button" class="yt-side-row danger" data-act="forget-all"><span class="yt-side-text">Forget all videos</span></button></div>';
         sidebarEl.innerHTML = html;
     }
@@ -1138,6 +1364,21 @@
             case 'modal-import':
                 importList();
                 break;
+            case 'sync':
+                openSync();
+                break;
+            case 'sync-on':
+                syncOn();
+                break;
+            case 'sync-off':
+                syncOff();
+                break;
+            case 'sync-copy':
+                copySyncLink();
+                break;
+            case 'sync-close':
+                if (e.target === t) closeSync();
+                break;
             default:
                 break;
         }
@@ -1150,6 +1391,11 @@
         const path = e.composedPath ? e.composedPath() : [];
         if (path.some(n => n && n.classList && (n.classList.contains('yt-menu') || n.classList.contains('yt-picker'))) || e.target.closest('[data-act="more-tab"], [data-act="menu-group"]')) return;
         closeMenu();
+    });
+
+    // The primary button claims a new namespace unless a key has been entered, in which case it connects.
+    syncKeyEl.addEventListener('input', () => {
+        el('ytSyncGo').textContent = syncKeyEl.value.trim() ? 'Connect to namespace' : 'Claim namespace from MantleDB';
     });
 
     app.addEventListener('submit', e => {
@@ -1241,6 +1487,7 @@
     document.addEventListener('keydown', e => {
         if (e.key !== 'Escape') return;
         if (!modalEl.hidden) closeModal();
+        else if (!syncEl.hidden) closeSync();
         else if (state.menu) closeMenu();
         else if (!sheetEl.hidden) closeSheet();
     });
@@ -1257,12 +1504,34 @@
     // ------------------------------------------------------------------ boot
     state.videos = loadVideos();
     loadPrefs();
+    loadSync();
     applyMode();
 
     const params = new URLSearchParams(location.search);
     const hashId = parseId(location.hash.slice(1));
     if (hashId) submit(hashId); else render();
     pruneThumbs();
+
+    // A handoff link (#sync=ns:key) connects this browser to an existing synced library. Videos and
+    // tags already here are merged into it, so warn when there is something to merge.
+    const syncHash = SYNC_HASH_RE.exec(location.hash);
+    let mergeOnPull = false;
+    if (syncHash && !syncDead) {
+        history.replaceState(null, '', location.pathname + location.search);
+        const ns = syncHash[1];
+        const key = syncHash[2];
+        const same = syncCfg && syncCfg.ns === ns && syncCfg.key === key;
+        const n = state.videos.length;
+        const ok = same || !n || window.confirm(
+            'This browser already has ' + countLabel(n) + (syncCfg ? ' synced to a different MantleDB namespace' : '') +
+            '. They and their tags will be added to the synced library at ' + ns + '. Continue?');
+        if (ok && !same) {
+            setSync({ ns, key });
+            mergeOnPull = n > 0;
+        }
+    }
+    renderSync();
+    syncPull(mergeOnPull);
 
     if (params.has('refresh')) {
         params.delete('refresh');

@@ -15,7 +15,7 @@ The site header is one component, `_includes/nav.html`, styled as `.site-nav` in
 
 Pages can set `app_shell: true` in front matter to drop the layout's nav and footer, `fonts:` to add a Google Fonts stylesheet, and `extra_scss:` to compile an extra SCSS include.
 
-The YouTube page is deliberately light on YouTube: one oEmbed call and one thumbnail fetch when a video is first played, then everything is served from localStorage (`pingfu.history.v2`) and IndexedDB (`pingfu-history`, thumbnail blobs). Do not add calls that run on every visit.
+The YouTube page is deliberately light on YouTube: one oEmbed call and one thumbnail fetch when a video is first played, then everything is served from localStorage (`pingfu.history.v2`) and IndexedDB (`pingfu-history`, thumbnail blobs). Do not add calls that run on every visit. Sync is opt-in: when on (`pingfu.history.sync` holds a mantledb.sh namespace and key) the list is mirrored to one entry there, pull on load replaces local, every save pushes. If mantledb.sh is unreachable the sync UI hides itself for that page load. `js/qrcode.min.js` is vendored for the handoff QR and loaded only when the sync dialog opens.
 
 ## Config
 
