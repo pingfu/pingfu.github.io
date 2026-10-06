@@ -68,7 +68,7 @@ extra_scss: scss/youtube.scss
             <textarea id="ytModalData" placeholder="Paste an exported library here" spellcheck="false"></textarea>
             <div class="yt-modal-status" id="ytModalStatus"></div>
             <div class="yt-modal-actions">
-                <button type="button" class="yt-btn-secondary yt-btn-left" data-act="export">Export</button>
+                <button type="button" class="yt-btn-secondary yt-btn-left" data-act="export">Copy to clipboard</button>
                 <button type="button" class="yt-btn-secondary" data-act="modal-close">Cancel</button>
                 <button type="button" class="yt-btn-primary" id="ytModalImport" data-act="modal-import" disabled>Import</button>
             </div>
