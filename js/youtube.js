@@ -11,9 +11,13 @@
  * history when the user marks it as saved in the player's status tab.
  *
  * Sync is optional and off by default. When on, the list is mirrored to one
- * entry at mantledb.sh under a claimed namespace: pull on load replaces the
- * local list, every save pushes it. If the service is unreachable the sync UI
- * disappears for that page load and the page carries on from localStorage.
+ * entry at mantledb.sh under a claimed namespace: every load and every change
+ * pulls the entry first, every save pushes it. The entry can never cause data
+ * loss here: if it is gone, locked, unreadable or empty, sync turns itself off
+ * and the local list stays; if it would drop or change more than a fifth of
+ * the local list the user is asked first. If the service is unreachable the
+ * sync UI disappears for that page load and the page carries on from
+ * localStorage.
  */
 (() => {
     'use strict';
@@ -33,6 +37,8 @@
     const SYNC_KEY = 'pingfu.history.sync';
     const SYNC_BASE = 'https://mantledb.sh/v2';
     const SYNC_HASH_RE = /^#sync=([\w-]+):([\w-]+)$/;
+    const SYNC_MAX_CHANGE = 0.2;                     // share of the local library a pull may drop or change unasked
+    const GROUP_MODES = ['date', 'channel', 'tag'];
 
     const mql = window.matchMedia('(max-width: 899px)');
     const isMobile = () => mql.matches;
@@ -221,7 +227,7 @@
         try {
             const p = JSON.parse(localStorage.getItem(PREFS_KEY)) || {};
             if (p.view === 'grid' || p.view === 'list') state.view = p.view;
-            if (['date', 'channel', 'tag'].indexOf(p.groupBy) !== -1) state.groupBy = p.groupBy;
+            if (GROUP_MODES.indexOf(p.groupBy) !== -1) state.groupBy = p.groupBy;
         } catch (e) { /* defaults */ }
     }
 
@@ -410,12 +416,56 @@
     function setCurrent(id) {
         state.currentId = id;
         state.menu = null;
-        if (id) {
-            history.replaceState(null, '', '#' + id);
-        } else {
-            state.draft = null;
-            if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+        if (!id) state.draft = null;
+        syncHash();
+    }
+
+    // ------------------------------------------------------------------ view in the URL hash
+    // The hash is #[filter/]group[-list][:videoId], all lowercase, so a view can be bookmarked or
+    // shared: #homelab/date:mH8hjFFa_b4, #channel-list, #@somechannel/tag, #untagged/date. A bare
+    // #videoId still works. The default view with nothing playing has no hash at all.
+    function viewHash() {
+        const f = state.filter;
+        const seg = !f ? '' : f.kind === 'untagged' ? 'untagged' : (f.kind === 'channel' ? '@' : '') + encodeURIComponent(f.value.toLowerCase());
+        const id = state.currentId || '';
+        if (!seg && !id && state.groupBy === 'date' && state.view === 'grid') return '';
+        return '#' + (seg ? seg + '/' : '') + state.groupBy + (state.view === 'list' ? '-list' : '') + (id ? ':' + id : '');
+    }
+
+    function syncHash() {
+        const want = viewHash();
+        if (location.hash !== want) history.replaceState(null, '', location.pathname + location.search + want);
+    }
+
+    // Reads a hash back into { id, groupBy, view, filter }. Unknown parts are left null; a filter
+    // naming a tag or channel that is not in the library is dropped. Channel filters are desktop only.
+    function parseHash(hash) {
+        const h = { id: null, groupBy: null, view: null, filter: null };
+        let s = (hash || '').replace(/^#/, '');
+        if (!s || SYNC_HASH_RE.test(hash)) return h;
+        if (parseId(s)) {
+            h.id = parseId(s);
+            return h;
         }
+        const colon = s.lastIndexOf(':');
+        if (colon !== -1) {
+            h.id = parseId(s.slice(colon + 1));
+            s = s.slice(0, colon);
+        }
+        const parts = s.split('/');
+        const m = /^(date|channel|tag)(-list)?$/.exec(parts.pop());
+        if (!m) return h;
+        h.groupBy = m[1];
+        h.view = m[2] ? 'list' : 'grid';
+        let f = '';
+        try { f = decodeURIComponent(parts.join('/')).toLowerCase(); } catch (e) { /* malformed, no filter */ }
+        if (!f) return h;
+        const tag = allTags().find(t => t.toLowerCase() === f);
+        const ch = f[0] === '@' && !isMobile() ? state.videos.find(v => v.channel.toLowerCase() === f.slice(1)) : null;
+        if (tag) h.filter = { kind: 'tag', value: tag };
+        else if (ch) h.filter = { kind: 'channel', value: ch.channel, label: chLabel(ch) };
+        else if (f === 'untagged' && !isMobile()) h.filter = { kind: 'untagged' };
+        return h;
     }
 
     // Play a saved video from the list: no reorder, no date change. Autoplays only on an explicit Play action.
@@ -512,7 +562,7 @@
     function forgetAll() {
         const n = state.videos.length;
         if (!n) return;
-        if (!window.confirm('Forget all ' + countLabel(n) + '? This clears your library and cached thumbnails in this browser' + (syncCfg && !syncDead ? ', and on every synced device.' : '.'))) return;
+        if (!window.confirm('Forget all ' + countLabel(n) + '? This clears your library and cached thumbnails in this browser' + (syncCfg && !syncDead ? ' and empties the synced copy at MantleDB. Other synced browsers keep their videos and turn sync off.' : '.'))) return;
         mutate(() => {
             state.videos.forEach(v => releaseThumb(v.id));
             state.videos = [];
@@ -674,8 +724,11 @@
     }
 
     // ------------------------------------------------------------------ sync (optional, mantledb.sh)
-    // The remote entry is the library while sync is on. A transport failure (network, 5xx, non-JSON)
-    // sets syncDead and the sync UI vanishes for this page load; a 4xx is reported and sync stays on.
+    // The remote entry mirrors the library while sync is on, but it can never cause data loss here.
+    // A transport failure (network, 5xx, non-JSON) sets syncDead and the sync UI vanishes for this
+    // page load. A remote copy that is gone (404), locked (401), unreadable or empty turns sync off
+    // and leaves the local library alone. One that would remove or change more than SYNC_MAX_CHANGE
+    // of the local library is only accepted after the user confirms; declining turns sync off.
     let syncCfg = null;         // { ns, key } or null
     let syncDead = !SYNC_ENABLED;
     let syncTimer = null;
@@ -732,33 +785,71 @@
         clearTimeout(syncTimer);
         syncTimer = setTimeout(() => {
             syncFetch(syncPath(), { method: 'POST', body: JSON.stringify(state.videos) }, syncCfg.key)
-                .then(r => { if (r.status === 401) toast('Sync key rejected'); })
+                .then(r => { if (r.status === 401) dropSync('MantleDB rejected the sync key.'); })
                 .catch(() => { /* sync killed */ });
         }, 500);
+    }
+
+    // Turn sync off and keep the local library. Used whenever the remote copy cannot be trusted.
+    function dropSync(why) {
+        clearTimeout(syncTimer);
+        setSync(null);
+        closeSync();
+        toast(why + ' Sync turned off, the library stays in this browser.');
+    }
+
+    // How many of the videos in `local` the list `next` would drop or change. Additions do not count,
+    // nor does filling in a title or channel that was blank here.
+    function countChanged(local, next) {
+        const byId = new Map(next.map(v => [v.id, v]));
+        return local.filter(v => {
+            const n = byId.get(v.id);
+            return !n || (v.title && n.title !== v.title) || (v.channel && n.channel !== v.channel) ||
+                n.date !== v.date || (n.tags[0] || '') !== (v.tags[0] || '');
+        }).length;
     }
 
     // Pull the synced library over this one. With mergeLocal, the videos and tags already here are
     // added to it first (same rules as Import) and the result is pushed back. Always resolves.
     function syncPull(mergeLocal) {
         if (!syncCfg || syncDead) return Promise.resolve();
-        const local = mergeLocal ? state.videos : [];
         return syncFetch(syncPath(), {}, syncCfg.key)
             .then(r => {
-                if (r.status === 200 && Array.isArray(r.body)) {
-                    const playing = currentVideo();
-                    state.videos = dedupe(r.body.map(normalise));
-                    const diff = diffImport(local);
-                    applyDiff(diff);
-                    if (playing && !isDraft(playing.id) && !findVideo(playing.id)) state.draft = playing;
-                    if (state.draft && findVideo(state.draft.id)) state.draft = null;
-                    try { localStorage.setItem(KEY, JSON.stringify(state.videos)); } catch (e) { /* ignore */ }
-                    render();
-                    if (diff.fresh.length || diff.updates.length) syncPush();
-                } else if (r.status === 404) {
-                    syncPush();
-                } else if (r.status === 401) {
-                    toast('Sync key rejected');
+                const local = state.videos;
+                if (r.status === 404) {
+                    dropSync(mergeLocal ? 'No library found at that MantleDB namespace.' : 'The synced library is gone from MantleDB.');
+                    return;
                 }
+                if (r.status === 401) {
+                    dropSync('MantleDB rejected the sync key.');
+                    return;
+                }
+                if (r.status !== 200 || !Array.isArray(r.body)) {
+                    dropSync('MantleDB returned something that is not a library.');
+                    return;
+                }
+                const remote = dedupe(r.body.map(normalise));
+                if (!remote.length && local.length && !mergeLocal) {
+                    dropSync('The synced library at MantleDB is empty or unreadable.');
+                    return;
+                }
+                const playing = currentVideo();
+                state.videos = remote;
+                const diff = diffImport(mergeLocal ? local : []);
+                applyDiff(diff);
+                const changed = countChanged(local, state.videos);
+                if (changed > local.length * SYNC_MAX_CHANGE && !window.confirm(
+                    'The synced library at MantleDB would remove or change ' + changed + ' of the ' + countLabel(local.length) +
+                    ' in this browser. Replace this browser\'s library with the synced one? Cancel keeps this browser\'s library and turns sync off.')) {
+                    state.videos = local;
+                    dropSync('Synced library declined.');
+                    return;
+                }
+                if (playing && !isDraft(playing.id) && !findVideo(playing.id)) state.draft = playing;
+                if (state.draft && findVideo(state.draft.id)) state.draft = null;
+                try { localStorage.setItem(KEY, JSON.stringify(state.videos)); } catch (e) { /* ignore */ }
+                render();
+                if (diff.fresh.length || diff.updates.length) syncPush();
             })
             .catch(() => { /* sync killed */ });
     }
@@ -1245,6 +1336,7 @@
     }
 
     function render() {
+        syncHash();
         renderSidebar();
         renderNow();
         renderToolbar();
@@ -1509,6 +1601,8 @@
     searchMobileEl.addEventListener('input', onSearch);
 
     modalDataEl.addEventListener('input', validateImport);
+    // A click selects the whole export so it can be copied or pasted over in one go.
+    modalDataEl.addEventListener('click', () => { if (modalDataEl.value) modalDataEl.select(); });
 
     document.addEventListener('keydown', e => {
         if (e.key !== 'Escape') return;
@@ -1534,18 +1628,22 @@
     applyMode();
 
     const params = new URLSearchParams(location.search);
-    const hashId = parseId(location.hash.slice(1));
-    if (hashId) submit(hashId); else render();
+    const bootHash = location.hash;          // read once: the first render rewrites the hash
+    const view = parseHash(bootHash);
+    if (view.id) submit(view.id);           // submit clears the filter, so the view is applied after it
+    if (view.groupBy) state.groupBy = view.groupBy;
+    if (view.view) state.view = view.view;
+    if (view.filter) state.filter = view.filter;
+    render();
     pruneThumbs();
 
     // A handoff link (#sync=ns:key) connects this browser to an existing synced library. Videos and
     // tags already here are merged into it, so warn when there is something to merge.
-    const syncHash = SYNC_HASH_RE.exec(location.hash);
+    const handoff = SYNC_HASH_RE.exec(bootHash);
     let mergeOnPull = false;
-    if (syncHash && !syncDead) {
-        history.replaceState(null, '', location.pathname + location.search);
-        const ns = syncHash[1];
-        const key = syncHash[2];
+    if (handoff && !syncDead) {
+        const ns = handoff[1];
+        const key = handoff[2];
         const same = syncCfg && syncCfg.ns === ns && syncCfg.key === key;
         const n = state.videos.length;
         const ok = same || !n || window.confirm(
