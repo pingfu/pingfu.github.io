@@ -19,6 +19,12 @@ extra_scss: scss/youtube.scss
         <main class="yt-main">
             <section class="yt-now" id="ytNow" hidden>
                 <div class="yt-stage">
+                    <div class="yt-tab yt-tab-left">
+                        <button type="button" class="yt-status yt-copy-link" data-act="copy-link" title="Copy a link to this video on this page" aria-label="Copy link to this video">
+                            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M6.8 9.2a3 3 0 0 0 4.2 0l2.3-2.3a3 3 0 0 0-4.2-4.2L8 3.8M9.2 6.8a3 3 0 0 0-4.2 0L2.7 9.1a3 3 0 0 0 4.2 4.2L8 12.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            <span class="yt-copy-link-text">Copy link</span>
+                        </button>
+                    </div>
                     <div class="yt-tab" id="ytTab"></div>
                     <div class="yt-player" id="ytPlayer"></div>
                     <div class="yt-menu" id="ytMenu" role="menu" aria-label="Video actions" hidden></div>

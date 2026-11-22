@@ -1430,6 +1430,14 @@
             case 'toggle-save':
                 toggleSaved();
                 break;
+            case 'copy-link':
+                // the page URL already carries the playing video in its hash (see syncHash)
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(location.href).then(() => toast('Copied link'), () => toast('Could not copy the link'));
+                } else {
+                    toast('Could not copy the link');
+                }
+                break;
             case 'menu-link':
                 closeMenu();
                 break;
