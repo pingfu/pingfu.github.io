@@ -515,7 +515,7 @@
         setCurrent(id);
         if (findVideo(id) && !findVideo(id).title) fetchMeta(id);
         render();
-        if (!isMobile()) inputEl.blur();
+        inputEl.blur();   // on mobile this also collapses the paste form back into the nav row
         scrollToTop();
         return true;
     }

@@ -3,7 +3,8 @@ Site header. One component, two projections:
   default         centred: the inner row is a Bootstrap .container, so it lines up with page content
   nav_full: true  full width, set in a page's front matter (used by /tools/youtube/)
 Optional nav_slot: an include rendered in the middle column (the YouTube paste form).
-The burger that stacks the links on narrow screens is wired up in _layouts/default.html.
+On narrow screens it is one row: brand, slot, burger. Focusing the slot gives it the whole row.
+The burger that stacks the links underneath is wired up in _layouts/default.html.
 {% endcomment %}
 <header class="site-nav{% if page.nav_full %} site-nav-full{% endif %}">
     <div class="site-nav-inner{% unless page.nav_full %} container{% endunless %}">
