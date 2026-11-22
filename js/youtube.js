@@ -1094,6 +1094,9 @@
         const label = chLabel(v);
 
         tabEl.innerHTML =
+            '<button type="button" class="yt-status yt-copy-link" data-act="copy-link" title="Copy the URL of this page with this video playing" aria-label="Copy video URL">' +
+            '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M6.8 9.2a3 3 0 0 0 4.2 0l2.3-2.3a3 3 0 0 0-4.2-4.2L8 3.8M9.2 6.8a3 3 0 0 0-4.2 0L2.7 9.1a3 3 0 0 0 4.2 4.2L8 12.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>' +
+            '<span class="yt-copy-link-text">Copy video URL</span></button><span class="yt-tab-div"></span>' +
             `<button type="button" class="yt-status" data-act="toggle-save" aria-pressed="${saved}" aria-label="Saved to library">` +
             (saved ? '<span class="yt-status-check">✓</span><span>Saved</span>' + (cur ? chipHtml(cur) : '')
                    : '<span class="yt-status-ring"></span><span>Not saved</span>') +
@@ -1433,9 +1436,9 @@
             case 'copy-link':
                 // the page URL already carries the playing video in its hash (see syncHash)
                 if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(location.href).then(() => toast('Copied link'), () => toast('Could not copy the link'));
+                    navigator.clipboard.writeText(location.href).then(() => toast('Copied video URL'), () => toast('Could not copy the URL'));
                 } else {
-                    toast('Could not copy the link');
+                    toast('Could not copy the URL');
                 }
                 break;
             case 'menu-link':

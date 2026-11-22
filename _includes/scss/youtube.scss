@@ -275,7 +275,7 @@ html:has(body.yt-page) {
     .yt-player {
         aspect-ratio: $yt-ratio;
         background: #111;
-        border-radius: 0 0 10px 10px;   // top corners are square where the two tabs attach
+        border-radius: 10px 0 10px 10px;
         overflow: hidden;
 
         iframe {
@@ -310,21 +310,9 @@ html:has(body.yt-page) {
         }
     }
 
-    // mirror of the status tab on the top-left edge: holds the copy link button
-    .yt-tab-left {
-        right: auto;
-        left: 0;
-        padding: 0 8px 0 12px;
-
-        &::before {
-            left: auto;
-            right: -10px;
-            background: radial-gradient(circle at 100% 0, transparent 10px, #111 10.5px);
-        }
-
-        svg {
-            flex: none;
-        }
+    // copy link button at the front of the status tab
+    .yt-copy-link svg {
+        flex: none;
     }
 
     .yt-status {
@@ -1615,9 +1603,9 @@ html:has(body.yt-page) {
             margin: 64px 16px 4px;
         }
 
-        // tabs attach at both top corners and the title panel completes the card below
+        // the title panel below completes the card, so only the top-left corner is rounded here
         .yt-player {
-            border-radius: 0;
+            border-radius: 10px 0 0 0;
         }
 
         .yt-tab {
@@ -1625,13 +1613,9 @@ html:has(body.yt-page) {
             padding: 0 0 0 12px;
         }
 
-        // icon only, so it never collides with a long tag chip in the status tab
-        .yt-tab-left {
-            padding: 0 4px 0 12px;
-
-            .yt-copy-link-text {
-                display: none;
-            }
+        // icon only, to leave room for a long tag chip beside it
+        .yt-copy-link-text {
+            display: none;
         }
 
         .yt-status {
