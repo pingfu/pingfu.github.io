@@ -434,7 +434,12 @@
 
     function syncHash() {
         const want = viewHash();
-        if (location.hash !== want) history.replaceState(null, '', location.pathname + location.search + want);
+        if (location.hash === want) return;
+        // A real fragment navigation (no new history entry), because some mobile browsers do not
+        // show a hash written with replaceState. Clearing the hash still needs replaceState:
+        // navigating to the bare path would reload the page.
+        if (want) location.replace(want);
+        else history.replaceState(null, '', location.pathname + location.search);
     }
 
     // Reads a hash back into { id, groupBy, view, filter }. Unknown parts are left null; a filter
