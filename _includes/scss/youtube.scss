@@ -23,6 +23,7 @@ $yt-wordmark: #d9d8d4;
 $yt-pressed: #e8e6e1;
 $yt-chip-fg: #55534f;
 $yt-chip-hover: #b8b5af;
+$yt-link: #0d6efd;   // same as $primary-blue in main.scss, which is compiled separately
 $yt-danger: unquote('oklch(0.5 0.15 25)');
 $yt-danger-bg: unquote('oklch(0.96 0.02 25)');
 $yt-error: unquote('oklch(0.78 0.12 25)');
@@ -176,7 +177,7 @@ html:has(body.yt-page) {
             display: flex;
             align-items: center;
             gap: 10px;
-            height: 32px;
+            height: 24px;
             flex: none;
             padding: 0 10px;
             border: 0;
@@ -652,6 +653,16 @@ html:has(body.yt-page) {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+
+            a {
+                color: $yt-link;
+                text-decoration: none;
+
+                &:hover,
+                &:focus-visible {
+                    text-decoration: underline;
+                }
+            }
         }
 
         .yt-count {

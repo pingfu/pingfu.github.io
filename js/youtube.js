@@ -1241,6 +1241,18 @@
     function renderToolbar() {
         const f = state.filter;
         headingEl.textContent = !f ? 'All videos' : f.kind === 'untagged' ? 'Untagged' : f.kind === 'tag' ? f.value : f.label;
+        // A channel heading links out to the channel on YouTube, using the URL stored with its videos.
+        const chUrl = f && f.kind === 'channel' ? (state.videos.find(v => v.channel === f.value && /^https:\/\/(www\.)?youtube\.com\//.test(v.channelUrl)) || {}).channelUrl : '';
+        if (chUrl) {
+            const a = document.createElement('a');
+            a.href = chUrl;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.title = 'Open this channel on YouTube';
+            a.textContent = headingEl.textContent;
+            headingEl.textContent = '';
+            headingEl.appendChild(a);
+        }
         const shown = visibleVideos().length;
         const q = state.query.trim();
         countEl.textContent = q ? `${shown} of ${countLabel(state.videos.length)} match “${q}”` : countLabel(shown);
